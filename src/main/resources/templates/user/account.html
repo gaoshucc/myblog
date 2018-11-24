@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../image/account.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="../font/aliicon/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../css/account-commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/account-different.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../js/account.js"></script>
+    <title>我的账号</title>
+</head>
+<body>
+    <header id='header'>
+        <span id='switch-box' class='iconfont icon-caidan2' title="更多功能"></span>
+        <div id='headerbox'>
+            <img src='../image/article_head2.png'>
+            <nav id='nav'>
+                <ul>
+                    <li><a href='home.html'>首页</a></li>
+                    <li><a href='#'>问答</a></li>
+                    <li><a href='#'>学习路线</a></li>
+                </ul>
+            </nav>
+            <div id='user'>
+                <img src='../image/profile.jpg' id='imgone'>
+                <div id='user_detail'>
+                    <div id='infoBox'>
+                        <img src='../image/profile.jpg'>
+                        <div id='user-info'>
+                            <span>高数</span>
+                            <span>积分 9999</span>
+                        </div>
+                    </div>
+                    <div id='funcCard'>
+                        <ul id='funcCardList'>
+                            <li class='funcCardItems'>
+                                <a href="#">
+                                    <span class='iconfont icon-yonghu'></span>
+                                    <span>我的账号</span>
+                                </a>
+                            </li>
+                            <li class='funcCardItems'>
+                                <a href="#">
+                                    <span class='iconfont icon-wodeshoucang'></span>
+                                    <span>我的收藏</span>
+                                </a>
+                            </li>
+                            <li class='funcCardItems'>
+                                <a href="#">
+                                    <span class='iconfont icon-biji'></span>
+                                    <span>我的手记</span>
+                                </a>
+                            </li>
+                            <li class='funcCardItems'>
+                                <a href="#">
+                                    <span class='iconfont icon-wenda'></span>
+                                    <span>我的提问</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id='quit'><a href='#'>退出</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id='container'>
+        <div id='account'>
+            <div id='func-headline'>
+                <h2><span class='iconfont icon-yonghu'></span><em>我</em><em>的</em><em>账</em><em>号</em></h2>
+            </div>
+            <div id='accountInfo'>
+                <div id='basicInfo'>
+                    <div id='profileItem'>
+                        <label id='profile'>头像</label><img src='../image/profile.jpg'>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>账号</label><span class='itemInfo'>13143377023</span>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>昵称</label><span class='itemInfo'>高数</span>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>性别</label><span class='iconfont icon-nanxing icon'></span>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>二维码名片</label><span class='iconfont icon-erweima icon' id='qrcode'></span>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>职位</label><span class='itemInfo'>学生</span>
+                    </div>
+                    <div id='motoo'>
+                        <label>个性签名</label><span>宏愿纵未了，奋斗总不太晚！！！</span>
+                    </div>
+                    <div class='accountItems'>
+                        <label class='itemname'>关注的人</label><span class='iconfont icon-icon-arrow-right2 icon' id='followee'></span>
+                    </div>
+                    <div id='list-followee'>
+                        <a href="#">高数1</a>
+                        <a href="#">高数2</a>
+                        <a href="#">高数3</a>
+                    </div>
+                </div>
+                <div id='achievement'>
+                    <div id='summary'>
+                        <h3><span class='iconfont icon-jiangzhangxunzhang'></span>我的历程<span id='level'>入门</span></h3>
+                        <div id='summaryDetail'>
+                            <span>我已经进入社区<em>100</em>天了，总共</span>
+                            <span>浏览了<em>200</em>篇文章</span>
+                            <span>解答了<em>20</em>个问题</span>
+                            <span>关注了<em>30</em>个博友</span>
+                            <span>发布了<em>10</em>篇手记</span>    
+                            <span>提出了<em>9</em>个问题</span>
+                            <span>获得了<em>9999</em>积分</span>
+                            <span>已经达到<em>入门</em>级别</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id='password-manage'>
+            <div id='func-headline'>
+                <h2><span class='iconfont icon-icon_password_yes'></span><em>修</em><em>改</em><em>密</em><em>码</em></h2>
+                <span id="close-password-manage" class="iconfont icon-guanbi" title="关闭"></span>
+            </div>
+            <div id='modifi-password'>
+                <div class='input-box'>
+                    <label>手机号</label><input type='text'>
+                </div>
+                <div class='input-box'>
+                    <label>验证码</label><input type='text'>
+                </div>
+                <div class='input-box'>
+                    <label>新密码</label><input type='password'>
+                </div>
+                <div class='input-box'>
+                    <label>确认密码</label><input type='password'>
+                </div>
+                <div id="send-btn">
+                    <a href="#" id="send-code">发送验证码</a>
+                    <a href="#" id="confirm">确认修改</a>
+                </div>
+            </div>
+        </div>
+
+        <aside id='right'>
+            <img src="../image/ad.png">
+            <img src="../image/ad.png">
+            <img src="../image/ad.png">
+        </aside>
+    </div>
+
+    <div id='account-funcbox'>
+        <div id='account-func'>
+            <h2 id="account-setup">FunnyCode</h2>
+            <div id='func-list'>
+                <a href="#account" class="func"><span class="iconfont icon-profile"></span>账号信息</a>
+                <a href="#" class="func"><span class="iconfont icon-xiugai"></span>修改信息</a>
+                <a href="javascript:;" id="mdfpwd-btn" class="func"><span class="iconfont icon-icon_password_yes"></span>密码管理</a>
+                <a href="#" class="func"><span class="iconfont icon-icon_logout"></span>账号注销</a>
+                <a href="#" class="func"><span class="iconfont icon-bangzhuzhongxin"></span>帮助中心</a>
+            </div>
+        </div>
+        <span id='close-aside' class='iconfont icon-unie646' title="关闭"></span>
+    </div>
+
+</body>
+</html>

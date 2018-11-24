@@ -1,0 +1,470 @@
+::scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-moz-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-moz-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-ms-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-ms-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-o-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-o-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background-color: rgba(246, 246, 246, 100%);
+}
+#header{
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 100%);
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+}
+#headerbox{
+    position: relative;
+    width: 1080px;
+    height: 100%;
+    line-height: 100%;
+    margin: 0 auto;
+}
+#nav{
+    display: inline-block;
+    height: 40px;
+    margin-left: 30px;
+}
+#nav ul li{
+    display: block;
+    float: left;
+    list-style-type: none;
+}
+#nav ul li a{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 14px;
+    color:rgba(54, 58, 57, 100%);
+}
+#nav ul li:hover{
+    background-color: rgba(246, 246, 246, 100%);
+}
+
+#user{
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 40px;
+    padding: 5px 0;
+    z-index: 100;
+}
+#user #imgone{
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#user_detail{
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 280px;
+    height: 290px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+#infoBox{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px auto;
+}
+#infoBox img{
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+#user-info{
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+#user-info span{
+    display: block;
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+}
+#user-info span:nth-child(1){
+    font-size: 16px;
+    color: rgba(54, 58, 57, 100%);
+}
+#user-info span:nth-child(2){
+    font-size: 12px;
+    color: rgba(108, 108, 108, 100%);
+}
+
+#funcCard{
+    width: 88%;
+    height: 140px;
+    margin: 0 6%;
+    margin-bottom: 10px;
+}
+#funcCardList{
+    list-style-type: none;
+}
+.funcCardItems{
+    display: block;
+    float: left;
+    width: 50%;
+    height: 60px;
+    margin-bottom: 10px;
+}
+.funcCardItems span{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.funcCardItems a{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(108, 108, 108, 100%);
+}
+.funcCardItems:nth-child(1) .iconfont{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(1):hover span{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(2) .iconfont{
+    color: rgba(66, 211, 132, 100%);
+}
+.funcCardItems:nth-child(2):hover span{
+    color: rgba(66, 211, 132, 100%);
+}
+.funcCardItems:nth-child(3) .iconfont{
+    color: rgba(255, 210, 0, 100%);
+}
+.funcCardItems:nth-child(3):hover span{
+    color: rgba(255, 210, 0, 100%);
+}
+.funcCardItems:nth-child(4) .iconfont{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(4):hover span{
+    color: rgba(0, 133, 235, 100%);
+}
+
+#quit{
+    display: block;
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 15%;
+    text-align: left;
+    border-top: solid 1px rgba(216, 216, 216, 50%);
+}
+#quit a{
+    padding-left: 5px;
+    font-size: 14px;
+    color: rgba(108, 108, 108, 100%);
+}
+#quit a:hover{
+    color: rgba(19, 168, 228, 100%);
+}
+
+#top{
+    width: 96%;
+    height: 50px;
+    line-height: 50px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+
+#write{
+    display: block;
+    float: right;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 100%);
+    background-color: rgba(0, 133, 235, 100%);
+}
+
+#serchBar{
+    position: relative;
+    float: right;
+    width: 230px;
+    height: 30px;
+    margin: 10px 20px;
+    line-height: 30px;
+    border-radius: 5px;
+    z-index: 1;
+}
+#serchText{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-indent: 10px;
+    outline: none;
+    background-color: rgba(246, 246, 246, 100%);
+}
+#serch{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-left: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    color: rgba(54, 58, 57, 100%);
+    background-color: rgba(246, 246, 246, 100%);
+}
+#serch:hover{
+    color: rgba(0, 133, 235, 100%);
+}
+
+
+#container{
+    position: relative;
+    width: 1080px;
+    padding-right: 320px;
+    padding-left: 160px;
+    margin: 10px auto;
+}
+#articleCata{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    margin: 0 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+#articleCata ul{
+    width: 100%;
+}
+#articleCata ul li{
+    display: block;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px auto;
+    text-align: center;
+    list-style-type: none;
+}
+#articleCata ul li a{
+    font-size: 16px;
+    color: rgba(54, 58, 57, 100%);
+}
+#articleCata ul li a:hover{
+    color: rgba(0, 133, 255, 100%);
+}
+
+#noteSection{
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+.article{
+    width: 100%;
+    height: 80px;
+    padding: 5px 0;
+    border-bottom: solid 0.5px rgba(138,138,138,50%);
+    letter-spacing: 1px;
+}
+.article h2{
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+.article h2 a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 80%);
+}
+.article h2 a:hover{
+    color: rgba(0, 133, 235, 100%);
+}
+.article p{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: rgba(108, 108, 108, 100%);
+}
+.articleInfo{
+    position: relative;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(108, 108, 108, 100%);
+}
+.author{
+    display: block;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 10px;
+    color: rgba(54, 58, 57, 100%);
+}
+.author:hover{
+    color: rgb(19, 168, 228);
+}
+.content-type{
+    display: block;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 10px;
+    color: rgba(54, 58, 57, 100%);
+}
+.readInfo{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 50%;
+    height: 100%;
+    line-height: 100%;
+    
+}
+.readInfo span{
+    display: block;
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 10px;
+    text-align: center;
+}
+.readInfo a{
+    padding-right: 2px;
+    color: rgba(54, 58, 57, 100%);
+}
+.readInfo a:hover{
+    color: rgb(19, 168, 228);
+}
+
+#hotArticlle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    margin: 0 20px;
+}
+#hotHeadline{
+    width: 100%;
+}
+#hotHeadline h2{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: rgba(54, 58, 57, 100%);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+#hotHeadline h2 em{
+    font-style: normal;
+}
+
+#hotSection{
+    width: 100%;
+}
+.hotLink{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    overflow: hidden;
+}
+.hotLink span{
+    display: block;
+    float: left;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin: 11px 10px 11px 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 100%);
+    background-color: rgba(0, 133, 255, 100%);
+}
+.hotLink a{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    font-size: 14px;
+    color: rgba(54, 58, 57, 100%);
+}
+.hotLink a:hover{
+    color: rgb(19, 168, 228);
+}

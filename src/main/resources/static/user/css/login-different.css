@@ -1,0 +1,16 @@
+/* 
+对布局进行重新调整，
+将容器一的左内边距置零，
+并将原来左边侧栏通过绝对定位定位到右侧栏；
+由于网站主页主要展示内容为各种文章、资源，
+故将“留言功能”置于最后，以最小影响读者阅读。
+*/
+@media screen and (min-width:1081px) and (max-width:1200px){
+    
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 996px;
+    }
+  
+}

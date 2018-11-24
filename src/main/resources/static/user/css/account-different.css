@@ -1,0 +1,97 @@
+@media screen and (min-width:1081px) and (max-width:1200px){
+    #headerbox{
+        width: 960px;
+    }
+    #nav{
+        margin-left: 20px;
+    }
+    #container{
+        width: 960px;
+        padding-right: 296px;
+        margin: 16px auto;
+    }
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 992px;
+    }
+    #headerbox{
+        width: 910px;
+    }
+    #container{
+        width: 910px;
+        padding-right: 246px;
+        margin: 16px auto;
+    }
+    #right{
+        width: 230px;
+    }
+    #right img{
+        width: 190px;
+    }
+}
+/* 
+@media screen and (min-width: 769px) and (max-width:991px){
+    #headerbox{
+        width: 83.33%;
+    }
+    #container{
+        width:  83.33%;
+        padding-right: 0;
+    }
+    #right{
+        display: none;   
+    }
+}
+@media screen and (max-width: 769px){
+    body{
+        min-width: 768px;
+    }
+    #headerbox{
+        width: 74%;
+        padding: 0 10px;
+    }
+    #container{
+        width:  74%;
+        padding-right: 0;
+    }
+    #basicInfo{
+        width: 100%;
+        padding: 0 20px;
+        border-right: none;
+    }
+    #achievement{
+        position: relative;
+        width: 100%;
+        padding: 0 20px;
+        padding-top: 10px;
+    }
+    #summary{
+        width: 100%;
+    }
+    #summary h3{
+        height: 40px;
+        line-height: 40px;
+        padding-top: 10px;
+        padding-left: 0;
+        font-size: 16px;
+        font-weight: normal;
+        text-align: center;
+    }
+    #summary h3 span{
+        display: none;
+    }
+    #summary h3 #level{
+        top: 20px;
+        right: 5px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 15px;
+        font-weight: 550;
+        color: rgb(247, 53, 53);
+    }
+
+    #right{
+        display: none;   
+    }
+} */

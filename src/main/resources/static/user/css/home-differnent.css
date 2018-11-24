@@ -1,0 +1,135 @@
+/* 
+对布局进行重新调整，
+将容器一的左内边距置零，
+并将原来左边侧栏通过绝对定位定位到右侧栏；
+由于网站主页主要展示内容为各种文章、资源，
+故将“留言功能”置于最后，以最小影响读者阅读。
+*/
+@media screen and (min-width:1081px) and (max-width:1200px){
+    #menu{
+        width: 950px;
+    }
+    #serchbox{
+        width: 950px;
+    }
+    #container{
+        width: 950px;
+        padding: 0 300px 0 0;
+    }
+    #leftside{
+        left: initial;
+        right: 0;
+        width: 300px;
+    }
+    #card{
+        width: 100%;
+        height: 77.5px;
+    }
+    .cardItems{
+        width: 25%;
+    }
+    #messageBoard{
+        position: absolute;
+        top: 1181px;
+    }
+    #comment{
+        height: 500px;
+        padding: 10px 20px;
+    }
+    #comment .message p{
+        width: 100%;
+    }
+    #center{
+        margin: 0 16px 0 0;
+    }
+    #rightside{
+        position: absolute;
+        top: 115px;
+        right: 0;
+        width: 300px;
+    }
+
+    #container2{
+        width: 950px;
+        padding-right: 316px;
+    }
+    .resource{
+        width: 33.3%;
+        padding: 0 10px;
+        padding-bottom: 40px;
+    }
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 996px;
+    }
+    #menu{
+        width: 910px;
+    }
+    #serchbox{
+        width: 910px;
+    }
+    #container{
+        width: 910px;
+        padding: 0 300px 0 0;
+    }
+    #leftside{
+        left: initial;
+        right: 0;
+        width: 300px;
+    }
+    #card{
+        width: 100%;
+        height: 77.5px;
+    }
+    .cardItems{
+        width: 25%;
+    }
+    #messageBoard{
+        position: absolute;
+        top: 1181px;
+    }
+    #comment{
+        height: 500px;
+        padding: 10px 20px;
+    }
+    #comment .message p{
+        width: 100%;
+    }
+    #center{
+        margin: 0 16px 0 0;
+    }
+    #rightside{
+        position: absolute;
+        top: 115.5px;
+        right: 0;
+        width: 300px;
+    }
+    #container2{
+        width: 910px;
+        padding-right: 316px;
+    }
+    .resource{
+        width: 33.3%;
+        padding: 0 10px;
+        padding-bottom: 30px;
+    }
+    .videoLink p{
+        padding: 10px 10px 0 10px;
+        font-size: 15px;
+    }
+
+    #footer-content{
+        width: 910px;
+    }
+    #introduce{
+        width: 460px;
+    }
+    #popu-content{
+        left: 480px;
+        width: 200px;
+    }
+    #contact{
+        width: 250px;
+    }
+}

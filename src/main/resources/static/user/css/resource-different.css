@@ -1,0 +1,101 @@
+@media screen and (min-width:1081px) and (max-width:1200px){
+    #headerbox{
+        width: 960px;
+    }
+    #container{
+        width: 960px;
+    }
+    #nav{
+        margin-left: 20px;
+    }
+  
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 992px;
+    }
+    #headerbox{
+        width: 910px;
+    }
+    #container{
+        width: 910px;
+    }
+    #nav{
+        margin-left: 20px;
+    }
+  /* 
+  字体、图片也应该相应缩小
+  */
+}
+
+/* 
+@media screen and (min-width: 769px) and (max-width:991px){
+    #header{
+        padding: 0 10px;
+    }
+    #container{
+        width: 100%;
+    }
+    #nav{
+        margin-left: 20px;
+    }
+    .resource-intro{
+        width: 300px;
+    }
+}
+@media screen and (max-width: 769px){
+    body{
+        min-width: 768px;
+    }
+    #header{
+        padding: 0 10px;
+    }
+    #container{
+        width: 100%;
+    }
+    #nav{
+        margin-left: 20px;
+    }
+
+    .resource{
+        width: 100%;
+        height: 300px;   
+    }
+    .resource-descript{
+        font-size: 15px;
+    }
+    .rightpart-info .go{
+        font-size: 14px;
+    }
+    .first-infobg,.second-infobg,.third-infobg,.fourth-infobg{
+        width: 100%;
+        height: 100%;
+        color: rgba(246, 246, 246, 100%);
+    }    
+    .first-infobg .leftpart-info,.third-infobg .leftpart-info,.second-infobg .leftpart-info,.fourth-infobg .leftpart-info{
+        position: relative;
+        width: 100%;
+        height: 40%;
+    }
+    .first-infobg .rightpart-info,.third-infobg .rightpart-info,.second-infobg .rightpart-info,.fourth-infobg .rightpart-info{
+        position: relative;
+        width: 100%;
+        height: 60%;
+    }
+    .first-infobg .resource-tags,.third-infobg .resource-tags,.second-infobg .resource-tags,.fourth-infobg .resource-tags{
+        display: none;
+    }
+    .first-infobg .resource-name,.third-infobg .resource-name,.second-infobg .resource-name,.fourth-infobg .resource-name{
+        font-size: 45px;
+    }
+
+    #category{
+        padding: 10px 20px;
+    }
+    #resource-list{
+        padding: 0 20px;
+    }
+    .resource-intro{
+        width: 250px;
+    }
+} */

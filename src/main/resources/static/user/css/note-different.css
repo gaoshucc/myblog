@@ -1,0 +1,87 @@
+@media screen and (min-width:1081px) and (max-width:1200px){
+    #headerbox{
+        width: 960px;
+    }
+    #container{
+        position: relative;
+        width: 960px;
+        height: 500px;
+        padding-right: 304px;
+        margin: 24px auto;
+    }
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 992px;
+    }
+    #headerbox{
+        width: 930px;
+    }
+    #container{
+        width: 930px;
+        padding-right: 296px;
+        margin: 16px auto;
+    }
+}
+/* 
+@media screen and (min-width:887px) and (max-width:991px){
+    #header{
+        padding: 0 24px;
+    }
+    #container{
+        width: 830px;
+        padding-right: 246px;
+        margin: 16px auto;
+    }
+    #writerInfoBox{
+        width: 230px;
+        margin-left: 16px;
+    }
+    #writerInfo a{
+        width: 40px;
+        height: 25px;
+        line-height: 25px;
+        margin: 12.5px 0;
+        font-size: 12px;
+    }
+    #recommend{
+        width: 230px;
+        margin-left: 16px;
+    }
+    #recommend img{
+        width: 190px;
+    }
+}
+@media screen and (max-width: 886px){
+    body{
+        min-width: 768px;
+    }
+    #header{
+        padding: 0 24px;
+    }
+    #container{
+        width: 750px;
+        padding-right: 228px;
+        margin: 8px auto;
+    }
+    
+    #writerInfoBox{
+        width: 220px;
+        margin-left: 8px;
+    }
+    #writerInfo a{
+        width: 40px;
+        height: 25px;
+        line-height: 25px;
+        margin: 12.5px 0;
+        font-size: 12px;
+    }
+
+    #recommend{
+        width: 220px;
+        margin-left: 8px;
+    }
+    #recommend img{
+        width: 190px;
+    }
+} */

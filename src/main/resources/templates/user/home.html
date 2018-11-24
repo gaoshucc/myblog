@@ -1,0 +1,733 @@
+<!--作者简介
+    <div class="author-info">
+        <div class="author-basic-info">
+            <div class="author-basic-infobg">
+                <img src="../image/csdn.png" class="author-profile">
+                <span class="author-nickname">CSDN</span>
+                <span class="author-job">专业IT学习网站</span>
+            </div>
+        </div>
+        <div class="author-devote">
+            <span>手记<em>9</em>篇</span>
+            <span>解答<em>9</em>次</span>
+            <button>关注ta</button>
+        </div>
+    </div>
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" th:href="@{/user/image/blog.png}" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/home-commons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/home-differnent.css}">
+    <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/user/js/home.js}"></script>
+    <title>欢迎来到FunnyCode</title>
+</head>
+<body>
+    <header id="header">
+        <div id="menubox">
+            <div id="menu">
+                <nav id="navBox">
+                    <ul id="navList">
+                        <li class="nav"><a href="home.html">主页</a></li>
+                        <li class="nav"><a href="#">问答</a></li>
+                        <li class="nav"><a href="#">学习路线</a></li>
+                    </ul>
+                </nav>
+                <nav id="userBox">
+                    <ul id="userNavList">
+                        <li id="user" class="nav">    
+                            <img th:src="@{/user/image/profile.jpg}" id="profile">
+                            <div id='user_detail'>
+                                <div id='infoBox'>
+                                    <img th:src="@{/user/image/profile.jpg}">
+                                    <div id='user-info'>
+                                        <span>高数</span>
+                                        <span>积分 9999</span>
+                                    </div>
+                                </div>
+                                <div id='funcCard'>
+                                    <ul id='funcCardList'>
+                                        <li class='funcCardItems'>
+                                            <a href="account.html">
+                                                <span class='iconfont icon-yonghu'></span>
+                                                <span>我的账号</span>
+                                            </a>
+                                        </li>
+                                        <li class='funcCardItems'>
+                                            <a href="#">
+                                                <span class='iconfont icon-wodeshoucang'></span>
+                                                <span>我的收藏</span>
+                                            </a>
+                                        </li>
+                                        <li class='funcCardItems'>
+                                            <a href="#">
+                                                <span class='iconfont icon-biji'></span>
+                                                <span>我的手记</span>
+                                            </a>
+                                        </li>
+                                        <li class='funcCardItems'>
+                                            <a href="#">
+                                                <span class='iconfont icon-wenda'></span>
+                                                <span>我的提问</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
+                            </div>
+                            
+                        </li>
+                        <li class="nav"><a href="#">动态</a></li>
+                        <li class="nav"><a href="#">收藏</a></li>
+                        <li class="nav"><a href="#">历史记录</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div id="serchbox">
+            <div id='serchBar'>
+                <input type='text' placeholder='java学习路线' spellcheck ="false" id='serchText'>
+                <a href='#' id='serch' class='iconfont icon-3'></a>
+            </div>
+        </div>
+
+    </header>
+
+    <div id='homePage'>
+        <div id="container">
+            <div id="leftside">
+                <div id="top">
+                    <div id='background'>
+                        <div id="messageBar">
+                            <i class="iconfont icon-xiaoxi"></i>
+                            <div id="msgBox">
+                                <span id="message">欢迎来到FunnyCode</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id='card'>
+                        <ul id='cardList'>
+                            <li class='cardItems'>
+                                <a href='questArticle.html'>
+                                    <span class='iconfont icon-wenda'></span>
+                                    <span>问答</span>
+                                </a>
+                            </li>
+                            <li class='cardItems'>
+                                <a href='resource.html'>
+                                    <span class='iconfont icon-ziyuan1'></span>
+                                    <span>工具</span>
+                                </a>
+                            </li>
+                            <li class='cardItems'>
+                                <a href='#'>
+                                    <span class='iconfont icon-icon_category'></span>
+                                    <span>分类</span>
+                                </a>
+                            </li>
+                            <li class='cardItems'>
+                                <a href='#'>
+                                    <span class='iconfont icon-community'></span>
+                                    <span>社区</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              
+                <div id='messageBoard'>
+                    <div id='messageHeadline'>
+                        <h2><em>留</em><em>言</em><em>板</em></h2>
+                    </div>
+
+                    <div id="comment">
+                        <div class="message">
+                            <div class='user'><i class="iconfont icon-yonghu headicon"></i>用户1<time>2018-09-28</time></div>
+                            <p>我是一个愚蠢至极的人，甚至体会不了香菜和臭豆腐的美味。我见山是山，见海是海；看见石头缝里开出了花，也只会说一句：哦，花开了。直到遇见你，云海开始翻涌，江潮开始澎湃，细小的虫子搔着全世界的痒。你无需多言，我和清风通通涌向你。<span
+                                    class="arrow"></span></p>
+                        </div>
+                        <div class="message">
+                            <div class='user'><i class="iconfont icon-yonghu headicon"></i>用户2<time>2018-09-28</time></div>
+                            <p>我们常常讨厌平庸的自己，渴望洒脱的人生，所谓“天子呼来不上船，自言臣是酒中仙”。但是，如果你的才华配不上梦想，脚步跟不上目光，所有的任性不过是一念幻想。你应该知道，自由都需要代价，骄傲更需要底气。一味地长吁短叹，不如脚踏实地走路，或许真有一天，你的洒脱终将人人艳羡<span
+                                    class="arrow"></span></p>
+                        </div>
+                        <div class="message">
+                            <div class='user'><i class="iconfont icon-yonghu headicon"></i>用户3<time>2018-09-28</time></div>
+                            <p>我不需要舒服。我需要上帝，需要诗，需要真正的危险，需要自由，需要善，需要罪恶。<span class="arrow"></span></p>
+                        </div>
+                        <div class="message">
+                            <div class='user'><i class="iconfont icon-yonghu headicon"></i>用户4<time>2018-09-28</time></div>
+                            <p>唯一不可阻挡的是时间，它像一把利刃，无声地切开了坚硬和柔软的一切，恒定地向前推进着，没有任何东西能够使它的行进产生丝毫颠簸，它却改变着一切。<span class="arrow"></span></p>
+                        </div>
+                    </div>
+
+                    <div id='messageFunc' style="top: -250px;">
+                        <span id='hoverBtn' title='留言'><i class='iconfont icon-pinglun'></i></span>
+                        <h3>留言条</h3>
+                        <textarea wrap="hard" required placeholder="您的反馈使我们做得更好" spellcheck ="false" id='msgText'></textarea>
+                        <a href='#' id='sendMsgText'>留言</a>
+                    </div>
+                </div>
+
+            </div>
+            <div id="center">
+                <div id='goodArticle'>
+                    <div class='articleHeadline'>
+                        <a href="noteArticle.html">更多<i class='iconfont icon-gengduo'></i></a>
+                        <h2>优质手记</h2>
+                    </div>
+                    <section class='section'>
+                        <article class="article">
+                            <h2><a href='note.html'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>hello</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>kitty</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>高数1</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>高数2</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>高数3</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>评论</a>99</span>
+                                    <span><a href='#'>浏览</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+
+                <div id='question'>
+                    <div class='articleHeadline'>
+                        <a href="questArticle.html">更多<i class='iconfont icon-gengduo'></i></a>
+                        <h2>精品问答</h2>
+                    </div>
+                    <section class='goodSection'>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article">
+                            <h2><a href='#'>Struts2的架构详解</a></h2>
+                            <p>Struts2的核心部分是拦截器模块</p>
+                            <div class='articleInfo'>
+                                <div class="author-infobox">
+                                    <a href="#" class='author'>CSDN</a>
+                                </div>
+                                <time>2018-08-18</time>
+                                <div class='readInfo'>
+                                    <span><a href='#'>回答</a>99</span>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+            <div id="rightside">
+
+                <div id="ad">
+                    <div id="list" style='top: 0;left: -300px;'>
+                        <img th:src="@{/user/image/ad/ad4.png}" alt="">
+                        <img th:src="@{/user/image/ad/helloweenad1.png}" alt="">
+                        <img th:src="@{/user/image/ad/helloweenad2.png}" alt="">
+                        <img th:src="@{/user/image/ad/ad3.png}" alt="">
+                        <img th:src="@{/user/image/ad/ad4.png}" alt="">
+                        <img th:src="@{/user/image/ad/helloweenad1.png}" alt="">
+                    </div>
+                    <div id="buttons">
+                        <span index='1' class="on"></span>
+                        <span index='2'></span>
+                        <span index='3'></span>
+                        <span index='4'></span>
+                    </div>
+                    <a href="javascript:;" id="prev" class="arrow">&LT;</a>
+                    <a href="javascript:;" id="next" class="arrow">&GT;</a>
+                </div>
+
+                <div id='techArticle'>
+                    <div id='techHeadline'>
+                        <h2>
+                            <span class='iconfont icon-hand-point-right'></span>
+                            <em>技</em><em>术</em><em>头</em><em>条</em>
+                            <span class='iconfont icon-hand-point-left'></span>
+                        </h2>
+                    </div>
+                    <section id='techSection'>
+                        <div class='techLink'>
+                            <span>1</span>
+                            <a href='#' title='顺丰高级工程师误删数据库！'>顺丰高级工程师误删数据库！</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>2</span>
+                            <a href='#' title='ofo总部人去楼空？'>ofo总部人去楼空？</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>3</span>
+                            <a href='#' title='腾讯、网易、百度等获自动驾驶车辆路测资格'>腾讯、网易、百度等获自动驾驶车辆路测资格</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>4</span>
+                            <a href='#' title='荣耀将从华为独立？'>荣耀将从华为独立？</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>5</span>
+                            <a href='#' title='半数用户对新iphone满意'>半数用户对新iphone满意</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>6</span>
+                            <a href='#' title='facebook下周推智能家居'>facebook下周推智能家居</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>7</span>
+                            <a href='#' title='阿里安全宣布已完美越狱iOS 12'>阿里安全宣布已完美越狱iOS 12</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>8</span>
+                            <a href='#' title='11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏'>11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>9</span>
+                            <a href='#' title='Linux之父宣布无限期休假'>Linux之父宣布无限期休假</a>
+                        </div>
+                        <div class='techLink'>
+                            <span>10</span>
+                            <a href='#' title='微软废除了在其内部网络上仅使用IPv6的计划'>微软废除了在其内部网络上仅使用IPv6的计划</a>
+                        </div>
+                    </section>
+                </div>
+
+                <div id='toolDownload'>
+                    <div id='toolHeadline'>
+                        <h2><em>常</em><em>用</em><em>工</em><em>具</em><em>使</em><em>用</em></h2>
+                    </div>
+                    <diV id='toolList'>
+                        <div class='tool'>
+                            <a href='#' title='JDK的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>JDK的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='Tomcat的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>Tomcat的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='MySQL的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>MySQL的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='Eclipse的安装及常用配置'><span><i class='iconfont icon-feather-alt'></i></span>Eclipse的安装及常用配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='数据库图形化界面的安装'><span><i class='iconfont icon-feather-alt'></i></span>数据库图形化界面的安装</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='VMWare及Linux的安装'><span><i class='iconfont icon-feather-alt'></i></span>VMWare及Linux的安装</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='Linux上JDK、MySQL、Tomcat的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>Linux上JDK、MySQL、Tomcat的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='前端开发工具VSCode的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>前端开发工具VSCode的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='Maven的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>Maven的安装配置</a>
+                        </div>
+                        <div class='tool'>
+                            <a href='#' title='JDK的安装配置'><span><i class='iconfont icon-feather-alt'></i></span>JDK的安装配置</a>
+                        </div>
+                    </diV>
+                    <div id='page'>
+                        <a href="#">上一页</a>
+                        <span>1/10</span>
+                        <a href="#">下一页</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="container2">
+            <div id='container2bg'>
+                <img id='chicken' th:src="@{/user/image/chicken1.png}">
+                <div id='videoHeadline'>
+                    <h2>
+                        <span class='iconfont icon-hand-point-right'></span>
+                        <em>学</em><em>习</em><em>资</em><em>源</em>
+                        <span class='iconfont icon-hand-point-left'></span>
+                    </h2>
+                </div>
+                <div class='col'>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+    
+                        </div>
+                    </div>
+                    <div class='resource'>
+                        <a href='#' class='videoLink'>
+                            <div class='imgBox'>
+                                <img th:src="@{/user/image/video.png}">
+                                <span class='techType'>Java</span>
+                            </div>
+                            <p>Java反射及动态代理原理</p>
+                        </a>
+                        <div class='srcInfo'>
+                            <span>Java</span>
+                            <span>高级</span>
+                            <span><i class='iconfont icon-unie73c'></i>99</span>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div id='footer-content'>
+            <div id="introduce">
+                <h2>FunnyCode</h2>
+                <p>FunnyCode是一个分享技术文章、交流学习心得的IT技术学习交流网站</p>
+            </div>
+            <div id="popu-content">
+                <h2>优质内容</h2>
+                <div id="hot">
+                    <a href="#goodArticle">优质手记</a>
+                    <a href="#question">精品问答</a>
+                    <a href="#videoHeadline">学习资源</a>
+                    <a href="#techArticle">技术头条</a>
+                </div>
+            </div>
+            <div id="contact">
+                <div id='contact-content'>
+                    <h2>联系我</h2>
+                    <div id="connect-way">
+                        <a class="connectlink" href="#"><i class="connect iconfont icon-untitled98"></i></a>
+                        <a class="connectlink" id='wechat' href="#"><i class="connect iconfont icon-wechat1193418easyiconnet"></i><img
+                                th:src="@{/user/image/wechat.jpg}"><span></span></a>
+                        <a class="connectlink" href="#"><i class="connect iconfont icon-weibo1193419easyiconnet"></i></a>
+                        <a class="connectlink" id='qq' href="#"><i class="connect iconfont icon-qq1193403easyiconnet"></i><img
+                                th:src="@{/user/image/qq.jpg}"><span></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="reference">
+                <div>©copyright</div>
+            </div>
+        </div>
+    </footer>
+    <div id="feedback" class="iconfont icon-yijianxiang" title="反馈"></div>
+    <div id="uptoTop" class="iconfont icon-12" title="顶部"></div>
+
+    <div id="popup">
+        <div id="popup-content">
+            <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+            <h2 id="feedback-headline">意见反馈</h2>
+            <div id="feddback-content">
+                <textarea id="feedback-text" maxlength="1000" wrap="hard" placeholder="留下您的宝贵意见，谢谢您"></textarea>
+                <a href="#" id="submit-feedback">提交</a>
+            </div>
+        </div>
+        <div id="popup-bg">
+
+        </div>
+    </div>
+</body>
+
+</html>

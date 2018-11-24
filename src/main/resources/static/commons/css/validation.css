@@ -1,0 +1,31 @@
+input.error { border-bottom: 1px solid red; }
+label.error {
+    position: absolute;
+    bottom: 35px;
+    right: 0;
+    display: block;
+    max-width: 200px;
+    line-height: 30px;
+    padding: 0 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(55, 59, 62, 100%);
+}
+label.error::before{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    border-color: transparent;
+    border-width: 5px;
+    border-style: solid;
+    border-top-color:  rgba(55, 59, 62, 100%);
+}
+label.checked {
+  background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+}

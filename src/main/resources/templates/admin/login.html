@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/admin/image/manage.png}" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/login-commons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/css/validation.css}">
+    <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/jquery.validate.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/additional-methods.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/messages_zh.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/js/login.js}"></script>
+    <title>管理员登录</title>
+</head>
+<body>
+<div id="container">
+    <span id="website-icon" class="iconfont icon-tubiaozhizuomobanyihuifu-">
+        <em><em>FunnyCode</em>管理平台</em>
+    </span>
+
+    <div id="login-content">
+        <h2 id="login-headline">LOGIN</h2>
+        <div id="input-area">
+            <form id="login-form" th:action="@{/admin/login}" method="POST">
+                <span class="input-parent"><input type="text" name="adminname" class="input" placeholder="手机号/账号"></span>
+                <span class="input-parent"><input type="password" name="password" class="input" placeholder="密码"></span>
+                <label class="other"><input type="checkbox" name="rememberMe">记住我</label>
+                <a href="#" id="forgot-pwd" class="other">忘记密码</a>
+                <button type="submit" id="login-btn">登录</button>
+            </form>
+        </div>
+        <span id="register">还没注册？<a href="#" id="clickto-register">点我注册</a></span>
+    </div>
+</div>
+<div id="popup">
+    <div id="popup-content">
+        <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+        <h2>REGIST</h2>
+        <div id="reg-input-area">
+            <form id="regist-form" th:action="@{/admin/regist}" method="POST">
+                <span class="input-parent"><input id="adminname" name="adminname" type="text" class="reg-input" placeholder="手机号"></span>
+                <span class="input-parent"><input id="nickname" name="nickname" type="text" class="reg-input" placeholder="昵称"></span>
+                <span class="input-parent"><input id="password" name="password" type="password" class="reg-input" placeholder="密码"></span>
+                <span class="input-parent">
+                        <input type="text" name="valicode" class="reg-input" id="vali-code" placeholder="验证码">
+                        <a href="#" id="send-vali-code">发送验证码</a>
+                    </span>
+                <button type="submit" id="register-btn">注册</button>
+            </form>
+        </div>
+    </div>
+    <div id="popup-bg"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funnycode.myblog.mapper.UserMapper">
+
+    <select id="userexists" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `user` WHERE username = #{username}
+    </select>
+
+    <select id="nicknameexists" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `user` WHERE nickname = #{username}
+    </select>
+
+    <insert id="regist" parameterType="com.funnycode.myblog.pojo.User">
+        INSERT INTO `user`(`user_id`,`status`,`last_logintime`,`username`,`password`,`nickname`,`role`) VALUES (#{userId},#{status},#{lastLogintime},#{username},#{password},#{nickname},#{role})
+    </insert>
+
+    <select id="login" parameterType="com.funnycode.myblog.pojo.User" resultType="com.funnycode.myblog.pojo.User">
+        SELECT * FROM `user` WHERE username = #{username} and password = #{password}
+    </select>
+
+    <select id="getUserByUsername" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.User">
+        SELECT * FROM `user` WHERE username = #{username}
+    </select>
+
+    <select id="getPasswordByUsername" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT password FROM `user` WHERE username = #{username}
+    </select>
+
+    <select id="getRoleByUsername" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT role FROM `user` WHERE username = #{username}
+    </select>
+</mapper>

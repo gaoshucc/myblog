@@ -1,0 +1,692 @@
+@font-face {font-family: 'webfont';
+    src: url('../user/font/siyuan_black/webfont.eot'); /* IE9*/
+    src: url('../user/font/siyuan_black/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../user/font/siyuan_black/webfont.woff') format('woff'), /* chrome、firefox */
+    url('../user/font/siyuan_black/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../user/font/siyuan_black/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+}
+.siyuan{
+    font-family:"webfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-moz-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-moz-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-ms-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-ms-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+::-o-scrollbar{
+    width: 4px;
+    background: rgb(255, 255, 255);
+}
+::-o-scrollbar-thumb{
+    border-radius: 2px;
+    background: rgba(196,196,196,100%);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background-color: rgba(246, 246, 246, 100%);
+}
+#header{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 100%);
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+}
+#switch-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 25px;
+    color: rgba(18, 33, 37, 70%);
+    text-align: center;
+    cursor: pointer;
+}
+#switch-box:hover{
+    color: rgba(18, 33, 37, 100%);
+}
+#headerbox{
+    width: 1080px;
+    margin: 0 auto;
+}
+#nav{
+    display: inline-block;
+    height: 40px;
+    margin-left: 30px;
+}
+#nav ul li{
+    display: block;
+    float: left;
+    list-style-type: none;
+}
+#nav ul li a{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 14px;
+    color:rgba(54, 58, 57, 100%);
+}
+#nav ul li:hover{
+    background-color: rgba(246, 246, 246, 100%);
+}
+#user{
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 40px;
+    padding: 5px 0;
+    z-index: 100;
+}
+#user #imgone{
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#user_detail{
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 280px;
+    height: 290px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+#infoBox{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px auto;
+    margin-bottom: 10px;
+}
+#infoBox img{
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+#user-info{
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+#user-info span{
+    display: block;
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+}
+#user-info span:nth-child(1){
+    font-size: 16px;
+    color: rgba(54, 58, 57, 100%);
+}
+#user-info span:nth-child(2){
+    font-size: 12px;
+    color: rgba(108, 108, 108, 100%);
+}
+
+#funcCard{
+    width: 88%;
+    height: 140px;
+    margin: 0 6%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#funcCardList{
+    list-style-type: none;
+}
+.funcCardItems{
+    display: block;
+    float: left;
+    width: 50%;
+    height: 60px;
+    margin-bottom: 10px;
+}
+.funcCardItems span{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.funcCardItems a{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(108, 108, 108, 100%);
+}
+.funcCardItems:nth-child(1) .iconfont{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(1):hover span{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(2) .iconfont{
+    color: rgba(66, 211, 132, 100%);
+}
+.funcCardItems:nth-child(2):hover span{
+    color: rgba(66, 211, 132, 100%);
+}
+.funcCardItems:nth-child(3) .iconfont{
+    color: rgba(255, 210, 0, 100%);
+}
+.funcCardItems:nth-child(3):hover span{
+    color: rgba(255, 210, 0, 100%);
+}
+.funcCardItems:nth-child(4) .iconfont{
+    color: rgba(0, 133, 235, 100%);
+}
+.funcCardItems:nth-child(4):hover span{
+    color: rgba(0, 133, 235, 100%);
+}
+
+#quit{
+    display: block;
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 15%;
+    text-align: left;
+    border-top: solid 1px rgba(216, 216, 216, 50%);
+}
+#quit a{
+    padding-left: 5px;
+    font-size: 14px;
+    color: rgba(108, 108, 108, 100%);
+}
+#quit a:hover{
+    color: rgba(19, 168, 228, 100%);
+}
+
+#container{
+    position: relative;
+    width: 1080px;
+    padding-right: 304px;
+    margin: 24px auto;
+    background-color: rgba(246, 246, 246, 100%);
+}
+#account{
+    width: 100%;
+    min-height: 550px;
+    padding: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+#func-headline{
+    position: relative;
+    width: 100%;
+}
+#func-headline h2{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    border-bottom: solid 2px rgba(196,196,196,100%);
+    color: rgba(54, 58, 57, 100%);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+#func-headline h2 span{
+    margin-right: 3px;
+    font-size: 20px;
+    color: rgba(0, 133, 235, 100%);
+}
+#func-headline h2 em{
+    font-style: normal;
+}
+
+#accountInfo{
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+}
+#basicInfo{
+    width: 50%;
+    padding: 0 20px 0 10px;
+    border-right: solid 0.5px rgba(196,196,196,70%);
+    color: rgba(54, 58, 57, 100%);
+}
+#profileItem{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+}
+#profile{
+    float: left;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px;
+}
+#profileItem img{
+    float: right;
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+.accountItems{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-top: solid 0.5px rgba(196,196,196,70%);
+}
+.itemname{
+    float: left;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px;
+    letter-spacing: 1px;
+}
+.itemInfo{
+    width: 160px;
+    float: right;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px 5px 10px;
+    text-align: right;
+}
+.icon{
+    float: right;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px 5px 10px;
+    text-align: center;
+}
+#qrcode,#followee{
+    cursor: pointer;
+}
+#motoo{
+    position: relative;
+    width: 100%;
+    padding: 10px 5px 10px 100px;
+    border-top: solid 0.5px rgba(196,196,196,70%);
+}
+#motoo label{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -15px;
+    letter-spacing: 1px;
+}
+#motoo span{
+    display: block;
+    width: 100%;
+    text-align: right;
+    white-space: normal;
+}
+.pulldown{
+    animation: pulldown 200ms ease-in-out forwards;
+}
+#list-followee{
+    display: none;
+    width: 100%;
+    padding: 10px;
+}
+#list-followee a{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-align: left;
+    font-size: 15px;
+    color: rgba(54, 58, 57, 100%);
+    background-color: rgba(216, 216, 216, 100%);
+}
+
+#achievement{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    font-size: 15px;
+    color: rgba(54, 58, 57, 100%);
+}
+#summary{
+    width: 100%;
+}
+#summary h3{
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+#summary h3 span{
+    color: rgba(255, 210, 0, 100%);
+}
+#summary h3 #level{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    width: 50px;
+    border: solid 2px rgb(247, 53, 53);
+    text-align: center;
+    color: rgb(247, 53, 53);
+
+    transform: rotate(45deg);
+    transform-origin:50% 50%;   /*定义动画的旋转中心点*/ 
+    -ms-transform: rotate(45deg);         /* IE 9 */
+    -ms-transform-origin:50% 50%;         /* IE 9 */
+    -webkit-transform: rotate(45deg);  /* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;  /* Safari 和 Chrome */     
+    -moz-transform: rotate(45deg);     /* Firefox */
+    -moz-transform-origin:50% 50%;     /* Firefox */     
+    -o-transform: rotate(45deg);       /* Opera */
+    -o-transform-origin:50% 50%;       /* Opera */
+}
+#summaryDetail{
+    width: 100%;
+    height: 250px;
+    margin-top: 20px;
+    text-align: center;
+}
+#summaryDetail span{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+}
+#summaryDetail span em{
+    margin: 0 2px;
+    font-style: normal;
+    color: rgba(255, 210, 0, 100%);
+}
+
+#password-manage{
+    display: none;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+    color: rgba(54, 58, 57, 100%);
+}
+#close-password-manage{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #888;
+    cursor: pointer;
+}
+#close-password-manage:hover{
+    color: red;
+}
+#modifi-password{
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+}
+.input-box{
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    text-align: right;
+}
+.input-box label{
+    height: 30px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+.input-box input{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    border-radius: 5px;
+    text-indent: 5px;
+    outline: none;
+    background-color: rgba(216, 216, 216, 100%);
+}
+.input-box input:focus{
+    border: solid 0.5px rgba(108, 108, 108, 50%);
+}
+
+#send-btn{
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: right;
+}
+#send-code,#confirm{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgba(255, 255, 255, 100%);
+    background-color: rgba(0, 133, 215, 100%);
+}
+#send-code:hover,#confirm:hover{
+    background-color: rgba(0, 133, 255, 100%);
+}
+
+#right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    padding: 10px;
+    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+    background-color: rgba(255, 255, 255, 100%);
+}
+#right img{
+    display: block;
+    width: 240px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+#account-funcbox{
+    position: fixed;
+    top: 0;
+    left: -160px;
+    width: 160px;
+    height: 100%;
+    font-size: 16px;
+    /* background-color: rgba(18, 33, 37, 100%); */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    background-color: rgba(255, 255, 255, 100%);
+}
+.hideaside{
+    animation: hideaside 300ms ease-in-out forwards;
+}
+.showaside{
+    animation: showaside 300ms ease-in-out forwards;
+}
+#account-func{
+    position: relative;
+    margin: 0 auto;
+    /* background-color: rgba(38, 52, 61, 100%); */
+}
+#account-setup{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    /* color: rgba(10, 228, 220, 100%); */
+    color: rgba(0, 133, 255, 100%);
+}
+#func-list{
+    
+}
+.func{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    /* color: rgba(236, 236, 236, 70%); */
+    color: rgba(54, 58, 57, 100%);
+    text-align: center;
+}
+.func:hover{
+    background-color: rgba(236, 236, 236, 100%);
+}
+.icon-profile,.icon-icon_password_yes,.icon-icon_logout,.icon-bangzhuzhongxin,.icon-xiugai{
+    margin-right: 8px;
+}
+#close-aside{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    color: rgba(54, 58, 57, 70%);
+    cursor: pointer;
+}
+#close-aside:hover{
+    color: rgba(54, 58, 57, 100%);
+}
+
+/* 箭头下拉关键帧 */
+@keyframes pulldown{
+    0%{
+        -webkit-transform: rotate(0deg); 
+        -webkit-transform-origin:50% 50%; 
+    }
+    100%{
+        -webkit-transform: rotate(90deg); 
+        -webkit-transform-origin:50% 50%; 
+    }
+}
+@-webkit-keyframes pulldown{
+    0%{
+        -webkit-transform: rotate(0deg); 
+        -webkit-transform-origin:50% 50%; 
+    }
+    100%{
+        -webkit-transform: rotate(90deg); 
+        -webkit-transform-origin:50% 50%; 
+    }
+}
+@-moz-keyframes pulldown{
+    0%{
+        -moz-transform: rotate(0deg); 
+        -moz-transform-origin:50% 50%; 
+    }
+    100%{
+        -moz-transform: rotate(90deg); 
+        -moz-transform-origin:50% 50%; 
+    }
+}
+@-o-keyframes pulldown{
+    0%{
+        -o-transform: rotate(0deg); 
+        -o-transform-origin:50% 50%; 
+    }
+    100%{
+        -o-transform: rotate(90deg); 
+        -o-transform-origin:50% 50%; 
+    }
+}
+
+
+/* 为侧边栏关闭动画设置关键帧 */
+@keyframes hideaside{
+    0%{left: 0;}
+    100%{left: -160px;}
+}
+@-webkit-keyframes hideaside{
+    0%{left: 0;}
+    100%{left: -160px;}
+}
+@-moz-keyframes hideaside{
+    0%{left: 0;}
+    100%{left: -160px;}
+}
+@-o-keyframes hideaside{
+    0%{left: 0;}
+    100%{left: -160px;}
+}
+/* 为侧边栏打开动画设置关键帧 */
+@keyframes showaside{
+    0%{left: -160px;}
+    100%{left: 0;}
+}
+@-webkit-keyframes showaside{
+    0%{left: -160px;}
+    100%{left: 0;}
+}
+@-moz-keyframes showaside{
+    0%{left: -160px;}
+    100%{left: 0;}
+}
+@-o-keyframes showaside{
+    0%{left: -160px;}
+    100%{left: 0;}
+}
