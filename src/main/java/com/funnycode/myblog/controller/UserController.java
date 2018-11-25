@@ -5,11 +5,10 @@ import com.funnycode.myblog.pojo.User;
 import com.funnycode.myblog.service.UserService;
 import com.funnycode.myblog.shiro.common.UserToken;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -22,7 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author gaoshucc
@@ -104,7 +104,7 @@ public class UserController {
      * @param password 密码
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(Model model, String username, String password, boolean rememberMe) {
+    public String login(HttpSession session, Model model, String username, String password, boolean rememberMe) {
         logger.info("進入用户login方法了");
         String errorMsg = "";
         Subject subject = SecurityUtils.getSubject();
@@ -113,6 +113,13 @@ public class UserController {
         // 执行认证登陆
         try{
             subject.login(userToken);
+            PrincipalCollection principals = subject.getPrincipals();
+            User user = (User) principals.getPrimaryPrincipal();
+            //更新最后一次登录时间
+            String lastLogintime = userService.updateUserLastLogintimeByUsername(user);
+            user.setLastLogintime(lastLogintime);
+            subject.getSession().setAttribute("loginUser", user);
+            logger.info(user.getUsername() + ":" + user.getNickname());
 
             return "redirect:homepage";
         }catch (UnknownAccountException e){

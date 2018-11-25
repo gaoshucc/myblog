@@ -2,20 +2,33 @@
 jq部分
 */
 $(function(){
+    //注册新用户弹出层动画
+    $('#reg-close,#regist').click(function(e){
+        e.preventDefault();  //阻止默认单击事件
+        console.log("点击了注册按钮")
+        $('#reg-popup').toggleClass('show');
+    });
+
+    //注册表单校验
+    form_validate();
+
+    //反馈弹出层动画
     $('#close,#feedback').click(function(e){
         e.preventDefault();  //阻止默认单击事件
         $('#popup').toggleClass('show');
     });
-    
+    //初始化页面时，隐藏Top按钮
     if($(window).scrollTop()<100){
-        $("#uptoTop").fadeOut(1);   //初始化页面时，隐藏Top按钮
+        $("#uptoTop").fadeOut(1);
     }
 
     $(window).scroll(function(){
         if($(window).scrollTop()>100){
-            $("#uptoTop").fadeIn(1000);  //当页面起点距离窗口大于100时，淡入
+            //当页面起点距离窗口大于100时，淡入
+            $("#uptoTop").fadeIn(1000);
         }else{
-            $("#uptoTop").fadeOut(1000);    //当页面起点距离窗口小于100时，淡出
+            //当页面起点距离窗口小于100时，淡出
+            $("#uptoTop").fadeOut(1000);
         }
     });
     //跳转到顶部（动画）
@@ -26,9 +39,74 @@ $(function(){
      });
 
 });
-/* 
-js部分
-*/
+
+/**
+ * 前端注册表单校验
+ */
+function form_validate(){
+    $("#regist-form").validate({
+        rules:{
+            username:{
+                required:true,
+                rangelength:[11,11],
+                remote:{
+                    url: "/user/userexists",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        username: function () {
+                            return $("#username").val();
+                        }
+                    }
+                }
+            },
+            nickname:{
+                required:true,
+                maxlength:20,
+                remote:{
+                    url: "/user/nicknameexists",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        username: function () {
+                            return $("#nickname").val();
+                        }
+                    }
+                }
+            },
+            password:{
+                required:true,
+                minlength:8
+            },
+            valicode:{
+                required:true,
+            }
+        },
+        messages:{
+            username:{
+                required:"账号不能为空",
+                rangelength:"请输入正确的手机号",
+                remote: "用户已存在，请直接登录"
+            },
+            nickname:{
+                required:"昵称不能为空",
+                maxlength:"昵称长度不能超过20",
+                remote: "昵称已存在"
+            },
+            password:{
+                required: "密码不能为空",
+                minlength: "密码长度必须大于8个字符"
+            },
+            valicode:{
+                required:"验证码不能为空",
+            }
+        }
+    });
+}
+
+/**
+ * JS部分
+ */
 function addLoadEvent(func){
     var oldonload = window.onload;
     if(typeof window.onload != 'function'){
@@ -41,16 +119,21 @@ function addLoadEvent(func){
     }
 }
 
-//悬浮显示用户详细信息
+/**
+ * 悬浮显示用户详细信息
+ */
 function showUserDetail(){
     var user = document.querySelector('#user');
     var userDetail = document.querySelector('#user_detail');
-    user.addEventListener('mouseover',function(e){
-        userDetail.style.display = 'block';
-    },false);
-    user.addEventListener('mouseout',function(e){
-        userDetail.style.display = 'none';
-    },false);
+    //如果用户已登录
+    if(user != null){
+        user.addEventListener('mouseover',function(e){
+            userDetail.style.display = 'block';
+        },false);
+        user.addEventListener('mouseout',function(e){
+            userDetail.style.display = 'none';
+        },false);
+    }
 }
 
 /**
@@ -68,7 +151,7 @@ function showUserDetail(){
  *         <button>关注ta</button>
  *     </div>
  * </div>
- * */
+ */
 function showAuthorInfo(){
     var author_infobox = document.querySelectorAll(".author-infobox");
 
@@ -106,44 +189,9 @@ function showAuthorInfo(){
     }
 }
 
-function showAuthorInfo1(){
-    var $author_infobox = $(".author-infobox");
-
-    for(let i=0; i<$author_infobox.length; i++){
-        let author_nickname;
-        let flag = false;
-
-        $author_infobox[i].mouseover(function(e){
-            /* let event = e || event;        //兼容处理
-            let from = event.fromElement || event.relatedTarget;    //兼容处理
-            if(from && this.contains(from)){      //如果在里面则返回
-                return;    
-            } */
-            if(!flag){
-                author_nickname = this.html();
-                this.html(this.html() + "<div class='author-info'><div class='author-basic-info'><div class='author-basic-infobg'><img th:src=\"@{/user/image/csdn.png}\" class='author-profile'><span class='author-nickname'>CSDN</span><span class='author-job'>专业IT学习网站</span></div></div><div class='author-devote'><span>手记<em>9</em>篇</span><span>解答<em>9</em>次</span><button>关注ta</button></div></div>");
-                flag = true;
-            }else{
-                return;
-            }            
-        });
-        $author_infobox[i].mouseout(function(e){
-            let event = e || event; //处理兼容
-            let to = event.toElement || event.relatedTarget; //处理兼容
-            if(to && this.contains(to)){    //如果在里面则返回
-                return;
-            }
-            if(flag){
-                this.html(author_nickname);
-                flag = false;
-            }else{
-                return;
-            }
-        });
-
-    }
-} 
-//轮播图
+/**
+ * 轮播图
+ */
 function play(){
     var ad = document.getElementById('ad');
     var list = document.getElementById('list');
@@ -241,6 +289,7 @@ function play(){
     }
 }
 
+//显示留言区
 function showMsgFunc(){
     var hoverBtn = document.getElementById('hoverBtn');
     var messageFunc = document.getElementById('messageFunc');
@@ -253,6 +302,9 @@ function showMsgFunc(){
     }
 }
 
+/**
+ * 显示微信账号二维码信息
+ */
 function showQRCode(){
     var wechat = document.querySelector("#wechat");
     var wechatQRC = wechat.querySelector("img");
@@ -268,6 +320,9 @@ function showQRCode(){
 
 }
 
+/**
+ * 显示QQ账号二维码信息
+ */
 function showQRCode1(){
     var qq = document.querySelector("#qq");
     var qqQRC = qq.querySelector("img");

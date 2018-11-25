@@ -1,11 +1,6 @@
 package com.funnycode.myblog.pojo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
-
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,8 +14,7 @@ public class User implements Serializable {
     private String password;
     private String nickname;
     private Integer status;
-    private Timestamp lastLogintime;
-
+    private String lastLogintime;
     private String role;
 
     public String getUserId() {
@@ -39,11 +33,11 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public Date getLastLogintime() {
+    public String getLastLogintime() {
         return lastLogintime;
     }
 
-    public void setLastLogintime(Timestamp lastLogintime) {
+    public void setLastLogintime(String lastLogintime) {
         this.lastLogintime = lastLogintime;
     }
 
@@ -89,7 +83,7 @@ public class User implements Serializable {
         this.role = "user";
     }
 
-    public User(String userId, String username, String password, String nickname, Integer status, Timestamp lastLogintime, String role) {
+    public User(String userId, String username, String password, String nickname, Integer status, String lastLogintime, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;

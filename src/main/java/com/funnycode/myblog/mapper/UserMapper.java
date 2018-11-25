@@ -4,6 +4,8 @@ import com.funnycode.myblog.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author gaoshucc
  * @create 2018-11-11 15:53
@@ -41,8 +43,22 @@ public interface UserMapper {
      * @return User
      */
     User getUserByUsername(String username);
-
+    /**
+     * 通过用户名获得用户密码
+     * @param username
+     * @return String
+     */
     String getPasswordByUsername(String username);
-
+    /**
+     * 通过用户名获得用户角色
+     * @param username
+     * @return String
+     */
     String getRoleByUsername(String username);
+    /**
+     * 通过用户名更新用户最后登录时间
+     * @param user 用户名,最后登录时间
+     * @return void
+     */
+    void updateUserLastLogintimeByUsername(User user);
 }

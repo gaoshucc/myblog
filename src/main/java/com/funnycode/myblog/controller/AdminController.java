@@ -12,6 +12,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -111,6 +112,9 @@ public class AdminController {
         UserToken userToken = new UserToken(adminname, password, rememberMe, Admin_LoginType);
         try{
             subject.login(userToken);
+            PrincipalCollection principals = subject.getPrincipals();
+            Admin admin = (Admin) principals.getPrimaryPrincipal();
+            logger.info(admin.getAdminname() + ":" + admin.getNickname());
 
             return "redirect:homepage";
         }catch (UnknownAccountException e){

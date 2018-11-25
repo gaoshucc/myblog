@@ -41,14 +41,19 @@ public class AdminRealm extends AuthorizingRealm{
             throw new AuthorizationException("参数PrincipalCollection不能为空");
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        String adminname = (String) principalCollection.getPrimaryPrincipal();
-        String role = adminService.getRoleByAdminname(adminname);
-        logger.info(adminname + ":" + role);
-        Set<String> roles = new HashSet<>();
-        roles.add(role);
-        authorizationInfo.setRoles(roles);
+        if(principalCollection.getPrimaryPrincipal() instanceof Admin){
+            Admin admin = (Admin) principalCollection.getPrimaryPrincipal();
+            logger.info("当前管理员：" + admin.getAdminname());
+            authorizationInfo.addRole("admin");
+        }
 
         return authorizationInfo;
+        //String adminname = (String) principalCollection.getPrimaryPrincipal();
+        //String role = adminService.getRoleByAdminname(adminname);
+        //logger.info(adminname + ":" + role);
+        //Set<String> roles = new HashSet<>();
+        //roles.add(role);
+        //authorizationInfo.setRoles(roles);
     }
 
     @Override
@@ -62,7 +67,7 @@ public class AdminRealm extends AuthorizingRealm{
         if(admin != null){
             logger.info("admin存在");
             ByteSource salt = ByteSource.Util.bytes(admin.getAdminname());
-            simpleAuthenticationInfo = new SimpleAuthenticationInfo(admin.getAdminname(), admin.getPassword(), salt, getName());
+            simpleAuthenticationInfo = new SimpleAuthenticationInfo(admin, admin.getPassword(), salt, getName());
         }else{
             throw new AuthenticationException();
         }

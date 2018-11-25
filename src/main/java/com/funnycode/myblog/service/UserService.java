@@ -37,8 +37,22 @@ public interface UserService {
      * @return User
      */
     User getUserByUsername(String username);
-
+    /**
+     * 通过用户查找用户
+     * @param username
+     * @return String
+     */
     String getPasswordByUsername(String username);
-
+    /**
+     * 通过用户名查找用户角色
+     * @param username
+     * @return String
+     */
     String getRoleByUsername(String username);
+    /**
+     * 更新用户的最后登录时间
+     * @param user
+     * @return void
+     */
+    String updateUserLastLogintimeByUsername(User user);
 }

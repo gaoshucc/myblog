@@ -41,15 +41,20 @@ public class UserRealm extends AuthorizingRealm {
             throw new AuthorizationException("参数PrincipalCollection不能为空");
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        String username = (String) principalCollection.getPrimaryPrincipal();
-        String role = userService.getRoleByUsername(username);
-        logger.info(username + ":" + role);
-        Set<String> roles = new HashSet<>();
-        roles.add(role);
-        authorizationInfo.setRoles(roles);
+
+        if(principalCollection.getPrimaryPrincipal() instanceof User){
+            User user = (User) principalCollection.getPrimaryPrincipal();
+            logger.info("当前用户：" + user.getNickname());
+            authorizationInfo.addRole("user");
+        }
 
         return authorizationInfo;
-
+        //String username = (String) principalCollection.getPrimaryPrincipal();
+        //String role = userService.getRoleByUsername(username);
+        //logger.info(username + ":" + role);
+        //Set<String> roles = new HashSet<>();
+        //roles.add(role);
+        //authorizationInfo.setRoles(roles);
     }
 
     @Override
@@ -62,7 +67,7 @@ public class UserRealm extends AuthorizingRealm {
         User user = userService.getUserByUsername(token.getUsername());
         if(user != null){
             ByteSource salt = ByteSource.Util.bytes(user.getUsername());
-            simpleAuthenticationInfo = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), salt, getName());
+            simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), salt, getName());
         }else{
             throw new AuthenticationException();
         }

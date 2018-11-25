@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author gaoshucc
  * @create 2018-11-15 22:56
@@ -64,5 +69,15 @@ public class UserServiceImpl implements UserService{
         String role = userMapper.getRoleByUsername(username);
 
         return role;
+    }
+
+    @Override
+    public String updateUserLastLogintimeByUsername(User user) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String lastLogintime = sdf.format(new Date());
+        user.setLastLogintime(lastLogintime);
+        userMapper.updateUserLastLogintimeByUsername(user);
+
+        return lastLogintime;
     }
 }
