@@ -11,11 +11,15 @@
     </select>
 
     <insert id="regist" parameterType="com.funnycode.myblog.pojo.User">
-        INSERT INTO `user`(`user_id`,`status`,`last_logintime`,`username`,`password`,`nickname`,`role`) VALUES (#{userId},#{status},#{lastLogintime},#{username},#{password},#{nickname},#{role})
+        INSERT INTO `user`(`user_id`,`status`,`last_logintime`,`username`,`password`,`nickname`,`role`,`profile_path`,`experience`,`gender`,`motto`,`position_id`) VALUES (#{userId},#{status},#{lastLogintime},#{username},#{password},#{nickname},#{role},#{profilePath},#{experience},#{gender},#{motto},#{positionId})
     </insert>
 
     <select id="login" parameterType="com.funnycode.myblog.pojo.User" resultType="com.funnycode.myblog.pojo.User">
         SELECT * FROM `user` WHERE username = #{username} and password = #{password}
+    </select>
+
+    <select id="getUserByUserId" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.User">
+        SELECT * FROM `user` WHERE user_id = #{userId}
     </select>
 
     <select id="getUserByUsername" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.User">

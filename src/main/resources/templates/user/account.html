@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="../image/account.png" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="../font/aliicon/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="../css/account-commons.css">
-    <link rel="stylesheet" type="text/css" href="../css/account-different.css">
-    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../js/account.js"></script>
+    <link rel="icon" th:href="@{/user/image/account.png}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/account-commons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/account-different.css}">
+    <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/user/js/account.js}"></script>
     <title>我的账号</title>
 </head>
 <body>
     <header id='header'>
         <span id='switch-box' class='iconfont icon-caidan2' title="更多功能"></span>
         <div id='headerbox'>
-            <img src='../image/article_head2.png'>
+            <img th:src="@{/user/image/article_head2.png}">
             <nav id='nav'>
                 <ul>
-                    <li><a href='home.html'>首页</a></li>
-                    <li><a href='#'>问答</a></li>
-                    <li><a href='#'>学习路线</a></li>
+                    <li><a th:href="@{/user/homepage}">首页</a></li>
+                    <li><a>问答</a></li>
+                    <li><a>学习路线</a></li>
                 </ul>
             </nav>
+            <!--设置隐藏域存储登录用户名-->
+            <input id="loginUser" type="hidden" th:value="${session.loginUser}">
             <div id='user'>
-                <img src='../image/profile.jpg' id='imgone'>
+                <img th:src="@{/user/image/profile/nologin.png}" id='profile' class="myProfile">
                 <div id='user_detail'>
                     <div id='infoBox'>
-                        <img src='../image/profile.jpg'>
+                        <img id="profile-detail" class="myProfile" th:src="@{/user/image/profile/nologin.png}">
                         <div id='user-info'>
-                            <span>高数</span>
-                            <span>积分 9999</span>
+                            <span class="nickname">高数</span>
+                            <span id="experience">积分 9999</span>
                         </div>
                     </div>
                     <div id='funcCard'>
@@ -62,7 +65,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div id='quit'><a href='#'>退出</a></div>
+                    <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
                 </div>
             </div>
         </div>
@@ -70,22 +73,22 @@
 
     <div id='container'>
         <div id='account'>
-            <div id='func-headline'>
+            <div class='func-headline'>
                 <h2><span class='iconfont icon-yonghu'></span><em>我</em><em>的</em><em>账</em><em>号</em></h2>
             </div>
             <div id='accountInfo'>
                 <div id='basicInfo'>
                     <div id='profileItem'>
-                        <label id='profile'>头像</label><img src='../image/profile.jpg'>
+                        <label id='profileText'>头像</label><img id="profile-revisability" class="myProfile" th:src="@{/user/image/profile/profile.jpg}">
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>账号</label><span class='itemInfo'>13143377023</span>
+                        <label class='itemname'>账号</label><span id="username" class='itemInfo'>13143377023</span>
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>昵称</label><span class='itemInfo'>高数</span>
+                        <label class='itemname'>昵称</label><span class='itemInfo nickname'>高数</span>
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>性别</label><span class='iconfont icon-nanxing icon'></span>
+                        <label class='itemname'>性别</label><span id="gender" class='iconfont icon'></span>
                     </div>
                     <div class='accountItems'>
                         <label class='itemname'>二维码名片</label><span class='iconfont icon-erweima icon' id='qrcode'></span>
@@ -94,7 +97,7 @@
                         <label class='itemname'>职位</label><span class='itemInfo'>学生</span>
                     </div>
                     <div id='motoo'>
-                        <label>个性签名</label><span>宏愿纵未了，奋斗总不太晚！！！</span>
+                        <label>个性签名</label><span id="signature">宏愿纵未了，奋斗总不太晚！！！</span>
                     </div>
                     <div class='accountItems'>
                         <label class='itemname'>关注的人</label><span class='iconfont icon-icon-arrow-right2 icon' id='followee'></span>
@@ -124,7 +127,7 @@
         </div>
 
         <div id='password-manage'>
-            <div id='func-headline'>
+            <div class='func-headline'>
                 <h2><span class='iconfont icon-icon_password_yes'></span><em>修</em><em>改</em><em>密</em><em>码</em></h2>
                 <span id="close-password-manage" class="iconfont icon-guanbi" title="关闭"></span>
             </div>
@@ -149,9 +152,9 @@
         </div>
 
         <aside id='right'>
-            <img src="../image/ad.png">
-            <img src="../image/ad.png">
-            <img src="../image/ad.png">
+            <img th:src="@{/user/image/ad.png}">
+            <img th:src="@{/user/image/ad.png}">
+            <img th:src="@{/user/image/ad.png}">
         </aside>
     </div>
 
@@ -169,5 +172,16 @@
         <span id='close-aside' class='iconfont icon-unie646' title="关闭"></span>
     </div>
 
+    <!--修改头像弹出层-->
+    <div id="popup">
+        <div id="popup-content">
+            <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+            <div id="edit-content">
+                <img id="magnify-profile" th:src="@{/user/image/profile/profile.jpg}">
+                <a href="#" id="submit-change">修改</a>
+            </div>
+        </div>
+        <div id="popup-bg"></div>
+    </div>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package com.funnycode.myblog.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -13,9 +12,14 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String nickname;
-    private Integer status;
-    private String lastLogintime;
+    private Integer experience;
     private String role;
+    private Integer gender;
+    private String motto;
+    private Integer positionId;
+    private String profilePath;
+    private String lastLogintime;
+    private Integer status;
 
     public String getUserId() {
         return userId;
@@ -23,6 +27,14 @@ public class User implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 
     public Integer getStatus() {
@@ -65,6 +77,30 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
+    public Integer getPositionId() {
+        return positionId;
+    }
+
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
+    }
+
     public String getRole() {
         return role;
     }
@@ -73,24 +109,42 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
+    }
+
     public User(String username, String password, String nickname) {
         this.userId = UUID.randomUUID().toString().replace("-","");
         this.username = username;
         this.password = password;
         this.nickname = nickname;
-        this.status = 1;
-        this.lastLogintime = null;
+        this.gender = null;
+        this.motto = "学无止境，乐在其中";
+        this.positionId = 1;
+        this.experience = 100;
         this.role = "user";
+        this.profilePath = "nologin.png";
+        this.lastLogintime = null;
+        this.status = 1;
     }
 
-    public User(String userId, String username, String password, String nickname, Integer status, String lastLogintime, String role) {
+    public User(String userId, String username, String password, String nickname, Integer experience, String role, Integer gender, String motto, Integer positionId, String profilePath, String lastLogintime, Integer status) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.nickname = nickname;
-        this.status = status;
-        this.lastLogintime = lastLogintime;
+        this.experience = experience;
         this.role = role;
+        this.gender = gender;
+        this.motto = motto;
+        this.positionId = positionId;
+        this.profilePath = profilePath;
+        this.lastLogintime = lastLogintime;
+        this.status = status;
     }
 
     public User() {

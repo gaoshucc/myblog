@@ -1,6 +1,6 @@
-/* 
-jq部分
-*/
+/**
+ * jq部分
+ */
 $(function(){
     //注册新用户弹出层动画
     $('#reg-close,#regist').click(function(e){
@@ -17,6 +17,7 @@ $(function(){
         e.preventDefault();  //阻止默认单击事件
         $('#popup').toggleClass('show');
     });
+
     //初始化页面时，隐藏Top按钮
     if($(window).scrollTop()<100){
         $("#uptoTop").fadeOut(1);
@@ -34,11 +35,59 @@ $(function(){
     //跳转到顶部（动画）
     $("#uptoTop").click(function(){
         var dis = $(window).scrollTop();
-        $("body,html").animate({scrollTop:0},300);  
+        $("body,html").animate({scrollTop:0},300);
         return false;
      });
 
 });
+
+/**
+ * 鼠标悬浮通过ajax查询用户详细信息并显示
+ */
+//当前登录用户
+var user = null;
+function showUserDetail(){
+    var userinfo = document.querySelector("#user");
+    var loginUser = document.querySelector('#loginUser');
+    var userDetail = document.querySelector('#user_detail');
+
+    var profile = document.querySelector("#profile");
+    var profile_detail = document.querySelector("#profile-detail");
+    var loginUserNickname = document.querySelector("#loginUserNickname");
+    var experience = document.querySelector("#experience");
+    //判断用户是否已登录
+    if(loginUser != null && userDetail != null){
+        //获取登录用户名
+        var userId = loginUser.value;
+        console.log("username:" + username);
+        //向后台发送ajax请求获取登录用户详细信息
+        $.ajax({
+            type: "GET",
+            url: "/user/userDetail",
+            data: {"userId":userId},
+            dataType: "json",
+            success: function (data) {
+                //初始化登录用户
+                user = JSON.parse(data);
+                console.log("password:" + user.password);
+                profile.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+                profile_detail.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+                loginUserNickname.innerHTML = user.nickname;
+                experience.innerHTML = "经验 " + user.experience;
+            },
+            cache: true,
+            async: true
+        });
+        //鼠标悬浮
+        userinfo.addEventListener('mouseover',function(e){
+            userDetail.style.display = 'block';
+        },false);
+        //鼠标移开
+        userinfo.addEventListener('mouseout',function(e){
+            userDetail.style.display = 'none';
+        },false);
+    }
+}
 
 /**
  * 前端注册表单校验
@@ -116,23 +165,6 @@ function addLoadEvent(func){
             oldonload();
             func();
         }
-    }
-}
-
-/**
- * 悬浮显示用户详细信息
- */
-function showUserDetail(){
-    var user = document.querySelector('#user');
-    var userDetail = document.querySelector('#user_detail');
-    //如果用户已登录
-    if(user != null){
-        user.addEventListener('mouseover',function(e){
-            userDetail.style.display = 'block';
-        },false);
-        user.addEventListener('mouseout',function(e){
-            userDetail.style.display = 'none';
-        },false);
     }
 }
 

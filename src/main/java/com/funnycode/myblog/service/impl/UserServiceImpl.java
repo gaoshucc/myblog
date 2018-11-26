@@ -80,4 +80,9 @@ public class UserServiceImpl implements UserService{
 
         return lastLogintime;
     }
+
+    @Override
+    public User getUserByUserId(String userId) {
+        return userMapper.getUserByUserId(userId);
+    }
 }

@@ -1,20 +1,3 @@
-/* //显示侧边栏
-function showAside(){
-    var account_funcbox = document.querySelector("#account-funcbox");
-    var switch_box = document.querySelector("#switch-box");
-    var ani_tags = false;
-
-    switch_box.addEventListener("click",function(){
-        if(!ani_tags){
-            account_funcbox.classList.add("off");
-            switch_box.classList.add("fold");
-        }
-        ani_tags = true;
-        account_funcbox.classList.toggle("on");
-        switch_box.classList.toggle("unfold");
-    });
-} */
-
 function addLoadEvent(func){
     var oldonload = window.onload;
     if(typeof window.onload != 'function'){
@@ -27,14 +10,66 @@ function addLoadEvent(func){
     }
 }
 
-//悬浮显示用户详细信息
+/**
+ * 显示用户详细信息
+ */
+//当前登录用户
+var user = null;
 function showUserDetail(){
-    var user = document.querySelector('#user');
+    var userinfo = document.querySelector("#user");
+    var loginUser = document.querySelector('#loginUser');
     var userDetail = document.querySelector('#user_detail');
-    user.addEventListener('mouseover',function(e){
+
+    var myProfile = document.querySelectorAll(".myProfile");
+    var username = document.querySelector("#username");
+    var nicknames = document.querySelectorAll(".nickname");
+    var gender = document.querySelector("#gender");
+    var experience = document.querySelector("#experience");
+    var signature = document.querySelector("#signature");
+    //判断用户是否已登录
+    if(loginUser != null && userDetail != null) {
+        //获取登录用户名
+        var userId = loginUser.value;
+        console.log("userId:" + userId);
+        //向后台发送ajax请求获取登录用户详细信息
+        $.ajax({
+            type: "GET",
+            url: "/user/userDetail",
+            data: {"userId": userId},
+            dataType: "json",
+            success: function (data) {
+                //初始化登录用户
+                user = JSON.parse(data);
+                console.log("password:" + user.password);
+
+                for(let i=0; i<myProfile.length; i++){
+                    myProfile[i].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+                }
+                for (let j = 0; j < nicknames.length; j++) {
+                    nicknames[j].innerHTML = user.nickname;
+                }
+                experience.innerHTML = "经验 " + user.experience;
+                username.innerHTML = user.username;
+                if (user.gender == null) {
+                    gender.classList.add("icon-pinglun");
+                } else {
+                    if (user.gender == 0) {
+                        gender.classList.add("icon-nvxing");
+                    }
+                    if (user.gender == 1) {
+                        gender.classList.add("icon-nanxing");
+                    }
+                }
+                signature.innerHTML = user.motto;
+            },
+            cache: true,
+            async: true
+        });
+    }
+    userinfo.addEventListener('mouseover',function(e){
         userDetail.style.display = 'block';
     },false);
-    user.addEventListener('mouseout',function(e){
+    userinfo.addEventListener('mouseout',function(e){
         userDetail.style.display = 'none';
     },false);
 }
@@ -91,8 +126,18 @@ function showpasswordmanage(){
     });
 }
 
+/**
+ * 头像修改弹出层动画
+ */
+function showEditProfile() {
+    $('#close,#profile-revisability').click(function(e){
+        e.preventDefault();  //阻止默认单击事件
+        $('#popup').toggleClass('show');
+    });
+}
+
 $(function(){
     showfollweelist();
     showpasswordmanage();
+    showEditProfile();
 })
-

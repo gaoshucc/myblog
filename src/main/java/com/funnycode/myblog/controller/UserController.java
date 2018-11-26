@@ -1,5 +1,6 @@
 package com.funnycode.myblog.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.funnycode.myblog.ds.LoginType;
 import com.funnycode.myblog.pojo.User;
 import com.funnycode.myblog.service.UserService;
@@ -118,7 +119,7 @@ public class UserController {
             //更新最后一次登录时间
             String lastLogintime = userService.updateUserLastLogintimeByUsername(user);
             user.setLastLogintime(lastLogintime);
-            subject.getSession().setAttribute("loginUser", user);
+            subject.getSession().setAttribute("loginUser", user.getUserId());
             logger.info(user.getUsername() + ":" + user.getNickname());
 
             return "redirect:homepage";
@@ -147,6 +148,23 @@ public class UserController {
         logger.info("当前用户已退出登录");
 
         return "redirect:loginpage";
+    }
+
+    @GetMapping("/userDetail")
+    @ResponseBody
+    public String getUserDetail(String userId){
+        logger.info("后台接收到" + userId +"请求了");
+        User loginUser = userService.getUserByUserId(userId);
+        String loginUserJson =  JSON.toJSONString(loginUser);
+
+        return loginUserJson;
+    }
+
+    @GetMapping("/myAccount")
+    public String myAccount(String id){
+        logger.info(id);
+
+        return "user/account";
     }
 
 }

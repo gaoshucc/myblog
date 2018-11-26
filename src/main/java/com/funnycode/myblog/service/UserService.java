@@ -55,4 +55,6 @@ public interface UserService {
      * @return void
      */
     String updateUserLastLogintimeByUsername(User user);
+
+    User getUserByUserId(String userId);
 }

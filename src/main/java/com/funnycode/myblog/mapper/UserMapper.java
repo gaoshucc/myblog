@@ -61,4 +61,10 @@ public interface UserMapper {
      * @return void
      */
     void updateUserLastLogintimeByUsername(User user);
+    /**
+     * 通过用户id查找用户
+     * @param userId 用户id
+     * @return User
+     */
+    User getUserByUserId(String userId);
 }
