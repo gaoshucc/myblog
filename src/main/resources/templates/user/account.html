@@ -173,15 +173,15 @@
     </div>
 
     <!--修改头像弹出层-->
-    <div id="popup">
-        <div id="popup-content">
-            <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+    <div id="profile-popup">
+        <div id="profile-popup-content">
+            <span class="iconfont icon-guanbi" id="profile-close" title="关闭"></span>
             <div id="edit-content">
-                <img id="magnify-profile" th:src="@{/user/image/profile/profile.jpg}">
+                <img id="magnify-profile" class="myProfile" th:src="@{/user/image/profile/nologin.png}">
                 <a href="#" id="submit-change">修改</a>
             </div>
         </div>
-        <div id="popup-bg"></div>
+        <div id="profile-popup-bg"></div>
     </div>
 </body>
 </html>

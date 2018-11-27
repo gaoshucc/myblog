@@ -130,9 +130,10 @@ function showpasswordmanage(){
  * 头像修改弹出层动画
  */
 function showEditProfile() {
-    $('#close,#profile-revisability').click(function(e){
+    $('#profile-close,#profile-revisability,#profile-popup-bg').click(function(e){
         e.preventDefault();  //阻止默认单击事件
-        $('#popup').toggleClass('show');
+        //$("body").append("<div id='popup'><div id='popup-content'><span class='iconfont icon-guanbi' id='close' title='关闭'></span><div id='edit-content'><img id='magnify-profile' th:src='@{/user/image/profile/profile.jpg}'><a href='#' id='submit-change'>修改</a></div></div><div id='popup-bg'></div></div>");
+        $('#profile-popup').toggleClass('show');
     });
 }
 

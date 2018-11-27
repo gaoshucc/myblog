@@ -13,6 +13,9 @@ label.error {
     color: #fff;
     background-color: rgba(55, 59, 62, 1);
 }
+#valicode-input-parent label.error{
+    right: 50%;
+}
 label.error::before{
     position: absolute;
     top: 30px;

@@ -69,6 +69,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/regist", "anon");
         filterChainDefinitionMap.put("/user/userexists", "anon");
         filterChainDefinitionMap.put("/user/nicknameexists", "anon");
+        filterChainDefinitionMap.put("/user/valicode", "anon");
+        filterChainDefinitionMap.put("/user/checkValicode", "anon");
         filterChainDefinitionMap.put("/user/**", "roles[user]");
         //管理员权限
         filterChainDefinitionMap.put("/admin/adminexists", "anon");

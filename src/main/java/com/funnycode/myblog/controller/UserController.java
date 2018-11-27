@@ -5,6 +5,7 @@ import com.funnycode.myblog.ds.LoginType;
 import com.funnycode.myblog.pojo.User;
 import com.funnycode.myblog.service.UserService;
 import com.funnycode.myblog.shiro.common.UserToken;
+import com.funnycode.myblog.utils.VerifyUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -19,11 +20,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.OutputStream;
 
 /**
  * @author gaoshucc
@@ -74,6 +77,50 @@ public class UserController {
     }
 
     /**
+     * 生成验证码
+     */
+    @RequestMapping("/valicode")
+    public void generateValicode(HttpServletResponse response,HttpSession session){
+        logger.info("接收到更新验证码请求了");
+        //第一个参数是生成的验证码，第二个参数是生成的图片
+        Object[] objs = VerifyUtil.createImage();
+        //将验证码存入Session
+        session.setAttribute("valiCode",objs[0]);
+
+        //将图片输出给浏览器
+        BufferedImage image = (BufferedImage) objs[1];
+        response.setContentType("image/png");
+        OutputStream os = null;
+        try {
+            os = response.getOutputStream();
+            ImageIO.write(image, "png", os);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 检验验证码是否正确
+     */
+    @RequestMapping("/checkValicode")
+    public void checkValicode(HttpServletResponse response, HttpSession session, String valicode){
+        //获取之前存放在session中的验证码
+        String imageCode = (String) session.getAttribute("valiCode");
+        logger.info("进入验证码验证方法了");
+        try {
+            if (!imageCode.toLowerCase().equals(valicode.toLowerCase())) {
+                response.getWriter().write("false");
+                logger.info("验证码错误");
+            } else {
+                response.getWriter().write("true");
+                logger.info("验证码" + valicode);
+            }
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+    }
+
+    /**
      * 注册
      */
     @PostMapping("/regist")
@@ -88,7 +135,7 @@ public class UserController {
 
     @RequestMapping("/loginpage")
     public String loginpage(){
-        System.out.println("进入loginpage了");
+        logger.info("进入loginpage了");
 
         return "user/login";
     }

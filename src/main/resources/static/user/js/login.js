@@ -7,8 +7,18 @@ $(function(){
         $('#popup').toggleClass('show');
     });
 
+    getValicodeImg();
+
     form_validate();
 })
+
+function getValicodeImg() {
+    var valicodeImg = document.querySelector("#vali-code-img");
+    valicodeImg.src = "/user/valicode?" + new Date();
+    valicodeImg.addEventListener("click",function (e) {
+        valicodeImg.src = "/user/valicode?" + new Date();
+    });
+}
 
 function form_validate(){
     $("#login-form").validate({
@@ -70,6 +80,16 @@ function form_validate(){
             },
             valicode:{
                 required:true,
+                remote:{
+                    url: "/user/checkValicode",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        valicode: function () {
+                            return $("#vali-code").val();
+                        }
+                    }
+                }
             }
         },
         messages:{
@@ -89,6 +109,7 @@ function form_validate(){
             },
             valicode:{
                 required:"验证码不能为空",
+                remote:"输入验证码错误"
             }
         }
     });

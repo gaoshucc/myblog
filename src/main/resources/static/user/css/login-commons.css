@@ -300,18 +300,14 @@ input:-ms-input-placeholder{
     margin: 0;
     background: url("../../commons/image/confirm.png") no-repeat 8px;
 }
-#send-vali-code{
+#vali-code-img{
     float: right;
     display: block;
-    width: 50%;
+    width: 45%;
+    margin-left: 5%;
     height: 35px;
-    line-height: 35px;
-    font-size: 14px;
-    color: rgba(19, 168, 228, .7);
-    text-align: center;
-}
-#send-vali-code:hover{
-    color: rgba(19, 168, 228, 1);
+
+    cursor: pointer;
 }
 #register-btn{
     display: block;

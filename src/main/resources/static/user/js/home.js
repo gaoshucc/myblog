@@ -9,9 +9,6 @@ $(function(){
         $('#reg-popup').toggleClass('show');
     });
 
-    //注册表单校验
-    form_validate();
-
     //反馈弹出层动画
     $('#close,#feedback').click(function(e){
         e.preventDefault();  //阻止默认单击事件
@@ -53,7 +50,7 @@ function showUserDetail(){
 
     var profile = document.querySelector("#profile");
     var profile_detail = document.querySelector("#profile-detail");
-    var loginUserNickname = document.querySelector("#loginUserNickname");
+    var loginUserNickname = document.querySelectorAll(".loginUserNickname");
     var experience = document.querySelector("#experience");
     //判断用户是否已登录
     if(loginUser != null && userDetail != null){
@@ -72,7 +69,9 @@ function showUserDetail(){
                 console.log("password:" + user.password);
                 profile.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
                 profile_detail.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
-                loginUserNickname.innerHTML = user.nickname;
+                for(let i=0; i<loginUserNickname.length; i++){
+                    loginUserNickname[i].innerHTML = user.nickname;
+                }
                 experience.innerHTML = "经验 " + user.experience;
             },
             cache: true,
@@ -87,70 +86,6 @@ function showUserDetail(){
             userDetail.style.display = 'none';
         },false);
     }
-}
-
-/**
- * 前端注册表单校验
- */
-function form_validate(){
-    $("#regist-form").validate({
-        rules:{
-            username:{
-                required:true,
-                rangelength:[11,11],
-                remote:{
-                    url: "/user/userexists",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        username: function () {
-                            return $("#username").val();
-                        }
-                    }
-                }
-            },
-            nickname:{
-                required:true,
-                maxlength:20,
-                remote:{
-                    url: "/user/nicknameexists",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        username: function () {
-                            return $("#nickname").val();
-                        }
-                    }
-                }
-            },
-            password:{
-                required:true,
-                minlength:8
-            },
-            valicode:{
-                required:true,
-            }
-        },
-        messages:{
-            username:{
-                required:"账号不能为空",
-                rangelength:"请输入正确的手机号",
-                remote: "用户已存在，请直接登录"
-            },
-            nickname:{
-                required:"昵称不能为空",
-                maxlength:"昵称长度不能超过20",
-                remote: "昵称已存在"
-            },
-            password:{
-                required: "密码不能为空",
-                minlength: "密码长度必须大于8个字符"
-            },
-            valicode:{
-                required:"验证码不能为空",
-            }
-        }
-    });
 }
 
 /**

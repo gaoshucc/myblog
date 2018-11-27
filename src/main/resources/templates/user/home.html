@@ -30,8 +30,8 @@
                 </nav>
                 <nav id="userBox">
                     <ul class="userNavList" th:if="${session.loginUser == null}">
-                        <li class="nav"><a href="javascript:void(0);" th:href="@{/user/loginpage}">登录</a></li>
-                        <li class="nav" id="regist"><a href="javascript:void(0);">注册</a></li>
+                        <li class="nav"><a href="javascript:void(0);" th:href="@{/user/loginpage}">登录/注册</a></li>
+                        <!--<li class="nav" id="regist"><a href="javascript:void(0);">注册</a></li>-->
                     </ul>
                     <ul class="userNavList" th:if="${session.loginUser != null}">
                         <!--设置隐藏域存储登录用户名-->
@@ -42,7 +42,7 @@
                                 <div id='infoBox'>
                                     <img id="profile-detail" th:src="@{/user/image/profile/nologin.png}">
                                     <div id='user-info'>
-                                        <span id="loginUserNickname">游客</span>
+                                        <span class="loginUserNickname">游客</span>
                                         <span id="experience">经验 9999</span>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                         <div id="messageBar">
                             <i class="iconfont icon-xiaoxi"></i>
                             <div id="msgBox">
-                                <span id="message">欢迎来到FunnyCode</span>
+                                <span id="message">欢迎您，<em class="loginUserNickname">游客</em></span>
                             </div>
                         </div>
                     </div>
@@ -717,26 +717,6 @@
             </div>
         </div>
         <div id="popup-bg"></div>
-    </div>
-    <!--注册新用户界面（弹出层）-->
-    <div id="reg-popup">
-        <div id="reg-popup-content">
-            <span class="iconfont icon-guanbi" id="reg-close" title="关闭"></span>
-            <h2>REGIST</h2>
-            <div id="reg-input-area">
-                <form id="regist-form" th:action="@{/user/regist}" method="POST">
-                    <span class="input-parent"><input id="username" name="username" type="text" class="reg-input" placeholder="手机号"></span>
-                    <span class="input-parent"><input id="nickname" name="nickname" type="text" class="reg-input" placeholder="昵称"></span>
-                    <span class="input-parent"><input id="password" name="password" type="password" class="reg-input" placeholder="密码"></span>
-                    <span class="input-parent">
-                        <input type="text" name="valicode" class="reg-input" id="vali-code" placeholder="验证码">
-                        <a href="#" id="send-vali-code">发送验证码</a>
-                    </span>
-                    <button type="submit" id="register-btn">注册</button>
-                </form>
-            </div>
-        </div>
-        <div id="reg-popup-bg"></div>
     </div>
 </body>
 </html>
