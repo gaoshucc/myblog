@@ -1,6 +1,7 @@
 package com.funnycode.myblog.pojo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 /**
@@ -18,6 +19,7 @@ public class User implements Serializable {
     private String motto;
     private Integer positionId;
     private String profilePath;
+    private String regtime;
     private String lastLogintime;
     private Integer status;
 
@@ -117,7 +119,15 @@ public class User implements Serializable {
         this.profilePath = profilePath;
     }
 
-    public User(String username, String password, String nickname) {
+    public String getRegtime() {
+        return regtime;
+    }
+
+    public void setRegtime(String regtime) {
+        this.regtime = regtime;
+    }
+
+    public User(String username, String password, String nickname, String regtime) {
         this.userId = UUID.randomUUID().toString().replace("-","");
         this.username = username;
         this.password = password;
@@ -129,10 +139,11 @@ public class User implements Serializable {
         this.role = "user";
         this.profilePath = "nologin.png";
         this.lastLogintime = null;
+        this.regtime = regtime;
         this.status = 1;
     }
 
-    public User(String userId, String username, String password, String nickname, Integer experience, String role, Integer gender, String motto, Integer positionId, String profilePath, String lastLogintime, Integer status) {
+    public User(String userId, String username, String password, String nickname, Integer experience, String role, Integer gender, String motto, Integer positionId, String profilePath, String regtime, String lastLogintime, Integer status) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -143,6 +154,7 @@ public class User implements Serializable {
         this.motto = motto;
         this.positionId = positionId;
         this.profilePath = profilePath;
+        this.regtime = regtime;
         this.lastLogintime = lastLogintime;
         this.status = status;
     }

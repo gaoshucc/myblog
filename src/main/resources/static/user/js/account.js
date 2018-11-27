@@ -99,6 +99,21 @@ addLoadEvent(showUserDetail);
 addLoadEvent(showAside);
 
 
+/**
+ * 头像修改弹出层动画
+ */
+function showEditProfile() {
+    $('#profile-close,#profile-revisability,#profile-popup-bg').click(function(e){
+        e.preventDefault();  //阻止默认单击事件
+        //$("body").append("<div id='popup'><div id='popup-content'><span class='iconfont icon-guanbi' id='close' title='关闭'></span><div id='edit-content'><img id='magnify-profile' th:src='@{/user/image/profile/profile.jpg}'><a href='#' id='submit-change'>修改</a></div></div><div id='popup-bg'></div></div>");
+        $('#profile-popup').toggleClass('show');
+    });
+}
+
+function modifyNickname() {
+    var $nicknameBox = $("#nickname-box");
+}
+
 //监听点击事件，显示或隐藏“关注的人”列表
 function showfollweelist(){
     var $followee = $("#followee");
@@ -123,17 +138,6 @@ function showpasswordmanage(){
     });
     $close_password_manage.click(function(){
         $password_manage.toggle(200,function(){});
-    });
-}
-
-/**
- * 头像修改弹出层动画
- */
-function showEditProfile() {
-    $('#profile-close,#profile-revisability,#profile-popup-bg').click(function(e){
-        e.preventDefault();  //阻止默认单击事件
-        //$("body").append("<div id='popup'><div id='popup-content'><span class='iconfont icon-guanbi' id='close' title='关闭'></span><div id='edit-content'><img id='magnify-profile' th:src='@{/user/image/profile/profile.jpg}'><a href='#' id='submit-change'>修改</a></div></div><div id='popup-bg'></div></div>");
-        $('#profile-popup').toggleClass('show');
     });
 }
 

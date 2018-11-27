@@ -56,7 +56,7 @@ function showUserDetail(){
     if(loginUser != null && userDetail != null){
         //获取登录用户名
         var userId = loginUser.value;
-        console.log("username:" + username);
+        console.log("userId:" + userId);
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",

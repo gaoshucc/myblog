@@ -21,12 +21,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author gaoshucc
@@ -47,7 +48,7 @@ public class UserController {
      */
     @RequestMapping("/")
     public String getIndex(){
-        return "user/login";
+        return "redirect:loginpage";
     }
 
     /**
@@ -127,7 +128,8 @@ public class UserController {
     public String regist(User user){
         ByteSource salt = ByteSource.Util.bytes(user.getUsername());
         String newPassword = new SimpleHash("MD5", user.getPassword(), salt, 512).toHex();
-        User register = new User(user.getUsername(), newPassword, user.getNickname());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User register = new User(user.getUsername(), newPassword, user.getNickname(), sdf.format(new Date()));
         userService.regist(register);
 
         return "redirect:loginpage";
@@ -207,6 +209,9 @@ public class UserController {
         return loginUserJson;
     }
 
+    /**
+     * 我的账号
+     */
     @GetMapping("/myAccount")
     public String myAccount(String id){
         logger.info(id);
@@ -214,4 +219,13 @@ public class UserController {
         return "user/account";
     }
 
+    @RequestMapping("/noteArticle")
+    public String noteArticle(){
+        return "user/noteArticle";
+    }
+
+    @RequestMapping("/questArticle")
+    public String questArticle(){
+        return "user/questArticle";
+    }
 }

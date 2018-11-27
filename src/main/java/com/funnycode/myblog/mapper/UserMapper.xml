@@ -11,7 +11,7 @@
     </select>
 
     <insert id="regist" parameterType="com.funnycode.myblog.pojo.User">
-        INSERT INTO `user`(`user_id`,`status`,`last_logintime`,`username`,`password`,`nickname`,`role`,`profile_path`,`experience`,`gender`,`motto`,`position_id`) VALUES (#{userId},#{status},#{lastLogintime},#{username},#{password},#{nickname},#{role},#{profilePath},#{experience},#{gender},#{motto},#{positionId})
+        INSERT INTO `user`(`user_id`,`status`,`last_logintime`,`username`,`password`,`nickname`,`role`,`profile_path`,`experience`,`gender`,`motto`,`position_id`,`regtime`) VALUES (#{userId},#{status},#{lastLogintime},#{username},#{password},#{nickname},#{role},#{profilePath},#{experience},#{gender},#{motto},#{positionId},#{regtime})
     </insert>
 
     <select id="login" parameterType="com.funnycode.myblog.pojo.User" resultType="com.funnycode.myblog.pojo.User">
