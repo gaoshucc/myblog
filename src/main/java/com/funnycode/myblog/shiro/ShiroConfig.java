@@ -35,10 +35,11 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+        //配置登录页面路径
         shiroFilterFactoryBean.setLoginUrl("/user/loginpage");
-        /*shiroFilterFactoryBean.setSuccessUrl("/user/homepage");*/
         //设置无权限时跳转的url
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+        //shiroFilterFactoryBean.setSuccessUrl("/user/homepage");
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //放行静态资源
@@ -52,18 +53,12 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/js/**", "anon");
         filterChainDefinitionMap.put("/user/image/**", "anon");
         filterChainDefinitionMap.put("/user/font/**", "anon");
+        filterChainDefinitionMap.put("/user/user-editormd/**", "anon");
 
         filterChainDefinitionMap.put("/commons/css/**", "anon");
         filterChainDefinitionMap.put("/commons/js/**", "anon");
         filterChainDefinitionMap.put("/commons/image/**", "anon");
         filterChainDefinitionMap.put("/commons/font/**", "anon");
-
-        filterChainDefinitionMap.put("/editormd/css/**", "anon");
-        filterChainDefinitionMap.put("/editormd/fonts/**", "anon");
-        filterChainDefinitionMap.put("/editormd/images/**", "anon");
-        filterChainDefinitionMap.put("/editormd/lib/**", "anon");
-        filterChainDefinitionMap.put("/editormd/plugins/**", "anon");
-        filterChainDefinitionMap.put("/editormd/**", "anon");
         //游客
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/visitor/**", "anon");

@@ -52,39 +52,56 @@ function showUserDetail(){
     var profile_detail = document.querySelector("#profile-detail");
     var loginUserNickname = document.querySelectorAll(".loginUserNickname");
     var experience = document.querySelector("#experience");
-    //判断用户是否已登录
-    if(loginUser != null && userDetail != null){
-        //获取登录用户名
-        var userId = loginUser.value;
-        console.log("userId:" + userId);
-        //向后台发送ajax请求获取登录用户详细信息
-        $.ajax({
-            type: "GET",
-            url: "/user/userDetail",
-            data: {"userId":userId},
-            dataType: "json",
-            success: function (data) {
-                //初始化登录用户
-                user = JSON.parse(data);
-                console.log("password:" + user.password);
-                profile.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
-                profile_detail.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
-                for(let i=0; i<loginUserNickname.length; i++){
-                    loginUserNickname[i].innerHTML = user.nickname;
-                }
-                experience.innerHTML = "经验 " + user.experience;
-            },
-            cache: true,
-            async: true
-        });
-        //鼠标悬浮
-        userinfo.addEventListener('mouseover',function(e){
-            userDetail.style.display = 'block';
-        },false);
-        //鼠标移开
-        userinfo.addEventListener('mouseout',function(e){
-            userDetail.style.display = 'none';
-        },false);
+
+    findUser();
+    //鼠标悬浮
+    userinfo.addEventListener('mouseover',function(e){
+        userDetail.style.display = 'block';
+        //判断鼠标是否已经悬浮，放置重复发送请求
+        let event = e || event;        //兼容处理
+        let from = event.fromElement || event.relatedTarget;
+        if(from && this.contains(from)){      //如果在里面则返回
+            return;
+        }
+        findUser();
+    },false);
+    //鼠标移开
+    userinfo.addEventListener('mouseout',function(e){
+        userDetail.style.display = 'none';
+    },false);
+    
+    //获取用户
+    function findUser() {
+        //判断用户是否已登录
+        if(loginUser != null){
+            //获取登录用户名
+            var userId = loginUser.value;
+            console.log("userId:" + userId);
+            //向后台发送ajax请求获取登录用户详细信息
+            $.ajax({
+                type: "GET",
+                url: "/user/userDetail",
+                data: {"userId":userId},
+                dataType: "json",
+                success: function (data) {
+                    //获得登录用户
+                    user = JSON.parse(data);
+                    fillData();
+                },
+                cache: true,
+                async: true
+            });
+        }
+    }
+
+    //填充数据
+    function fillData() {
+        profile.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+        profile_detail.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+        for(let i=0; i<loginUserNickname.length; i++){
+            loginUserNickname[i].innerHTML = user.nickname;
+        }
+        experience.innerHTML = "经验 " + user.experience;
     }
 }
 
@@ -130,7 +147,7 @@ function showAuthorInfo(){
             let event = e || event;        //兼容处理
             let from = event.fromElement || event.relatedTarget;//兼容处理
             if(from && this.contains(from)){      //如果在里面则返回
-                return;    
+                return;
             }
             if(!flag){
                 author_nickname = this.innerHTML;

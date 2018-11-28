@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/notearticle-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/notearticle-different.css}">
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/user/js/commons.js}"></script>-->
     <script type="text/javascript" th:src="@{/user/js/noteArticle.js}"></script>
     <title>欢迎来到FunnyCode</title>
 </head>
@@ -24,14 +25,16 @@
                     <li><a href='#'>学习路线</a></li>
                 </ul>
             </nav>
+            <!--设置隐藏域存储登录用户名-->
+            <input id="loginUser" type="hidden" th:value="${session.loginUser}">
             <div id='user'>
-                <img th:src="@{/user/image/profile/profile.jpg}" id='imgone'>
+                <img class="myProfile" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
-                        <img th:src="@{/user/image/profile/profile.jpg}">
+                        <img class="myProfile">
                         <div id='user-info'>
-                            <span>高数</span>
-                            <span>积分 9999</span>
+                            <span class="loginUserNickname">高数</span>
+                            <span id="experience">积分 9999</span>
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@
     </header>
 
     <div id='top'>
-        <a th:href="@{/noting}" id='write'>写手记</a>
+        <a th:href="@{/user/noting}" id='write'>写手记</a>
         <div id='serchBar'>
             <input type='text' placeholder='java学习路线' id='serchText'>
             <a href='#' class='iconfont icon-3' id='serch'></a>

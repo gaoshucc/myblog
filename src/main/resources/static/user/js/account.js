@@ -26,55 +26,73 @@ function showUserDetail(){
     var gender = document.querySelector("#gender");
     var experience = document.querySelector("#experience");
     var signature = document.querySelector("#signature");
-    //判断用户是否已登录
-    if(loginUser != null && userDetail != null) {
-        //获取登录用户名
-        var userId = loginUser.value;
-        console.log("userId:" + userId);
-        //向后台发送ajax请求获取登录用户详细信息
-        $.ajax({
-            type: "GET",
-            url: "/user/userDetail",
-            data: {"userId": userId},
-            dataType: "json",
-            success: function (data) {
-                //初始化登录用户
-                user = JSON.parse(data);
-                console.log("password:" + user.password);
 
-                for(let i=0; i<myProfile.length; i++){
-                    myProfile[i].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
-                }
-                for (let j = 0; j < nicknames.length; j++) {
-                    nicknames[j].innerHTML = user.nickname;
-                }
-                experience.innerHTML = "经验 " + user.experience;
-                username.innerHTML = user.username;
-                if (user.gender == null) {
-                    gender.classList.add("icon-pinglun");
-                } else {
-                    if (user.gender == 0) {
-                        gender.classList.add("icon-nvxing");
-                    }
-                    if (user.gender == 1) {
-                        gender.classList.add("icon-nanxing");
-                    }
-                }
-                signature.innerHTML = user.motto;
-            },
-            cache: true,
-            async: true
-        });
-    }
+    findUser();
     userinfo.addEventListener('mouseover',function(e){
         userDetail.style.display = 'block';
+        //判断鼠标是否已经悬浮，放置重复发送请求
+        let event = e || event;        //兼容处理
+        let from = event.fromElement || event.relatedTarget;
+        if(from && this.contains(from)){      //如果在里面则返回
+            return;
+        }
+        findUser();
     },false);
     userinfo.addEventListener('mouseout',function(e){
         userDetail.style.display = 'none';
     },false);
+
+    //获得登录用户
+    function findUser() {
+        //判断用户是否已登录
+        if(loginUser != null) {
+            //获取登录用户名
+            var userId = loginUser.value;
+            console.log("userId:" + userId);
+            //向后台发送ajax请求获取登录用户详细信息
+            $.ajax({
+                type: "GET",
+                url: "/user/userDetail",
+                data: {"userId": userId},
+                dataType: "json",
+                success: function (data) {
+                    //获得登录用户
+                    user = JSON.parse(data);
+                    fillData();
+                },
+                cache: true,
+                async: true
+            });
+        }
+    }
+
+    //填充数据
+    function fillData() {
+        for(let i=0; i<myProfile.length; i++){
+            myProfile[i].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+        }
+        for (let j = 0; j < nicknames.length; j++) {
+            nicknames[j].innerHTML = user.nickname;
+        }
+        experience.innerHTML = "经验 " + user.experience;
+        username.innerHTML = user.username;
+        if (user.gender == null) {
+            gender.classList.add("icon-pinglun");
+        } else {
+            if (user.gender == 0) {
+                gender.classList.add("icon-nvxing");
+            }
+            if (user.gender == 1) {
+                gender.classList.add("icon-nanxing");
+            }
+        }
+        signature.innerHTML = user.motto;
+    }
 }
 
-//显示侧边栏
+/**
+ * 显示侧边栏
+ */
 function showAside(){
     var switch_box = document.querySelector("#switch-box");
     var close_aside = document.querySelector("#close-aside");
@@ -108,10 +126,6 @@ function showEditProfile() {
         //$("body").append("<div id='popup'><div id='popup-content'><span class='iconfont icon-guanbi' id='close' title='关闭'></span><div id='edit-content'><img id='magnify-profile' th:src='@{/user/image/profile/profile.jpg}'><a href='#' id='submit-change'>修改</a></div></div><div id='popup-bg'></div></div>");
         $('#profile-popup').toggleClass('show');
     });
-}
-
-function modifyNickname() {
-    var $nicknameBox = $("#nickname-box");
 }
 
 //监听点击事件，显示或隐藏“关注的人”列表

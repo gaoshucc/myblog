@@ -219,11 +219,22 @@ public class UserController {
         return "user/account";
     }
 
+    /**
+     * 优质手记
+     */
     @RequestMapping("/noteArticle")
     public String noteArticle(){
         return "user/noteArticle";
     }
 
+    @RequestMapping("/noting")
+    public String takeNote(){
+        return "user/noting";
+    }
+
+    /**
+     * 精品问答
+     */
     @RequestMapping("/questArticle")
     public String questArticle(){
         return "user/questArticle";

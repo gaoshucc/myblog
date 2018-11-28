@@ -30,12 +30,4 @@ public class BasicController {
 
         return "403";
     }
-
-    /**
-     * editormd放在Basic,路径不容易乱，且可重用
-     */
-    @RequestMapping("/noting")
-    public String takeNote(){
-        return "editormd/noting";
-    }
 }

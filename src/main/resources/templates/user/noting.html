@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" th:href="@{/user/image/note.png}" type="image/x-icon"/>
-    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
-    <link rel="stylesheet" th:href="@{/editormd/css/myeditormd.css}" />
-    <link rel="stylesheet" th:href="@{/editormd/css/myeditormd-different.css}" />
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}" />
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd.css}" />
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd-different.css}" />
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
-    <script type="text/javascript" th:src="@{/editormd/editormd.js}"></script>
+    <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
     <title>MarkDown</title>
 </head>
 <body>
@@ -40,7 +40,7 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "editormd/lib/",
+                path    : "user-editormd/lib/",
                 imageUpload : true,
                 imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL : "/uploadpic",
