@@ -45,7 +45,6 @@ $(function(){
 var user = null;
 function showUserDetail(){
     var userinfo = document.querySelector("#user");
-    var loginUser = document.querySelector('#loginUser');
     var userDetail = document.querySelector('#user_detail');
 
     var profile = document.querySelector("#profile");
@@ -72,26 +71,19 @@ function showUserDetail(){
     
     //获取用户
     function findUser() {
-        //判断用户是否已登录
-        if(loginUser != null){
-            //获取登录用户名
-            var userId = loginUser.value;
-            console.log("userId:" + userId);
-            //向后台发送ajax请求获取登录用户详细信息
-            $.ajax({
-                type: "GET",
-                url: "/user/userDetail",
-                data: {"userId":userId},
-                dataType: "json",
-                success: function (data) {
-                    //获得登录用户
-                    user = JSON.parse(data);
-                    fillData();
-                },
-                cache: true,
-                async: true
-            });
-        }
+        //向后台发送ajax请求获取登录用户详细信息
+        $.ajax({
+            type: "GET",
+            url: "/user/userDetail",
+            dataType: "json",
+            success: function (data) {
+                //获得登录用户
+                user = JSON.parse(data);
+                fillData();
+            },
+            cache: true,
+            async: true
+        });
     }
 
     //填充数据

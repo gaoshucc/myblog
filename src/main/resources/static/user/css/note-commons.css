@@ -1,44 +1,11 @@
-::scrollbar{
-    width: 4px;
-    background: rgb(255, 255, 255);
-}
-::scrollbar-thumb{
-    border-radius: 2px;
-    background: rgba(196,196,196,100%);
-}
 ::-webkit-scrollbar{
     width: 4px;
     background: rgb(255, 255, 255);
 }
 ::-webkit-scrollbar-thumb{
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196,196,196,1);
 }
-::-moz-scrollbar{
-    width: 4px;
-    background: rgb(255, 255, 255);
-}
-::-moz-scrollbar-thumb{
-    border-radius: 2px;
-    background: rgba(196,196,196,100%);
-}
-::-ms-scrollbar{
-    width: 4px;
-    background: rgb(255, 255, 255);
-}
-::-ms-scrollbar-thumb{
-    border-radius: 2px;
-    background: rgba(196,196,196,100%);
-}
-::-o-scrollbar{
-    width: 4px;
-    background: rgb(255, 255, 255);
-}
-::-o-scrollbar-thumb{
-    border-radius: 2px;
-    background: rgba(196,196,196,100%);
-}
-
 
 *{
     padding: 0;
@@ -50,12 +17,12 @@ a{
 }
 body{
     position: relative;
-    background-color: rgba(246, 246, 246, 100%);
+    background-color: rgba(246, 246, 246, 1);
 }
 #header{
     width: 100%;
     height: 40px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
 #headerbox{
@@ -82,10 +49,10 @@ body{
     padding: 0 15px;
     text-align: center;
     font-size: 14px;
-    color:rgba(54, 58, 57, 100%);
+    color:rgba(54, 58, 57, 1);
 }
 #nav ul li:hover{
-    background-color: rgba(246, 246, 246, 100%);
+    background-color: rgba(246, 246, 246, 1);
 }
 
 #user{
@@ -109,7 +76,7 @@ body{
     width: 280px;
     height: 290px;
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
 }
 #infoBox{
     width: 150px;
@@ -139,11 +106,11 @@ body{
 }
 #user-info span:nth-child(1){
     font-size: 16px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
 }
 #user-info span:nth-child(2){
     font-size: 12px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
 
 #funcCard{
@@ -173,31 +140,31 @@ body{
 .funcCardItems a{
     font-size: 14px;
     letter-spacing: 1px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
 .funcCardItems:nth-child(1) .iconfont{
-    color: rgba(0, 133, 235, 100%);
+    color: rgba(0, 133, 235, 1);
 }
 .funcCardItems:nth-child(1):hover span{
-    color: rgba(0, 133, 235, 100%);
+    color: rgba(0, 133, 235, 1);
 }
 .funcCardItems:nth-child(2) .iconfont{
-    color: rgba(66, 211, 132, 100%);
+    color: rgba(66, 211, 132, 1);
 }
 .funcCardItems:nth-child(2):hover span{
-    color: rgba(66, 211, 132, 100%);
+    color: rgba(66, 211, 132, 1);
 }
 .funcCardItems:nth-child(3) .iconfont{
-    color: rgba(255, 210, 0, 100%);
+    color: rgba(255, 210, 0, 1);
 }
 .funcCardItems:nth-child(3):hover span{
-    color: rgba(255, 210, 0, 100%);
+    color: rgba(255, 210, 0, 1);
 }
 .funcCardItems:nth-child(4) .iconfont{
-    color: rgba(0, 133, 235, 100%);
+    color: rgba(0, 133, 235, 1);
 }
 .funcCardItems:nth-child(4):hover span{
-    color: rgba(0, 133, 235, 100%);
+    color: rgba(0, 133, 235, 1);
 }
 
 #quit{
@@ -207,15 +174,15 @@ body{
     line-height: 30px;
     margin: 0 15%;
     text-align: left;
-    border-top: solid 1px rgba(216, 216, 216, 50%);
+    border-top: solid 1px rgba(216, 216, 216, .5);
 }
 #quit a{
     padding-left: 5px;
     font-size: 14px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
 #quit a:hover{
-    color: rgba(19, 168, 228, 100%);
+    color: rgba(19, 168, 228, 1);
 }
 
 #container{
@@ -227,19 +194,19 @@ body{
 #article{
     width: 100%;
     padding: 20px 25px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
 #articleHeadline{
     position: relative;
     width: 100%;
     padding-bottom: 10px;
-    border-bottom: outset 1px rgba(246, 246, 246, 50%);
+    border-bottom: outset 1px rgba(246, 246, 246, .5);
 }
 #articleHeadline h2{
     margin-bottom: 10px;
     font-size: 24px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
 }
 #articleHeadline span{
     height: 20px;
@@ -247,14 +214,14 @@ body{
     margin-right: 10px;
     text-align: center;
     font-size: 12px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
 #articleHeadline time{
     height: 20px;
     line-height: 20px;
     text-align: center;
     font-size: 12px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
  
 #shareList{
@@ -270,16 +237,16 @@ body{
     list-style-type: none;
 }
 #shareList li:nth-child(1){
-    color: rgba(255, 210, 0, 50%);
+    color: rgba(255, 210, 0, .5);
 }
 #shareList li:nth-child(2){
-    color: rgba(31, 105, 218, 50%);
+    color: rgba(31, 105, 218, .5);
 }
 #shareList li:nth-child(3){
-    color: rgba(56, 168, 71, 50%);
+    color: rgba(56, 168, 71, .5);
 }
 #shareList li:nth-child(1):hover{
-    color: rgba(255, 210, 0, 100%);
+    color: rgba(255, 210, 0, 1);
 }
 #shareList li:nth-child(2):hover{
     color: rgb(31, 105, 218);
@@ -288,20 +255,20 @@ body{
     color: rgb(56, 168, 71);
 }
 
-#mainbody{
+#content-editormd{
     padding: 10px 0;
 }
 #comments{
     width: 100%;
     font-size: 16px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
 }
 .comment{
     position: relative;
     width: 100%;
     padding: 10px 0;
     padding-left: 60px;
-    border-top: inset 1px rgba(246, 246, 246, 50%);
+    border-top: inset 1px rgba(246, 246, 246, .5);
 }
 .comment-profile{
     position: absolute;
@@ -320,7 +287,7 @@ body{
     height: 30px;
     line-height: 30px;
     font-size: 14px;
-    color: rgba(0, 0, 0, 100%);
+    color: rgba(0, 0, 0, 1);
     text-align: left;
 }
 .comment-time{
@@ -330,7 +297,7 @@ body{
     line-height: 30px;
     margin: 0 10px;
     font-size: 14px;
-    color: rgba(108,108,108,100%);
+    color: rgba(108,108,108,1);
 }
 .reply{
     display: inline-block;
@@ -338,11 +305,11 @@ body{
     line-height: 30px;
     margin-left: 10px;
     font-size: 12px;
-    color: rgba(108,108,108,70%);
+    color: rgba(108, 108, 108, .7);
     text-align: left;
 }
 .reply:hover{
-    color: rgba(108,108,108,100%);
+    color: rgba(108,108,108,1);
 }
 .comment-content{
     display: block;
@@ -362,7 +329,7 @@ body{
     line-height: 30px;
     margin: 0 10px;
     font-size: 12px;
-    color: rgba(108,108,108,100%);
+    color: rgba(108,108,108,1);
     text-align: left;
 }
 .reply-time{
@@ -372,7 +339,7 @@ body{
     line-height: 30px;
     margin: 0 10px;
     font-size: 12px;
-    color: rgba(108,108,108,100%);
+    color: rgba(108,108,108,1);
 }
 .reply-to{
     display: inline-block;
@@ -380,11 +347,11 @@ body{
     line-height: 30px;
     margin-top: 10px;
     font-size: 12px;
-    color: rgba(108,108,108,70%);
+    color: rgba(108,108,108,.7);
     text-align: left;
 }
 .reply-to:hover{
-    color: rgba(108,108,108,100%);
+    color: rgba(108,108,108,1);
 }
 
 #writerInfoBox{
@@ -393,7 +360,7 @@ body{
     right: 0;
     width: 280px;
     margin-left: 30px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
 #writerInfo{
@@ -424,11 +391,11 @@ body{
 }
 #writer span:nth-child(1){
     font-size: 16px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
 }
 #writer span:nth-child(2){
     font-size: 12px;
-    color: rgba(108, 108, 108, 100%);
+    color: rgba(108, 108, 108, 1);
 }
 #writerInfo a{
     float: left;
@@ -440,11 +407,11 @@ body{
     border-radius: 5px;
     text-align: center;
     font-size: 13px;
-    color: rgba(255, 255, 255, 100%);
-    background-color: rgba(0, 133, 255, 100%);
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 133, 255, 1);
 }
 #writerInfo a:hover{
-    background-color: rgba(0, 133, 235, 100%);
+    background-color: rgba(0, 133, 235, 1);
 }
 
 #devote{
@@ -456,7 +423,7 @@ body{
 }
 #devote span{
     margin: 0 5px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
 }
 
 #recommend{
@@ -465,7 +432,7 @@ body{
     right: 0;
     width: 280px;
     margin-left: 30px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
 #recommend h3{
@@ -474,8 +441,8 @@ body{
     line-height: 30px;
     padding: 0 20px;
     font-size: 15px;
-    color: rgba(108, 108, 108, 100%);
-    background-color: rgba(250, 250, 250, 100%);
+    color: rgba(108, 108, 108, 1);
+    background-color: rgba(250, 250, 250, 1);
 }
 #recommend h3 span{
     float: right;
@@ -484,7 +451,7 @@ body{
     text-align: right;
 }
 #recommend h3 span:hover{
-    color: rgba(0, 133, 255, 100%);
+    color: rgba(0, 133, 255, 1);
 }
 #recommend img{
     display: block;
@@ -500,10 +467,10 @@ body{
     width: 80px;
     height: 300px;
     margin-top: -150px;
-    border: solid 1px rgba(216,216,216,100%);
+    border: solid 1px rgba(216,216,216,1);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
 
     transition: 0.2s ease-out;
     -ms-transition: 0.2s ease-out;
@@ -523,16 +490,16 @@ body{
     height: 80px;
     line-height: 80px;
     margin-top: -40px;
-    border: solid 1px rgba(216,216,216,100%);
+    border: solid 1px rgba(216,216,216,1);
     border-left: none;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     text-align: center;
     font-size: 18px;
-    background-color: rgba(255, 255, 255, 70%);
+    background-color: rgba(255, 255, 255, .7);
 }
 #overBtn:hover{
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 #report,#uptoTop{
@@ -543,13 +510,13 @@ body{
     line-height: 35px;
     text-align: center;
     box-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
-    color: rgba(136, 149, 166, 100%);
-    background-color: rgba(254,254,254,100%);
+    color: rgba(136, 149, 166, 1);
+    background-color: rgba(254,254,254,1);
 
     cursor: pointer;
 }
 #report:hover,#uptoTop:hover{
-    color: rgba(0, 133, 235, 100%);
+    color: rgba(0, 133, 235, 1);
 }
 /* 
 反馈按钮
@@ -596,7 +563,7 @@ body{
     margin-left: -180px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 100%);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -618,10 +585,10 @@ body{
     line-height: 40px;
     /* border-bottom: solid 2px #555; */
     font-size: 20px;
-    font-weight: 550;
+    font-weight: 600;
     letter-spacing: 2px;
     text-indent: 2px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
     text-align: center;
 }
 #report-content{
@@ -633,7 +600,7 @@ body{
     width: 90%;
     line-height: 30px;
     margin: 0 auto;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
     text-align: left;
     overflow: hidden;
 }
@@ -645,7 +612,7 @@ body{
     line-height: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
-    color: rgba(54, 58, 57, 100%);
+    color: rgba(54, 58, 57, 1);
     text-align: left;
 }
 #reasonlist{
@@ -681,14 +648,14 @@ body{
     letter-spacing: 5px;
     text-indent: 5px;
     text-align: center;
-    color: rgba(255, 255, 255, 100%);
+    color: rgba(255, 255, 255, 1);
     /* background-color: rgba(0, 133, 235, 100%); */
-    background-color: rgba(235, 26, 48, 70%);
+    background-color: rgba(235, 26, 48, .7);
 
     animation: all 200ms ease-in-out;
 }
 #submit-report:hover{
-    background-color: rgba(235, 26, 48, 100%);
+    background-color: rgba(235, 26, 48, 1);
 }
 
 #popup-bg{

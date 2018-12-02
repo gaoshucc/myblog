@@ -25,8 +25,6 @@
                     <li><a>学习路线</a></li>
                 </ul>
             </nav>
-            <!--设置隐藏域存储登录用户名-->
-            <input id="loginUser" type="hidden" th:value="${session.loginUser}">
             <div id='user'>
                 <img th:src="@{/user/image/profile/nologin.png}" id='profile' class="myProfile">
                 <div id='user_detail'>
@@ -52,7 +50,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myNote}">
                                     <span class='iconfont icon-biji'></span>
                                     <span>我的手记</span>
                                 </a>

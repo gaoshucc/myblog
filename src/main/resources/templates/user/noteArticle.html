@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/notearticle-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/notearticle-different.css}">
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
-    <!--<script type="text/javascript" th:src="@{/user/js/commons.js}"></script>-->
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/js/noteArticle.js}"></script>
     <title>欢迎来到FunnyCode</title>
 </head>
@@ -25,23 +25,21 @@
                     <li><a href='#'>学习路线</a></li>
                 </ul>
             </nav>
-            <!--设置隐藏域存储登录用户名-->
-            <input id="loginUser" type="hidden" th:value="${session.loginUser}">
             <div id='user'>
                 <img class="myProfile" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
                         <img class="myProfile">
                         <div id='user-info'>
-                            <span class="loginUserNickname">高数</span>
-                            <span id="experience">积分 9999</span>
+                            <span class="loginUserNickname">游客</span>
+                            <span id="experience">经验 100</span>
                         </div>
                     </div>
 
                     <div id='funcCard'>
                         <ul id='funcCardList'>
                             <li class='funcCardItems'>
-                                <a th:href="@{/user/myAccount(id=${session.loginUser})}">
+                                <a th:href="@{/user/myAccount}">
                                     <span class='iconfont icon-yonghu'></span>
                                     <span>我的账号</span>
                                 </a>
@@ -53,7 +51,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myNote}">
                                     <span class='iconfont icon-biji'></span>
                                     <span>我的手记</span>
                                 </a>
@@ -83,18 +81,13 @@
 
     <div id='container'>
         <aside id='articleCata'>
-            <ul>
-                <li><a href='#'>人工智能</a></li>
-                <li><a href='#'>区块链</a></li>
-                <li><a href='#'>前端开发</a></li>
-                <li><a href='#'>后端开发</a></li>
-                <li><a href='#'>移动开发</a></li>
-                <li><a href='#'>云计算</a></li>
-                <li><a href='#'>大数据</a></li>
+            <ul id="noteCate">
+
             </ul>
         </aside>
 
         <section id='noteSection'>
+            <!--
             <article class="article">
                 <h2><a href='#'>Struts2的架构详解</a></h2>
                 <p>Struts2的核心部分是拦截器模块</p>
@@ -108,71 +101,7 @@
                     </div>
                 </div>
             </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>评论</a>99</span>
-                        <span><a href='#'>浏览</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>评论</a>99</span>
-                        <span><a href='#'>浏览</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>评论</a>99</span>
-                        <span><a href='#'>浏览</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>评论</a>99</span>
-                        <span><a href='#'>浏览</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>评论</a>99</span>
-                        <span><a href='#'>浏览</a>99</span>
-                    </div>
-                </div>
-            </article>
+            -->
         </section>
 
         <aside id='hotArticlle'>

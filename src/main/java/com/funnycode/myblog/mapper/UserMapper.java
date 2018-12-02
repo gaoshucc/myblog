@@ -1,5 +1,6 @@
 package com.funnycode.myblog.mapper;
 
+import com.funnycode.myblog.pojo.Note;
 import com.funnycode.myblog.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -67,4 +68,10 @@ public interface UserMapper {
      * @return User
      */
     User getUserByUserId(String userId);
+    /**
+     * 保存并发布手记
+     * @param note 手记
+     * @return Integer 所插入表的受影响行数
+     */
+    Integer saveNote(Note note);
 }

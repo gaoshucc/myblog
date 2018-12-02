@@ -10,33 +10,40 @@
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd.css}" />
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd-different.css}" />
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
+    <script type="text/javascript" th:src="@{/user/js/noting.js}"></script>
     <title>MarkDown</title>
 </head>
 <body>
     <div id='container'>
-        <div id='funcBar'>
-            <label id='titleLabel'>标题：</label><input type="text" id='title'>
-            <select name='noteType' id='noteType'>
-                <option name=''>前端</option>
-                <option name=''>后台开发</option>
-                <option name=''>移动</option>
-                <option name=''>IOS</option>
-            </select>
-            <a class="func" href='#' title="分享手记">发布手记</a>
-            <a class="func" href='#' title="保存手记，下次继续编写">保存手记</a>
-            <a class="func" id='delete' href='#' title="取消本次编辑，手记将被永久删除">删除</a>
-        </div>
-        <div class="editormd" id="test-editormd">
-            <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
-            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-            <textarea class="editormd-html-textarea" name="test-editormd-html-doc"></textarea>
-        </div>
+        <form id="note-form" th:action="@{/user/publish}" method="post">
+            <div id='funcBar'>
+                <label id='titleLabel'>标题：</label><input type="text" id='title' name="title">
+                <select name='typeId' id='noteType'>
+                    <option value=1>前端开发</option>
+                    <option value=2>后台开发</option>
+                    <option value=3>移动端</option>
+                    <option value=4>IOS</option>
+                    <option value=5>大数据</option>
+                    <option value=6>算法</option>
+                    <option value=7>小程序</option>
+                </select>
+                <button type="submit" class="func" id="publish" title="发布手记">发布手记</button>
+                <a class="func" id="save" href='#' title="保存手记，下次继续编写">保存手记</a>
+                <a class="func" id='delete' href='#' title="取消本次编辑，手记将被永久删除">删除</a>
+            </div>
+            <div class="editormd" id="note-editormd">
+                <textarea class="editormd-markdown-textarea" name="markdownDoc"></textarea>
+                <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                <textarea class="editormd-html-textarea" name="noteContent" id="note-editormd-html-doc"></textarea>
+            </div>
+        </form>
     </div>
 
     <script type="text/javascript">
         $(function() {
-            editormd("test-editormd", {
+            editormd("note-editormd", {
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",

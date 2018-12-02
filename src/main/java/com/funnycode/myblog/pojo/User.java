@@ -2,6 +2,7 @@ package com.funnycode.myblog.pojo;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -17,11 +18,21 @@ public class User implements Serializable {
     private String role;
     private Integer gender;
     private String motto;
+    private String regtime;
     private Integer positionId;
     private String profilePath;
-    private String regtime;
     private String lastLogintime;
     private Integer status;
+
+    private List<Note> notes;
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
 
     public String getUserId() {
         return userId;
@@ -141,6 +152,7 @@ public class User implements Serializable {
         this.lastLogintime = null;
         this.regtime = regtime;
         this.status = 1;
+        this.notes = null;
     }
 
     public User(String userId, String username, String password, String nickname, Integer experience, String role, Integer gender, String motto, Integer positionId, String profilePath, String regtime, String lastLogintime, Integer status) {
@@ -157,6 +169,7 @@ public class User implements Serializable {
         this.regtime = regtime;
         this.lastLogintime = lastLogintime;
         this.status = status;
+        this.notes = null;
     }
 
     public User() {

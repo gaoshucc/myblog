@@ -7,7 +7,6 @@ function findUserDetail(userId, user){
     $.ajax({
         type: "GET",
         url: "/user/userDetail",
-        data: {"userId":userId},
         dataType: "json",
         success: function (data) {
             //初始化登录用户

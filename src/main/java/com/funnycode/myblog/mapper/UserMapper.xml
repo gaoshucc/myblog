@@ -18,6 +18,19 @@
         SELECT * FROM `user` WHERE username = #{username} and password = #{password}
     </select>
 
+    <!--
+    <resultMap id="blogger" type="com.funnycode.myblog.pojo.User">
+        <id property="userId" column="user_id"></id>
+        <result property="lastLogintime" column="last_logintime"></result>
+        <result property="profilePath" column="profile_path"></result>
+        <result property="positionId" column="position_id"></result>
+        <collection property="notes" column="user_id" select="com.funnycode.myblog.mapper.NoteMapper.findNotesByBloggerId"></collection>
+    </resultMap>
+    <select id="getBloggerByUserId" parameterType="java.lang.String" resultMap="blogger">
+        SELECT * FROM `user` WHERE user_id = #{userId}
+    </select>
+    -->
+
     <select id="getUserByUserId" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.User">
         SELECT * FROM `user` WHERE user_id = #{userId}
     </select>
@@ -34,6 +47,25 @@
         SELECT role FROM `user` WHERE username = #{username}
     </select>
 
+    <resultMap id="Blogger" type="com.funnycode.myblog.pojo.User">
+        <id property="userId" column="user_id"></id>
+        <result property="nickname" column="nickname"></result>
+    </resultMap>
+    <select id="findBloggerByUserId" parameterType="java.lang.String" resultMap="Blogger">
+        SELECT user_id,nickname FROM `user` WHERE user_id = #{userId}
+    </select>
+
+    <resultMap id="BloggerDetail" type="com.funnycode.myblog.pojo.User">
+        <id property="userId" column="user_id"></id>
+        <result property="nickname" column="nickname"></result>
+        <result property="profilePath" column="profile_path"></result>
+        <result property="gender" column="gender"></result>
+        <result property="experience" column="experience"></result>
+    </resultMap>
+    <select id="findBloggerDetailByUserId" parameterType="java.lang.String" resultMap="BloggerDetail">
+        SELECT user_id,nickname,profile_path,gender,experience FROM `user` WHERE user_id = #{userId}
+    </select>
+
     <update id="updateUserLastLogintimeByUsername" parameterType="com.funnycode.myblog.pojo.User">
         UPDATE `user`
         <trim prefix="set" suffixOverrides=",">
@@ -41,4 +73,9 @@
         </trim>
         WHERE username = #{username}
     </update>
+
+    <insert id="saveNote" parameterType="com.funnycode.myblog.pojo.Note">
+        INSERT INTO `note`(`note_id`,`note_title`,`note_type`,`create_time`,`status`,`blogger`,`note_html`)
+        VALUES (#{noteId},#{noteTitle},#{noteType.typeId},#{createTime},#{status},#{blogger.userId},#{noteHtml})
+    </insert>
 </mapper>

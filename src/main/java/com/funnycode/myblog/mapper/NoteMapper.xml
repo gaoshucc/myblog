@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funnycode.myblog.mapper.NoteMapper">
+
+    <select id="findNoteTypeByTypeId" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.NoteType">
+        SELECT * FROM `note_type` WHERE type_id = #{typeId}
+    </select>
+
+    <resultMap id="Notes" type="com.funnycode.myblog.pojo.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
+
+    <resultMap id="AllNotes" type="com.funnycode.myblog.pojo.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerByUserId"></association>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
+
+    <resultMap id="NoteDetail" type="com.funnycode.myblog.pojo.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerDetailByUserId"></association>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
+
+    <select id="findNoteCate" resultType="com.funnycode.myblog.pojo.NoteType">
+        SELECT * FROM `note_type` ORDER BY type_id
+    </select>
+
+    <select id="findAllNotes" parameterType="java.lang.String" resultMap="AllNotes">
+        SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE status = 1 ORDER BY create_time DESC
+    </select>
+
+    <select id="findNotesByUserId" parameterType="java.lang.String" resultMap="Notes">
+        SELECT note_id,note_title,note_type,create_time FROM `note` WHERE blogger = #{userId} AND status = 1 ORDER BY create_time DESC
+    </select>
+
+    <select id="findNoteRecycleBinByUserId" parameterType="java.lang.String" resultMap="Notes">
+        SELECT note_id,note_title,note_type,create_time FROM `note` WHERE blogger = #{userId} AND status = 0 ORDER BY create_time DESC
+    </select>
+
+    <select id="findNoteByNoteId" parameterType="java.lang.String" resultMap="NoteDetail">
+        SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE note_id = #{noteId} AND status = 1
+    </select>
+
+    <select id="findNoteHtmlByNoteId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT note_html FROM `note` WHERE note_id = #{noteId} AND status = 1
+    </select>
+
+    <update id="deleteNoteByNoteId" parameterType="java.lang.String">
+        UPDATE `note` SET status = 0 WHERE note_id = #{noteId}
+    </update>
+
+    <update id="recycleNoteByNoteId" parameterType="java.lang.String">
+        UPDATE `note` SET status = 1 WHERE note_id = #{noteId}
+    </update>
+
+    <delete id="completelyDelNoteByNoteId" parameterType="java.lang.String">
+        DELETE FROM `note` WHERE note_id = #{noteId} AND status = 0
+    </delete>
+</mapper>

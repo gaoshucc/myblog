@@ -273,7 +273,7 @@ body{
 }
 #articleCata ul li{
     display: block;
-    width: 80px;
+    width: 100px;
     height: 40px;
     line-height: 40px;
     margin: 5px auto;
@@ -301,6 +301,9 @@ body{
     padding: 5px 0;
     border-bottom: solid 0.5px rgba(138,138,138, .5);
     letter-spacing: 1px;
+}
+.article:last-child{
+    border-bottom: none;
 }
 .article h2{
     width: 100%;

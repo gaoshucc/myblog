@@ -27,20 +27,20 @@
                 </ul>
             </nav>
             <div id='user'>
-                <img th:src="@{/user/image/profile/profile.jpg}" id='imgone'>
+                <img class="myProfile" th:src="@{/user/image/profile/nologin.png}" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
-                        <img th:src="@{/user/image/profile/profile.jpg}">
+                        <img class="myProfile">
                         <div id='user-info'>
-                            <span>高数</span>
-                            <span>积分 9999</span>
+                            <span class="loginUserNickname">游客</span>
+                            <span id="experience">经验 100</span>
                         </div>
                     </div>
 
                     <div id='funcCard'>
                         <ul id='funcCardList'>
                             <li class='funcCardItems'>
-                                <a th:href="@{/user/myAccount(id=${session.loginUser})}">
+                                <a th:href="@{/user/myAccount}">
                                     <span class='iconfont icon-yonghu'></span>
                                     <span>我的账号</span>
                                 </a>
@@ -52,7 +52,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myNote}">
                                     <span class='iconfont icon-biji'></span>
                                     <span>我的手记</span>
                                 </a>

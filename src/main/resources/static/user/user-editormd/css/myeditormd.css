@@ -73,6 +73,11 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 133, 255, 1);
 }
+#publish{
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 #delete{
     background-color: rgba(235, 60, 60, .7);
 }

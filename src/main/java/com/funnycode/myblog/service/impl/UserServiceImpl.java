@@ -1,6 +1,7 @@
 package com.funnycode.myblog.service.impl;
 
 import com.funnycode.myblog.mapper.UserMapper;
+import com.funnycode.myblog.pojo.Note;
 import com.funnycode.myblog.pojo.User;
 import com.funnycode.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,5 +85,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserByUserId(String userId) {
         return userMapper.getUserByUserId(userId);
+    }
+
+    @Override
+    public boolean saveNote(Note note) {
+        Integer num = userMapper.saveNote(note);
+
+        return num>0?true:false;
     }
 }

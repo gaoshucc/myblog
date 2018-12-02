@@ -1,5 +1,6 @@
 package com.funnycode.myblog.service;
 
+import com.funnycode.myblog.pojo.Note;
 import com.funnycode.myblog.pojo.User;
 
 /**
@@ -55,6 +56,12 @@ public interface UserService {
      * @return void
      */
     String updateUserLastLogintimeByUsername(User user);
+    /**
+     * 保存并发布手记
+     * @param note 手记
+     * @return boolean 是否插入成功，成功返回true,失败返回false
+     */
+    boolean saveNote(Note note);
 
     User getUserByUserId(String userId);
 }
