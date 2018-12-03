@@ -145,7 +145,7 @@ public class User implements Serializable {
         this.nickname = nickname;
         this.gender = null;
         this.motto = "学无止境，乐在其中";
-        this.positionId = 1;
+        this.positionId = 0;
         this.experience = 100;
         this.role = "user";
         this.profilePath = "nologin.png";

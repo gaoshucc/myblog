@@ -61,9 +61,10 @@
         <result property="profilePath" column="profile_path"></result>
         <result property="gender" column="gender"></result>
         <result property="experience" column="experience"></result>
+        <result property="positionId" column="position_id"></result>
     </resultMap>
     <select id="findBloggerDetailByUserId" parameterType="java.lang.String" resultMap="BloggerDetail">
-        SELECT user_id,nickname,profile_path,gender,experience FROM `user` WHERE user_id = #{userId}
+        SELECT user_id,nickname,profile_path,gender,experience,position_id FROM `user` WHERE user_id = #{userId}
     </select>
 
     <update id="updateUserLastLogintimeByUsername" parameterType="com.funnycode.myblog.pojo.User">
@@ -78,4 +79,8 @@
         INSERT INTO `note`(`note_id`,`note_title`,`note_type`,`create_time`,`status`,`blogger`,`note_html`)
         VALUES (#{noteId},#{noteTitle},#{noteType.typeId},#{createTime},#{status},#{blogger.userId},#{noteHtml})
     </insert>
+
+    <update id="updateUserExperienceByUserId" parameterType="java.lang.String">
+        UPDATE `user` SET experience = experience+100 WHERE user_id = #{userId}
+    </update>
 </mapper>

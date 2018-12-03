@@ -281,7 +281,7 @@ public class UserController {
         noteType.setTypeId(typeId);
         Note note = new Note(userId,title,noteType,markdownDoc);
         note.setCreateTime(sdf.format(new Date()));
-        boolean publishSucc =  userService.saveNote(note);
+        boolean publishSucc =  userService.saveNote(note,userId);
 
         if(publishSucc){
             return "redirect:myNote";

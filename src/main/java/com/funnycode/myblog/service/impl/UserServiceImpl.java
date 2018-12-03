@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author gaoshucc
@@ -88,9 +86,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean saveNote(Note note) {
+    public boolean saveNote(Note note, String userId) {
         Integer num = userMapper.saveNote(note);
+        Integer updateExperience = userMapper.updateUserExperienceByUserId(userId);
 
-        return num>0?true:false;
+        return (num>0&&updateExperience>0)?true:false;
     }
 }

@@ -59,9 +59,10 @@ public interface UserService {
     /**
      * 保存并发布手记
      * @param note 手记
+     * @param userId
      * @return boolean 是否插入成功，成功返回true,失败返回false
      */
-    boolean saveNote(Note note);
+    boolean saveNote(Note note, String userId);
 
     User getUserByUserId(String userId);
 }

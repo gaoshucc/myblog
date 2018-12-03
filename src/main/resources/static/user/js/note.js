@@ -86,7 +86,6 @@ function showUserDetail(){
                 }
                 experience.innerHTML = "经验 " + user.experience;
             },
-            cache: true,
             async: true
         });
     }
@@ -113,10 +112,12 @@ function findNote() {
             if(!isnull(data)){
                 var note = JSON.parse(data);
                 console.log(note);
+                document.title = note.noteTitle;
                 title.innerHTML = note.noteTitle;
                 noteType.innerHTML = note.noteType.typeName;
                 createTime.innerHTML = note.createTime;
                 writerName.innerHTML = note.blogger.nickname;
+                position.innerHTML = note.blogger.positionId;
                 writerProfile.src = "/user/image/profile/" + note.blogger.profilePath;
             }
         },

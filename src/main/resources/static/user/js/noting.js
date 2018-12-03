@@ -12,3 +12,30 @@ function deleteNote() {
         }
     })
 }
+
+function form_validate(){
+    $("#note-form").validate({
+        rules:{
+            title:{
+                required:true
+            },
+            typeId:{
+                required:true
+            },
+            markdownDoc:{
+                required:true
+            }
+        },
+        messages:{
+            title:{
+                required:"标题不能为空"
+            },
+            typeId:{
+                required:"类型不能为空"
+            },
+            markdownDoc:{
+                required:"手记内容不能为空"
+            }
+        }
+    });
+}

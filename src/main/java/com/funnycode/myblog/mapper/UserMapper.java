@@ -74,4 +74,10 @@ public interface UserMapper {
      * @return Integer 所插入表的受影响行数
      */
     Integer saveNote(Note note);
+    /**
+     * 更新用户经验值
+     * @param userId 用户ID
+     * @return Integer 是否更新成功，成功返回true,失败返回false
+     */
+    Integer updateUserExperienceByUserId(String userId);
 }
