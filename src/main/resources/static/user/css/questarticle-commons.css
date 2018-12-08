@@ -282,8 +282,9 @@ body{
     height: 50px;
     line-height: 50px;
     text-align: left;
-    font-size: 16px;
+    font-size: 15px;
     color: rgba(54, 58, 57, 1);
+    background-color: #f6f6f6;
 }
 #quest-title label{
     float: left;
@@ -291,6 +292,9 @@ body{
     height: 30px;
     line-height: 30px;
     margin: 10px 0 10px 15px;
+    padding-left: 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1);
 }
 #quest-title input{
     float: left;
@@ -300,11 +304,32 @@ body{
     line-height: 30px;
     margin: 10px 0;
     border: none;
-    border-bottom: solid 1px rgba(108, 108, 108, 1);
+    /*border-bottom: solid 1px rgba(108, 108, 108, 1);*/
     outline: none;
     text-indent: 5px;
 }
-#test-editormd{
+#questType{
+    float: left;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 23px 0 5px;
+    margin: 10px 0 10px 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color:rgb(54, 58, 57);
+    background: url("../image/arrow-down.png") no-repeat 90% center rgba(255, 255, 255, 1);
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+#questType option{
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+#quest-editormd{
     margin-bottom: 0;
     border-left: none;
     border-right: none;
@@ -320,13 +345,18 @@ body{
     display: block;
     height: 30px;
     line-height: 30px;
-    margin: 10px 0;
-    margin-right: 15px;
+    margin: 10px 15px 10px 0;
     padding: 0 10px;
     border-radius: 5px;
     text-align: center;
+    font-size: 15px;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 133, 255, 1);
+}
+#submitQuestion{
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 #cancel{
     background-color: rgba(235, 60, 60, .7);
@@ -342,7 +372,7 @@ body{
     padding-left: 160px;
     margin: 10px auto;
 }
-#articleCata{
+#articleCate{
     position: absolute;
     top: 0;
     left: 0;
@@ -352,27 +382,27 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#articleCata ul{
+#articleCate ul{
     width: 100%;
 }
-#articleCata ul li{
+#articleCate ul li{
     display: block;
-    width: 80px;
+    width: 100px;
     height: 40px;
     line-height: 40px;
     margin: 5px auto;
     text-align: center;
     list-style-type: none;
 }
-#articleCata ul li a{
+#articleCate ul li a{
     font-size: 16px;
     color: rgba(54, 58, 57, 1);
 }
-#articleCata ul li a:hover{
+#articleCate ul li a:hover{
     color: rgba(0, 133, 255, 1);
 }
 
-#noteSection{
+#questSection{
     width: 100%;
     padding: 0 20px;
     border-radius: 10px;
@@ -388,9 +418,6 @@ body{
 }
 .article:last-child{
     border-bottom: none;
-}
-#lastarticle{
-    border: none;
 }
 .article h2{
     width: 100%;

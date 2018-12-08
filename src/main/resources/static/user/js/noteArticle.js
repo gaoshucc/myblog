@@ -52,7 +52,7 @@ function showUserDetail(){
                 user = JSON.parse(data);
 
                 for(let j=0; j<myProfile.length; j++){
-                    myProfile[j].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+                    myProfile[j].src = "/user/image/profile/" + user.profilePath;
                 }
                 for(let i=0; i<loginUserNickname.length; i++){
                     loginUserNickname[i].innerHTML = user.nickname;

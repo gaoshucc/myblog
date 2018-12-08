@@ -60,7 +60,6 @@ function showUserDetail(){
                     experience.innerHTML = "经验 " + user.experience;
                 }
             },
-            cache: true,
             async: true
         });
     }

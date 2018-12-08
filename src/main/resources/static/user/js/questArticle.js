@@ -48,7 +48,7 @@ function showUserDetail(){
                 user = JSON.parse(data);
 
                 for(let j=0; j<myProfile.length; j++){
-                    myProfile[j].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+                    myProfile[j].src = "/user/image/profile/" + user.profilePath;
                 }
                 for(let i=0; i<loginUserNickname.length; i++){
                     loginUserNickname[i].innerHTML = user.nickname;
@@ -59,6 +59,46 @@ function showUserDetail(){
             async: true
         });
     }
+}
+/**
+ * 查找问题分类
+ */
+function findQuestCate() {
+    var $questCate = $("#questCate");
+    $.ajax({
+        type: "GET",
+        url: "/user/findQuestCate",
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var questCate = JSON.parse(data);
+                console.log(questCate);
+                for(let i=0; i<questCate.length; i++){
+                    $questCate.append("<li><a href='/user/findQuestBelongToType?"+ questCate[i].typeId +"'>"+ questCate[i].typeName +"</a></li>");
+                }
+            }
+        },
+        async: true
+    });
+}
+
+function findAllQuestions() {
+    var $questSection = $("#questSection");
+    $.ajax({
+        type: "GET",
+        url: "/user/findAllQuestions",
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var questions = JSON.parse(data);
+                console.log(questions);
+                for(let i=0; i<questions.length; i++){
+                    $questSection.append("<article class='article'><h2><a href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><a href=\"#\"><span class='author'>"+ questions[i].quizzer.nickname +"</span></a><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>回答</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                }
+            }
+        },
+        async: true
+    });
 }
 
 function showWin(){
@@ -101,5 +141,7 @@ function dynamicLoadCss(url) {
 }
 
 addLoadEvent(showUserDetail);
+addLoadEvent(findQuestCate);
+addLoadEvent(findAllQuestions);
 addLoadEvent(showWin);
 addLoadEvent(hideWin);

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" th:href="@{/user/image/note.png}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/user/kindeditor/themes/default/default.css}"/>
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/note-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/note-different.css}">
@@ -90,10 +91,11 @@
             <textarea style="display: none;" th:text="${noteHtml}"></textarea>
         </div>
         <div id="write-comment-box">
-            <textarea id="write-comment"></textarea>
+            <textarea id='comment-content' name='content' style='visibility:hidden;'>写下你的评论吧</textarea>
             <a id="submit-comment">发表评论</a>
         </div>
         <div id="comments">
+            <!--
             <div class="comment">
                 <img th:src="@{/user/image/profile/profile.jpg}" class="comment-profile">
                 <div class="comment-rightpart">
@@ -131,36 +133,7 @@
                     <a href="#" class="reply-to">回复</a>
                 </div>
             </div>
-            <div class="comment">
-                <img th:src="@{/user/image/profile/profile.jpg}" class="comment-profile">
-                <div class="comment-rightpart">
-                    <time datetime="2018-10-28" class="comment-time">2018-10-28</time>
-                    <a href="#" class="comment-nickname">高数001</a><a href="#" class="reply">回复</a>
-                    <span class="comment-content">刚好想找这方面的资料呢，谢谢博主！！！</span>
-                </div>
-                <div class="replies">
-                    <img th:src="@{/user/image/lotus.png}" class="comment-profile">
-                    <time datetime="2018-10-29" class="reply-time">2018-10-29</time>
-                    <a href="#" class="comment-nickname">高数CC</a><span class="reply-text">回复</span><a href="#" class="comment-nickname">高数001</a>
-                    <span class="comment-content">不客气哈哈哈。</span>
-                    <a href="#" class="reply-to">回复</a>
-                </div>
-            </div>
-            <div class="comment">
-                <img th:src="@{/user/image/profile/profile.jpg}" class="comment-profile">
-                <div class="comment-rightpart">
-                    <time datetime="2018-10-28" class="comment-time">2018-10-28</time>
-                    <a href="#" class="comment-nickname">高数001</a><a href="#" class="reply">回复</a>
-                    <span class="comment-content">刚好想找这方面的资料呢，谢谢博主！！！</span>
-                </div>
-                <div class="replies">
-                    <img th:src="@{/user/image/lotus.png}" class="comment-profile">
-                    <time datetime="2018-10-29" class="reply-time">2018-10-29</time>
-                    <a href="#" class="comment-nickname">高数CC</a><span class="reply-text">回复</span><a href="#" class="comment-nickname">高数001</a>
-                    <span class="comment-content">不客气哈哈哈。</span>
-                    <a href="#" class="reply-to">回复</a>
-                </div>
-            </div>
+            -->
         </div>
     </article>
     <aside id='writerInfoBox'>
@@ -211,10 +184,13 @@
             <a href="#" id="submit-report">举报</a>
         </div>
     </div>
-    <div id="popup-bg">
-
-    </div>
+    <div id="popup-bg"></div>
 </div>
+
+<!--kindeditor编辑器-->
+<script type="text/javascript" charset="utf-8" th:src="@{/user/kindeditor/kindeditor-all-min.js}"></script>
+<script type="text/javascript" charset="utf-8" th:src="@{/user/kindeditor/lang/zh-CN.js}"></script>
+<!--editormd编辑器-->
 <script type="text/javascript" th:src="@{/user/user-editormd/lib/marked.min.js}"></script>
 <script type="text/javascript" th:src="@{/user/user-editormd/lib/prettify.min.js}"></script>
 <script type="text/javascript" th:src="@{/user/user-editormd/lib/raphael.min.js}"></script>
@@ -224,9 +200,11 @@
 <script type="text/javascript" th:src="@{/user/user-editormd/lib/jquery.flowchart.min.js}"></script>
 <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
 <script type="text/javascript">
-    var testEditor;
+    var editormdEditor;
+    var kindEditor;
     $(function() {
-        testEditor = editormd.markdownToHTML("content-editormd", {
+        //editormd编辑器
+        editormdEditor = editormd.markdownToHTML("content-editormd", {
             htmlDecode : "style,script,iframe",
             emoji : true,
             taskList : true,
@@ -234,6 +212,17 @@
             flowChart : true, // 默认不解析
             sequenceDiagram : true, // 默认不解析
             codeFold : true
+        });
+
+        //KindEditor编辑器
+        kindEditor = KindEditor.create('#comment-content', {
+            width: '100%',       // 文本框宽度(可以百分比或像素)
+            height: '100px',     // 文本框高度(只能像素)
+            minWidth: 200,       // 最小宽度（数字）
+            minHeight: 100,      // 最小高度（数字）
+            themeType : 'simple',
+            resizeType : 1,
+            items : ['emoticons','link']
         });
     });
 </script>

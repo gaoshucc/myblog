@@ -8,7 +8,6 @@ $(function(){
     });
 
     getValicodeImg();
-
     form_validate();
 })
 

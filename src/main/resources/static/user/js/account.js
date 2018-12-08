@@ -9,7 +9,6 @@ function addLoadEvent(func){
         }
     }
 }
-
 /**
  * 显示用户详细信息
  */
@@ -23,6 +22,7 @@ function showUserDetail(){
     var username = document.querySelector("#username");
     var nicknames = document.querySelectorAll(".nickname");
     var gender = document.querySelector("#gender");
+    var position = document.querySelector("#position");
     var experience = document.querySelector("#experience");
     var signature = document.querySelector("#signature");
 
@@ -51,9 +51,9 @@ function showUserDetail(){
             success: function (data) {
                 //获得登录用户
                 user = JSON.parse(data);
+                console.log(user);
                 fillData();
             },
-            cache: true,
             async: true
         });
     }
@@ -61,7 +61,7 @@ function showUserDetail(){
     //填充数据
     function fillData() {
         for(let i=0; i<myProfile.length; i++){
-            myProfile[i].src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+            myProfile[i].src = "/user/image/profile/" + user.profilePath;
         }
         for (let j = 0; j < nicknames.length; j++) {
             nicknames[j].innerHTML = user.nickname;
@@ -78,10 +78,10 @@ function showUserDetail(){
                 gender.classList.add("icon-nanxing");
             }
         }
+        position.innerHTML = user.position.position;
         signature.innerHTML = user.motto;
     }
 }
-
 /**
  * 显示侧边栏
  */
@@ -108,19 +108,9 @@ function showAside(){
 addLoadEvent(showUserDetail);
 addLoadEvent(showAside);
 
-
 /**
- * 头像修改弹出层动画
+ * 监听点击事件，显示或隐藏“关注的人”列表
  */
-function showEditProfile() {
-    $('#profile-close,#profile-revisability,#profile-popup-bg').click(function(e){
-        e.preventDefault();  //阻止默认单击事件
-        //$("body").append("<div id='popup'><div id='popup-content'><span class='iconfont icon-guanbi' id='close' title='关闭'></span><div id='edit-content'><img id='magnify-profile' th:src='@{/user/image/profile/profile.jpg}'><a href='#' id='submit-change'>修改</a></div></div><div id='popup-bg'></div></div>");
-        $('#profile-popup').toggleClass('show');
-    });
-}
-
-//监听点击事件，显示或隐藏“关注的人”列表
 function showfollweelist(){
     var $followee = $("#followee");
     var $followeelist = $("#list-followee");
@@ -146,9 +136,107 @@ function showpasswordmanage(){
         $password_manage.toggle(200,function(){});
     });
 }
+/**
+ * 修改账号信息弹出层
+ */
+function showEditPopup() {
+    $('#edit-accountInfo').click(function (e) {
+        e.preventDefault();  //阻止默认单击事件
+        //向后台发送ajax请求获取用户可编辑信息
+        $.ajax({
+            type: "GET",
+            url: "/user/editableAccountInfo",
+            dataType: "json",
+            success: function (data) {
+                var editableUserInfo = JSON.parse(data);
+                console.log(editableUserInfo);
+                showAccountEditPopup(editableUserInfo);
+                hideAccountEditPopup();
+            },
+            async: true
+        });
+    });
+}
+/**
+ * 回显用户信息并显示编辑窗口
+ */
+var body;
+var editAccountInfoPopup;
+function showAccountEditPopup(editableUserInfo) {
+    body = document.body;
+    editAccountInfoPopup = document.createElement("div");
+    editAccountInfoPopup.setAttribute("id","edit-accountInfo-popup");
+    editAccountInfoPopup.innerHTML = "<div id='edit-accountInfo-popup-content'>" +
+                            "            <span class='iconfont icon-guanbi' id='edit-accountInfo-close' title='关闭'></span>" +
+                            "            <form method='post'>" +
+                            "                <h2 id='edit-accountInfo-headline'>修改信息</h2>" +
+                            "                <div id='editable-accountInfo'>" +
+                            "                    <span class='editable-info' id='editable-profile'>头像" +
+                            "                        <img src='/user/image/profile/"+ editableUserInfo.user.profilePath +"'>" +
+                            "                        <span id='upload-profile'>更换<input type='file'></span>" +
+                            "                    </span>" +
+                            "                    <span class='editable-info'>昵称" +
+                            "                        <input type='text' value='"+ editableUserInfo.user.nickname +"'>" +
+                            "                    </span>" +
+                            "                    <span class='editable-info'>性别" +
+                            "                        <span class='radio-box'>" +
+                            "                            <input type='radio' name='gender' value=2>女" +
+                            "                        </span>" +
+                            "                        <span class='radio-box'>" +
+                            "                            <input type='radio' name='gender' value=1>男" +
+                            "                        </span>" +
+                            "                    </span>" +
+                            "                    <span class='editable-info'>职位" +
+                            "                        <select id='position-select'>" +
+                            "                        </select>" +
+                            "                    </span>" +
+                            "                    <span class='editable-info'>个性签名" +
+                            "                        <input type='text' value='"+ editableUserInfo.user.motto +"'>" +
+                            "                    </span>" +
+                            "                </div>" +
+                            "                <input id='submit-edited-accountInfo' type='submit' value='提交修改'>" +
+                            "            </form>" +
+                            "        </div>" +
+                            "        <div id='edit-accountInfo-popup-bg'></div>";
+    body.appendChild(editAccountInfoPopup);
+    if(editableUserInfo.positions != null){
+        var currentPositionId = editableUserInfo.user.position.positionId;
+        var positions = editableUserInfo.positions;
+        var positionSelect = document.querySelector("#position-select");
+        var options = "";
+        for(let i=0; i<positions.length; i++){
+            if(currentPositionId == positions[i].positionId){
+                options = options + "<option "+"selected"+" value="+ positions[i].positionId +">"+ positions[i].position +"</option>";
+            }else{
+                options = options + "<option value="+ positions[i].positionId +">"+ positions[i].position +"</option>";
+            }
+        }
+        positionSelect.innerHTML = options;
+    }
+}
+/**
+ * 移除编辑窗口
+ */
+function hideAccountEditPopup() {
+    var editAccountInfoClose = document.querySelector("#edit-accountInfo-close");
+    editAccountInfoClose.addEventListener("click",function (e) {
+        body.removeChild(editAccountInfoPopup);
+    });
+}
+//todo 实现修改账号信息后台部分功能（包括图片上传）
 
 $(function(){
+    showEditPopup();
     showfollweelist();
     showpasswordmanage();
-    showEditProfile();
 })
+
+/**
+ * 头像修改弹出层动画（可以用于查看头像）
+ */
+function showEditProfile() {
+    $('#profile-close,#profile-revisability,#profile-popup-bg').click(function(e){
+        e.preventDefault();  //阻止默认单击事件
+        $('#profile-popup').toggleClass('show');
+    });
+}

@@ -10,7 +10,7 @@
         SELECT COUNT(*) FROM `admin` WHERE nickname = #{nickname}
     </select>
 
-    <insert id="regist" parameterType="com.funnycode.myblog.pojo.Admin">
+    <insert id="regist" parameterType="com.funnycode.myblog.pojo.PO.Admin">
         INSERT INTO `admin`(`admin_id`,`adminname`,`password`,`nickname`,`role`) VALUES (#{adminId},#{adminname},#{password},#{nickname},#{role})
     </insert>
 
@@ -18,7 +18,7 @@
         SELECT role FROM `admin` WHERE adminname = #{adminname}
     </select>
 
-    <select id="getAdminByAdminname" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.Admin">
+    <select id="getAdminByAdminname" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.PO.Admin">
         SELECT * FROM `admin` WHERE adminname = #{adminname}
     </select>
 

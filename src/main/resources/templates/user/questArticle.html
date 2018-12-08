@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/questarticle-different.css}">
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}"/>
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
     <script type="text/javascript" th:src="@{/user/js/questArticle.js}"></script>
     <title>欢迎来到FunnyCode</title>
@@ -83,37 +84,43 @@
     <div id='askingbg'>
         <div id='askbox'>
             <div id='write-quest'>
-                <div id='quest-title'>
-                    <label>问题：</label><input type='text' placeholder='写下你遇到的问题' name=''>
-                </div>
-                <div class="editormd" id="test-editormd">
-                    <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
-                    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-                    <textarea class="editormd-html-textarea" name="test-editormd-html-doc"></textarea>
-                </div>
-                <div id='funcBar'>
-                    <a class="func" href='#' title="提出问题">提交</a>
-                    <a class="func" id='cancel' href='javascript:;' title="取消本次编辑，已编辑内容将清除">取消</a>
-                </div>
+                <form th:action="@{/user/askQuestion}" method="POST">
+                    <div id='quest-title'>
+                        <label>问题：</label><input type='text' placeholder='写下你遇到的问题' name='questionTitle'>
+                        <select name='typeId' id='questType'>
+                            <option value=1>前端开发</option>
+                            <option value=2>后台开发</option>
+                            <option value=3>移动端</option>
+                            <option value=4>IOS</option>
+                            <option value=5>大数据</option>
+                            <option value=6>算法</option>
+                            <option value=7>小程序</option>
+                        </select>
+                    </div>
+                    <div class="editormd" id="quest-editormd">
+                        <textarea class="editormd-markdown-textarea" name="questMarkdownDoc"></textarea>
+                        <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                        <textarea class="editormd-html-textarea" name="questContent"></textarea>
+                    </div>
+                    <div id='funcBar'>
+                        <button type="submit" id="submitQuestion" class="func" href='#' title="提出问题">提交</button>
+                        <a class="func" id='cancel' href='javascript:void(0);' title="取消本次编辑，已编辑内容将清除">取消</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <div id='container'>
-        <aside id='articleCata'>
-            <ul>
-                <li><a href='#'>人工智能</a></li>
-                <li><a href='#'>区块链</a></li>
-                <li><a href='#'>前端开发</a></li>
-                <li><a href='#'>后端开发</a></li>
-                <li><a href='#'>移动开发</a></li>
-                <li><a href='#'>云计算</a></li>
-                <li><a href='#'>大数据</a></li>
+        <aside id='articleCate'>
+            <ul id="questCate">
+
             </ul>
         </aside>
 
-        <section id='noteSection'>
-            <article class="article">
+        <section id='questSection'>
+        <!--
+        <article class="article" id='lastarticle'>
                 <h2><a href='#'>Struts2的架构详解</a></h2>
                 <p>Struts2的核心部分是拦截器模块</p>
                 <div class='articleInfo'>
@@ -124,67 +131,8 @@
                         <span><a href='#'>回答</a>99</span>
                     </div>
                 </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>回答</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>回答</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>回答</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article">
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>回答</a>99</span>
-                    </div>
-                </div>
-            </article>
-            <article class="article" id='lastarticle'>
-                <h2><a href='#'>Struts2的架构详解</a></h2>
-                <p>Struts2的核心部分是拦截器模块</p>
-                <div class='articleInfo'>
-                    <a href="#"><span class='author'>CSDN</span></a>
-                    <span class='content-type'>Java</span>
-                    <time>2018-08-18</time>
-                    <div class='readInfo'>
-                        <span><a href='#'>回答</a>99</span>
-                    </div>
-                </div>
-            </article>
+        </article>
+        -->
         </section>
 
         <aside id='hotArticlle'>
@@ -242,7 +190,7 @@
 
     <script type="text/javascript">
         $(function() {
-            editormd("test-editormd", {
+            editormd("quest-editormd", {
                 width   : 500,
                 height  : 400,
                 syncScrolling : "single",

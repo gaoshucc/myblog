@@ -1,6 +1,6 @@
 package com.funnycode.myblog.mapper;
 
-import com.funnycode.myblog.pojo.Admin;
+import com.funnycode.myblog.pojo.PO.Admin;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 

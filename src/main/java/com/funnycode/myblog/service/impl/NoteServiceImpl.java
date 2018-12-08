@@ -1,8 +1,9 @@
 package com.funnycode.myblog.service.impl;
 
 import com.funnycode.myblog.mapper.NoteMapper;
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.NoteType;
+import com.funnycode.myblog.pojo.PO.Comment;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.NoteType;
 import com.funnycode.myblog.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,4 +72,22 @@ public class NoteServiceImpl implements NoteService {
 
         return completelyDelSuccess>0?true:false;
     }
+
+    @Override
+    public boolean saveComment(Comment comment) {
+        Integer saveCommentSuccess = noteMapper.saveComment(comment);
+
+        return saveCommentSuccess>0?true:false;
+    }
+
+    @Override
+    public List<Comment> findCommends(String noteId) {
+        return noteMapper.findCommentsByNoteId(noteId);
+    }
+
+    @Override
+    public List<Note> findAllNotesLimit(Integer start, Integer end) {
+        return noteMapper.findAllNotesLimit(start, end);
+    }
+
 }

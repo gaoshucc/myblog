@@ -1,7 +1,9 @@
 package com.funnycode.myblog.mapper;
 
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.NoteType;
+import com.funnycode.myblog.pojo.PO.Comment;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.NoteType;
+import com.funnycode.myblog.pojo.VO.CommentVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -68,4 +70,32 @@ public interface NoteMapper {
      * @return Integer 受影响的数据行数
      */
     Integer completelyDelNoteByNoteId(String noteId);
+    /**
+     * 保存评论
+     *
+     * @param comment 评论
+     * @return Integer 受影响的数据行数
+     */
+    Integer saveComment(Comment comment);
+    /**
+     * 查找手记评论
+     *
+     * @param noteId 手记ID
+     * @return List<Comment> 评论List集合
+     */
+    List<Comment> findCommentsByNoteId(String noteId);
+    /**
+     * 查找手记评论
+     *
+     * @param commentId 子评论ID
+     * @return List<Comment> 子评论List集合
+     */
+    List<CommentVO> findChildComments(String commentId);
+    /**
+     * 查找首页手记
+     *
+     * @param start,end 起始点和终止点
+     * @return List<Comment> 手记List集合
+     */
+    List<Note> findAllNotesLimit(Integer start, Integer end);
 }

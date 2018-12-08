@@ -45,29 +45,31 @@ $(function(){
 var user = null;
 function showUserDetail(){
     var userinfo = document.querySelector("#user");
-    var userDetail = document.querySelector('#user_detail');
+    if(userinfo != null){
+        var userDetail = document.querySelector('#user_detail');
 
-    var profile = document.querySelector("#profile");
-    var profile_detail = document.querySelector("#profile-detail");
-    var loginUserNickname = document.querySelectorAll(".loginUserNickname");
-    var experience = document.querySelector("#experience");
+        var profile = document.querySelector("#profile");
+        var profile_detail = document.querySelector("#profile-detail");
+        var loginUserNickname = document.querySelectorAll(".loginUserNickname");
+        var experience = document.querySelector("#experience");
 
-    findUser();
-    //鼠标悬浮
-    userinfo.addEventListener('mouseover',function(e){
-        userDetail.style.display = 'block';
-        //判断鼠标是否已经悬浮，放置重复发送请求
-        let event = e || event;        //兼容处理
-        let from = event.fromElement || event.relatedTarget;
-        if(from && this.contains(from)){      //如果在里面则返回
-            return;
-        }
         findUser();
-    },false);
-    //鼠标移开
-    userinfo.addEventListener('mouseout',function(e){
-        userDetail.style.display = 'none';
-    },false);
+        //鼠标悬浮
+        userinfo.addEventListener('mouseover',function(e){
+            userDetail.style.display = 'block';
+            //判断鼠标是否已经悬浮，放置重复发送请求
+            let event = e || event;        //兼容处理
+            let from = event.fromElement || event.relatedTarget;
+            if(from && this.contains(from)){      //如果在里面则返回
+                return;
+            }
+            findUser();
+        },false);
+        //鼠标移开
+        userinfo.addEventListener('mouseout',function(e){
+            userDetail.style.display = 'none';
+        },false);
+    }
     
     //获取用户
     function findUser() {
@@ -81,7 +83,6 @@ function showUserDetail(){
                 user = JSON.parse(data);
                 fillData();
             },
-            cache: true,
             async: true
         });
     }
@@ -97,6 +98,76 @@ function showUserDetail(){
     }
 }
 
+/**
+ * 查找“优质手记”
+ */
+function findAllNotes() {
+    var $noteSection = $("#noteSection");
+    $.ajax({
+        type: "GET",
+        url: "/user/findAllNotesLimit",
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var notes = JSON.parse(data);
+                console.log(notes);
+                for(let i=0; i<notes.length; i++){
+                    $noteSection.append("<article class='article'>" +
+                                        "    <h2><a href='/user/note?noteId="+ notes[i].noteId +"'>"+ notes[i].noteTitle +"</a></h2>" +
+                                        "    <p>Struts2的核心部分是拦截器模块</p>" +
+                                        "    <div class='articleInfo'>" +
+                                        "        <div class='author-infobox'>" +
+                                        "            <a href='#' class='author'>"+ notes[i].blogger.nickname +"</a>" +
+                                        "        </div>" +
+                                        "        <time>"+ notes[i].createTime  +"</time>" +
+                                        "        <div class='readInfo'>" +
+                                        "            <span><a href='#'>评论</a>99</span>" +
+                                        "            <span><a href='#'>浏览</a>99</span>" +
+                                        "        </div>" +
+                                        "    </div>" +
+                                        "</article>");
+                }
+            }
+            findAllQuestions();
+        },
+        async: true
+    });
+}
+/**
+ * 查找“优质手记”
+ */
+function findAllQuestions() {
+    var $questionSection = $("#questionSection");
+    $.ajax({
+        type: "GET",
+        url: "/user/findAllQuestionsLimit",
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var questions = JSON.parse(data);
+                console.log(questions);
+                for(let i=0; i<questions.length; i++){
+                    $questionSection.append("<article class='article'>" +
+                                            "    <h2><a href='/user/question?questId="+ questions[i].questId +"'>"+ questions[i].questTitle +"</a></h2>" +
+                                            "    <p>Struts2的核心部分是拦截器模块</p>" +
+                                            "    <div class='articleInfo'>" +
+                                            "        <div class='author-infobox'>" +
+                                            "            <a href='#' class='author'>"+ questions[i].quizzer.nickname +"</a>" +
+                                            "        </div>" +
+                                            "        <time>"+ questions[i].createTime +"</time>" +
+                                            "        <div class='readInfo'>" +
+                                            "            <span><a href='#'>评论</a>99</span>" +
+                                            "            <span><a href='#'>浏览</a>99</span>" +
+                                            "        </div>" +
+                                            "    </div>" +
+                                            "</article>");
+                }
+                showAuthorInfo();
+            }
+        },
+        async: true
+    });
+}
 /**
  * JS部分
  */
@@ -143,7 +214,7 @@ function showAuthorInfo(){
             }
             if(!flag){
                 author_nickname = this.innerHTML;
-                this.innerHTML = this.innerHTML + "<div class='author-info'><div class='author-basic-info'><div class='author-basic-infobg'><img th:src='@{/user/image/csdn.png}' class='author-profile'><span class='author-nickname'>CSDN</span><span class='author-job'>专业IT学习网站</span></div></div><div class='author-devote'><span>手记<em>9</em>篇</span><span>解答<em>9</em>次</span><button>关注ta</button></div></div>";
+                this.innerHTML = this.innerHTML + "<div class='author-info'><div class='author-basic-info'><div class='author-basic-infobg'><img src='/user/image/csdn.png' class='author-profile'><span class='author-nickname'>CSDN</span><span class='author-job'>专业IT学习网站</span></div></div><div class='author-devote'><span>手记<em>9</em>篇</span><span>解答<em>9</em>次</span><button>关注ta</button></div></div>";
                 flag = true;
             }else{
                 return;
@@ -164,7 +235,6 @@ function showAuthorInfo(){
         });
     }
 }
-
 /**
  * 轮播图
  */
@@ -264,8 +334,9 @@ function play(){
         clearInterval(timer);
     }
 }
-
-//显示留言区
+/**
+ * 显示留言区
+ */
 function showMsgFunc(){
     var hoverBtn = document.getElementById('hoverBtn');
     var messageFunc = document.getElementById('messageFunc');
@@ -277,7 +348,6 @@ function showMsgFunc(){
         }  
     }
 }
-
 /**
  * 显示微信账号二维码信息
  */
@@ -293,9 +363,7 @@ function showQRCode(){
         wechatQRC.style.display = "none";
         arrow.style.display = "none";
     }
-
 }
-
 /**
  * 显示QQ账号二维码信息
  */
@@ -312,11 +380,10 @@ function showQRCode1(){
         qqQRC.style.display = "none";
         arrow.style.display = "none";
     }
-
 }
 
 addLoadEvent(showUserDetail);
-addLoadEvent(showAuthorInfo);
+addLoadEvent(findAllNotes)
 addLoadEvent(showMsgFunc);
 addLoadEvent(play);
 

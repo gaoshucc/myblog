@@ -1,7 +1,8 @@
 package com.funnycode.myblog.service;
 
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.NoteType;
+import com.funnycode.myblog.pojo.PO.Comment;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.NoteType;
 
 import java.util.List;
 
@@ -28,4 +29,10 @@ public interface NoteService {
     boolean recycleNoteByNoteId(String noteId);
 
     boolean completelyDelNoteByNoteId(String noteId);
+
+    boolean saveComment(Comment comment);
+
+    List<Comment> findCommends(String noteId);
+
+    List<Note> findAllNotesLimit(Integer start, Integer end);
 }

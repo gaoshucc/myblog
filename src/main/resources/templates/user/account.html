@@ -9,7 +9,12 @@
     <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/account-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/account-different.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/css/validation.css}">
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/jquery.validate.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/additional-methods.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/messages_zh.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/js/account.js}"></script>
     <title>我的账号</title>
 </head>
@@ -72,12 +77,13 @@
     <div id='container'>
         <div id='account'>
             <div class='func-headline'>
+                <a href="javascript:void(0);" id="edit-accountInfo"><i class="iconfont icon-xiugai"></i>修改</a>
                 <h2><span class='iconfont icon-yonghu'></span><em>我</em><em>的</em><em>账</em><em>号</em></h2>
             </div>
             <div id='accountInfo'>
                 <div id='basicInfo'>
                     <div id='profileItem'>
-                        <label id='profileText'>头像</label><img id="profile-revisability" class="myProfile" th:src="@{/user/image/profile/profile.jpg}">
+                        <label id='profileText'>头像</label><img class="myProfile" th:src="@{/user/image/profile/profile.jpg}">
                     </div>
                     <div class='accountItems'>
                         <label class='itemname'>账号</label><span id="username" class='itemInfo'>13143377023</span>
@@ -92,7 +98,7 @@
                         <label class='itemname'>二维码名片</label><span class='iconfont icon-erweima icon' id='qrcode'></span>
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>职位</label><span class='itemInfo'>学生</span>
+                        <label class='itemname'>职位</label><span id="position" class='itemInfo'></span>
                     </div>
                     <div id='motoo'>
                         <label>个性签名</label><span id="signature">宏愿纵未了，奋斗总不太晚！！！</span>
@@ -155,28 +161,62 @@
             <img th:src="@{/user/image/ad.png}">
         </aside>
     </div>
-
+    <!--侧边栏-->
     <div id='account-funcbox'>
         <div id='account-func'>
             <h2 id="account-setup">FunnyCode</h2>
             <div id='func-list'>
-                <a href="#account" class="func"><span class="iconfont icon-profile"></span>账号信息</a>
-                <a href="#" class="func"><span class="iconfont icon-xiugai"></span>修改信息</a>
-                <a href="javascript:;" id="mdfpwd-btn" class="func"><span class="iconfont icon-icon_password_yes"></span>密码管理</a>
-                <a href="#" class="func"><span class="iconfont icon-icon_logout"></span>账号注销</a>
-                <a href="#" class="func"><span class="iconfont icon-bangzhuzhongxin"></span>帮助中心</a>
+                <a href="javascript:void(0);" class="func"><span class="iconfont icon-icon_logout"></span>账号注销</a>
+                <a href="javascript:void(0);" class="func"><span class="iconfont icon-bangzhuzhongxin"></span>帮助中心</a>
             </div>
         </div>
         <span id='close-aside' class='iconfont icon-unie646' title="关闭"></span>
     </div>
-
+    <!--修改信息弹出层-->
+    <!--<div id="edit-accountInfo-popup">
+        <div id="edit-accountInfo-popup-content">
+            <span class="iconfont icon-guanbi" id="edit-accountInfo-close" title="关闭"></span>
+            <form method="post">
+                <h2 id="edit-accountInfo-headline">修改信息</h2>
+                <div id="editable-accountInfo">
+                    <span class="editable-info" id="editable-profile">头像
+                        <img th:src="@{/user/image/profile/profile.jpg}">
+                        <span id="upload-profile">更换<input type="file"></span>
+                    </span>
+                    <span class="editable-info">昵称
+                        <input type="text">
+                    </span>
+                    <span class="editable-info">性别
+                        <span class="radio-box">
+                            <input type="radio" name="gender" value="2">女
+                        </span>
+                        <span class="radio-box">
+                            <input type="radio" name="gender" value="1">男
+                        </span>
+                    </span>
+                    <span class="editable-info">职位
+                        <select>
+                            <option value="">学生</option>
+                            <option selected value="">后台工程师</option>
+                            <option value="">前端工程师</option>
+                        </select>
+                    </span>
+                    <span class="editable-info">个性签名
+                        <input type="text">
+                    </span>
+                </div>
+                <input id="submit-edited-accountInfo" type="submit" value="提交修改">
+            </form>
+        </div>
+        <div id="edit-accountInfo-popup-bg"></div>
+    </div>-->
     <!--修改头像弹出层-->
     <div id="profile-popup">
         <div id="profile-popup-content">
             <span class="iconfont icon-guanbi" id="profile-close" title="关闭"></span>
             <div id="edit-content">
                 <img id="magnify-profile" class="myProfile" th:src="@{/user/image/profile/nologin.png}">
-                <a href="#" id="submit-change">修改</a>
+                <a href="#" id="change-profile">更换</a>
             </div>
         </div>
         <div id="profile-popup-bg"></div>

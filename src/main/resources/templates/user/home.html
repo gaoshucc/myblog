@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/home-differnent.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/commons/css/validation.css}">
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/commons/js/jquery.validate.js}"></script>
     <script type="text/javascript" th:src="@{/commons/js/additional-methods.js}"></script>
     <script type="text/javascript" th:src="@{/commons/js/messages_zh.js}"></script>
@@ -34,8 +35,6 @@
                         <!--<li class="nav" id="regist"><a href="javascript:void(0);">注册</a></li>-->
                     </ul>
                     <ul class="userNavList" th:if="${session.loginUser != null}">
-                        <!--设置隐藏域存储登录用户名-->
-                        <input id="loginUser" type="hidden" th:value="${session.loginUser}">
                         <li id="user" class="nav">
                             <img th:src="@{/user/image/profile/nologin.png}" id="profile">
                             <div id='user_detail'>
@@ -175,7 +174,8 @@
                         <a th:href="@{/user/noteArticle}">更多<i class='iconfont icon-gengduo'></i></a>
                         <h2>优质手记</h2>
                     </div>
-                    <section class='section'>
+                    <section id="noteSection" class='section'>
+                        <!--
                         <article class="article">
                             <h2><a href='note.html'>Struts2的架构详解</a></h2>
                             <p>Struts2的核心部分是拦截器模块</p>
@@ -190,76 +190,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>hello</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>评论</a>99</span>
-                                    <span><a href='#'>浏览</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>kitty</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>评论</a>99</span>
-                                    <span><a href='#'>浏览</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>高数1</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>评论</a>99</span>
-                                    <span><a href='#'>浏览</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>高数2</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>评论</a>99</span>
-                                    <span><a href='#'>浏览</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>高数3</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>评论</a>99</span>
-                                    <span><a href='#'>浏览</a>99</span>
-                                </div>
-                            </div>
-                        </article>
+                        -->
                     </section>
                 </div>
                 <!--问答区-->
@@ -268,7 +199,8 @@
                         <a th:href="@{/user/questArticle}">更多<i class='iconfont icon-gengduo'></i></a>
                         <h2>精品问答</h2>
                     </div>
-                    <section class='goodSection'>
+                    <section id='questionSection'>
+                        <!--
                         <article class="article">
                             <h2><a href='#'>Struts2的架构详解</a></h2>
                             <p>Struts2的核心部分是拦截器模块</p>
@@ -282,71 +214,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>CSDN</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>回答</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>CSDN</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>回答</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>CSDN</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>回答</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>CSDN</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>回答</a>99</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <h2><a href='#'>Struts2的架构详解</a></h2>
-                            <p>Struts2的核心部分是拦截器模块</p>
-                            <div class='articleInfo'>
-                                <div class="author-infobox">
-                                    <a href="#" class='author'>CSDN</a>
-                                </div>
-                                <time>2018-08-18</time>
-                                <div class='readInfo'>
-                                    <span><a href='#'>回答</a>99</span>
-                                </div>
-                            </div>
-                        </article>
+                        -->
                     </section>
                 </div>
             </div>
@@ -370,7 +238,7 @@
                     <a href="javascript:;" id="prev" class="arrow">&LT;</a>
                     <a href="javascript:;" id="next" class="arrow">&GT;</a>
                 </div>
-
+                <!--技术头条-->
                 <div id='techArticle'>
                     <div id='techHeadline'>
                         <h2>
@@ -379,7 +247,6 @@
                             <span class='iconfont icon-hand-point-left'></span>
                         </h2>
                     </div>
-                    <!--技术头条-->
                     <section id='techSection'>
                         <div class='techLink'>
                             <span>1</span>

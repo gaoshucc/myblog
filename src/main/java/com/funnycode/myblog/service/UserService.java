@@ -1,7 +1,10 @@
 package com.funnycode.myblog.service;
 
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.User;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.Position;
+import com.funnycode.myblog.pojo.PO.User;
+
+import java.util.List;
 
 /**
  * @author gaoshucc
@@ -63,6 +66,22 @@ public interface UserService {
      * @return boolean 是否插入成功，成功返回true,失败返回false
      */
     boolean saveNote(Note note, String userId);
-
+    /**
+     * 通过userId获得用户
+     * @param userId 用户ID
+     * @return User 用户
+     */
     User getUserByUserId(String userId);
+    /**
+     * 通过userId获得用户可编辑的信息项
+     * @param userId 用户ID
+     * @return User 用户
+     */
+    User findEditableUserInfo(String userId);
+    /**
+     * 获得所有职位
+     * @param
+     * @return List<Position> 职位集合
+     */
+    List<Position> findAllPosition();
 }

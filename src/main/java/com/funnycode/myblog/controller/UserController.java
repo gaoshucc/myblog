@@ -1,13 +1,12 @@
 package com.funnycode.myblog.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.funnycode.myblog.ds.LoginType;
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.NoteType;
-import com.funnycode.myblog.pojo.User;
+import com.funnycode.myblog.pojo.PO.*;
+import com.funnycode.myblog.pojo.VO.EditableUserInfoVO;
 import com.funnycode.myblog.service.NoteService;
+import com.funnycode.myblog.service.QuestionService;
 import com.funnycode.myblog.service.UserService;
 import com.funnycode.myblog.shiro.common.UserToken;
 import com.funnycode.myblog.utils.VerifyUtil;
@@ -34,7 +33,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author gaoshucc
@@ -52,6 +50,9 @@ public class UserController {
 
     @Autowired
     private NoteService noteService;
+
+    @Autowired
+    private QuestionService questionService;
 
     /**
      * 默认跳转到登录页面
@@ -229,6 +230,18 @@ public class UserController {
         return "user/account";
     }
 
+    @GetMapping("/editableAccountInfo")
+    @ResponseBody
+    public String findEditableAccountInfo(HttpSession session){
+        String userId = (String) session.getAttribute("loginUser");
+        User editableUserInfo = userService.findEditableUserInfo(userId);
+        List<Position> positions = userService.findAllPosition();
+        EditableUserInfoVO editableUserInfoVO = new EditableUserInfoVO(editableUserInfo, positions);
+        String editableUserInfoVOJson = JSON.toJSONString(editableUserInfoVO);
+
+        return editableUserInfoVOJson;
+    }
+
     /**
      * 优质手记
      */
@@ -253,6 +266,19 @@ public class UserController {
     @ResponseBody
     public String findAllNotes(){
         List<Note> noteList = noteService.findAllNotes();
+        if(noteList != null && noteList.size() > 0){
+            String notes = JSON.toJSONString(noteList, SerializerFeature.DisableCircularReferenceDetect);
+            logger.info(notes);
+            return notes;
+        }
+
+        return "";
+    }
+
+    @GetMapping("/findAllNotesLimit")
+    @ResponseBody
+    public String findAllNotesLimit(){
+        List<Note> noteList = noteService.findAllNotesLimit(0, 6);
         if(noteList != null && noteList.size() > 0){
             String notes = JSON.toJSONString(noteList, SerializerFeature.DisableCircularReferenceDetect);
             logger.info(notes);
@@ -395,11 +421,169 @@ public class UserController {
         return noteJson;
     }
 
+    @GetMapping("/findComments")
+    @ResponseBody
+    public String findComments(String noteId){
+        List<Comment> commentList = noteService.findCommends(noteId);
+        if(commentList!=null && commentList.size()>0){
+            String commentListJson = JSON.toJSONString(commentList, SerializerFeature.DisableCircularReferenceDetect);
+            return commentListJson;
+        }
+        return "";
+    }
+
+    @PostMapping("/submitComment")
+    @ResponseBody
+    public String submitComment(HttpSession session, String noteId, String commentContent){
+        logger.info("noteId:" + noteId + " | " + "commentContent:" + commentContent);
+        String userId = (String) session.getAttribute("loginUser");
+        Comment comment = new Comment(userId, noteId, commentContent);
+        boolean saveCommentSuccess = noteService.saveComment(comment);
+
+        return saveCommentSuccess?"true":"false";
+    }
+    /**
+     * 提交回复
+     */
+    @PostMapping("/submitReply")
+    @ResponseBody
+    public String submitReply(HttpSession session, String noteId, String byReplyId, String commentContent){
+        logger.info("noteId:" + noteId + " | " + "byReplyId:" + byReplyId + " | " + "commentContent:" + commentContent);
+        String userId = (String) session.getAttribute("loginUser");
+        Comment comment = new Comment(userId, noteId, byReplyId, commentContent);
+        boolean saveCommentSuccess = noteService.saveComment(comment);
+
+        return saveCommentSuccess?"true":"false";
+    }
+
     /**
      * 精品问答
      */
     @RequestMapping("/questArticle")
     public String questArticle(){
         return "user/questArticle";
+    }
+
+    @GetMapping("/findQuestCate")
+    @ResponseBody
+    public String findQuestCate(){
+        List<QuestType> questCate = questionService.findQuestCate();
+        if(questCate != null && questCate.size() > 0){
+            String questCateJson = JSON.toJSONString(questCate, SerializerFeature.DisableCircularReferenceDetect);
+            return questCateJson;
+        }
+
+        return "";
+    }
+    /**
+     * 获得所有的提问
+     */
+    @GetMapping("/findAllQuestions")
+    @ResponseBody
+    public String findAllQuestions(){
+        List<Question> questList = questionService.findAllQuestions();
+        if(questList != null && questList.size() > 0){
+            String questions = JSON.toJSONString(questList, SerializerFeature.DisableCircularReferenceDetect);
+            logger.info(questions);
+            return questions;
+        }
+
+        return "";
+    }
+    /**
+     * 获得首页显示的提问
+     */
+    @GetMapping("/findAllQuestionsLimit")
+    @ResponseBody
+    public String findAllQuestionsLimit(){
+        List<Question> questList = questionService.findAllQuestionsLimit(0, 6);
+        if(questList != null && questList.size() > 0){
+            String questions = JSON.toJSONString(questList, SerializerFeature.DisableCircularReferenceDetect);
+            logger.info(questions);
+            return questions;
+        }
+
+        return "";
+    }
+
+    @PostMapping("/askQuestion")
+    public String askQuestion(HttpSession session, Model model, String questionTitle, Integer typeId, String questMarkdownDoc){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String userId = (String) session.getAttribute("loginUser");
+        QuestType questType = new QuestType();
+        questType.setTypeId(typeId);
+        Question question = new Question(userId,questionTitle,questType,questMarkdownDoc);
+        question.setCreateTime(sdf.format(new Date()));
+        boolean askSuccess =  questionService.saveQuestion(question,userId);
+
+        if(askSuccess){
+            return "redirect:questArticle";
+        }else{
+            model.addAttribute("failed","发布失败");
+            return "user/noteArticle";
+        }
+    }
+
+    /**
+     * 阅读某一篇提问
+     */
+    @GetMapping("/question")
+    public String toQuestion(Model model, String questId){
+        String question = questionService.findQuestionContentByQuestId(questId);
+        model.addAttribute("questId",questId);
+        model.addAttribute("question", question);
+
+        return "user/question";
+    }
+    /**
+     * 获得提问详细信息
+     */
+    @GetMapping("/readQuestion")
+    @ResponseBody
+    public String readQuestion(String questId){
+        logger.info("questId:"+questId);
+        Question question = questionService.findQuestionByQuestId(questId);
+        String questionJson = JSON.toJSONString(question, SerializerFeature.DisableCircularReferenceDetect);
+
+        return questionJson;
+    }
+    /**
+     * 回答问题
+     */
+    @PostMapping("/submitAnswer")
+    @ResponseBody
+    public String submitAnswer(HttpSession session, String questId, String answerContent){
+        logger.info("questId:" + questId + " | " + "answerContent:" + answerContent);
+        String userId = (String) session.getAttribute("loginUser");
+        Answer answer = new Answer(userId, questId, answerContent);
+        boolean saveAnswerSuccess = questionService.saveAnswer(answer);
+
+        return saveAnswerSuccess?"true":"false";
+    }
+    /**
+     * 查找该问题的所有回答
+     */
+    @GetMapping("/findAnswers")
+    @ResponseBody
+    public String findAnswers(String questId){
+        List<Answer> answerList = questionService.findAnswers(questId);
+        if(answerList!=null && answerList.size()>0){
+            String answerListJson = JSON.toJSONString(answerList, SerializerFeature.DisableCircularReferenceDetect);
+            return answerListJson;
+        }
+        return "";
+    }
+    /**
+     * 提交问题回复
+     */
+    @PostMapping("/submitAnswerReply")
+    @ResponseBody
+    public String submitAnswerReply(HttpSession session, String questId, String byReplyId, String answerContent){
+        logger.info("questId:" + questId + " | " + "byReplyId:" + byReplyId + " | " + "commentContent:" + answerContent);
+        String userId = (String) session.getAttribute("loginUser");
+        Answer answer = new Answer(userId, questId, byReplyId, answerContent);
+        boolean saveAnswerSuccess = questionService.saveAnswer(answer);
+
+        return saveAnswerSuccess?"true":"false";
     }
 }

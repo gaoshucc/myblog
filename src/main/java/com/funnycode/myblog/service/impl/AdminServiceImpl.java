@@ -1,7 +1,7 @@
 package com.funnycode.myblog.service.impl;
 
 import com.funnycode.myblog.mapper.AdminMapper;
-import com.funnycode.myblog.pojo.Admin;
+import com.funnycode.myblog.pojo.PO.Admin;
 import com.funnycode.myblog.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

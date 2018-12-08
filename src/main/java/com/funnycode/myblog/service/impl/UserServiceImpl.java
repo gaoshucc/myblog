@@ -1,8 +1,9 @@
 package com.funnycode.myblog.service.impl;
 
 import com.funnycode.myblog.mapper.UserMapper;
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.User;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.Position;
+import com.funnycode.myblog.pojo.PO.User;
 import com.funnycode.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author gaoshucc
@@ -83,6 +85,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserByUserId(String userId) {
         return userMapper.getUserByUserId(userId);
+    }
+
+    @Override
+    public User findEditableUserInfo(String userId) {
+        return userMapper.findEditableUserInfo(userId);
+    }
+
+    @Override
+    public List<Position> findAllPosition() {
+        return userMapper.findAllPosition();
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.funnycode.myblog.mapper;
 
-import com.funnycode.myblog.pojo.Note;
-import com.funnycode.myblog.pojo.User;
+import com.funnycode.myblog.pojo.PO.Note;
+import com.funnycode.myblog.pojo.PO.Position;
+import com.funnycode.myblog.pojo.PO.User;
+import com.funnycode.myblog.pojo.VO.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -69,6 +71,18 @@ public interface UserMapper {
      */
     User getUserByUserId(String userId);
     /**
+     * 通过用户id查找该手记的作者
+     * @param userId 用户id
+     * @return User 手记作者
+     */
+    User findBloggerByUserId(String userId);
+    /**
+     * 通过用户id查找该问题的提问者
+     * @param userId 用户id
+     * @return User 提问者
+     */
+    User findQuizzerByUserId(String userId);
+    /**
      * 保存并发布手记
      * @param note 手记
      * @return Integer 所插入表的受影响行数
@@ -77,7 +91,25 @@ public interface UserMapper {
     /**
      * 更新用户经验值
      * @param userId 用户ID
-     * @return Integer 是否更新成功，成功返回true,失败返回false
+     * @return Integer 受影响行数
      */
     Integer updateUserExperienceByUserId(String userId);
+    /**
+     * 查找评论者
+     * @param userId 用户ID
+     * @return UserVO 返回UserVO
+     */
+    UserVO findObserver(String userId);
+    /**
+     * 通过userId获得用户可编辑的信息项
+     * @param userId 用户ID
+     * @return User 用户
+     */
+    User findEditableUserInfo(String userId);
+    /**
+     * 获得所有职位
+     * @param
+     * @return List<Position> 职位集合
+     */
+    List<Position> findAllPosition();
 }

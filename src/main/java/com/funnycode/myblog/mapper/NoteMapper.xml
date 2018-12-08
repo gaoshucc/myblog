@@ -2,40 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.funnycode.myblog.mapper.NoteMapper">
 
-    <select id="findNoteTypeByTypeId" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.NoteType">
+    <select id="findNoteTypeByTypeId" parameterType="java.lang.String" resultType="com.funnycode.myblog.pojo.PO.NoteType">
         SELECT * FROM `note_type` WHERE type_id = #{typeId}
     </select>
 
-    <resultMap id="Notes" type="com.funnycode.myblog.pojo.Note">
-        <id property="noteId" column="note_id"></id>
-        <result property="noteTitle" column="note_title"></result>
-        <result property="createTime" column="create_time"></result>
-        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
-    </resultMap>
-
-    <resultMap id="AllNotes" type="com.funnycode.myblog.pojo.Note">
-        <id property="noteId" column="note_id"></id>
-        <result property="noteTitle" column="note_title"></result>
-        <result property="createTime" column="create_time"></result>
-        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerByUserId"></association>
-        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
-    </resultMap>
-
-    <resultMap id="NoteDetail" type="com.funnycode.myblog.pojo.Note">
-        <id property="noteId" column="note_id"></id>
-        <result property="noteTitle" column="note_title"></result>
-        <result property="createTime" column="create_time"></result>
-        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerDetailByUserId"></association>
-        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
-    </resultMap>
-
-    <select id="findNoteCate" resultType="com.funnycode.myblog.pojo.NoteType">
+    <select id="findNoteCate" resultType="com.funnycode.myblog.pojo.PO.NoteType">
         SELECT * FROM `note_type` ORDER BY type_id
     </select>
 
+    <resultMap id="AllNotes" type="com.funnycode.myblog.pojo.PO.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.PO.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerByUserId"></association>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
     <select id="findAllNotes" parameterType="java.lang.String" resultMap="AllNotes">
         SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE status = 1 ORDER BY create_time DESC
     </select>
+    <!--List<Note> findAllNotesLimit(Integer start, Integer end);-->
+    <resultMap id="AllNotesLimit" type="com.funnycode.myblog.pojo.PO.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.PO.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerByUserId"></association>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
+    <select id="findAllNotesLimit" resultMap="AllNotesLimit">
+        SELECT note_id,note_title,blogger,note_type,create_time
+        FROM `note`
+        WHERE status = 1
+        ORDER BY create_time DESC
+        LIMIT #{arg0},#{arg1}
+    </select>
+
+    <resultMap id="Notes" type="com.funnycode.myblog.pojo.PO.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
 
     <select id="findNotesByUserId" parameterType="java.lang.String" resultMap="Notes">
         SELECT note_id,note_title,note_type,create_time FROM `note` WHERE blogger = #{userId} AND status = 1 ORDER BY create_time DESC
@@ -45,6 +51,13 @@
         SELECT note_id,note_title,note_type,create_time FROM `note` WHERE blogger = #{userId} AND status = 0 ORDER BY create_time DESC
     </select>
 
+    <resultMap id="NoteDetail" type="com.funnycode.myblog.pojo.PO.Note">
+        <id property="noteId" column="note_id"></id>
+        <result property="noteTitle" column="note_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="blogger" column="blogger" javaType="com.funnycode.myblog.pojo.PO.User" select="com.funnycode.myblog.mapper.UserMapper.findBloggerDetailByUserId"></association>
+        <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
+    </resultMap>
     <select id="findNoteByNoteId" parameterType="java.lang.String" resultMap="NoteDetail">
         SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE note_id = #{noteId} AND status = 1
     </select>
@@ -64,4 +77,31 @@
     <delete id="completelyDelNoteByNoteId" parameterType="java.lang.String">
         DELETE FROM `note` WHERE note_id = #{noteId} AND status = 0
     </delete>
+
+    <insert id="saveComment" parameterType="com.funnycode.myblog.pojo.PO.Comment">
+        INSERT INTO `note_comment`(`comment_id`,`note_id`,`user_id`,`parent_id`,`comment_content`,`comment_time`)
+        VALUES (#{commentId},#{note.noteId},#{user.userId},#{parentId},#{commentContent},#{commentTime})
+    </insert>
+
+    <resultMap id="commentVO" type="com.funnycode.myblog.pojo.VO.CommentVO">
+        <id property="commentId" column="comment_id"></id>
+        <result property="commentContent" column="comment_content"></result>
+        <result property="commentTime" column="comment_time"></result>
+        <association property="user" column="user_id" javaType="com.funnycode.myblog.pojo.VO.UserVO" select="com.funnycode.myblog.mapper.UserMapper.findObserver"></association>
+        <collection property="son" column="{noteId=note_id,commentId=comment_id}" javaType="java.util.List" ofType="com.funnycode.myblog.pojo.VO.CommentVO" select="com.funnycode.myblog.mapper.NoteMapper.findChildComments"></collection>
+    </resultMap>
+    <select id="findCommentsByNoteId" parameterType="java.lang.String" resultMap="commentVO">
+        SELECT * FROM `note_comment` WHERE note_id = #{noteId} AND parent_id = "0" ORDER BY comment_time DESC
+    </select>
+
+    <resultMap id="child" type="com.funnycode.myblog.pojo.VO.CommentVO">
+        <id property="commentId" column="comment_id"></id>
+        <result property="commentContent" column="comment_content"></result>
+        <result property="commentTime" column="comment_time"></result>
+        <association property="user" column="user_id" javaType="com.funnycode.myblog.pojo.VO.UserVO" select="com.funnycode.myblog.mapper.UserMapper.findObserver"></association>
+        <collection property="son" column="{noteId=note_id,commentId=comment_id}" javaType="java.util.List" ofType="com.funnycode.myblog.pojo.VO.CommentVO" select="com.funnycode.myblog.mapper.NoteMapper.findChildComments"></collection>
+    </resultMap>
+    <select id="findChildComments" resultMap="child">
+        SELECT * FROM `note_comment` WHERE note_id = #{noteId} AND parent_id = #{commentId} ORDER BY comment_time DESC
+    </select>
 </mapper>

@@ -1,0 +1,25 @@
+@media screen and (min-width:1081px) and (max-width:1200px){
+    #headerbox{
+        width: 960px;
+    }
+    #container{
+        position: relative;
+        width: 960px;
+        height: 500px;
+        padding-right: 304px;
+        margin: 24px auto;
+    }
+}
+@media screen and (max-width:1080px){
+    body{
+        min-width: 992px;
+    }
+    #headerbox{
+        width: 930px;
+    }
+    #container{
+        width: 930px;
+        padding-right: 296px;
+        margin: 16px auto;
+    }
+}

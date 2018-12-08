@@ -1,6 +1,6 @@
 package com.funnycode.myblog.shiro.realm;
 
-import com.funnycode.myblog.pojo.User;
+import com.funnycode.myblog.pojo.PO.User;
 import com.funnycode.myblog.service.UserService;
 import com.funnycode.myblog.shiro.common.UserToken;
 import org.apache.shiro.authc.*;
@@ -13,10 +13,6 @@ import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author gaoshucc

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" th:href="@{/user/image/note.png}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/user/kindeditor/themes/default/default.css}"/>
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/question-commons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/question-different.css}">
+    <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
+    <script type="text/javascript" th:src="@{/user/js/question.js}"></script>
+    <title>欢迎来到FunnyCode</title>
+</head>
+<body>
+<header id='header'>
+    <div id="headerbox">
+        <img th:src="@{/user/image/article_head2.png}">
+        <nav id='nav'>
+            <ul>
+                <li><a th:href="@{/user/homepage}">首页</a></li>
+                <li><a href='#'>问答</a></li>
+                <li><a href='#'>学习路线</a></li>
+            </ul>
+        </nav>
+        <div id='user'>
+            <img class="myProfile" id='imgone'>
+            <div id='user_detail'>
+                <div id='infoBox'>
+                    <img class="myProfile">
+                    <div id='user-info'>
+                        <span class="loginUserNickname">游客</span>
+                        <span id="experience">经验 100</span>
+                    </div>
+                </div>
+
+                <div id='funcCard'>
+                    <ul id='funcCardList'>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myAccount}">
+                                <span class='iconfont icon-yonghu'></span>
+                                <span>我的账号</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a href="#">
+                                <span class='iconfont icon-wodeshoucang'></span>
+                                <span>我的收藏</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myNote}">
+                                <span class='iconfont icon-biji'></span>
+                                <span>我的手记</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a href="#">
+                                <span class='iconfont icon-wenda'></span>
+                                <span>我的提问</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+<div id='container'>
+    <article id='article'>
+        <!--设置隐藏域存储问题ID questId-->
+        <input type="hidden" id="questId" th:value="${questId}">
+        <div id='articleHeadline'>
+            <h2 id="title"></h2>
+            <span id="questType"></span>
+            <span>999浏览</span>
+            <time datetime="2018-10-05" id="createTime">2018-10-05</time>
+            <ul id='shareList'>
+                <li title='分享到QQ空间' class='iconfont icon-qq-copy'></li>
+                <li title='分享到QQ' class='iconfont icon-qq-copy1'></li>
+                <li title='分享到微信' class='iconfont icon-wechat1193418easyiconnet'></li>
+            </ul>
+        </div>
+        <div id='content-editormd'>
+            <textarea style="display: none;" th:text="${question}"></textarea>
+        </div>
+        <div id="write-answer-box">
+            <textarea id='answer-content' name='content' style='visibility:hidden;'>写下你的评论吧</textarea>
+            <a id="submit-answer">发表评论</a>
+        </div>
+        <div id="answers">
+
+        </div>
+    </article>
+    <aside id='writerInfoBox'>
+        <div id='writerInfo'>
+            <img id="writerProfile" th:src="@{/user/image/profile/nologin.png}">
+            <div id='writer'>
+                <span id="writerName">高数CC</span>
+                <span id="position">后台工程师</span>
+            </div>
+            <a href='#'>关注</a>
+        </div>
+        <div id='devote'>
+            <span>9篇手记</span>
+            <span>贡献9999字</span>
+        </div>
+    </aside>
+    <aside id='recommend'>
+        <h3>相关推荐<span class="iconfont icon-chanpinxiangqingqianwang"></span></h3>
+        <img th:src="@{/user/image/ad.png}">
+        <img th:src="@{/user/image/ad.png}">
+    </aside>
+</div>
+<div id='articleFunc'>
+    <span id='overBtn' class="iconfont icon-chanpinxiangqingqianwang"></span>
+    <ul>
+        <li>微信</li>
+    </ul>
+</div>
+
+<div id="report" class="iconfont icon-tousu1" title="举报"></div>
+<div id="uptoTop" class="iconfont icon-12" title="顶部"></div>
+
+<div id="popup">
+    <div id="popup-content">
+        <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+        <h2 id="report-headline">举报原因</h2>
+        <div id="report-content">
+            <div id="report-blog">违规内容：<span>一起来学SpringBoot</span></div>
+            <div id="reason-category">
+                <span id="reasonlist">违规原因：</span>
+                <span class="reason"><input type="checkbox">色情</span>
+                <span class="reason"><input type="checkbox">政治</span>
+                <span class="reason"><input type="checkbox">抄袭</span>
+                <span class="reason"><input type="checkbox">广告</span>
+                <span class="reason"><input type="checkbox">辱骂他人</span>
+            </div>
+            <textarea id="report-text" maxlength="50" wrap="hard" placeholder="请说明举报原因（少于50个字）"></textarea>
+            <a href="#" id="submit-report">举报</a>
+        </div>
+    </div>
+    <div id="popup-bg"></div>
+</div>
+
+<!--kindeditor编辑器-->
+<script type="text/javascript" charset="utf-8" th:src="@{/user/kindeditor/kindeditor-all-min.js}"></script>
+<script type="text/javascript" charset="utf-8" th:src="@{/user/kindeditor/lang/zh-CN.js}"></script>
+<!--editormd编辑器-->
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/marked.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/prettify.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/raphael.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/underscore.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/sequence-diagram.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/flowchart.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/lib/jquery.flowchart.min.js}"></script>
+<script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
+<script type="text/javascript">
+    var editormdEditor;
+    var kindEditor;
+    $(function() {
+        //editormd编辑器
+        editormdEditor = editormd.markdownToHTML("content-editormd", {
+            htmlDecode : "style,script,iframe",
+            emoji : true,
+            taskList : true,
+            tex : true, // 默认不解析
+            flowChart : true, // 默认不解析
+            sequenceDiagram : true, // 默认不解析
+            codeFold : true
+        });
+
+        //KindEditor编辑器
+        kindEditor = KindEditor.create('#answer-content', {
+            width: '100%',       // 文本框宽度(可以百分比或像素)
+            height: '100px',     // 文本框高度(只能像素)
+            minWidth: 200,       // 最小宽度（数字）
+            minHeight: 100,      // 最小高度（数字）
+            themeType : 'simple',
+            resizeType : 1,
+            items : ['emoticons','link']
+        });
+    });
+</script>
+</body>
+</html>

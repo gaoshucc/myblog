@@ -243,6 +243,21 @@ body{
 .func-headline h2 em{
     font-style: normal;
 }
+#edit-accountInfo{
+    float: right;
+    display: block;
+    line-height: 35px;
+    padding: 0 5px;
+    font-size: 14px;
+    color: rgba(0, 133, 235, .7);
+    text-align: center;
+}
+#edit-accountInfo i{
+    font-size: 14px;
+}
+#edit-accountInfo:hover{
+    color: rgba(0, 133, 235, 1);
+}
 
 #accountInfo{
     position: relative;
@@ -275,7 +290,6 @@ body{
     width: 40px;
     height: 40px;
     margin: 5px 10px;
-    cursor: pointer;
 }
 .accountItems{
     width: 100%;
@@ -545,10 +559,9 @@ body{
 .func{
     display: block;
     width: 100%;
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    /* color: rgba(236, 236, 236, 70%); */
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
     color: rgba(54, 58, 57, 1);
     text-align: center;
 }
@@ -654,7 +667,7 @@ body{
 
 /*头像修改界面样式（修改按钮，id=""）*/
 #profile-popup{
-    z-index: 100;
+    z-index: 201;
     position: fixed;
     top: 0;
     left: 0;
@@ -675,7 +688,7 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 200;
+    z-index: 300;
     width: 360px;
     height: 420px;
     margin-top: -210px;
@@ -706,23 +719,197 @@ body{
     height: 360px;
     margin: 0 auto;
 }
-#submit-change{
+#change-profile{
+    float: right;
     display: block;
-    width: 360px;
-    line-height: 35px;
+    width: 80px;
+    line-height: 30px;
     margin: 15px auto;
+    padding: 0 10px;
     border-radius: 17.5px;
     font-size: 15px;
     letter-spacing: 5px;
     text-indent: 5px;
     text-align: center;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(255, 26, 48, .7);
+    color: rgba(54, 58, 57, 1);
+    background-color: rgba(246, 246, 246, 1);
 }
-#submit-change:hover{
-    background-color: rgba(255, 26, 48, 1);
+#change-profile:hover{
+    background-color: rgba(255, 255, 255, 1);
 }
 #profile-popup-bg{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/*修改信息弹出层*/
+#edit-accountInfo-popup{
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+#edit-accountInfo-popup-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 200;
+    width: 320px;
+    height: 330px;
+    margin-top: -165px;
+    margin-left: -160px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+#edit-accountInfo-close{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -30px;
+    width: 30px;
+    height: 30px;
+    padding: 7.5px;
+    font-size: 15px;
+    color: rgba(246, 246, 246, 1);
+    cursor: pointer;
+}
+#edit-accountInfo-close:hover{
+    color: red;
+}
+
+#edit-accountInfo-headline{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: solid 0.5px rgba(196,196,196,.7);
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(54, 58, 57, 1);
+    text-align: left;
+}
+#editable-accountInfo{
+    width: 100%;
+    padding: 0 5px;
+    font-size: 14px;
+    color: rgba(54, 58, 57, 1);
+}
+.editable-info{
+    position: relative;
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    text-align: left;
+}
+#editable-profile{
+    position: relative;
+    line-height: 50px;
+}
+#editable-profile img{
+    float: right;
+    width: 40px;
+    height: 40px;
+    margin: 5px 0;
+}
+#upload-profile{
+    float: right;
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    width: 30px;
+    margin: 25px 5px 5px 5px;
+    font-size: 12px;
+    color: #fff;
+    background-color: rgba(14,203,23,1);
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+#upload-profile input[type=file]{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    cursor: pointer;
+}
+.input-parent{
+    display: block;
+    position: relative;
+}
+.editable-info input[type=text]{
+    float: right;
+    display: block;
+    line-height: 40px;
+    border: none;
+    text-align: right;
+    outline: none;
+}
+.editable-info .radio-box{
+    float: right;
+    display: inline-block;
+    line-height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+    outline: none;
+}
+.radio-box input[type=radio]{
+    margin-right: 5px;
+}
+.editable-info select{
+    float: right;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 0;
+    padding: 0 23px 0 5px;
+    border: none;
+    border: solid 0.5px rgba(196,196,196,.7);
+    color: rgba(54, 58, 57, 1);
+    background: url("../image/arrow-down.png") no-repeat 92% center rgba(255, 255, 255, 1);
+    outline: none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+.editable-info select option{
+    color: rgba(54, 58, 57, 1);
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+#submit-edited-accountInfo{
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    display: block;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    color: #fff;
+    background-color: rgba(14,203,23,.7);
+    cursor: pointer;
+    outline: none;
+}
+#submit-edited-accountInfo:hover{
+    background-color: rgba(14,203,23,1);
+}
+
+#edit-accountInfo-popup-bg{
     position: absolute;
     z-index: 100;
     width: 100%;
