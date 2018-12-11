@@ -105,6 +105,7 @@ public class UserController {
         OutputStream os = null;
         try {
             os = response.getOutputStream();
+            //todo 不稳定，偶尔会有异常，需要改进
             ImageIO.write(image, "png", os);
         } catch (IOException e) {
             e.printStackTrace();

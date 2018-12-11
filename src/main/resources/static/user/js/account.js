@@ -168,7 +168,7 @@ function showAccountEditPopup(editableUserInfo) {
     editAccountInfoPopup.setAttribute("id","edit-accountInfo-popup");
     editAccountInfoPopup.innerHTML = "<div id='edit-accountInfo-popup-content'>" +
                             "            <span class='iconfont icon-guanbi' id='edit-accountInfo-close' title='关闭'></span>" +
-                            "            <form method='post'>" +
+                            "            <form enctype='multipart/form-data' method='post'>" +
                             "                <h2 id='edit-accountInfo-headline'>修改信息</h2>" +
                             "                <div id='editable-accountInfo'>" +
                             "                    <span class='editable-info' id='editable-profile'>头像" +

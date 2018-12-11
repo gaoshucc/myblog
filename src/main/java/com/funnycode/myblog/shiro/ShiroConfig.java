@@ -59,6 +59,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/commons/js/**", "anon");
         filterChainDefinitionMap.put("/commons/image/**", "anon");
         filterChainDefinitionMap.put("/commons/font/**", "anon");
+        //filterChainDefinitionMap.put("E:/uploadFile/pic/**", "anon");
         //游客
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/visitor/**", "anon");
