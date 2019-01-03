@@ -183,6 +183,44 @@ public class User implements Serializable {
         this.questions = questions;
     }
 
+    public User(String loginUserId, String filename, String nickname, Integer gender, Integer position, String motto) {
+        Position positionObj = new Position(position);
+        this.userId = loginUserId;
+        this.profilePath = filename;
+        this.nickname = nickname;
+        this.gender = gender;
+        this.position = positionObj;
+        this.motto = motto;
+        this.username = null;
+        this.password = null;
+        this.experience = null;
+        this.role = null;
+        this.lastLogintime = null;
+        this.regtime = null;
+        this.status = null;
+        this.notes = null;
+        this.questions = null;
+    }
+
+    public User(String userId, String nickname, Integer gender, Integer position, String motto) {
+        Position positionObj = new Position(position);
+        this.userId = userId;
+        this.nickname = nickname;
+        this.gender = gender;
+        this.position = positionObj;
+        this.motto = motto;
+        this.profilePath = null;
+        this.username = null;
+        this.password = null;
+        this.experience = null;
+        this.role = null;
+        this.lastLogintime = null;
+        this.regtime = null;
+        this.status = null;
+        this.notes = null;
+        this.questions = null;
+    }
+
     public User() {
     }
 }

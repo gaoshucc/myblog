@@ -80,7 +80,7 @@ function showUserDetail(){
                 user = JSON.parse(data);
 
                 for(let j=0; j<myProfile.length; j++){
-                    myProfile[j].src = "/user/image/profile/" + user.profilePath;
+                    myProfile[j].src = "/" + user.profilePath;
                 }
                 for(let i=0; i<loginUserNickname.length; i++){
                     loginUserNickname[i].innerHTML = user.nickname;
@@ -119,7 +119,7 @@ function findQuestion() {
                 createTime.innerHTML = question.createTime;
                 writerName.innerHTML = question.quizzer.nickname;
                 position.innerHTML = question.quizzer.position.position;
-                writerProfile.src = "/user/image/profile/" + question.quizzer.profilePath;
+                writerProfile.src = "/" + question.quizzer.profilePath;
             }
         },
         async: true
@@ -191,7 +191,7 @@ function showAnswers(answers) {
             //创建回答者头像
             var observerImg = document.createElement("img");
             addClass("answer-profile",observerImg);
-            observerImg.src = "/user/image/profile/" + answers[i].user.profilePath;
+            observerImg.src = "/" + answers[i].user.profilePath;
             //创建父回答
             var observer = document.createElement("div");
             addClass("answer-rightpart",observer);
@@ -210,7 +210,7 @@ function showAnswers(answers) {
                         //创建回复
                         var replyBox = document.createElement("div");
                         addClass("replies",replyBox);
-                        replyBox.innerHTML = "<img src='/user/image/profile/"+ childAnswer[j].user.profilePath +"' class='answer-profile'>" +
+                        replyBox.innerHTML = "<img src='/"+ childAnswer[j].user.profilePath +"' class='answer-profile'>" +
                             "<time class='reply-time'>"+ childAnswer[j].answerTime +"</time>" +
                             "<a href='#' class='answer-nickname'>"+ childAnswer[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='answer-nickname'>"+ parentAnswer.user.nickname +"</a>" +
                             "<span class='answer-content'>"+ childAnswer[j].answerContent +"</span>" +

@@ -64,4 +64,40 @@ public interface QuestionMapper {
      * @return List<Answer> 回答集合
      */
     List<Answer> findAnswersByQuestId(String questId);
+    /**
+     * 根据作者ID获得解答次数
+     * @param authorId 作者ID
+     * @return Integer 解答次数
+     */
+    Integer findAnswerCountByAuthorId(String authorId);
+    /**
+     * 根据作者ID获得解答次数
+     * @param userId 用户ID
+     * @return 问题List集合
+     */
+    List<Question> findMyQuestionsByUserId(String userId);
+    /**
+     * 逻辑删除问题
+     * @param questionId 问题ID
+     * @return Integer 受影响的行数
+     */
+    Integer deleteQuestionByQuestionId(String questionId);
+    /**
+     * 获得回收站里的问题
+     * @param userId 问题ID
+     * @return List<Question> 回收站里问题的List集合
+     */
+    List<Question> findQuestionRecycleBinByUserId(String userId);
+    /**
+     * 还原回收站里的某个问题
+     * @param questionId 问题ID
+     * @return Integer 受影响的行数
+     */
+    Integer recycleQuestionByQuestionId(String questionId);
+    /**
+     * 彻底删除某个问题
+     * @param questionId 问题ID
+     * @return Integer 受影响的行数
+     */
+    Integer completelyDelQuestionByQuestionId(String questionId);
 }

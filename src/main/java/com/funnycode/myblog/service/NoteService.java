@@ -35,4 +35,8 @@ public interface NoteService {
     List<Comment> findCommends(String noteId);
 
     List<Note> findAllNotesLimit(Integer start, Integer end);
+
+    Integer findLikeCount(String noteId);
+
+    Integer findNoteCountByAuthorId(String authorId);
 }

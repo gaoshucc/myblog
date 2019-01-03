@@ -11,8 +11,11 @@ public class Position {
     private String position;
     private List<User> users;
 
-    public Position(Integer i) {
-        this.positionId = 1;
+    public Position() {
+    }
+
+    public Position(int i) {
+        this.positionId = i;
     }
 
     public Integer getPositionId() {

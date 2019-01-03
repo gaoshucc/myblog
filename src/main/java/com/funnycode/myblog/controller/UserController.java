@@ -1,14 +1,17 @@
 package com.funnycode.myblog.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.funnycode.myblog.ds.LoginType;
 import com.funnycode.myblog.pojo.PO.*;
+import com.funnycode.myblog.pojo.VO.AuthorVO;
 import com.funnycode.myblog.pojo.VO.EditableUserInfoVO;
 import com.funnycode.myblog.service.NoteService;
 import com.funnycode.myblog.service.QuestionService;
 import com.funnycode.myblog.service.UserService;
 import com.funnycode.myblog.shiro.common.UserToken;
+import com.funnycode.myblog.utils.LoginUserUtil;
 import com.funnycode.myblog.utils.VerifyUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -20,14 +23,19 @@ import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -44,6 +52,8 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private static final String User_LoginType = LoginType.USER.toString();
+    @Value("${web.profile-path}")
+    public String PROFILE_PATH;
 
     @Autowired
     private UserService userService;
@@ -159,6 +169,20 @@ public class UserController {
         return "user/home";
     }
 
+    @GetMapping("/whetherTheLogin")
+    @ResponseBody
+    public String whetherTheLogin(HttpSession session){
+        JSONObject jsonObject = new JSONObject();
+        User loginUser = LoginUserUtil.findLoginUser(session);
+        if(loginUser != null){
+            jsonObject.put("loginStatus","1");
+        }else{
+            jsonObject.put("loginStatus","0");
+        }
+
+        return JSON.toJSONString(jsonObject);
+    }
+
     /**
      * 登陆
      *
@@ -206,6 +230,7 @@ public class UserController {
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        subject.getSession().removeAttribute("loginUser");
         logger.info("当前用户已退出登录");
 
         return "redirect:loginpage";
@@ -241,6 +266,52 @@ public class UserController {
         String editableUserInfoVOJson = JSON.toJSONString(editableUserInfoVO);
 
         return editableUserInfoVOJson;
+    }
+    /**
+     * 更新用户信息
+     */
+    @PostMapping("/submitEditedAccountInfo")
+    public String submitEditedAccountInfo(HttpSession session, @RequestParam(value = "editProfile",required = false) MultipartFile profile, @RequestParam("editNickname")String nickname, @RequestParam("gender")Integer gender, @RequestParam("editPosition")Integer position, @RequestParam("editMotto")String motto){
+        logger.info("请求到达submitEditedAccountInfo，图片为" + profile);
+        User editUser;
+        String filename = "";
+        String userId = LoginUserUtil.findLoginUserId(session);
+
+        if(!profile.isEmpty()){
+            //todo 修改头像名字的时候，要保证唯一性
+            filename = profile.getOriginalFilename();
+            File newProfile = new File(PROFILE_PATH + filename);
+            if(!newProfile.getParentFile().exists()){
+                newProfile.getParentFile().mkdir();
+            }
+            try {
+                profile.transferTo(newProfile);
+                editUser = new User(userId, filename, nickname, gender, position, motto);
+            } catch (IOException e) {
+                logger.info("图片上传出现异常");
+                return "0";
+            }
+        }else{
+            editUser = new User(userId, nickname, gender, position, motto);
+        }
+        boolean updateUserInfoSuccess = userService.updateUserInfo(editUser);
+
+        return "user/account";
+    }
+
+    /**
+     * 获得作者信息（包括手记、问答）
+     */
+    @GetMapping("/authorDetail")
+    @ResponseBody
+    public String findAuthorDetail(String authorId){
+        User user = userService.findAuthorByAuthorId(authorId);
+        Integer noteCount = noteService.findNoteCountByAuthorId(authorId);
+        Integer answerCount = questionService.findAnswerCountByAuthorId(authorId);
+
+        AuthorVO authorVO = new AuthorVO(user.getUserId(),user.getNickname(),user.getPosition().getPosition(),user.getProfilePath(),noteCount,answerCount);
+
+        return JSON.toJSONString(authorVO, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     /**
@@ -379,7 +450,30 @@ public class UserController {
     }
 
     /**
-     * 查找“我的手记”回收站
+     * 查找我的提问
+     *
+     * @param
+     * @return List<Question>的Json字符串
+     */
+    @RequestMapping("/findMyQuestions")
+    @ResponseBody
+    public String findMyQuestionsByUserId(HttpSession session){
+        String userId = (String) session.getAttribute("loginUser");
+        if(userId != null){
+            //todo  继续完成我的提问部分内容
+            List<Question> questionList = questionService.findMyQuestionsByUserId(userId);
+            if(questionList != null && questionList.size() > 0){
+                String questions = JSON.toJSONString(questionList, SerializerFeature.DisableCircularReferenceDetect);
+                logger.info(questions);
+                return questions;
+            }
+        }
+
+        return "";
+    }
+
+    /**
+     * 查找“我的问题”回收站
      *
      * @param
      * @return List<Note>的Json字符串
@@ -398,6 +492,15 @@ public class UserController {
         }
 
         return "";
+    }
+
+    @GetMapping("/completelyDelQuestion")
+    @ResponseBody
+    public String completelyDelQuestionByQuestionId(String questionId){
+        logger.info("questionId:"+questionId);
+        boolean completelyDelSuccess = questionService.completelyDelQuestionByQuestionId(questionId);
+
+        return completelyDelSuccess?"1":"0";
     }
 
     /**
@@ -420,6 +523,53 @@ public class UserController {
         String noteJson = JSON.toJSONString(note, SerializerFeature.DisableCircularReferenceDetect);
 
         return noteJson;
+    }
+
+    @GetMapping("/findLikeCount")
+    @ResponseBody
+    public String findLikeCount(String noteId){
+        JSONObject count = new JSONObject();
+        Integer likeCount = noteService.findLikeCount(noteId);
+        count.put("likeCount",likeCount);
+
+        return JSON.toJSONString(count);
+    }
+
+    @PostMapping("/likeNote")
+    @ResponseBody
+    public String likeNOte(HttpSession session,String noteId){
+        JSONObject success = new JSONObject();
+        Boolean hasLike = userService.hasLike(LoginUserUtil.findLoginUserId(session),noteId);
+        if(hasLike){
+            Boolean cancelLikeSuccess = userService.cancelLikeNote(LoginUserUtil.findLoginUserId(session),noteId);
+            if(cancelLikeSuccess){
+                success.put("like","0");
+            }else{
+                success.put("like","1");
+            }
+            return JSON.toJSONString(success);
+        }else {
+            Boolean likeSuccess = userService.likeNote(LoginUserUtil.findLoginUserId(session),noteId);
+            if(likeSuccess){
+                success.put("like","1");
+            }else{
+                success.put("like","0");
+            }
+            return JSON.toJSONString(success);
+        }
+    }
+
+    @PostMapping("/whetherLike")
+    @ResponseBody
+    public String whetherLike(HttpSession session,String noteId){
+        JSONObject hasLike = new JSONObject();
+        Boolean whetherLike = userService.hasLike(LoginUserUtil.findLoginUserId(session),noteId);
+        if(whetherLike){
+            hasLike.put("like","1");
+        }else{
+            hasLike.put("like","0");
+        }
+        return JSON.toJSONString(hasLike);
     }
 
     @GetMapping("/findComments")
@@ -476,6 +626,7 @@ public class UserController {
 
         return "";
     }
+
     /**
      * 获得所有的提问
      */
@@ -491,6 +642,7 @@ public class UserController {
 
         return "";
     }
+
     /**
      * 获得首页显示的提问
      */
@@ -505,6 +657,14 @@ public class UserController {
         }
 
         return "";
+    }
+
+    /**
+     * 跳转到“我的手记”页面
+     */
+    @RequestMapping("/myQuestion")
+    public String myQuestion(){
+        return "user/myQuestion";
     }
 
     @PostMapping("/askQuestion")
@@ -523,6 +683,49 @@ public class UserController {
             model.addAttribute("failed","发布失败");
             return "user/noteArticle";
         }
+    }
+
+    /**
+     * 查找“我的手记”回收站
+     *
+     * @param
+     * @return List<Note>的Json字符串
+     */
+    @GetMapping("/questionRecycleBin")
+    @ResponseBody
+    public String findQuestionRecycleBin(HttpSession session){
+        String userId = (String) session.getAttribute("loginUser");
+        if(userId != null){
+            List<Question> questionList = questionService.findQuestionRecycleBinByUserId(userId);
+            if(questionList != null && questionList.size() > 0){
+                String questions = JSON.toJSONString(questionList, SerializerFeature.DisableCircularReferenceDetect);
+                logger.info(questions);
+                return questions;
+            }
+        }
+
+        return "";
+    }
+
+    /**
+     * 删除手记
+     */
+    @GetMapping("/deleteQuestion")
+    @ResponseBody
+    public String deleteQuestionByQuestionId(String questionId){
+        logger.info("questionId:"+questionId);
+        boolean delSuccess = questionService.deleteQuestionByQuestionId(questionId);
+
+        return delSuccess?"1":"0";
+    }
+
+    @GetMapping("/recycleQuestion")
+    @ResponseBody
+    public String recycleQuestionByQuestionId(String questionId){
+        logger.info("questionId:"+questionId);
+        boolean recycleSuccess = questionService.recycleQuestionByQuestionId(questionId);
+
+        return recycleSuccess?"1":"0";
     }
 
     /**
@@ -586,5 +789,41 @@ public class UserController {
         boolean saveAnswerSuccess = questionService.saveAnswer(answer);
 
         return saveAnswerSuccess?"true":"false";
+    }
+
+    /**
+     * 关注ta
+     */
+    @RequestMapping("/payAttentionTo")
+    @ResponseBody
+    public String payAttentionToOther(HttpSession session, @RequestParam("followeeId")String followeeId){
+        JSONObject jsonObject = new JSONObject();
+        Boolean attentionSuccess = userService.addFolloweeByFolloweeId(LoginUserUtil.findLoginUserId(session),followeeId);
+        // todo 对关注功能进行完善
+        if(attentionSuccess){
+            jsonObject.put("success","1");
+        }else {
+            jsonObject.put("success","0");
+        }
+
+        return JSON.toJSONString(jsonObject);
+    }
+
+    /**
+     * 取消关注ta
+     */
+    @RequestMapping("/cancelPayAttentionTo")
+    @ResponseBody
+    public String cancelPayAttentionToOther(HttpSession session, @RequestParam("followeeId")String followeeId){
+        JSONObject jsonObject = new JSONObject();
+        Boolean cancelAttentionSuccess = userService.removeFolloweeByFolloweeId(LoginUserUtil.findLoginUserId(session),followeeId);
+        // todo 对关注功能进行完善
+        if(cancelAttentionSuccess){
+            jsonObject.put("success","1");
+        }else {
+            jsonObject.put("success","0");
+        }
+
+        return JSON.toJSONString(jsonObject);
     }
 }

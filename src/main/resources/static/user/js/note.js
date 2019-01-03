@@ -41,8 +41,23 @@ function addLoadEvent(func){
 
 addLoadEvent(showUserDetail);
 addLoadEvent(findNote);
+addLoadEvent(findLikeCount);
+addLoadEvent(whetherLike);
 addLoadEvent(findComments);
 addLoadEvent(submitComment);
+addLoadEvent(main);
+
+function main() {
+    //点赞
+    var like = document.querySelector("#like");
+    like.addEventListener("click",function (e) {
+        if(hasLogin()){
+            likeNote();
+        }else{
+            showPopup("<span id='popup-login-title'>小主，要登录才能点赞哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        }
+    });
+}
 /**
  * 悬浮显示用户详细信息
  */
@@ -56,19 +71,21 @@ function showUserDetail(){
     var experience = document.querySelector("#experience");
 
     findUser();
-    userinfo.addEventListener('mouseover',function(e){
-        userDetail.style.display = 'block';
-        //判断鼠标是否已经悬浮，放置重复发送请求
-        let event = e || event;        //兼容处理
-        let from = event.fromElement || event.relatedTarget;//兼容处理
-        if(from && this.contains(from)){      //如果在里面则返回
-            return;
-        }
-        findUser();
-    },false);
-    userinfo.addEventListener('mouseout',function(e){
-        userDetail.style.display = 'none';
-    },false);
+    if(userinfo != null){
+        userinfo.addEventListener('mouseover',function(e){
+            userDetail.style.display = 'block';
+            //判断鼠标是否已经悬浮，放置重复发送请求
+            let event = e || event;        //兼容处理
+            let from = event.fromElement || event.relatedTarget;//兼容处理
+            if(from && this.contains(from)){      //如果在里面则返回
+                return;
+            }
+            findUser();
+        },false);
+        userinfo.addEventListener('mouseout',function(e){
+            userDetail.style.display = 'none';
+        },false);
+    }
 
     //获取登录用户
     function findUser() {
@@ -81,7 +98,7 @@ function showUserDetail(){
                 user = JSON.parse(data);
 
                 for(let j=0; j<myProfile.length; j++){
-                    myProfile[j].src = "/user/image/profile/" + user.profilePath;
+                    myProfile[j].src = "/" + user.profilePath;
                 }
                 for(let i=0; i<loginUserNickname.length; i++){
                     loginUserNickname[i].innerHTML = user.nickname;
@@ -120,11 +137,104 @@ function findNote() {
                 createTime.innerHTML = note.createTime;
                 writerName.innerHTML = note.blogger.nickname;
                 position.innerHTML = note.blogger.position.position;
-                writerProfile.src = "/user/image/profile/" + note.blogger.profilePath;
+                writerProfile.src = "/" + note.blogger.profilePath;
             }
         },
         async: true
     });
+}
+/**
+ * 获得点赞人数
+ */
+function findLikeCount() {
+    var noteId = document.querySelector("#noteId");
+    var likeCount = document.querySelector("#like-count");
+    //向后台发送ajax请求发布评论
+    $.ajax({
+        type: "GET",
+        url: "/user/findLikeCount",
+        data: {"noteId":noteId.value},
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var count = JSON.parse(data);
+                likeCount.innerHTML = count.likeCount + "点赞";
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 点赞
+ */
+function likeNote() {
+    var noteId = document.querySelector("#noteId");
+    //向后台发送ajax请求发布评论
+    $.ajax({
+        type: "POST",
+        url: "/user/likeNote",
+        data: {"noteId":noteId.value},
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var success = JSON.parse(data).like;
+                if(success == "1"){
+                    console.log("已点赞");
+                    hasLike();
+                }else {
+                    console.log("未点赞");
+                    cancelLike();
+                }
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 是否已点赞
+ */
+function whetherLike() {
+    var noteId = document.querySelector("#noteId");
+    //向后台发送ajax请求发布评论
+    $.ajax({
+        type: "POST",
+        url: "/user/whetherLike",
+        data: {"noteId":noteId.value},
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var whetherLike = JSON.parse(data).like;
+                if(whetherLike == "1"){
+                    console.log("已点赞");
+                    hasLike();
+                }else {
+                    console.log("未点赞");
+                    cancelLike();
+                }
+            }
+        },
+        async: true
+    });
+}
+//改变点赞图标为已点赞
+function hasLike() {
+    var like = document.querySelector("#like");
+    var likeLabel = document.querySelector("#like-label");
+
+    like.style.color = "#f01414";
+    like.title = "已点赞";
+    likeLabel.innerHTML = "感谢小主的点赞";
+    likeLabel.style.color = "rgba(255, 210, 0, 1)";
+}
+//改变点赞图标为未点赞
+function cancelLike() {
+    var like = document.querySelector("#like");
+    var likeLabel = document.querySelector("#like-label");
+
+    like.style.color = "rgba(56, 168, 71, 1)";
+    like.title = "小主还没点赞呢~";
+    likeLabel.innerHTML = "动动小手，点个赞吧";
+    likeLabel.style.color = "#000";
 }
 /**
  * 查找该手记的评论
@@ -162,7 +272,7 @@ function showComments(comments) {
             //创建评论者头像
             var observerImg = document.createElement("img");
             addClass("comment-profile",observerImg);
-            observerImg.src = "/user/image/profile/" + comments[i].user.profilePath;
+            observerImg.src = "/" + comments[i].user.profilePath;
             //创建父评论
             var observer = document.createElement("div");
             addClass("comment-rightpart",observer);
@@ -181,7 +291,7 @@ function showComments(comments) {
                         //创建回复
                         var replyBox = document.createElement("div");
                         addClass("replies",replyBox);
-                        replyBox.innerHTML = "<img src='/user/image/profile/"+ childComment[j].user.profilePath +"' class='comment-profile'>" +
+                        replyBox.innerHTML = "<img src='/"+ childComment[j].user.profilePath +"' class='comment-profile'>" +
                                 "<time class='reply-time'>"+ childComment[j].commentTime +"</time>" +
                                 "<a href='#' class='comment-nickname'>"+ childComment[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='comment-nickname'>"+ parentComment.user.nickname +"</a>" +
                                 "<span class='comment-content'>"+ childComment[j].commentContent +"</span>" +

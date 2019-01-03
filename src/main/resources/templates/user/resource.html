@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../image/resource.png" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="../font/aliicon/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="../css/resource-commons.css">
-    <link rel="stylesheet" type="text/css" href="../css/resource-different.css">
-    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../js/resource.js"></script>
-    <title>欢迎来到FunnyCode</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/resource-commons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/css/resource-different.css}">
+    <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/user/js/resource.js}"></script>
+    <title>资源</title>
 </head>
 <body>
     <header id='header'>
         <div id="headerbox">
-            <img src='../image/article_head2.png'>
+            <img th:src="@{/user/image/article_head2.png}">
             <nav id='nav'>
                 <ul>
                     <li><a href='home.html'>首页</a></li>
@@ -24,10 +25,10 @@
                 </ul>
             </nav>
             <div id='user'>
-                <img src='../image/profile.jpg' id='imgone'>
+                <img th:href="@{/user/image/profile.jpg}" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
-                        <img src='../image/profile.jpg'>
+                        <img th:src="@{/user/image/profile/profile.jpg}">
                         <div id='user-info'>
                             <span>高数</span>
                             <span>积分 9999</span>

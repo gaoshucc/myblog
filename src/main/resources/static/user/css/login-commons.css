@@ -37,7 +37,9 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder{
 
 body{
     min-height: 630px;
-    background-color: #7ed2ec; 
+    background: url(../../commons/image/dynamic.jpg) fixed no-repeat center;
+    background-size: 100%;
+    /*background-color: #7ed2ec;*/
 }
 #container{
     position: relative;

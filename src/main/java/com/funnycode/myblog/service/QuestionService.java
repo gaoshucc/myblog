@@ -27,4 +27,16 @@ public interface QuestionService {
     List<Answer> findAnswers(String questId);
 
     List<Question> findAllQuestionsLimit(int start, int end);
+
+    Integer findAnswerCountByAuthorId(String authorId);
+
+    List<Question> findMyQuestionsByUserId(String userId);
+
+    boolean deleteQuestionByQuestionId(String questionId);
+
+    List<Question> findQuestionRecycleBinByUserId(String userId);
+
+    boolean recycleQuestionByQuestionId(String questionId);
+
+    boolean completelyDelQuestionByQuestionId(String questionId);
 }

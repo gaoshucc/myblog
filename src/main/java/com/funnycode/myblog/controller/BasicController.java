@@ -30,4 +30,11 @@ public class BasicController {
 
         return "403";
     }
+
+    @RequestMapping("/resource")
+    public String resource(){
+        logger.info("进入resource页面了");
+
+        return "user/resource";
+    }
 }

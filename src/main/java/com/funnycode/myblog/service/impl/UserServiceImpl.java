@@ -98,6 +98,42 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public boolean updateUserInfo(User editUser) {
+        int updateUserInfoSuccess = userMapper.updateUserInfo(editUser);
+        return updateUserInfoSuccess>0?true:false;
+    }
+
+    @Override
+    public Boolean likeNote(String loginUserId, String noteId) {
+        return userMapper.likeNote(loginUserId,noteId)>0?true:false;
+    }
+
+    @Override
+    public Boolean hasLike(String loginUserId, String noteId) {
+        return userMapper.hasLike(loginUserId,noteId)>0?true:false;
+    }
+
+    @Override
+    public Boolean cancelLikeNote(String loginUserId, String noteId) {
+        return userMapper.cancelLikeNote(loginUserId,noteId)>0?true:false;
+    }
+
+    @Override
+    public User findAuthorByAuthorId(String authorId) {
+        return userMapper.findAuthorByAuthorId(authorId);
+    }
+
+    @Override
+    public Boolean addFolloweeByFolloweeId(String loginUserId, String followeeId) {
+        return userMapper.addFolloweeByFolloweeId(loginUserId,followeeId)>0?true:false;
+    }
+
+    @Override
+    public Boolean removeFolloweeByFolloweeId(String loginUserId, String followeeId) {
+        return userMapper.removeFolloweeByFolloweeId(loginUserId,followeeId)>0?true:false;
+    }
+
+    @Override
     public boolean saveNote(Note note, String userId) {
         Integer num = userMapper.saveNote(note);
         Integer updateExperience = userMapper.updateUserExperienceByUserId(userId);

@@ -9,11 +9,11 @@ function addLoadEvent(func){
         }
     }
 }
+
+var user = null;   //当前登录用户
 /**
  * 显示用户详细信息
  */
-//当前登录用户
-var user = null;
 function showUserDetail(){
     var userinfo = document.querySelector("#user");
     var userDetail = document.querySelector('#user_detail');
@@ -61,7 +61,7 @@ function showUserDetail(){
     //填充数据
     function fillData() {
         for(let i=0; i<myProfile.length; i++){
-            myProfile[i].src = "/user/image/profile/" + user.profilePath;
+            myProfile[i].src = "/" + user.profilePath;
         }
         for (let j = 0; j < nicknames.length; j++) {
             nicknames[j].innerHTML = user.nickname;
@@ -71,7 +71,7 @@ function showUserDetail(){
         if (user.gender == null) {
             gender.classList.add("icon-pinglun");
         } else {
-            if (user.gender == 0) {
+            if (user.gender == 2) {
                 gender.classList.add("icon-nvxing");
             }
             if (user.gender == 1) {
@@ -168,15 +168,15 @@ function showAccountEditPopup(editableUserInfo) {
     editAccountInfoPopup.setAttribute("id","edit-accountInfo-popup");
     editAccountInfoPopup.innerHTML = "<div id='edit-accountInfo-popup-content'>" +
                             "            <span class='iconfont icon-guanbi' id='edit-accountInfo-close' title='关闭'></span>" +
-                            "            <form enctype='multipart/form-data' method='post'>" +
+                            "            <form id='edit-form' action='/user/submitEditedAccountInfo' enctype='multipart/form-data' method='post'>" +
                             "                <h2 id='edit-accountInfo-headline'>修改信息</h2>" +
                             "                <div id='editable-accountInfo'>" +
                             "                    <span class='editable-info' id='editable-profile'>头像" +
-                            "                        <img src='/user/image/profile/"+ editableUserInfo.user.profilePath +"'>" +
-                            "                        <span id='upload-profile'>更换<input type='file'></span>" +
+                            "                        <img src='/"+ editableUserInfo.user.profilePath +"'>" +
+                            "                        <span id='upload-profile'>更换<input name='editProfile' type='file'></span>" +
                             "                    </span>" +
                             "                    <span class='editable-info'>昵称" +
-                            "                        <input type='text' value='"+ editableUserInfo.user.nickname +"'>" +
+                            "                        <input type='text' name='editNickname' value='"+ editableUserInfo.user.nickname +"'>" +
                             "                    </span>" +
                             "                    <span class='editable-info'>性别" +
                             "                        <span class='radio-box'>" +
@@ -187,11 +187,11 @@ function showAccountEditPopup(editableUserInfo) {
                             "                        </span>" +
                             "                    </span>" +
                             "                    <span class='editable-info'>职位" +
-                            "                        <select id='position-select'>" +
+                            "                        <select name='editPosition' id='position-select'>" +
                             "                        </select>" +
                             "                    </span>" +
                             "                    <span class='editable-info'>个性签名" +
-                            "                        <input type='text' value='"+ editableUserInfo.user.motto +"'>" +
+                            "                        <input type='text' name='editMotto' value='"+ editableUserInfo.user.motto +"'>" +
                             "                    </span>" +
                             "                </div>" +
                             "                <input id='submit-edited-accountInfo' type='submit' value='提交修改'>" +
@@ -213,6 +213,8 @@ function showAccountEditPopup(editableUserInfo) {
         }
         positionSelect.innerHTML = options;
     }
+    //校验修改后数据
+    form_validate();
 }
 /**
  * 移除编辑窗口
@@ -223,7 +225,35 @@ function hideAccountEditPopup() {
         body.removeChild(editAccountInfoPopup);
     });
 }
-//todo 实现修改账号信息后台部分功能（包括图片上传）
+/**
+ * 校验编辑信息
+ */
+function form_validate(){
+    $("#edit-form").validate({
+        rules:{
+            editNickname:{
+                required:true
+            },
+            gender:{
+                required:true
+            },
+            editPosition:{
+                required:true
+            }
+        },
+        messages:{
+            editNickname:{
+                required:"昵称不能为空"
+            },
+            gender:{
+                required:"性别不能为空"
+            },
+            editPosition:{
+                required:"职位不能为空"
+            }
+        }
+    });
+}
 
 $(function(){
     showEditPopup();

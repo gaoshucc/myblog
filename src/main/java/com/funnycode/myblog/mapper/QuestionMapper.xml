@@ -36,6 +36,21 @@
         LIMIT #{arg0},#{arg1}
     </select>
 
+    <resultMap id="Questions" type="com.funnycode.myblog.pojo.PO.Question">
+        <id property="questId" column="quest_id"></id>
+        <result property="questTitle" column="quest_title"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="questType" column="quest_type" javaType="com.funnycode.myblog.pojo.PO.QuestType" select="com.funnycode.myblog.mapper.QuestionMapper.findQuestTypeByTypeId"></association>
+    </resultMap>
+    <select id="findMyQuestionsByUserId" parameterType="java.lang.String" resultMap="Questions">
+        SELECT quest_id,quest_title,quest_type,create_time FROM `question` WHERE quizzer = #{userId} AND status = 1 ORDER BY create_time DESC
+    </select>
+
+    <select id="findAnswerCountByAuthorId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `answer`
+        WHERE user_id = #{authorId}
+    </select>
+
     <insert id="saveQuestion" parameterType="com.funnycode.myblog.pojo.PO.Question">
         INSERT INTO `question`(`quest_id`,`quest_title`,`quest_type`,`create_time`,`status`,`quizzer`,`question`)
         VALUES (#{questId},#{questTitle},#{questType.typeId},#{createTime},#{status},#{quizzer.userId},#{question})
@@ -82,4 +97,20 @@
     <select id="findChildAnswers" resultMap="child">
         SELECT * FROM `answer` WHERE quest_id = #{questId} AND parent_id = #{answerId} ORDER BY answer_time DESC
     </select>
+
+    <update id="deleteQuestionByQuestionId" parameterType="java.lang.String">
+        UPDATE `question` SET status = 0 WHERE quest_id = #{questionId}
+    </update>
+
+    <select id="findQuestionRecycleBinByUserId" parameterType="java.lang.String" resultMap="Questions">
+        SELECT quest_id,quest_title,quest_type,create_time FROM `question` WHERE quizzer = #{userId} AND status = 0 ORDER BY create_time DESC
+    </select>
+
+    <update id="recycleQuestionByQuestionId" parameterType="java.lang.String">
+        UPDATE `question` SET status = 1 WHERE quest_id = #{questionId}
+    </update>
+
+    <delete id="completelyDelQuestionByQuestionId" parameterType="java.lang.String">
+        DELETE FROM `question` WHERE quest_id = #{questionId} AND status = 0
+    </delete>
 </mapper>

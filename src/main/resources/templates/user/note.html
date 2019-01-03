@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" th:href="@{/user/image/note.png}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/commons/css/utils.css}"/>
     <link rel="stylesheet" th:href="@{/user/kindeditor/themes/default/default.css}"/>
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/note-commons.css}">
@@ -27,7 +28,7 @@
                 <li><a href='#'>学习路线</a></li>
             </ul>
         </nav>
-        <div id='user'>
+        <div id='user' th:if="${session.loginUser != null}">
             <img class="myProfile" id='imgone'>
             <div id='user_detail'>
                 <div id='infoBox'>
@@ -80,6 +81,7 @@
             <h2 id="title"></h2>
             <span id="noteType"></span>
             <span>999浏览</span>
+            <span id="like-count"></span>
             <time datetime="2018-10-05" id="createTime">2018-10-05</time>
             <ul id='shareList'>
                 <li title='分享到QQ空间' class='iconfont icon-qq-copy'></li>
@@ -90,8 +92,14 @@
         <div id='content-editormd'>
             <textarea style="display: none;" th:text="${noteHtml}"></textarea>
         </div>
+        <div id="admire">
+            <div>
+                <span id="like" class="iconfont icon-unie6e3"></span>
+                <span id="like-label">动动小手，点个赞吧</span>
+            </div>
+        </div>
         <div id="write-comment-box">
-            <textarea id='comment-content' name='content' style='visibility:hidden;'>写下你的评论吧</textarea>
+            <textarea id='comment-content' name='content' placeholder="写下你的评论吧" style='visibility:hidden;'></textarea>
             <a id="submit-comment">发表评论</a>
         </div>
         <div id="comments">
@@ -138,16 +146,16 @@
     </article>
     <aside id='writerInfoBox'>
         <div id='writerInfo'>
-            <img id="writerProfile" th:src="@{/user/image/profile/nologin.png}">
+            <img id="writerProfile" th:src="@{/nologin.png}">
             <div id='writer'>
-                <span id="writerName">高数CC</span>
-                <span id="position">后台工程师</span>
+                <span id="writerName"></span>
+                <span id="position"></span>
             </div>
             <a href='#'>关注</a>
         </div>
         <div id='devote'>
-            <span>9篇手记</span>
-            <span>贡献9999字</span>
+            <span></span>
+            <span></span>
         </div>
     </aside>
     <aside id='recommend'>
@@ -221,7 +229,7 @@
             minWidth: 200,       // 最小宽度（数字）
             minHeight: 100,      // 最小高度（数字）
             themeType : 'simple',
-            resizeType : 1,
+            resizeType : 0,
             items : ['emoticons','link']
         });
     });

@@ -27,6 +27,16 @@
         SELECT * FROM `user` WHERE user_id = #{userId}
     </select>
 
+    <resultMap id="author" type="com.funnycode.myblog.pojo.PO.User">
+        <id property="userId" column="user_id"></id>
+        <result property="nickname" column="nickname"></result>
+        <result property="profilePath" column="profile_path"></result>
+        <association property="position" column="position_id" javaType="com.funnycode.myblog.pojo.PO.Position" select="com.funnycode.myblog.mapper.UserMapper.findPositionByPositionId"></association>
+    </resultMap>
+    <select id="findAuthorByAuthorId" parameterType="java.lang.String" resultMap="author">
+        SELECT user_id,nickname,profile_path,position_id FROM `user` WHERE user_id = #{authorId}
+    </select>
+
     <resultMap id="EditableUserInfo" type="com.funnycode.myblog.pojo.PO.User">
         <id property="userId" column="user_id"></id>
         <result property="nickname" column="nickname"></result>
@@ -113,6 +123,21 @@
         VALUES (#{noteId},#{noteTitle},#{noteType.typeId},#{createTime},#{status},#{blogger.userId},#{noteHtml})
     </insert>
 
+    <insert id="likeNote">
+        INSERT INTO `like_note`(`user_id`,`note_id`)
+        VALUES (#{arg0},#{arg1})
+    </insert>
+
+    <delete id="cancelLikeNote">
+        DELETE FROM `like_note`
+        WHERE user_id = #{arg0} AND note_id = #{arg1}
+    </delete>
+
+    <select id="hasLike" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `like_note`
+        WHERE user_id = #{arg0} AND note_id = #{arg1}
+    </select>
+
     <update id="updateUserExperienceByUserId" parameterType="java.lang.String">
         UPDATE `user` SET experience = experience+100 WHERE user_id = #{userId}
     </update>
@@ -125,4 +150,26 @@
     <select id="findObserver" parameterType="java.lang.String" resultMap="userVO">
         SELECT user_id,nickname,profile_path FROM `user` WHERE user_id = #{userId}
     </select>
+
+    <update id="updateUserInfo" parameterType="com.funnycode.myblog.pojo.PO.User">
+        UPDATE `user`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="profilePath != null">profile_path = #{profilePath},</if>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="position.positionId != null">position_id = #{position.positionId},</if>
+            <if test="motto != null">motto = #{motto},</if>
+        </trim>
+        WHERE user_id = #{userId}
+    </update>
+
+    <insert id="addFolloweeByFolloweeId">
+        INSERT INTO `followee`(`user_id`,`followee_id`)
+        VALUES (#{arg0},#{arg1})
+    </insert>
+
+    <delete id="removeFolloweeByFolloweeId">
+        DELETE FROM `followee`
+        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
+    </delete>
 </mapper>

@@ -90,4 +90,14 @@ public class NoteServiceImpl implements NoteService {
         return noteMapper.findAllNotesLimit(start, end);
     }
 
+    @Override
+    public Integer findLikeCount(String noteId) {
+        return noteMapper.findLikeCountByNoteId(noteId);
+    }
+
+    @Override
+    public Integer findNoteCountByAuthorId(String authorId) {
+        return noteMapper.findNoteCountByAuthorId(authorId);
+    }
+
 }

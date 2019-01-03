@@ -39,7 +39,6 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/user/loginpage");
         //设置无权限时跳转的url
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
-        //shiroFilterFactoryBean.setSuccessUrl("/user/homepage");
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //放行静态资源
@@ -54,12 +53,13 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/image/**", "anon");
         filterChainDefinitionMap.put("/user/font/**", "anon");
         filterChainDefinitionMap.put("/user/user-editormd/**", "anon");
+        filterChainDefinitionMap.put("/user/kindeditor/**", "anon");
 
         filterChainDefinitionMap.put("/commons/css/**", "anon");
         filterChainDefinitionMap.put("/commons/js/**", "anon");
         filterChainDefinitionMap.put("/commons/image/**", "anon");
         filterChainDefinitionMap.put("/commons/font/**", "anon");
-        //filterChainDefinitionMap.put("E:/uploadFile/pic/**", "anon");
+        filterChainDefinitionMap.put("/commons/layui/**", "anon");
         //游客
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/visitor/**", "anon");
@@ -73,6 +73,25 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/nicknameexists", "anon");
         filterChainDefinitionMap.put("/user/valicode", "anon");
         filterChainDefinitionMap.put("/user/checkValicode", "anon");
+        filterChainDefinitionMap.put("/user/findAllNotesLimit", "anon");
+        filterChainDefinitionMap.put("/user/findAllQuestionsLimit", "anon");
+        //放行可供未登录用户阅读
+        filterChainDefinitionMap.put("/user/noteArticle", "anon");
+        filterChainDefinitionMap.put("/user/findNoteCate", "anon");
+        filterChainDefinitionMap.put("/user/findAllNotes", "anon");
+        filterChainDefinitionMap.put("/user/findNoteBelongToType", "anon");
+        filterChainDefinitionMap.put("/user/note", "anon");
+        filterChainDefinitionMap.put("/user/readNote", "anon");
+        filterChainDefinitionMap.put("/user/findComments", "anon");
+        filterChainDefinitionMap.put("/user/questArticle", "anon");
+        filterChainDefinitionMap.put("/user/findQuestCate", "anon");
+        filterChainDefinitionMap.put("/user/findAllQuestions", "anon");
+        filterChainDefinitionMap.put("/user/findQuestBelongToType", "anon");
+        filterChainDefinitionMap.put("/user/question", "anon");
+        filterChainDefinitionMap.put("/user/readQuestion", "anon");
+        filterChainDefinitionMap.put("/user/findAnswers", "anon");
+        filterChainDefinitionMap.put("/user/authorDetail", "anon");
+        filterChainDefinitionMap.put("/user/whetherTheLogin", "anon");
         filterChainDefinitionMap.put("/user/**", "roles[user]");
         //管理员权限
         filterChainDefinitionMap.put("/admin/adminexists", "anon");
@@ -82,6 +101,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/admin/login", "anon");
         filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //对所有资源放行，必须放最后（因为LinkedHashMap是有序的，按顺序进行拦截）
+        filterChainDefinitionMap.put("/*", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

@@ -25,21 +25,19 @@
                 <nav id="navBox">
                     <ul id="navList">
                         <li class="nav"><a th:href="@{/user/homepage}">主页</a></li>
-                        <li class="nav"><a>问答</a></li>
                         <li class="nav"><a>学习路线</a></li>
                     </ul>
                 </nav>
                 <nav id="userBox">
                     <ul class="userNavList" th:if="${session.loginUser == null}">
                         <li class="nav"><a href="javascript:void(0);" th:href="@{/user/loginpage}">登录/注册</a></li>
-                        <!--<li class="nav" id="regist"><a href="javascript:void(0);">注册</a></li>-->
                     </ul>
                     <ul class="userNavList" th:if="${session.loginUser != null}">
                         <li id="user" class="nav">
-                            <img th:src="@{/user/image/profile/nologin.png}" id="profile">
+                            <img th:src="@{/nologin.png}" id="profile">
                             <div id='user_detail'>
                                 <div id='infoBox'>
-                                    <img id="profile-detail" th:src="@{/user/image/profile/nologin.png}">
+                                    <img id="profile-detail" th:src="@{/nologin.png}">
                                     <div id='user-info'>
                                         <span class="loginUserNickname">游客</span>
                                         <span id="experience">经验 9999</span>
@@ -66,7 +64,7 @@
                                             </a>
                                         </li>
                                         <li class='funcCardItems'>
-                                            <a href="#">
+                                            <a th:href="@{/user/myQuestion}">
                                                 <span class='iconfont icon-wenda'></span>
                                                 <span>我的提问</span>
                                             </a>
@@ -107,14 +105,14 @@
                     <div id='card'>
                         <ul id='cardList'>
                             <li class='cardItems'>
-                                <a href='questArticle.html'>
-                                    <span class='iconfont icon-wenda'></span>
-                                    <span>问答</span>
+                                <a th:href="@{/resource}">
+                                    <span class='iconfont icon-ziyuan1'></span>
+                                    <span>资源</span>
                                 </a>
                             </li>
                             <li class='cardItems'>
                                 <a href='resource.html'>
-                                    <span class='iconfont icon-ziyuan1'></span>
+                                    <span class='iconfont icon-weibiaoti2'></span>
                                     <span>工具</span>
                                 </a>
                             </li>

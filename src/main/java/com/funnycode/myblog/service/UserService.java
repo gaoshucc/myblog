@@ -84,4 +84,46 @@ public interface UserService {
      * @return List<Position> 职位集合
      */
     List<Position> findAllPosition();
+    /**
+     * 更新用户信息
+     * @param editUser
+     * @return boolean 是否更新成功，成功为true，失败为false
+     */
+    boolean updateUserInfo(User editUser);
+    /**
+     * 点赞手记
+     * @param loginUserId,noteId 用户ID，手记ID
+     * @return boolean 是否点赞成功，成功为true，失败为false
+     */
+    Boolean likeNote(String loginUserId, String noteId);
+    /**
+     * 是否已点赞手记
+     * @param loginUserId,noteId 用户ID，手记ID
+     * @return boolean 是否已点赞，已点赞为true，未点赞为false
+     */
+    Boolean hasLike(String loginUserId, String noteId);
+    /**
+     * 取消点赞手记
+     * @param loginUserId,noteId 用户ID，手记ID
+     * @return boolean 是否取消点赞成功，成功为true，失败为false
+     */
+    Boolean cancelLikeNote(String loginUserId, String noteId);
+    /**
+     * 获得作者信息（包括手记、问答）
+     * @param authorId 作者ID
+     * @return User 用户对象
+     */
+    User findAuthorByAuthorId(String authorId);
+    /**
+     * 关注ta
+     * @param loginUserId,followeeId 当前用户ID,关注的人ID
+     * @return Boolean 是否添加成功
+     */
+    Boolean addFolloweeByFolloweeId(String loginUserId, String followeeId);
+    /**
+     * 取消关注ta
+     * @param loginUserId,followeeId 当前用户ID,关注的人ID
+     * @return Boolean 是否取消关注成功
+     */
+    Boolean removeFolloweeByFolloweeId(String loginUserId, String followeeId);
 }

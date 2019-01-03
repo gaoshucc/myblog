@@ -98,4 +98,18 @@ public interface NoteMapper {
      * @return List<Comment> 手记List集合
      */
     List<Note> findAllNotesLimit(Integer start, Integer end);
+    /**
+     * 查找手记阅读量
+     *
+     * @param noteId 手记ID
+     * @return Integer 手记阅读量
+     */
+    Integer findLikeCountByNoteId(String noteId);
+    /**
+     * 查找已创作手记数
+     *
+     * @param authorId 作者ID
+     * @return Integer 手记数
+     */
+    Integer findNoteCountByAuthorId(String authorId);
 }

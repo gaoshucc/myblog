@@ -28,7 +28,7 @@
                 </ul>
             </nav>
             <div id='user'>
-                <img class="myProfile" th:src="@{/user/image/profile/nologin.png}" id='imgone'>
+                <img class="myProfile" th:src="@{/nologin.png}" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
                         <img class="myProfile">
@@ -59,7 +59,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myQuestion}">
                                     <span class='iconfont icon-wenda'></span>
                                     <span>我的提问</span>
                                 </a>

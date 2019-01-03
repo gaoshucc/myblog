@@ -20,7 +20,7 @@
     <select id="findAllNotes" parameterType="java.lang.String" resultMap="AllNotes">
         SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE status = 1 ORDER BY create_time DESC
     </select>
-    <!--List<Note> findAllNotesLimit(Integer start, Integer end);-->
+
     <resultMap id="AllNotesLimit" type="com.funnycode.myblog.pojo.PO.Note">
         <id property="noteId" column="note_id"></id>
         <result property="noteTitle" column="note_title"></result>
@@ -34,6 +34,11 @@
         WHERE status = 1
         ORDER BY create_time DESC
         LIMIT #{arg0},#{arg1}
+    </select>
+
+    <select id="findNoteCountByAuthorId" resultType="java.lang.Integer">
+        SELECT count(*) FROM `note`
+        WHERE blogger = #{authorId}
     </select>
 
     <resultMap id="Notes" type="com.funnycode.myblog.pojo.PO.Note">
@@ -64,6 +69,11 @@
 
     <select id="findNoteHtmlByNoteId" parameterType="java.lang.String" resultType="java.lang.String">
         SELECT note_html FROM `note` WHERE note_id = #{noteId} AND status = 1
+    </select>
+
+    <select id="findLikeCountByNoteId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `like_note`
+        WHERE note_id = #{noteId}
     </select>
 
     <update id="deleteNoteByNoteId" parameterType="java.lang.String">

@@ -91,7 +91,7 @@
             <textarea style="display: none;" th:text="${question}"></textarea>
         </div>
         <div id="write-answer-box">
-            <textarea id='answer-content' name='content' style='visibility:hidden;'>写下你的评论吧</textarea>
+            <textarea id='answer-content' name='content' style='visibility:hidden;'></textarea>
             <a id="submit-answer">发表评论</a>
         </div>
         <div id="answers">
@@ -100,7 +100,7 @@
     </article>
     <aside id='writerInfoBox'>
         <div id='writerInfo'>
-            <img id="writerProfile" th:src="@{/user/image/profile/nologin.png}">
+            <img id="writerProfile" th:src="@{/nologin.png}">
             <div id='writer'>
                 <span id="writerName">高数CC</span>
                 <span id="position">后台工程师</span>

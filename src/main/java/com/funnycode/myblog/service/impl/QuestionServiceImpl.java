@@ -71,4 +71,34 @@ public class QuestionServiceImpl implements QuestionService {
         return questionMapper.findAllQuestionsLimit(start, end);
     }
 
+    @Override
+    public Integer findAnswerCountByAuthorId(String authorId) {
+        return questionMapper.findAnswerCountByAuthorId(authorId);
+    }
+
+    @Override
+    public List<Question> findMyQuestionsByUserId(String userId) {
+        return questionMapper.findMyQuestionsByUserId(userId);
+    }
+
+    @Override
+    public boolean deleteQuestionByQuestionId(String questionId) {
+        return questionMapper.deleteQuestionByQuestionId(questionId)>0?true:false;
+    }
+
+    @Override
+    public List<Question> findQuestionRecycleBinByUserId(String userId) {
+        return questionMapper.findQuestionRecycleBinByUserId(userId);
+    }
+
+    @Override
+    public boolean recycleQuestionByQuestionId(String questionId) {
+        return questionMapper.recycleQuestionByQuestionId(questionId)>0?true:false;
+    }
+
+    @Override
+    public boolean completelyDelQuestionByQuestionId(String questionId) {
+        return questionMapper.completelyDelQuestionByQuestionId(questionId)>0?true:false;
+    }
+
 }

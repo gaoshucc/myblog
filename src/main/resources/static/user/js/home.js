@@ -1,3 +1,4 @@
+var PATHPREFIX = "/user";
 /**
  * jq部分
  */
@@ -89,8 +90,8 @@ function showUserDetail(){
 
     //填充数据
     function fillData() {
-        profile.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
-        profile_detail.src = "http://localhost:8080/user/image/profile/" + user.profilePath;
+        profile.src = "/" + user.profilePath;
+        profile_detail.src = "/" + user.profilePath;
         for(let i=0; i<loginUserNickname.length; i++){
             loginUserNickname[i].innerHTML = user.nickname;
         }
@@ -114,9 +115,9 @@ function findAllNotes() {
                 for(let i=0; i<notes.length; i++){
                     $noteSection.append("<article class='article'>" +
                                         "    <h2><a href='/user/note?noteId="+ notes[i].noteId +"'>"+ notes[i].noteTitle +"</a></h2>" +
-                                        "    <p>Struts2的核心部分是拦截器模块</p>" +
+                                        "    <p>点击进入详细阅读</p>" +
                                         "    <div class='articleInfo'>" +
-                                        "        <div class='author-infobox'>" +
+                                        "        <div class='author-infobox' data-author-id='"+ notes[i].blogger.userId +"'>" +
                                         "            <a href='#' class='author'>"+ notes[i].blogger.nickname +"</a>" +
                                         "        </div>" +
                                         "        <time>"+ notes[i].createTime  +"</time>" +
@@ -134,7 +135,7 @@ function findAllNotes() {
     });
 }
 /**
- * 查找“优质手记”
+ * 查找“精品问答”
  */
 function findAllQuestions() {
     var $questionSection = $("#questionSection");
@@ -149,9 +150,9 @@ function findAllQuestions() {
                 for(let i=0; i<questions.length; i++){
                     $questionSection.append("<article class='article'>" +
                                             "    <h2><a href='/user/question?questId="+ questions[i].questId +"'>"+ questions[i].questTitle +"</a></h2>" +
-                                            "    <p>Struts2的核心部分是拦截器模块</p>" +
+                                            "    <p>点击进入详细阅读</p>" +
                                             "    <div class='articleInfo'>" +
-                                            "        <div class='author-infobox'>" +
+                                            "        <div class='author-infobox' data-author-id='"+ questions[i].quizzer.userId +"'>" +
                                             "            <a href='#' class='author'>"+ questions[i].quizzer.nickname +"</a>" +
                                             "        </div>" +
                                             "        <time>"+ questions[i].createTime +"</time>" +
@@ -214,8 +215,36 @@ function showAuthorInfo(){
             }
             if(!flag){
                 author_nickname = this.innerHTML;
-                this.innerHTML = this.innerHTML + "<div class='author-info'><div class='author-basic-info'><div class='author-basic-infobg'><img src='/user/image/csdn.png' class='author-profile'><span class='author-nickname'>CSDN</span><span class='author-job'>专业IT学习网站</span></div></div><div class='author-devote'><span>手记<em>9</em>篇</span><span>解答<em>9</em>次</span><button>关注ta</button></div></div>";
-                flag = true;
+                //ajax获取作者信息
+                $.ajax({
+                    type: "GET",
+                    url: "/user/authorDetail",
+                    data: {"authorId":author_infobox[i].getAttribute("data-author-id")},
+                    dataType: "json",
+                    success: function (data) {
+                        if(!isnull(data)){
+                            var author = JSON.parse(data);
+                            console.log(author);
+                            // todo 对关注功能进行完善
+                            author_infobox[i].innerHTML = author_infobox[i].innerHTML +
+                                "<div class='author-info'>" +
+                                "<div class='author-basic-info'>" +
+                                "<div class='author-basic-infobg'>" +
+                                "<img src='/user/image/profile/"+ author.profilePath +"' class='author-profile'>" +
+                                "<span class='author-nickname'>"+ author.nickname +"</span>" +
+                                "<span class='author-job'>"+ author.position +"</span>" +
+                                "</div></div>" +
+                                "<div class='author-devote'>" +
+                                "<span>手记<em>"+ author.noteCount +"</em>篇</span>" +
+                                "<span>解答<em>"+ author.answerCount +"</em>次</span>" +
+                                "<a class='pay-attention-to' data-followee-id='" + author.authorId +"'>关注ta</a>" +
+                                "</div>" +
+                                "</div>";
+                            flag = true;
+                        }
+                    },
+                    async: true
+                });
             }else{
                 return;
             }            
