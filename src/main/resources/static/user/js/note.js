@@ -121,6 +121,7 @@ function findNote() {
     var writerName = document.querySelector("#writerName");
     var writerProfile = document.querySelector("#writerProfile");
     var position = document.querySelector("#position");
+    var noteAttentionBtn = document.querySelector("#noteAttentionBtn");
     //向后台发送ajax请求获取手记详细信息
     $.ajax({
         type: "GET",
@@ -138,6 +139,11 @@ function findNote() {
                 writerName.innerHTML = note.blogger.nickname;
                 position.innerHTML = note.blogger.position.position;
                 writerProfile.src = "/" + note.blogger.profilePath;
+                noteAttentionBtn.setAttribute("data-followee-id",note.blogger.userId);
+                if(hasAttention(noteAttentionBtn.getAttribute("data-followee-id"))){
+                    updateAttentionBtnStyle(noteAttentionBtn,true);
+                }
+                attention(noteAttentionBtn);
             }
         },
         async: true

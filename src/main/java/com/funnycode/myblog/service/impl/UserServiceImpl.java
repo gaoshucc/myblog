@@ -124,13 +124,38 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Boolean addFolloweeByFolloweeId(String loginUserId, String followeeId) {
-        return userMapper.addFolloweeByFolloweeId(loginUserId,followeeId)>0?true:false;
+    public Boolean updateAttentionStatus(String loginUserId, String attentionId) {
+        Integer success;
+        Integer status = null;
+        //0代表无关系，1代表当前u1已关注u2,2代表u2已关注u1,3代表互相关注
+        Integer attentionStatus = userMapper.findAttentionStatusById(loginUserId, attentionId);
+
+        if(attentionStatus == null){
+            status = 1;
+            userMapper.addFolloweeById(loginUserId,attentionId);
+            success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
+        }else{
+            if(attentionStatus == 0){
+                status = 1;
+            }
+            if(attentionStatus == 1) {
+                status = 0;
+            }
+            if(attentionStatus == 2){
+                status = 3;
+            }
+            if(attentionStatus == 3){
+                status = 2;
+            }
+            success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
+        }
+
+        return success>0?true:false;
     }
 
     @Override
-    public Boolean removeFolloweeByFolloweeId(String loginUserId, String followeeId) {
-        return userMapper.removeFolloweeByFolloweeId(loginUserId,followeeId)>0?true:false;
+    public Integer findAttentionStatusById(String loginUserId, String attentionId) {
+        return userMapper.findAttentionStatusById(loginUserId, attentionId);
     }
 
     @Override

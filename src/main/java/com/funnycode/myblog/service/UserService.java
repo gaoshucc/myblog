@@ -115,15 +115,16 @@ public interface UserService {
      */
     User findAuthorByAuthorId(String authorId);
     /**
-     * 关注ta
-     * @param loginUserId,followeeId 当前用户ID,关注的人ID
-     * @return Boolean 是否添加成功
+     * 更新关注状态
+     * @param loginUserId,attentionId 用户ID，关注的人ID
+     * @return 是否修改成功
      */
-    Boolean addFolloweeByFolloweeId(String loginUserId, String followeeId);
+    Boolean updateAttentionStatus(String loginUserId, String attentionId);
     /**
-     * 取消关注ta
-     * @param loginUserId,followeeId 当前用户ID,关注的人ID
-     * @return Boolean 是否取消关注成功
+     * 获取关注状态
+     * @param loginUserId 用户ID
+     * @param attentionId 关注的人ID
+     * @return 是否获取成功
      */
-    Boolean removeFolloweeByFolloweeId(String loginUserId, String followeeId);
+    Integer findAttentionStatusById(String loginUserId, String attentionId);
 }

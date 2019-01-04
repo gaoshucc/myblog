@@ -53,7 +53,9 @@ function hasLogin() {
 
     return isLogin;
 }
-
+/**
+ * 弹出层
+ */
 var popup;
 function showPopup(content,width,height) {
     body = document.body;
@@ -82,4 +84,86 @@ function showPopup(content,width,height) {
     });
 
     addClass("show",popup);
+}
+
+/**
+ * 判断当前关注状态
+ */
+function hasAttention(attentionId){
+    var isAttention = false;
+    $.ajax({
+        type: "GET",
+        url: "/user/hasAttention",
+        data:{"attentionId":attentionId},
+        dataType: "json",
+        success: function (data) {
+            var attentionSuccess = JSON.parse(data);
+            if(attentionSuccess.status == 1){
+                isAttention = true;
+                console.log("hasAttention");
+            }else{
+                isAttention = false;
+                console.log("notAttention");
+            }
+        },
+        async: false
+    });
+
+    return isAttention;
+}
+/**
+ * 关注操作
+ */
+function attention(attentionBtn) {
+    var attentionId;
+    attentionBtn.addEventListener("click",function (e) {
+        attentionId = attentionBtn.getAttribute("data-followee-id");
+        if(payAttentionTo(attentionId)){
+            if(hasAttention(attentionId)){
+                updateAttentionBtnStyle(attentionBtn,true);
+                console.log("已关注");
+            }else{
+                updateAttentionBtnStyle(attentionBtn,false);
+                console.log("未关注");
+            }
+            console.log("操作成功");
+        }else{
+            console.log("操作失败");
+        }
+    });
+}
+/**
+ * 改变关注按钮样式
+ */
+function updateAttentionBtnStyle(element, flag) {
+    if(flag){
+        element.innerHTML = "已关注";
+        element.style.backgroundColor = "rgba(216, 216, 216, 1)";
+    }else{
+        element.innerHTML = "关注ta";
+        element.style.backgroundColor = "rgba(0, 133, 235, 1)";
+    }
+}
+/*
+* 关注ta
+* */
+function payAttentionTo(attentionId) {
+    var success;
+    $.ajax({
+        type: "POST",
+        url: "/user/payAttentionTo",
+        data:{"attentionId":attentionId},
+        dataType: "json",
+        success: function (data) {
+            var attentionSuccess = JSON.parse(data);
+            if(attentionSuccess.status == "1"){
+                success = true;
+            }else{
+                success = false;
+            }
+        },
+        async: false
+    });
+
+    return success;
 }

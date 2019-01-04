@@ -792,18 +792,43 @@ public class UserController {
     }
 
     /**
+     * 是否已关注
+     */
+    @GetMapping("/hasAttention")
+    @ResponseBody
+    public String hasAttention(HttpSession session, String attentionId){
+        JSONObject jsonObject = new JSONObject();
+        Integer attentionStatus = 0;
+        if(!LoginUserUtil.findLoginUserId(session).equals(attentionId)){
+            attentionStatus = userService.findAttentionStatusById(LoginUserUtil.findLoginUserId(session),attentionId);
+        }
+        if(attentionStatus == 1 || attentionStatus == 3){
+            jsonObject.put("status","1");
+        }else {
+            jsonObject.put("status","0");
+        }
+        logger.info("status:" + attentionStatus);
+
+        return JSON.toJSONString(jsonObject);
+    }
+    /**
      * 关注ta
      */
     @RequestMapping("/payAttentionTo")
     @ResponseBody
-    public String payAttentionToOther(HttpSession session, @RequestParam("followeeId")String followeeId){
+    public String payAttentionToOther(HttpSession session, @RequestParam("attentionId")String attentionId){
         JSONObject jsonObject = new JSONObject();
-        Boolean attentionSuccess = userService.addFolloweeByFolloweeId(LoginUserUtil.findLoginUserId(session),followeeId);
-        // todo 对关注功能进行完善
+        Boolean attentionSuccess = false;
+        //如果关注的人是自己，则关注操作不可进行
+        if(!LoginUserUtil.findLoginUserId(session).equals(attentionId)){
+            attentionSuccess = userService.updateAttentionStatus(LoginUserUtil.findLoginUserId(session),attentionId);
+        }
         if(attentionSuccess){
-            jsonObject.put("success","1");
+            //表示操作成功
+            jsonObject.put("status","1");
         }else {
-            jsonObject.put("success","0");
+            //表示操作失败
+            jsonObject.put("status","0");
         }
 
         return JSON.toJSONString(jsonObject);
@@ -812,7 +837,7 @@ public class UserController {
     /**
      * 取消关注ta
      */
-    @RequestMapping("/cancelPayAttentionTo")
+    /*@RequestMapping("/cancelPayAttentionTo")
     @ResponseBody
     public String cancelPayAttentionToOther(HttpSession session, @RequestParam("followeeId")String followeeId){
         JSONObject jsonObject = new JSONObject();
@@ -825,5 +850,5 @@ public class UserController {
         }
 
         return JSON.toJSONString(jsonObject);
-    }
+    }*/
 }

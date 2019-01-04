@@ -163,13 +163,22 @@
         WHERE user_id = #{userId}
     </update>
 
-    <insert id="addFolloweeByFolloweeId">
-        INSERT INTO `followee`(`user_id`,`followee_id`)
-        VALUES (#{arg0},#{arg1})
+    <select id="findAttentionStatusById" resultType="java.lang.Integer">
+        SELECT status
+        FROM `followee`
+        WHERE (`user_id`=#{arg0} AND `followee_id`=#{arg1}) OR
+        (`user_id`=#{arg1} AND `followee_id`=#{arg0})
+    </select>
+
+    <insert id="addFolloweeById">
+        INSERT INTO `followee`(`user_id`,`followee_id`,`status`)
+        VALUES (#{arg0},#{arg1},0)
     </insert>
 
-    <delete id="removeFolloweeByFolloweeId">
-        DELETE FROM `followee`
-        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
-    </delete>
+    <update id="updateAttentionStatusById">
+        UPDATE `followee`
+        SET status = #{arg2}
+        WHERE (`user_id`=#{arg0} AND `followee_id`=#{arg1}) OR
+        (`user_id`=#{arg1} AND `followee_id`=#{arg0})
+    </update>
 </mapper>

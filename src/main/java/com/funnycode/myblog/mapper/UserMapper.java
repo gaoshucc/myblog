@@ -143,15 +143,25 @@ public interface UserMapper {
      */
     User findAuthorByAuthorId(String authorId);
     /**
-     * 获得作者信息（包括手记、问答）
-     * @param loginUserId,followeeId 当前用户ID,关注的人ID
-     * @return  Integer 受影响行数
+     * 根据ID获取关注状态
+     * @param loginUserId 用户ID
+     * @param attentionId 关注的人ID
+     * @return 关注状态
      */
-    Integer addFolloweeByFolloweeId(String loginUserId, String followeeId);
+    Integer findAttentionStatusById(String loginUserId, String attentionId);
     /**
-     * 取消关注ta
-     * @param loginUserId,followeeId 当前用户ID,关注的人ID
-     * @return Boolean 是否取消关注成功
+     * 新增关注关系
+     * @param loginUserId 用户ID
+     * @param attentionId 关注的人ID
+     * @return 影响数据行数
      */
-    Integer removeFolloweeByFolloweeId(String loginUserId, String followeeId);
+    Integer addFolloweeById(String loginUserId, String attentionId);
+    /**
+     * 更新关注状态
+     * @param loginUserId 用户ID
+     * @param attentionId 关注的人ID
+     * @param status 关注状态
+     * @return 影响数据行数
+     */
+    Integer updateAttentionStatusById(String loginUserId, String attentionId,Integer status);
 }

@@ -103,6 +103,7 @@ function findQuestion() {
     var writerName = document.querySelector("#writerName");
     var writerProfile = document.querySelector("#writerProfile");
     var position = document.querySelector("#position");
+    var questionAttentionBtn = document.querySelector("#questionAttentionBtn");
     //向后台发送ajax请求获取手记详细信息
     $.ajax({
         type: "GET",
@@ -120,6 +121,11 @@ function findQuestion() {
                 writerName.innerHTML = question.quizzer.nickname;
                 position.innerHTML = question.quizzer.position.position;
                 writerProfile.src = "/" + question.quizzer.profilePath;
+                questionAttentionBtn.setAttribute("data-followee-id",question.quizzer.userId);
+                if(hasAttention(questionAttentionBtn.getAttribute("data-followee-id"))){
+                    updateAttentionBtnStyle(questionAttentionBtn,true);
+                }
+                attention(questionAttentionBtn);
             }
         },
         async: true

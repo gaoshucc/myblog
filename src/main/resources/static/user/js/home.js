@@ -237,9 +237,18 @@ function showAuthorInfo(){
                                 "<div class='author-devote'>" +
                                 "<span>手记<em>"+ author.noteCount +"</em>篇</span>" +
                                 "<span>解答<em>"+ author.answerCount +"</em>次</span>" +
-                                "<a class='pay-attention-to' data-followee-id='" + author.authorId +"'>关注ta</a>" +
+                                "<a id='attentionBtn' class='pay-attention-to' data-followee-id='" + author.authorId +"'>关注ta</a>" +
                                 "</div>" +
                                 "</div>";
+                            var attentionBtn = document.querySelector("#attentionBtn");
+                            if(hasAttention(attentionBtn.getAttribute("data-followee-id"))){
+                                updateAttentionBtnStyle(attentionBtn,true);
+                            }
+                            //对主页面所有的关注按钮添加事件
+                            var attentionBtns = document.querySelectorAll(".pay-attention-to");
+                            for(let i=0; i<attentionBtns.length; i++){
+                                attention(attentionBtns[i]);
+                            }
                             flag = true;
                         }
                     },
