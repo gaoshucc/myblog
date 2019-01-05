@@ -79,6 +79,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/noteArticle", "anon");
         filterChainDefinitionMap.put("/user/findNoteCate", "anon");
         filterChainDefinitionMap.put("/user/findAllNotes", "anon");
+        filterChainDefinitionMap.put("/user/findNotesNoteTypeId", "anon");
         filterChainDefinitionMap.put("/user/findNoteBelongToType", "anon");
         filterChainDefinitionMap.put("/user/note", "anon");
         filterChainDefinitionMap.put("/user/readNote", "anon");

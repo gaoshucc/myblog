@@ -20,7 +20,7 @@ public class GlobalExceptionController {
     @ExceptionHandler(Exception.class)
     public String authorizationExceptionHandler(Exception e){
         logger.info("进入异常控制器了");
-
+        e.printStackTrace();
         return "403";
     }
 }

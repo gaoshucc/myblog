@@ -101,4 +101,9 @@ public class QuestionServiceImpl implements QuestionService {
         return questionMapper.completelyDelQuestionByQuestionId(questionId)>0?true:false;
     }
 
+    @Override
+    public List<Question> findQuestionsByTypeId(Integer questTypeId) {
+        return questionMapper.findQuestionsByTypeId(questTypeId);
+    }
+
 }

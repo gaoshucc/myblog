@@ -29,6 +29,12 @@ public interface QuestionMapper {
      */
     List<Question> findAllQuestions();
     /**
+     * 获得某种类型的所有问题
+     * @param questTypeId 类型ID
+     * @return List<Question> 问题集合
+     */
+    List<Question> findQuestionsByTypeId(Integer questTypeId);
+    /**
      * 获得首页问题
      * @param
      * @return List<Question> 问题集合

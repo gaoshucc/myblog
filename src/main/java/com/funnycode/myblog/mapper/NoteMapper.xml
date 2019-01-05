@@ -18,7 +18,17 @@
         <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
     </resultMap>
     <select id="findAllNotes" parameterType="java.lang.String" resultMap="AllNotes">
-        SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE status = 1 ORDER BY create_time DESC
+        SELECT note_id,note_title,blogger,note_type,create_time
+        FROM `note`
+        WHERE status = 1
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="findNotesNoteTypeId" parameterType="java.lang.Integer" resultMap="AllNotes">
+        SELECT note_id,note_title,blogger,note_type,create_time
+        FROM `note`
+        WHERE status = 1 AND note_type = #{noteTypeId}
+        ORDER BY create_time DESC
     </select>
 
     <resultMap id="AllNotesLimit" type="com.funnycode.myblog.pojo.PO.Note">
@@ -64,7 +74,9 @@
         <association property="noteType" column="note_type" javaType="com.funnycode.myblog.pojo.PO.NoteType" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTypeByTypeId"></association>
     </resultMap>
     <select id="findNoteByNoteId" parameterType="java.lang.String" resultMap="NoteDetail">
-        SELECT note_id,note_title,blogger,note_type,create_time FROM `note` WHERE note_id = #{noteId} AND status = 1
+        SELECT note_id,note_title,blogger,note_type,create_time
+        FROM `note`
+        WHERE note_id = #{noteId} AND status = 1
     </select>
 
     <select id="findNoteHtmlByNoteId" parameterType="java.lang.String" resultType="java.lang.String">

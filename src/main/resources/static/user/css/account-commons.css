@@ -363,9 +363,24 @@ body{
     line-height: 30px;
     padding: 0 10px;
     text-align: left;
-    font-size: 15px;
+    font-size: 14px;
     color: rgba(54, 58, 57, 1);
-    background-color: rgba(216, 216, 216, 1);
+    background-color: rgba(246, 246, 246, 1);
+    cursor: pointer;
+}
+#unfollowBtn{
+    float: right;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+    margin: 5px;
+    font-size: 12px;
+    background-color: rgba(246, 84, 21, .7);
+    cursor: pointer;
+}
+#unfollowBtn:hover{
+    background-color: rgba(246, 84, 21, 1);
 }
 
 #achievement{

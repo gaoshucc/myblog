@@ -393,13 +393,17 @@ body{
     margin: 5px auto;
     text-align: center;
     list-style-type: none;
+    cursor: pointer;
 }
 #articleCate ul li a{
     font-size: 16px;
-    color: rgba(54, 58, 57, 1);
+    color: rgba(54, 58, 57, .7);
 }
 #articleCate ul li a:hover{
-    color: rgba(0, 133, 255, 1);
+    color: rgba(0, 133, 255, 1) !important;
+}
+.clicked{
+    color: rgba(54, 58, 57, 1) !important;
 }
 
 #questSection{
@@ -491,6 +495,22 @@ body{
 }
 .readInfo a:hover{
     color: rgb(19, 168, 228);
+}
+
+.icon-stack,#no-content{
+    display: block;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    color: rgba(54, 58, 57, .7);
+}
+.icon-stack{
+    padding-top: 20px;
+    font-size: 25px;
+}
+#no-content{
+    padding-bottom: 20px;
+    font-size: 14px;
 }
 
 #hotArticlle{

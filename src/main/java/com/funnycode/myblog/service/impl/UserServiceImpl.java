@@ -4,6 +4,7 @@ import com.funnycode.myblog.mapper.UserMapper;
 import com.funnycode.myblog.pojo.PO.Note;
 import com.funnycode.myblog.pojo.PO.Position;
 import com.funnycode.myblog.pojo.PO.User;
+import com.funnycode.myblog.pojo.VO.FolloweeVO;
 import com.funnycode.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author gaoshucc
@@ -119,6 +121,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public Boolean collectNote(String loginUserId, String noteId) {
+        return userMapper.collectNote(loginUserId, noteId);
+    }
+
+    @Override
+    public Boolean hasCollect(String loginUserId, String noteId) {
+        return userMapper.hasCollect(loginUserId, noteId)>0?true:false;
+    }
+
+    @Override
+    public Boolean cancelCollectNote(String loginUserId, String noteId) {
+        return userMapper.cancelCollectNote(loginUserId, noteId)>0?true:false;
+    }
+
+    @Override
     public User findAuthorByAuthorId(String authorId) {
         return userMapper.findAuthorByAuthorId(authorId);
     }
@@ -129,12 +146,7 @@ public class UserServiceImpl implements UserService{
         Integer status = null;
         //0代表无关系，1代表当前u1已关注u2,2代表u2已关注u1,3代表互相关注
         Integer attentionStatus = userMapper.findAttentionStatusById(loginUserId, attentionId);
-
-        if(attentionStatus == null){
-            status = 1;
-            userMapper.addFolloweeById(loginUserId,attentionId);
-            success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
-        }else{
+        if(attentionStatus!=null){
             if(attentionStatus == 0){
                 status = 1;
             }
@@ -148,6 +160,27 @@ public class UserServiceImpl implements UserService{
                 status = 2;
             }
             success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
+        }else{
+            Integer reverseAttentionStatus = userMapper.findAttentionStatusById(attentionId, loginUserId);
+            if(reverseAttentionStatus==null){
+                status = 1;
+                userMapper.addFolloweeById(loginUserId,attentionId);
+                success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
+            }else{
+                if(reverseAttentionStatus == 0){
+                    status = 2;
+                }
+                if(reverseAttentionStatus == 1) {
+                    status = 3;
+                }
+                if(reverseAttentionStatus == 2){
+                    status = 0;
+                }
+                if(reverseAttentionStatus == 3){
+                    status = 1;
+                }
+                success = userMapper.updateAttentionStatusById(attentionId,loginUserId,status);
+            }
         }
 
         return success>0?true:false;
@@ -156,6 +189,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer findAttentionStatusById(String loginUserId, String attentionId) {
         return userMapper.findAttentionStatusById(loginUserId, attentionId);
+    }
+
+    @Override
+    public Set<FolloweeVO> findFolloweeList(String loginUserId) {
+        return userMapper.findFolloweeList(loginUserId);
     }
 
     @Override

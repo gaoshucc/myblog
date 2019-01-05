@@ -39,4 +39,6 @@ public interface QuestionService {
     boolean recycleQuestionByQuestionId(String questionId);
 
     boolean completelyDelQuestionByQuestionId(String questionId);
+
+    List<Question> findQuestionsByTypeId(Integer questTypeId);
 }

@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class='funcCardItems'>
-                            <a href="#">
+                            <a th:href="@{/user/myQuestion}">
                                 <span class='iconfont icon-wenda'></span>
                                 <span>我的提问</span>
                             </a>
@@ -102,14 +102,14 @@
         <div id='writerInfo'>
             <img id="writerProfile" th:src="@{/nologin.png}">
             <div id='writer'>
-                <span id="writerName">高数CC</span>
-                <span id="position">后台工程师</span>
+                <span id="writerName"></span>
+                <span id="position"></span>
             </div>
             <a id="questionAttentionBtn">关注ta</a>
         </div>
         <div id='devote'>
-            <span>9篇手记</span>
-            <span>贡献9999字</span>
+            <span id="noteCount">篇手记</span>
+            <span id="answerCount">解答次</span>
         </div>
     </aside>
     <aside id='recommend'>

@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li class='funcCardItems'>
-                            <a href="#">
+                            <a th:href="@{/user/myQuestion}">
                                 <span class='iconfont icon-wenda'></span>
                                 <span>我的提问</span>
                             </a>
@@ -81,12 +81,13 @@
             <h2 id="title"></h2>
             <span id="noteType"></span>
             <span>999浏览</span>
-            <span id="like-count"></span>
+            <span id="like-count">点赞</span>
             <time datetime="2018-10-05" id="createTime">2018-10-05</time>
             <ul id='shareList'>
                 <li title='分享到QQ空间' class='iconfont icon-qq-copy'></li>
                 <li title='分享到QQ' class='iconfont icon-qq-copy1'></li>
                 <li title='分享到微信' class='iconfont icon-wechat1193418easyiconnet'></li>
+                <!--<li title='收藏' class='iconfont icon-unie64b'></li>-->
             </ul>
         </div>
         <div id='content-editormd'>
@@ -154,8 +155,8 @@
             <a id="noteAttentionBtn">关注ta</a>
         </div>
         <div id='devote'>
-            <span></span>
-            <span></span>
+            <span id="noteCount"></span>
+            <span id="answerCount"></span>
         </div>
     </aside>
     <aside id='recommend'>
@@ -167,7 +168,7 @@
 <div id='articleFunc'>
     <span id='overBtn' class="iconfont icon-chanpinxiangqingqianwang"></span>
     <ul>
-        <li>微信</li>
+        <li id="favorite"><i id="favorite-icon" class="iconfont icon-unie64b"></i>收藏</li>
     </ul>
 </div>
 

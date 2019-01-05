@@ -25,7 +25,6 @@ function addClass(cla,element){
 
     }
 }
-
 /*
 * 是否已登录
 * */

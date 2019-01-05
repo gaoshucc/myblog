@@ -74,7 +74,21 @@ function findQuestCate() {
                 var questCate = JSON.parse(data);
                 console.log(questCate);
                 for(let i=0; i<questCate.length; i++){
-                    $questCate.append("<li><a href='/user/findQuestBelongToType?"+ questCate[i].typeId +"'>"+ questCate[i].typeName +"</a></li>");
+                    $questCate.append("<li><a class='quest-type' data-quest-type-id='"+ questCate[i].typeId +"'>"+ questCate[i].typeName +"</a></li>");
+                }
+                var questTypeList = document.querySelectorAll(".quest-type");
+                var lastClick = -1;
+                for(let j=0; j<questTypeList.length; j++){
+                    questTypeList[j].addEventListener("click",function (e) {
+                        if(lastClick != -1){
+                            if(hasClass("clicked",questTypeList[lastClick])){
+                                questTypeList[lastClick].classList.remove("clicked");
+                            }
+                        }
+                        addClass("clicked",questTypeList[j]);
+                        lastClick = j;
+                        findQuestionsByTypeId(questTypeList[j].getAttribute("data-quest-type-id"));
+                    })
                 }
             }
         },
@@ -89,12 +103,38 @@ function findAllQuestions() {
         url: "/user/findAllQuestions",
         dataType: "json",
         success: function (data) {
+            $questSection.html("");
             if(!isnull(data)){
                 var questions = JSON.parse(data);
                 console.log(questions);
                 for(let i=0; i<questions.length; i++){
                     $questSection.append("<article class='article'><h2><a href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><a href=\"#\"><span class='author'>"+ questions[i].quizzer.nickname +"</span></a><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>回答</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
                 }
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 根据noteTypeId获取某种类型的手记
+ */
+function findQuestionsByTypeId(questTypeId) {
+    var $questSection = $("#questSection");
+    $.ajax({
+        type: "GET",
+        url: "/user/findQuestionsByTypeId",
+        data:{"questTypeId":questTypeId},
+        dataType: "json",
+        success: function (data) {
+            $questSection.html("");
+            if(!isnull(data)){
+                var questions = JSON.parse(data);
+                console.log(questions);
+                for(let i=0; i<questions.length; i++){
+                    $questSection.append("<article class='article'><h2><a href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><a href=\"#\"><span class='author'>"+ questions[i].quizzer.nickname +"</span></a><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>回答</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                }
+            }else {
+                $questSection.append("<span class='iconfont icon-stack'></span><span id='no-content'>没有有关内容哦</span>");
             }
         },
         async: true

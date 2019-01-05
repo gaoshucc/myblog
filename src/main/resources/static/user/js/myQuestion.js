@@ -135,6 +135,8 @@ function findMyQuestions() {
                     $questionSection.append("<article class='article'><h2><a class='questTitle' href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a><a class='deleteQuestion' data-questionId='"+ questions[i].questId +"'>删除</a></h2><p>"+"点击进入详细阅读"+"</p><div class='articleInfo'><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
                 }
                 deleteQuestion();
+            }else {
+                $questionSection.append("<span class='iconfont icon-stack'></span><span id='no-content'>没有内容哦</span>");
             }
         },
         async: true

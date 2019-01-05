@@ -43,6 +43,7 @@ addLoadEvent(showUserDetail);
 addLoadEvent(findNote);
 addLoadEvent(findLikeCount);
 addLoadEvent(whetherLike);
+addLoadEvent(whetherCollect);
 addLoadEvent(findComments);
 addLoadEvent(submitComment);
 addLoadEvent(main);
@@ -57,6 +58,15 @@ function main() {
             showPopup("<span id='popup-login-title'>小主，要登录才能点赞哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
         }
     });
+    //收藏
+    var favorite = document.querySelector("#favorite");
+    favorite.addEventListener("click",function (e) {
+        if(hasLogin()){
+            collectNote();
+        }else{
+            showPopup("<span id='popup-login-title'>小主，要登录才能收藏哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        }
+    })
 }
 /**
  * 悬浮显示用户详细信息
@@ -118,10 +128,6 @@ function findNote() {
     var title = document.querySelector("#title");
     var noteType = document.querySelector("#noteType");
     var createTime = document.querySelector("#createTime");
-    var writerName = document.querySelector("#writerName");
-    var writerProfile = document.querySelector("#writerProfile");
-    var position = document.querySelector("#position");
-    var noteAttentionBtn = document.querySelector("#noteAttentionBtn");
     //向后台发送ajax请求获取手记详细信息
     $.ajax({
         type: "GET",
@@ -136,10 +142,38 @@ function findNote() {
                 title.innerHTML = note.noteTitle;
                 noteType.innerHTML = note.noteType.typeName;
                 createTime.innerHTML = note.createTime;
-                writerName.innerHTML = note.blogger.nickname;
-                position.innerHTML = note.blogger.position.position;
-                writerProfile.src = "/" + note.blogger.profilePath;
-                noteAttentionBtn.setAttribute("data-followee-id",note.blogger.userId);
+                findBloggerDetailInfo(note.blogger.userId);
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 获取作者信息
+ */
+function findBloggerDetailInfo(authorId) {
+    var writerName = document.querySelector("#writerName");
+    var writerProfile = document.querySelector("#writerProfile");
+    var position = document.querySelector("#position");
+    var noteAttentionBtn = document.querySelector("#noteAttentionBtn");
+    var noteCount = document.querySelector("#noteCount");
+    var answerCount = document.querySelector("#answerCount");
+    $.ajax({
+        type: "GET",
+        url: "/user/authorDetail",
+        data: {"authorId":authorId},
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if(!isnull(data)){
+                var author = JSON.parse(data);
+                console.log(author);
+                writerName.innerHTML = author.nickname;
+                position.innerHTML = author.position;
+                writerProfile.src = "/" + author.profilePath;
+                noteCount.innerHTML = author.noteCount + "篇手记";
+                answerCount.innerHTML = "解答" + author.answerCount + "次";
+                noteAttentionBtn.setAttribute("data-followee-id",author.authorId);
                 if(hasAttention(noteAttentionBtn.getAttribute("data-followee-id"))){
                     updateAttentionBtnStyle(noteAttentionBtn,true);
                 }
@@ -242,6 +276,78 @@ function cancelLike() {
     likeLabel.innerHTML = "动动小手，点个赞吧";
     likeLabel.style.color = "#000";
 }
+
+/**
+ * 收藏
+ */
+function collectNote() {
+    var noteId = document.querySelector("#noteId");
+    //向后台发送ajax请求发布评论
+    $.ajax({
+        type: "POST",
+        url: "/user/collectNote",
+        data: {"noteId":noteId.value},
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var success = JSON.parse(data).favorite;
+                if(success == "1"){
+                    console.log("已收藏");
+                    hasCollect();
+                }else {
+                    console.log("未收藏");
+                    cancelCollect();
+                }
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 是否已收藏
+ */
+function whetherCollect() {
+    var noteId = document.querySelector("#noteId");
+    //向后台发送ajax请求发布评论
+    $.ajax({
+        type: "POST",
+        url: "/user/whetherCollect",
+        data: {"noteId":noteId.value},
+        dataType: "json",
+        success: function (data) {
+            if(!isnull(data)){
+                var whetherCollect = JSON.parse(data).favorite;
+                if(whetherCollect == "1"){
+                    console.log("已收藏");
+                    hasCollect();
+                }else {
+                    console.log("未收藏");
+                    cancelCollect();
+                }
+            }
+        },
+        async: true
+    });
+}
+//改变收藏图标为已收藏
+function hasCollect() {
+    var favorite = document.querySelector("#favorite");
+    var favoriteIcon = document.querySelector("#favorite-icon");
+
+    favorite.style.color = "rgba(54, 58, 57, 1)";
+    favorite.title = "已收藏";
+    favoriteIcon.style.color = "rgba(255, 63, 75, 1)";
+}
+//改变收藏图标为未收藏
+function cancelCollect() {
+    var favorite = document.querySelector("#favorite");
+    var favoriteIcon = document.querySelector("#favorite-icon");
+
+    favorite.style.color = "rgba(54, 58, 57, .7)";
+    favorite.title = "未收藏";
+    favoriteIcon.style.color = "rgba(54, 58, 57, .7)";
+}
+
 /**
  * 查找该手记的评论
  */

@@ -21,6 +21,13 @@
         SELECT quest_id,quest_title,quizzer,quest_type,create_time FROM `question` WHERE status = 1 ORDER BY create_time DESC
     </select>
 
+    <select id="findQuestionsByTypeId" parameterType="java.lang.Integer" resultMap="AllQuestion">
+        SELECT quest_id,quest_title,quizzer,quest_type,create_time
+        FROM `question`
+        WHERE status = 1 AND quest_type = #{questTypeId}
+        ORDER BY create_time DESC
+    </select>
+
     <resultMap id="AllQuestionLimit" type="com.funnycode.myblog.pojo.PO.Question">
         <id property="questId" column="quest_id"></id>
         <result property="questTitle" column="quest_title"></result>

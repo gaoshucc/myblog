@@ -377,3 +377,19 @@ body{
 .readInfo a:hover{
     color: rgb(19, 168, 228);
 }
+
+.icon-stack,#no-content{
+    display: block;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    color: rgba(54, 58, 57, .7);
+}
+.icon-stack{
+    padding-top: 20px;
+    font-size: 25px;
+}
+#no-content{
+    padding-bottom: 20px;
+    font-size: 14px;
+}

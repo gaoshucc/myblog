@@ -7,6 +7,7 @@ import com.funnycode.myblog.ds.LoginType;
 import com.funnycode.myblog.pojo.PO.*;
 import com.funnycode.myblog.pojo.VO.AuthorVO;
 import com.funnycode.myblog.pojo.VO.EditableUserInfoVO;
+import com.funnycode.myblog.pojo.VO.FolloweeVO;
 import com.funnycode.myblog.service.NoteService;
 import com.funnycode.myblog.service.QuestionService;
 import com.funnycode.myblog.service.UserService;
@@ -41,6 +42,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author gaoshucc
@@ -310,7 +312,7 @@ public class UserController {
         Integer answerCount = questionService.findAnswerCountByAuthorId(authorId);
 
         AuthorVO authorVO = new AuthorVO(user.getUserId(),user.getNickname(),user.getPosition().getPosition(),user.getProfilePath(),noteCount,answerCount);
-
+        logger.info("没有异常");
         return JSON.toJSONString(authorVO, SerializerFeature.DisableCircularReferenceDetect);
     }
 
@@ -338,6 +340,19 @@ public class UserController {
     @ResponseBody
     public String findAllNotes(){
         List<Note> noteList = noteService.findAllNotes();
+        if(noteList != null && noteList.size() > 0){
+            String notes = JSON.toJSONString(noteList, SerializerFeature.DisableCircularReferenceDetect);
+            logger.info(notes);
+            return notes;
+        }
+
+        return "";
+    }
+
+    @GetMapping("/findNotesByTypeId")
+    @ResponseBody
+    public String findNotesNoteTypeId(Integer noteTypeId){
+        List<Note> noteList = noteService.findNotesNoteTypeId(noteTypeId);
         if(noteList != null && noteList.size() > 0){
             String notes = JSON.toJSONString(noteList, SerializerFeature.DisableCircularReferenceDetect);
             logger.info(notes);
@@ -534,7 +549,9 @@ public class UserController {
 
         return JSON.toJSONString(count);
     }
-
+    /**
+     * 点赞
+     */
     @PostMapping("/likeNote")
     @ResponseBody
     public String likeNOte(HttpSession session,String noteId){
@@ -571,7 +588,49 @@ public class UserController {
         }
         return JSON.toJSONString(hasLike);
     }
+    /**
+     * 收藏
+     */
+    @PostMapping("/collectNote")
+    @ResponseBody
+    public String collectNote(HttpSession session,String noteId){
+        JSONObject success = new JSONObject();
+        Boolean hasCollect = userService.hasCollect(LoginUserUtil.findLoginUserId(session),noteId);
+        if(hasCollect){
+            Boolean cancelCollectSuccess = userService.cancelCollectNote(LoginUserUtil.findLoginUserId(session),noteId);
+            if(cancelCollectSuccess){
+                success.put("favorite","0");
+            }else{
+                success.put("favorite","1");
+            }
+            return JSON.toJSONString(success);
+        }else {
+            Boolean collectSuccess = userService.collectNote(LoginUserUtil.findLoginUserId(session),noteId);
+            if(collectSuccess){
+                success.put("favorite","1");
+            }else{
+                success.put("favorite","0");
+            }
+            return JSON.toJSONString(success);
+        }
+    }
 
+    @PostMapping("/whetherCollect")
+    @ResponseBody
+    public String whetherCollect(HttpSession session,String noteId){
+        JSONObject hasCollect = new JSONObject();
+        Boolean whetherCollect = userService.hasCollect(LoginUserUtil.findLoginUserId(session),noteId);
+        if(whetherCollect){
+            hasCollect.put("favorite","1");
+        }else{
+            hasCollect.put("favorite","0");
+        }
+        return JSON.toJSONString(hasCollect);
+    }
+
+    /**
+     * 查找评论
+     */
     @GetMapping("/findComments")
     @ResponseBody
     public String findComments(String noteId){
@@ -634,6 +693,22 @@ public class UserController {
     @ResponseBody
     public String findAllQuestions(){
         List<Question> questList = questionService.findAllQuestions();
+        if(questList != null && questList.size() > 0){
+            String questions = JSON.toJSONString(questList, SerializerFeature.DisableCircularReferenceDetect);
+            logger.info(questions);
+            return questions;
+        }
+
+        return "";
+    }
+
+    /**
+     * 获得所有的提问
+     */
+    @GetMapping("/findQuestionsByTypeId")
+    @ResponseBody
+    public String findQuestionsByTypeId(Integer questTypeId){
+        List<Question> questList = questionService.findQuestionsByTypeId(questTypeId);
         if(questList != null && questList.size() > 0){
             String questions = JSON.toJSONString(questList, SerializerFeature.DisableCircularReferenceDetect);
             logger.info(questions);
@@ -799,15 +874,24 @@ public class UserController {
     public String hasAttention(HttpSession session, String attentionId){
         JSONObject jsonObject = new JSONObject();
         Integer attentionStatus = 0;
+        //不是用户本人时
         if(!LoginUserUtil.findLoginUserId(session).equals(attentionId)){
             attentionStatus = userService.findAttentionStatusById(LoginUserUtil.findLoginUserId(session),attentionId);
+            if(attentionStatus != null){
+                if(attentionStatus == 1 || attentionStatus == 3){
+                    jsonObject.put("status","1");
+                }else {
+                    jsonObject.put("status","0");
+                }
+            }else{
+                Integer reverseAttentionStatus = userService.findAttentionStatusById(attentionId,LoginUserUtil.findLoginUserId(session));
+                if(reverseAttentionStatus == null || reverseAttentionStatus == 0 || reverseAttentionStatus == 1){
+                    jsonObject.put("status","0");
+                }else{
+                    jsonObject.put("status","1");
+                }
+            }
         }
-        if(attentionStatus == 1 || attentionStatus == 3){
-            jsonObject.put("status","1");
-        }else {
-            jsonObject.put("status","0");
-        }
-        logger.info("status:" + attentionStatus);
 
         return JSON.toJSONString(jsonObject);
     }
@@ -834,21 +918,11 @@ public class UserController {
         return JSON.toJSONString(jsonObject);
     }
 
-    /**
-     * 取消关注ta
-     */
-    /*@RequestMapping("/cancelPayAttentionTo")
+    @GetMapping("/findFolloweeList")
     @ResponseBody
-    public String cancelPayAttentionToOther(HttpSession session, @RequestParam("followeeId")String followeeId){
-        JSONObject jsonObject = new JSONObject();
-        Boolean cancelAttentionSuccess = userService.removeFolloweeByFolloweeId(LoginUserUtil.findLoginUserId(session),followeeId);
-        // todo 对关注功能进行完善
-        if(cancelAttentionSuccess){
-            jsonObject.put("success","1");
-        }else {
-            jsonObject.put("success","0");
-        }
+    public String findFolloweeList(HttpSession session){
+        Set<FolloweeVO> followee = userService.findFolloweeList(LoginUserUtil.findLoginUserId(session));
 
-        return JSON.toJSONString(jsonObject);
-    }*/
+        return JSON.toJSONString(followee);
+    }
 }

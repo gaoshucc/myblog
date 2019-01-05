@@ -3,8 +3,10 @@ package com.funnycode.myblog.service;
 import com.funnycode.myblog.pojo.PO.Note;
 import com.funnycode.myblog.pojo.PO.Position;
 import com.funnycode.myblog.pojo.PO.User;
+import com.funnycode.myblog.pojo.VO.FolloweeVO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author gaoshucc
@@ -92,22 +94,46 @@ public interface UserService {
     boolean updateUserInfo(User editUser);
     /**
      * 点赞手记
-     * @param loginUserId,noteId 用户ID，手记ID
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
      * @return boolean 是否点赞成功，成功为true，失败为false
      */
     Boolean likeNote(String loginUserId, String noteId);
     /**
      * 是否已点赞手记
-     * @param loginUserId,noteId 用户ID，手记ID
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
      * @return boolean 是否已点赞，已点赞为true，未点赞为false
      */
     Boolean hasLike(String loginUserId, String noteId);
     /**
      * 取消点赞手记
-     * @param loginUserId,noteId 用户ID，手记ID
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
      * @return boolean 是否取消点赞成功，成功为true，失败为false
      */
     Boolean cancelLikeNote(String loginUserId, String noteId);
+    /**
+     * 收藏手记
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
+     * @return boolean 是否点赞成功，成功为true，失败为false
+     */
+    Boolean collectNote(String loginUserId, String noteId);
+    /**
+     * 是否已收藏手记
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
+     * @return boolean 是否收藏成功，成功为true，失败为false
+     */
+    Boolean hasCollect(String loginUserId, String noteId);
+    /**
+     * 取消收藏手记
+     * @param loginUserId 用户ID
+     * @param noteId 手记ID
+     * @return boolean 是否取消收藏成功，成功为true，失败为false
+     */
+    Boolean cancelCollectNote(String loginUserId, String noteId);
     /**
      * 获得作者信息（包括手记、问答）
      * @param authorId 作者ID
@@ -127,4 +153,10 @@ public interface UserService {
      * @return 是否获取成功
      */
     Integer findAttentionStatusById(String loginUserId, String attentionId);
+    /**
+     * 获取关注的人
+     * @param loginUserId 用户ID
+     * @return Set<FolloweeVO> 关注的人集合
+     */
+    Set<FolloweeVO> findFolloweeList(String loginUserId);
 }

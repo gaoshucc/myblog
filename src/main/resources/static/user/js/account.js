@@ -113,11 +113,62 @@ addLoadEvent(showAside);
  */
 function showfollweelist(){
     var $followee = $("#followee");
-    var $followeelist = $("#list-followee");
+    var $followeeList = $("#list-followee");
+    var tags = false;  //下拉列表是否展开的标志
+
     $followee.click(function(){
-        $followee.toggleClass("pulldown");
-        $followeelist.toggle(200,function(){});
+        if(!tags){
+            $.ajax({
+                type: "GET",
+                url: "/user/findFolloweeList",
+                dataType: "json",
+                success: function (data) {
+                    var followeeList = JSON.parse(data);
+                    var followeeListContent = "";
+                    console.log(followeeList);
+                    for(let i=0; i<followeeList.length; i++){
+                        //给每个后面加上取消关注按钮
+                        followeeListContent = followeeListContent + "<a class='beAttention' data-followee-id='"+ followeeList[i].userId +"'>"+ followeeList[i].nickname +"</a>";
+                    }
+                    $followeeList.append(followeeListContent);
+                    $followee.toggleClass("pulldown");
+                    $followeeList.toggle(200,function(){});
+                    unfollow();
+                    tags = true;
+                },
+                async: true
+            });
+        }else {
+            $followeeList.html("");
+            $followee.toggleClass("pulldown");
+            $followeeList.toggle(200,function(){});
+            tags = false;
+        }
     });
+}
+/**
+ * 为“关注的人”列表的每个用户添加“悬浮显示取消关注”时间
+ */
+function unfollow() {
+    //beAttention
+    var beAttentions = document.querySelectorAll(".beAttention");
+    if(beAttentions != null){
+        var unfollowBtn = document.createElement("span");
+        unfollowBtn.setAttribute("id","unfollowBtn");
+        unfollowBtn.innerHTML = "取消关注";
+        //todo 为“取消关注”按钮添加实现
+        //todo 有bug,当鼠标移动到取消关注按钮时，会触发多次事件
+        for(let i=0; i<beAttentions.length; i++){
+            beAttentions[i].addEventListener("mouseover",function (e) {
+                console.log("悬浮了");
+                beAttentions[i].appendChild(unfollowBtn);
+            });
+            beAttentions[i].addEventListener("mouseout",function (e) {
+                console.log("离开了");
+                beAttentions[i].removeChild(unfollowBtn);
+            });
+        }
+    }
 }
 
 function showpasswordmanage(){

@@ -255,6 +255,7 @@ body{
 }
 
 #content-editormd{
+    min-height: 160px;
     padding: 10px 0;
     border-bottom: outset 1px rgba(246, 246, 246, .5);
 }

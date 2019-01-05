@@ -107,7 +107,9 @@
         <association property="position" column="position_id" javaType="com.funnycode.myblog.pojo.PO.Position" select="com.funnycode.myblog.mapper.UserMapper.findPositionByPositionId"></association>
     </resultMap>
     <select id="findQuizzerDetailByUserId" parameterType="java.lang.String" resultMap="QuizzerDetail">
-        SELECT user_id,nickname,profile_path,gender,experience,position_id FROM `user` WHERE user_id = #{userId}
+        SELECT user_id,nickname,profile_path,gender,experience,position_id
+        FROM `user`
+        WHERE user_id = #{userId}
     </select>
 
     <update id="updateUserLastLogintimeByUsername" parameterType="com.funnycode.myblog.pojo.PO.User">
@@ -135,6 +137,21 @@
 
     <select id="hasLike" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM `like_note`
+        WHERE user_id = #{arg0} AND note_id = #{arg1}
+    </select>
+
+    <insert id="collectNote">
+        INSERT INTO `favorite_note`(`user_id`,`note_id`)
+        VALUES (#{arg0},#{arg1})
+    </insert>
+
+    <delete id="cancelCollectNote">
+        DELETE FROM `favorite_note`
+        WHERE user_id = #{arg0} AND note_id = #{arg1}
+    </delete>
+
+    <select id="hasCollect" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `favorite_note`
         WHERE user_id = #{arg0} AND note_id = #{arg1}
     </select>
 
@@ -166,8 +183,7 @@
     <select id="findAttentionStatusById" resultType="java.lang.Integer">
         SELECT status
         FROM `followee`
-        WHERE (`user_id`=#{arg0} AND `followee_id`=#{arg1}) OR
-        (`user_id`=#{arg1} AND `followee_id`=#{arg0})
+        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
     </select>
 
     <insert id="addFolloweeById">
@@ -178,7 +194,24 @@
     <update id="updateAttentionStatusById">
         UPDATE `followee`
         SET status = #{arg2}
-        WHERE (`user_id`=#{arg0} AND `followee_id`=#{arg1}) OR
-        (`user_id`=#{arg1} AND `followee_id`=#{arg0})
+        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
     </update>
+
+    <resultMap id="Followee" type="com.funnycode.myblog.pojo.VO.FolloweeVO">
+        <id property="userId" column="user_id"></id>
+        <result property="nickname" column="nickname"></result>
+    </resultMap>
+    <select id="findFolloweeList" resultMap="Followee">
+        SELECT user_id,nickname
+        FROM `user`
+        WHERE user_id IN (
+            SELECT followee_id
+            FROM `followee`
+            WHERE `user_id`=#{arg0} AND (`status`=1 OR `status`=3)
+            UNION
+            SELECT user_id
+            FROM `followee`
+            WHERE `followee_id`=#{arg0} AND (`status`=2 OR `status`=3)
+        )
+    </select>
 </mapper>

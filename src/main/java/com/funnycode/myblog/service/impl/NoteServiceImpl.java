@@ -100,4 +100,9 @@ public class NoteServiceImpl implements NoteService {
         return noteMapper.findNoteCountByAuthorId(authorId);
     }
 
+    @Override
+    public List<Note> findNotesNoteTypeId(Integer noteTypeId) {
+        return noteMapper.findNotesNoteTypeId(noteTypeId);
+    }
+
 }

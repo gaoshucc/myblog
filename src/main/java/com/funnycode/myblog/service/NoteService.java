@@ -39,4 +39,6 @@ public interface NoteService {
     Integer findLikeCount(String noteId);
 
     Integer findNoteCountByAuthorId(String authorId);
+
+    List<Note> findNotesNoteTypeId(Integer noteTypeId);
 }

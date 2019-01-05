@@ -82,6 +82,8 @@ function findMyNotes() {
                     $noteSection.append("<article class='article'><h2><a class='noteTitle' href='/user/note?noteId=" + notes[i].noteId + "'>" + notes[i].noteTitle + "</a><a class='deleteNote' data-noteId='"+ notes[i].noteId +"'>删除</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><span class='content-type'>"+ notes[i].noteType.typeName +"</span><time>"+ notes[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
                 }
                 deleteNote();
+            }else {
+                $noteSection.append("<span class='iconfont icon-stack'></span><span id='no-content'>没有内容哦</span>");
             }
         },
         async: true
@@ -140,6 +142,8 @@ function noteRecycleBin() {
                     }
                     recycleNote();
                     completelyDelNote();
+                }else {
+                    $noteSection.append("<span class='iconfont icon-stack'></span><span id='no-content'>回收站里没有内容哦</span>");
                 }
             },
             async: true

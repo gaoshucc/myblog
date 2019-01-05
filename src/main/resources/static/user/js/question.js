@@ -118,10 +118,38 @@ function findQuestion() {
                 title.innerHTML = question.questTitle;
                 questType.innerHTML = question.questType.typeName;
                 createTime.innerHTML = question.createTime;
-                writerName.innerHTML = question.quizzer.nickname;
-                position.innerHTML = question.quizzer.position.position;
-                writerProfile.src = "/" + question.quizzer.profilePath;
-                questionAttentionBtn.setAttribute("data-followee-id",question.quizzer.userId);
+                findQuzzierDetailInfo(question.quizzer.userId);
+            }
+        },
+        async: true
+    });
+}
+/**
+ * 获取作者信息
+ */
+function findQuzzierDetailInfo(authorId) {
+    var writerName = document.querySelector("#writerName");
+    var writerProfile = document.querySelector("#writerProfile");
+    var position = document.querySelector("#position");
+    var questionAttentionBtn = document.querySelector("#questionAttentionBtn");
+    var noteCount = document.querySelector("#noteCount");
+    var answerCount = document.querySelector("#answerCount");
+    $.ajax({
+        type: "GET",
+        url: "/user/authorDetail",
+        data: {"authorId":authorId},
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if(!isnull(data)){
+                var author = JSON.parse(data);
+                console.log(author);
+                writerName.innerHTML = author.nickname;
+                position.innerHTML = author.position;
+                writerProfile.src = "/" + author.profilePath;
+                noteCount.innerHTML = author.noteCount + "篇手记";
+                answerCount.innerHTML = "解答" + author.answerCount + "次";
+                questionAttentionBtn.setAttribute("data-followee-id",author.authorId);
                 if(hasAttention(questionAttentionBtn.getAttribute("data-followee-id"))){
                     updateAttentionBtnStyle(questionAttentionBtn,true);
                 }

@@ -1202,6 +1202,9 @@ body{
     line-height: 25px;
     text-align: center;
 }
+#copyright{
+    margin-left: 10px;
+}
 
 /* 按钮公共样式*/
 #feedback,#uptoTop{

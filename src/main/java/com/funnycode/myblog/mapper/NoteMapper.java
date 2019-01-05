@@ -23,11 +23,17 @@ public interface NoteMapper {
      */
     List<Note> findNotesByUserId(String userId);
     /**
-     * 根据userId获得手记
+     * 获得所有手记
      * @param
      * @return Note 所有手记
      */
     List<Note> findAllNotes();
+    /**
+     * 根据手记类型ID获得手记
+     * @param noteTypeId 手记类型ID
+     * @return Note 所有手记
+     */
+    List<Note> findNotesNoteTypeId(Integer noteTypeId);
     /**
      * 根据noteId获得某一手记
      * @param noteId 手记Id
