@@ -100,6 +100,53 @@ function showUserDetail(){
 }
 
 /**
+ * 收藏夹
+ */
+function showFavoritesContent() {
+    var favorites = document.querySelector("#favorites");
+    if(favorites != null){
+        var favoritesContent = document.querySelector("#favorites-content");
+        var favoritesContentTemp = "";
+
+        favorites.addEventListener("mouseover",function (e) {
+            favoritesContent.style.display = 'block';
+            //判断鼠标是否已经悬浮，放置重复发送请求
+            let event = e || event;        //兼容处理
+            let from = event.fromElement || event.relatedTarget;
+            if(from && this.contains(from)){      //如果在里面则返回
+                return;
+            }
+            $.ajax({
+                type: "GET",
+                url: "/user/findFavoritesLimit",
+                dataType: "json",
+                success: function (data) {
+                    if(!isnull(data)){
+                        var favoritesList = JSON.parse(data);
+                        favoritesContentTemp = "";
+                        for(let i=0; i<favoritesList.length; i++){
+                            favoritesContentTemp = favoritesContentTemp +
+                                "<a class='favorites-items' href='/user/note?noteId="+ favoritesList[i].articleId +"'><span title='"+ favoritesList[i].authorNickname +"'>"+ favoritesList[i].authorNickname +"</span><span title='"+ favoritesList[i].articleTitle +"'>"+ favoritesList[i].articleTitle +"</span></a>";
+                        }
+                        favoritesContent.innerHTML = "<a href='/user/myFavorites' id='more-favorite'>更多</a>" + favoritesContentTemp;
+
+                        console.log("收藏夹不为空");
+                    }else {
+                        favoritesContent.innerHTML = "<span class='iconfont icon-zhaobudaojieguo'></span><span id='no-favorite'>收藏夹里没有东西哦</span>";
+                        console.log("收藏夹为空");
+                    }
+                },
+                async: true
+            });
+        });
+        //鼠标移开
+        favorites.addEventListener('mouseout',function(e){
+            favoritesContent.style.display = 'none';
+        },false);
+    }
+}
+
+/**
  * 查找“优质手记”
  */
 function findAllNotes() {
@@ -122,8 +169,7 @@ function findAllNotes() {
                                         "        </div>" +
                                         "        <time>"+ notes[i].createTime  +"</time>" +
                                         "        <div class='readInfo'>" +
-                                        "            <span><a href='#'>评论</a>99</span>" +
-                                        "            <span><a href='#'>浏览</a>99</span>" +
+                                        "            <span><a href='#'>评论</a>"+ notes[i].commentCount +"</span>" +
                                         "        </div>" +
                                         "    </div>" +
                                         "</article>");
@@ -157,8 +203,7 @@ function findAllQuestions() {
                                             "        </div>" +
                                             "        <time>"+ questions[i].createTime +"</time>" +
                                             "        <div class='readInfo'>" +
-                                            "            <span><a href='#'>评论</a>99</span>" +
-                                            "            <span><a href='#'>浏览</a>99</span>" +
+                                            "            <span><a href='#'>回答</a>"+ questions[i].answerCount +"</span>" +
                                             "        </div>" +
                                             "    </div>" +
                                             "</article>");
@@ -421,6 +466,7 @@ function showQRCode1(){
 }
 
 addLoadEvent(showUserDetail);
+addLoadEvent(showFavoritesContent);
 addLoadEvent(findAllNotes)
 addLoadEvent(showMsgFunc);
 addLoadEvent(play);

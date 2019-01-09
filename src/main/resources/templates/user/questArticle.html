@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/questarticle-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/questarticle-different.css}">
     <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}"/>
+    <link rel="stylesheet" th:href="@{/commons/css/utils.css}"/>
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
     <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
@@ -27,7 +28,7 @@
                     <li><a href='#'>学习路线</a></li>
                 </ul>
             </nav>
-            <div id='user'>
+            <div id='user' th:if="${session.loginUser != null}">
                 <img class="myProfile" th:src="@{/nologin.png}" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
@@ -47,7 +48,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myFavorites}">
                                     <span class='iconfont icon-wodeshoucang'></span>
                                     <span>我的收藏</span>
                                 </a>

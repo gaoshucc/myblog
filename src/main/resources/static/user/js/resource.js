@@ -42,4 +42,4 @@ function showUserDetail(){
         userDetail.style.display = 'none';
     },false);
 }
-addLoadEvent(showUserDetail);
+//addLoadEvent(showUserDetail);

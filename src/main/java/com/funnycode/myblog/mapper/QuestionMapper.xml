@@ -6,6 +6,12 @@
         SELECT * FROM `quest_type` WHERE type_id = #{typeId}
     </select>
 
+    <select id="findAnswerCountByNoteId" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM `answer`
+        WHERE quest_id = #{quest_id}
+    </select>
+
     <select id="findQuestCate" resultType="com.funnycode.myblog.pojo.PO.QuestType">
         SELECT * FROM `quest_type`
     </select>
@@ -16,6 +22,7 @@
         <result property="createTime" column="create_time"></result>
         <association property="quizzer" column="quizzer" javaType="com.funnycode.myblog.pojo.PO.User" select="com.funnycode.myblog.mapper.UserMapper.findQuizzerByUserId"></association>
         <association property="questType" column="quest_type" javaType="com.funnycode.myblog.pojo.PO.QuestType" select="com.funnycode.myblog.mapper.QuestionMapper.findQuestTypeByTypeId"></association>
+        <association property="answerCount" column="quest_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.QuestionMapper.findAnswerCountByNoteId"></association>
     </resultMap>
     <select id="findAllQuestions" resultMap="AllQuestion">
         SELECT quest_id,quest_title,quizzer,quest_type,create_time FROM `question` WHERE status = 1 ORDER BY create_time DESC
@@ -34,6 +41,7 @@
         <result property="createTime" column="create_time"></result>
         <association property="quizzer" column="quizzer" javaType="com.funnycode.myblog.pojo.PO.User" select="com.funnycode.myblog.mapper.UserMapper.findQuizzerByUserId"></association>
         <association property="questType" column="quest_type" javaType="com.funnycode.myblog.pojo.PO.QuestType" select="com.funnycode.myblog.mapper.QuestionMapper.findQuestTypeByTypeId"></association>
+        <association property="answerCount" column="quest_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.QuestionMapper.findAnswerCountByNoteId"></association>
     </resultMap>
     <select id="findAllQuestionsLimit" resultMap="AllQuestionLimit">
         SELECT quest_id,quest_title,quizzer,quest_type,create_time
@@ -48,6 +56,7 @@
         <result property="questTitle" column="quest_title"></result>
         <result property="createTime" column="create_time"></result>
         <association property="questType" column="quest_type" javaType="com.funnycode.myblog.pojo.PO.QuestType" select="com.funnycode.myblog.mapper.QuestionMapper.findQuestTypeByTypeId"></association>
+        <association property="answerCount" column="quest_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.QuestionMapper.findAnswerCountByNoteId"></association>
     </resultMap>
     <select id="findMyQuestionsByUserId" parameterType="java.lang.String" resultMap="Questions">
         SELECT quest_id,quest_title,quest_type,create_time FROM `question` WHERE quizzer = #{userId} AND status = 1 ORDER BY create_time DESC

@@ -3,6 +3,8 @@ package com.funnycode.myblog.mapper;
 import com.funnycode.myblog.pojo.PO.Note;
 import com.funnycode.myblog.pojo.PO.Position;
 import com.funnycode.myblog.pojo.PO.User;
+import com.funnycode.myblog.pojo.VO.FavoriteVO;
+import com.funnycode.myblog.pojo.VO.FavoritesDetailVO;
 import com.funnycode.myblog.pojo.VO.FolloweeVO;
 import com.funnycode.myblog.pojo.VO.UserVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -173,7 +175,7 @@ public interface UserMapper {
      * @param noteId 手记ID
      * @return int 受影响行数
      */
-    Boolean collectNote(String loginUserId, String noteId);
+    Boolean collectNote(String loginUserId, String noteId, String collectTime);
     /**
      * 是否已收藏手记
      * @param loginUserId 用户ID
@@ -189,9 +191,27 @@ public interface UserMapper {
      */
     int cancelCollectNote(String loginUserId, String noteId);
     /**
+     * 获取收藏文章（按时间排序前6个）
+     * @param loginUserId 用户ID
+     * @return List<FavoriteVO> 收藏文章的列表
+     */
+    List<FavoriteVO> findFavoritesLimitByUserId(String loginUserId,Integer start,Integer num);
+    /**
      * 获取关注的人
      * @param loginUserId 用户ID
      * @return Set<FolloweeVO> 关注的人集合
      */
     Set<FolloweeVO> findFolloweeList(String loginUserId);
+    /**
+     * 获取收藏文章
+     * @param loginUserId 用户ID
+     * @return List<FavoritesDetailVO> 收藏文章的列表
+     */
+    List<FavoritesDetailVO> findFavoritesByUserId(String loginUserId);
+    /**
+     * 根据登录用户ID获取收藏夹文章数
+     * @param loginUserId
+     * @return Integer 登录用户收藏夹文章数
+     */
+    Integer findMyFavoritesCount(String loginUserId);
 }

@@ -10,11 +10,14 @@ public class Note {
     private String noteId;
     private String noteTitle;
     private String createTime;
-    //0代表已删除，1代表已发布，2代表保存
+    /**
+     * 0代表已删除，1代表已发布，2代表保存
+     */
     private Integer status;
     private NoteType noteType;
     private User blogger;
     private String noteHtml;
+    private Integer commentCount;
 
     public Note() {
     }
@@ -29,6 +32,15 @@ public class Note {
         this.blogger = user;
         this.status = 1;
         this.noteHtml = noteHtml;
+        this.commentCount = 0;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
     public String getNoteId() {

@@ -63,6 +63,8 @@ body{
 }
 #user #imgone{
     width: 30px;
+    height: 30px;
+    border: solid 2px rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -293,7 +295,8 @@ body{
 
 #noteSection{
     width: 100%;
-    padding: 0 20px;
+    min-height: 450px;
+    padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
@@ -384,16 +387,17 @@ body{
 
 .icon-stack,#no-content{
     display: block;
-    line-height: 30px;
     margin: 0 auto;
     text-align: center;
     color: rgba(54, 58, 57, .7);
 }
 .icon-stack{
+    line-height: 50px;
     padding-top: 20px;
     font-size: 25px;
 }
 #no-content{
+    line-height: 30px;
     padding-bottom: 20px;
     font-size: 14px;
 }

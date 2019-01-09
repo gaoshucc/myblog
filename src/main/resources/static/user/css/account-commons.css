@@ -85,6 +85,8 @@ body{
 }
 #user #profile{
     width: 30px;
+    height: 30px;
+    border: solid 2px rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -359,28 +361,52 @@ body{
 #list-followee a{
     display: block;
     width: 100%;
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     padding: 0 10px;
     text-align: left;
     font-size: 14px;
     color: rgba(54, 58, 57, 1);
-    background-color: rgba(246, 246, 246, 1);
+    background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
+}
+#list-followee a:hover{
+    background-color: rgba(246, 246, 246, 1);
 }
 #unfollowBtn{
     float: right;
     display: block;
-    height: 20px;
-    line-height: 20px;
+    height: 25px;
+    line-height: 25px;
     padding: 0 5px;
     margin: 5px;
-    font-size: 12px;
-    background-color: rgba(246, 84, 21, .7);
+    color: rgba(235, 0, 0, 0.7);
+    border: solid 0.5px rgba(235, 0, 0, 0.7);
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgba(246, 246, 246, 1);
     cursor: pointer;
 }
 #unfollowBtn:hover{
-    background-color: rgba(246, 84, 21, 1);
+    color: rgba(235, 0, 0, 1);
+    border: solid 0.5px rgba(235, 0, 0, 1);
+}
+
+.icon-meiyoudingdan-01,#no-followee{
+    display: block;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    color: rgba(54, 58, 57, .7);
+}
+.icon-meiyoudingdan-01{
+    padding-top: 20px;
+    font-size: 25px;
+}
+#no-followee{
+    padding-bottom: 20px;
+    font-size: 14px;
 }
 
 #achievement{

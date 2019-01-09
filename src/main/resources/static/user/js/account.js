@@ -123,14 +123,18 @@ function showfollweelist(){
                 url: "/user/findFolloweeList",
                 dataType: "json",
                 success: function (data) {
+                    $followeeList.html("");
                     var followeeList = JSON.parse(data);
-                    var followeeListContent = "";
-                    console.log(followeeList);
-                    for(let i=0; i<followeeList.length; i++){
-                        //给每个后面加上取消关注按钮
-                        followeeListContent = followeeListContent + "<a class='beAttention' data-followee-id='"+ followeeList[i].userId +"'>"+ followeeList[i].nickname +"</a>";
+                    if(followeeList.length > 0){
+                        var followeeListContent = "";
+                        console.log(followeeList);
+                        for(let i=0; i<followeeList.length; i++){
+                            followeeListContent = followeeListContent + "<a class='beAttention' data-followee-id='"+ followeeList[i].userId +"'>"+ followeeList[i].nickname +"</a>";
+                        }
+                        $followeeList.append(followeeListContent);
+                    }else{
+                        $followeeList.append("<span class='iconfont icon-meiyoudingdan-01'></span><span id='no-followee'>还没有关注的人哦</span>");
                     }
-                    $followeeList.append(followeeListContent);
                     $followee.toggleClass("pulldown");
                     $followeeList.toggle(200,function(){});
                     unfollow();
@@ -147,27 +151,178 @@ function showfollweelist(){
     });
 }
 /**
- * 为“关注的人”列表的每个用户添加“悬浮显示取消关注”时间
+ * 为“关注的人”列表的每个用户添加“悬浮显示取消关注”事件
+ */
+/*
+function unfollow() {
+    //beAttention
+    var beAttentions = document.querySelectorAll(".beAttention");
+    if(beAttentions != null){
+        var $followee = $("#followee");
+        var $followeeList = $("#list-followee");
+        var followeeList;
+        var followeeListContent;
+        var unfollowBtn = document.createElement("span");
+        unfollowBtn.setAttribute("id","unfollowBtn");
+        unfollowBtn.innerHTML = "取消关注";
+        //用来定位当前选中的“关注的人”，初始值为-1，表示尚未选中任何人
+        var flag = -1;
+        //todo 为“取消关注”按钮添加实现
+        unfollowBtn.addEventListener("click",function (e) {
+            if(flag != -1){
+                if(payAttentionTo(beAttentions[flag].getAttribute("data-followee-id"))){
+                    $.ajax({
+                        type: "GET",
+                        url: "/user/findFolloweeList",
+                        dataType: "json",
+                        success: function (data) {
+                            if(!isnull(data)){
+                                followeeList = JSON.parse(data);
+                                $followeeList.html("");
+                                followeeListContent = "";
+                                console.log(followeeList);
+                                for(let i=0; i<followeeList.length; i++){
+                                    //给每个后面加上取消关注按钮
+                                    followeeListContent = followeeListContent + "<a class='beAttention' data-followee-id='"+ followeeList[i].userId +"'>"+ followeeList[i].nickname +"</a>";
+                                }
+                                $followeeList.append(followeeListContent);
+                                unfollow();
+                            }else{
+                                $followeeList.append("没有关注的人哦");
+                            }
+                            console.log("取消关注了" + flag);
+                        },
+                        async: true
+                    });
+                }
+            }else {
+                return;
+            }
+        });
+        //为“关注的人”添加事件，当鼠标悬浮于某个关注的人上时，显示“取消关注按钮”
+        for(let i=0; i<beAttentions.length; i++){
+            beAttentions[i].addEventListener("mouseover",function (e) {
+                let event = e || event;        //兼容处理
+                let from = event.fromElement || event.relatedTarget;//兼容处理
+                if(from && this.contains(from)){      //如果在里面则返回
+                    return;
+                }
+                console.log("悬浮了");
+                beAttentions[i].appendChild(unfollowBtn);
+                flag = i;
+            });
+            beAttentions[i].addEventListener("mouseout",function (e) {
+                let event = e || event;        //兼容处理
+                let from = event.fromElement || event.relatedTarget;//兼容处理
+                if(from && this.contains(from)){      //如果在里面则返回
+                    return;
+                }
+                console.log("离开了");
+                beAttentions[i].removeChild(unfollowBtn);
+                flag = -1;
+            });
+        }
+    }
+}
+*/
+/**
+ * “关注的人”列表里取消关注
  */
 function unfollow() {
     //beAttention
     var beAttentions = document.querySelectorAll(".beAttention");
     if(beAttentions != null){
+        //“取消关注”按钮
         var unfollowBtn = document.createElement("span");
         unfollowBtn.setAttribute("id","unfollowBtn");
         unfollowBtn.innerHTML = "取消关注";
-        //todo 为“取消关注”按钮添加实现
-        //todo 有bug,当鼠标移动到取消关注按钮时，会触发多次事件
-        for(let i=0; i<beAttentions.length; i++){
-            beAttentions[i].addEventListener("mouseover",function (e) {
-                console.log("悬浮了");
-                beAttentions[i].appendChild(unfollowBtn);
-            });
-            beAttentions[i].addEventListener("mouseout",function (e) {
-                console.log("离开了");
-                beAttentions[i].removeChild(unfollowBtn);
-            });
+        //用来定位当前选中的“关注的人”，初始值为-1，表示尚未选中任何人。设置对象类型是因为传参数需要（对象是引用型的）
+        var beCancelAttention = {
+            flag:-1
+        };
+
+        unfollowAndRefresh(unfollowBtn,beCancelAttention);
+        showUnfollowBtn(unfollowBtn,beAttentions,beCancelAttention);
+    }
+}
+/**
+ * 取消关注并刷新
+ * @param unfollowBtn “取消关注”按钮
+ * @param beCancelAttention 被取消关注的人的位置
+ */
+function unfollowAndRefresh(unfollowBtn,beCancelAttention) {
+    var beAttentions;
+    var $followee = $("#followee");
+    var $followeeList = $("#list-followee");
+    var followeeList;
+    var followeeListContent;
+    //todo 为“取消关注”按钮添加实现
+    unfollowBtn.addEventListener("click",function (e) {
+        console.log("点击了取消关注按钮");
+        if(beCancelAttention.flag != -1){
+            //重新获取“关注的人”列表
+            beAttentions = document.querySelectorAll(".beAttention");
+            if(payAttentionTo(beAttentions[beCancelAttention.flag].getAttribute("data-followee-id"))){
+                console.log("flag1:"+beCancelAttention.flag);
+                $.ajax({
+                    type: "GET",
+                    url: "/user/findFolloweeList",
+                    dataType: "json",
+                    success: function (data) {
+                        $followeeList.html("");
+                        followeeList = JSON.parse(data);
+                        if(followeeList.length > 0){
+                            followeeListContent = "";
+                            console.log(followeeList);
+                            for(let i=0; i<followeeList.length; i++){
+                                followeeListContent = followeeListContent + "<a class='beAttention' data-followee-id='"+ followeeList[i].userId +"'>"+ followeeList[i].nickname +"</a>";
+                            }
+                            $followeeList.append(followeeListContent);
+                            console.log("准备执行showUnfollowBtn了");
+                            showUnfollowBtn(unfollowBtn,document.querySelectorAll(".beAttention"),beCancelAttention);
+                        }else{
+                            $followeeList.append("<span class='iconfont icon-meiyoudingdan-01'></span><span id='no-followee'>还没有关注的人哦</span>");
+                        }
+                        console.log("取消关注了" + beCancelAttention.flag);
+                    },
+                    async: true
+                });
+            }
+        }else {
+            return;
         }
+    });
+}
+/**
+ * 为“关注的人”添加事件，当鼠标悬浮于某个关注的人上时，显示“取消关注按钮”
+ * @param unfollowBtn “取消关注”按钮
+ * @param beAttentions 关注的人
+ * @param flag 定位当前选中的用户名
+ */
+function showUnfollowBtn(unfollowBtn,beAttentions,beCancelAttention) {
+    console.log("进入showUnfollowBtn了");
+    for(let i=0; i<beAttentions.length; i++){
+        console.log("进入showUnfollowBtn循环了" + i);
+        beAttentions[i].addEventListener("mouseover",function (e) {
+            let event = e || event;        //兼容处理
+            let from = event.fromElement || event.relatedTarget;//兼容处理
+            if(from && beAttentions[i].contains(from)){      //如果在里面则返回
+                return;
+            }
+            console.log("悬浮了");
+            beAttentions[i].appendChild(unfollowBtn);
+            beCancelAttention.flag = i;
+        });
+        beAttentions[i].addEventListener("mouseout",function (e) {
+            let event = e || event;        //兼容处理
+            let from = event.fromElement || event.relatedTarget;//兼容处理
+            if(from && beAttentions[i].contains(from)){      //如果在里面则返回
+                return;
+            }
+            console.log("离开了");
+            beAttentions[i].removeChild(unfollowBtn);
+            beCancelAttention.flag = -1;
+        });
     }
 }
 

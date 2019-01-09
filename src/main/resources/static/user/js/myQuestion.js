@@ -132,7 +132,7 @@ function findMyQuestions() {
                 let questions = JSON.parse(data);
                 console.log(questions);
                 for(let i=0; i<questions.length; i++){
-                    $questionSection.append("<article class='article'><h2><a class='questTitle' href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a><a class='deleteQuestion' data-questionId='"+ questions[i].questId +"'>删除</a></h2><p>"+"点击进入详细阅读"+"</p><div class='articleInfo'><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                    $questionSection.append("<article class='article'><h2><a class='questTitle' href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a><a class='deleteQuestion' data-questionId='"+ questions[i].questId +"'>删除</a></h2><p>"+"点击进入详细阅读"+"</p><div class='articleInfo'><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>回答</a>"+ questions[i].answerCount +"</span></div></article>");
                 }
                 deleteQuestion();
             }else {
@@ -191,7 +191,7 @@ function noteRecycleBin() {
                     let questions = JSON.parse(data);
                     console.log(questions);
                     for(let i=0; i<questions.length; i++){
-                        $questionSection.append("<article class='article'><h2><a class='questTitle' href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a><a class='recycleQuestion' data-questionId='"+ questions[i].questId +"'>还原</a><a class='completelyDel' data-questionId='"+ questions[i].questId +"'>彻底删除</a></h2><p>"+"点击进入详细阅读"+"</p><div class='articleInfo'><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                        $questionSection.append("<article class='article'><h2><a class='questTitle' href='/user/question?questId=" + questions[i].questId + "'>" + questions[i].questTitle + "</a><a class='recycleQuestion' data-questionId='"+ questions[i].questId +"'>还原</a><a class='completelyDel' data-questionId='"+ questions[i].questId +"'>彻底删除</a></h2><p>"+"点击进入详细阅读"+"</p><div class='articleInfo'><span class='content-type'>"+ questions[i].questType.typeName +"</span><time>"+ questions[i].createTime +"</time><div class='readInfo'><span><a href='#'>回答</a>"+ questions[i].answerCount +"</span></div></article>");
                     }
                     recycleQuestion();
                     completelyQuestion();

@@ -4,6 +4,8 @@ import com.funnycode.myblog.mapper.UserMapper;
 import com.funnycode.myblog.pojo.PO.Note;
 import com.funnycode.myblog.pojo.PO.Position;
 import com.funnycode.myblog.pojo.PO.User;
+import com.funnycode.myblog.pojo.VO.FavoriteVO;
+import com.funnycode.myblog.pojo.VO.FavoritesDetailVO;
 import com.funnycode.myblog.pojo.VO.FolloweeVO;
 import com.funnycode.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,8 +123,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Boolean collectNote(String loginUserId, String noteId) {
-        return userMapper.collectNote(loginUserId, noteId);
+    public Boolean collectNote(String loginUserId, String noteId, String collectTime) {
+        return userMapper.collectNote(loginUserId, noteId, collectTime);
     }
 
     @Override
@@ -133,6 +135,21 @@ public class UserServiceImpl implements UserService{
     @Override
     public Boolean cancelCollectNote(String loginUserId, String noteId) {
         return userMapper.cancelCollectNote(loginUserId, noteId)>0?true:false;
+    }
+
+    @Override
+    public List<FavoriteVO> findFavoritesLimitByUserId(String loginUserId, Integer start, Integer num) {
+        return userMapper.findFavoritesLimitByUserId(loginUserId,start,num);
+    }
+
+    @Override
+    public List<FavoritesDetailVO> findFavoritesByUserId(String loginUserId) {
+        return userMapper.findFavoritesByUserId(loginUserId);
+    }
+
+    @Override
+    public Integer findMyFavoritesCount(String loginUserId) {
+        return userMapper.findMyFavoritesCount(loginUserId);
     }
 
     @Override

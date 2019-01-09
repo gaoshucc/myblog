@@ -14,7 +14,9 @@ function hasClass(cla, element) {
     var allClass = element.className.trim().split(" ");
     return allClass.indexOf(cla) > -1;
 }
-
+/**
+ * 为元素添加类
+ */
 function addClass(cla,element){
     if(!hasClass(cla,element)){
         if(element.setAttribute){
@@ -22,9 +24,20 @@ function addClass(cla,element){
         }else{
             element.className = element.className+" "+cla;
         }
-
     }
 }
+/**
+ * 子元素不触发事件
+ */
+/*
+function containsNotTrigger(father,e) {
+    let event = e || event;        //兼容处理
+    let from = event.fromElement || event.relatedTarget;//兼容处理
+    if(from && father.contains(from)){      //如果在里面则返回
+        return;
+    }
+}
+*/
 /*
 * 是否已登录
 * */
@@ -116,18 +129,22 @@ function hasAttention(attentionId){
 function attention(attentionBtn) {
     var attentionId;
     attentionBtn.addEventListener("click",function (e) {
-        attentionId = attentionBtn.getAttribute("data-followee-id");
-        if(payAttentionTo(attentionId)){
-            if(hasAttention(attentionId)){
-                updateAttentionBtnStyle(attentionBtn,true);
-                console.log("已关注");
+        if(hasLogin()){
+            attentionId = attentionBtn.getAttribute("data-followee-id");
+            if(payAttentionTo(attentionId)){
+                if(hasAttention(attentionId)){
+                    updateAttentionBtnStyle(attentionBtn,true);
+                    console.log("已关注");
+                }else{
+                    updateAttentionBtnStyle(attentionBtn,false);
+                    console.log("未关注");
+                }
+                console.log("操作成功");
             }else{
-                updateAttentionBtnStyle(attentionBtn,false);
-                console.log("未关注");
+                console.log("操作失败");
             }
-            console.log("操作成功");
         }else{
-            console.log("操作失败");
+            showPopup("<span id='popup-login-title'>小主，要登录才能关注哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
         }
     });
 }

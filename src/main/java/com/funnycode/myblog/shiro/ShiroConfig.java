@@ -81,6 +81,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/findAllNotes", "anon");
         filterChainDefinitionMap.put("/user/findNotesNoteTypeId", "anon");
         filterChainDefinitionMap.put("/user/findNoteBelongToType", "anon");
+        filterChainDefinitionMap.put("/user/findLikeCount", "anon");
         filterChainDefinitionMap.put("/user/note", "anon");
         filterChainDefinitionMap.put("/user/readNote", "anon");
         filterChainDefinitionMap.put("/user/findComments", "anon");
@@ -93,6 +94,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/findAnswers", "anon");
         filterChainDefinitionMap.put("/user/authorDetail", "anon");
         filterChainDefinitionMap.put("/user/whetherTheLogin", "anon");
+        filterChainDefinitionMap.put("/user/findNotesByTypeId", "anon");
+        filterChainDefinitionMap.put("/user/findQuestionsByTypeId", "anon");
         filterChainDefinitionMap.put("/user/**", "roles[user]");
         //管理员权限
         filterChainDefinitionMap.put("/admin/adminexists", "anon");

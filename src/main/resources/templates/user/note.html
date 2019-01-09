@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class='funcCardItems'>
-                            <a href="#">
+                            <a th:href="@{/user/myFavorites}">
                                 <span class='iconfont icon-wodeshoucang'></span>
                                 <span>我的收藏</span>
                             </a>
@@ -80,7 +80,8 @@
         <div id='articleHeadline'>
             <h2 id="title"></h2>
             <span id="noteType"></span>
-            <span>999浏览</span>
+            <!--todo 实现浏览数统计功能-->
+            <!--<span>999浏览</span>-->
             <span id="like-count">点赞</span>
             <time datetime="2018-10-05" id="createTime">2018-10-05</time>
             <ul id='shareList'>

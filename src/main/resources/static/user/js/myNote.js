@@ -79,7 +79,7 @@ function findMyNotes() {
                 let notes = JSON.parse(data);
                 console.log(notes);
                 for(let i=0; i<notes.length; i++){
-                    $noteSection.append("<article class='article'><h2><a class='noteTitle' href='/user/note?noteId=" + notes[i].noteId + "'>" + notes[i].noteTitle + "</a><a class='deleteNote' data-noteId='"+ notes[i].noteId +"'>删除</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><span class='content-type'>"+ notes[i].noteType.typeName +"</span><time>"+ notes[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                    $noteSection.append("<article class='article'><h2><a class='noteTitle' href='/user/note?noteId=" + notes[i].noteId + "'>" + notes[i].noteTitle + "</a><a class='deleteNote' data-noteId='"+ notes[i].noteId +"'>删除</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><span class='content-type'>"+ notes[i].noteType.typeName +"</span><time>"+ notes[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>"+ notes[i].commentCount +"</span></div></article>");
                 }
                 deleteNote();
             }else {
@@ -138,7 +138,7 @@ function noteRecycleBin() {
                     let notes = JSON.parse(data);
                     console.log(notes);
                     for(let i=0; i<notes.length; i++){
-                        $noteSection.append("<article class='article'><h2><a class='noteTitle' href='/user/note?noteId=" + notes[i].noteId + "'>" + notes[i].noteTitle + "</a><a class='recycleNote' data-noteId='"+ notes[i].noteId +"'>还原</a><a class='completelyDel' data-noteId='"+ notes[i].noteId +"'>彻底删除</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><span class='content-type'>"+ notes[i].noteType.typeName +"</span><time>"+ notes[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>99</span><span><a href='#'>浏览</a>99</span></div></article>");
+                        $noteSection.append("<article class='article'><h2><a class='noteTitle' href='/user/note?noteId=" + notes[i].noteId + "'>" + notes[i].noteTitle + "</a><a class='recycleNote' data-noteId='"+ notes[i].noteId +"'>还原</a><a class='completelyDel' data-noteId='"+ notes[i].noteId +"'>彻底删除</a></h2><p>"+"Struts2的核心部分是拦截器模块"+"</p><div class='articleInfo'><span class='content-type'>"+ notes[i].noteType.typeName +"</span><time>"+ notes[i].createTime +"</time><div class='readInfo'><span><a href='#'>评论</a>"+ notes[i].commentCount +"</span></div></article>");
                     }
                     recycleNote();
                     completelyDelNote();

@@ -25,7 +25,7 @@
                     <li><a href='#'>学习路线</a></li>
                 </ul>
             </nav>
-            <div id='user'>
+            <div id='user' th:if="${session.loginUser != null}">
                 <img class="myProfile" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myFavorites}">
                                     <span class='iconfont icon-wodeshoucang'></span>
                                     <span>我的收藏</span>
                                 </a>

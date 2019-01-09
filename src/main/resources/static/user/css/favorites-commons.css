@@ -183,142 +183,83 @@ body{
     color: rgba(19, 168, 228, 1);
 }
 
-#top{
-    width: 96%;
-    height: 50px;
-    line-height: 50px;
-    margin: 10px auto;
-    border-radius: 10px;
-    box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
-    background-color: rgba(255, 255, 255, 1);
-}
-
-#write{
-    display: block;
-    float: right;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    margin: 10px 20px;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 133, 235, 1);
-}
-
-#serchBar{
-    position: relative;
-    float: right;
-    width: 230px;
-    height: 30px;
-    margin: 10px 20px;
-    line-height: 30px;
-    border-radius: 5px;
-    z-index: 1;
-}
-#serchText{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 200px;
-    height: 30px;
-    line-height: 30px;
-    border: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    text-indent: 10px;
-    outline: none;
-    background-color: rgba(246, 246, 246, 1);
-}
-#serch{
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-left: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    color: rgba(54, 58, 57, 1);
-    background-color: rgba(246, 246, 246, 1);
-}
-#serch:hover{
-    color: rgba(0, 133, 235, 1);
-}
-
-#note-recycle-bin{
-    display: block;
-    float: left;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    margin: 10px 20px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 133, 235, 1);
-    cursor: pointer;
-}
-
 #container{
     position: relative;
     width: 1080px;
     margin: 10px auto;
 }
 
-#noteSection{
-    width: 600px;
+#favorites-headline{
+    width: 960px;
+    height: 60px;
+    line-height: 60px;
     margin: 0 auto;
-    padding: 0 20px;
-    border-radius: 10px;
+    border-bottom: solid 1px rgba(0, 0, 0, .3);
+    color: rgba(54, 58, 57, 1);
+}
+#favorites-headline span{
+    height: 60px;
+    line-height: 60px;
+    padding-left: 5px;
+}
+#favorites-headline span:nth-child(1){
+    font-size: 16px;
+}
+#favorites-headline span:nth-child(2){
+    font-size: 20px;
+}
+#favorites-headline span:nth-child(3){
+    font-size: 14px;
+    color: rgba(0, 0, 0, .5);
+}
+#favorites-headline span:nth-child(3) em{
+    margin: 0 5px;
+    font-style: normal;
+}
+/*收藏夹样式*/
+#favorites-section{
+    width: 960px;
+    min-height: 400px;
+    padding: 30px 120px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
+}
+/*每个收藏文章的样式*/
+.favorites-section-items{
+    width: 720px;
+    height: 100px;
+    line-height: 100px;
+    margin: 5px auto;
+    padding: 0 20px;
     background-color: rgba(255, 255, 255, 1);
 }
+/*收藏文章信息*/
 .article{
-    width: 100%;
-    height: 80px;
-    padding: 5px 0;
-    border-bottom: solid 0.5px rgba(138,138,138, .5);
+    float: right;
+    width: 460px;
+    height: 100px;
+    padding: 10px 0;
     letter-spacing: 1px;
+    border-bottom: solid 0.5px rgba(216, 216, 216, 1);
 }
 .article:last-child{
     border-bottom: none;
 }
 .article h2{
     width: 100%;
-    height: 25px;
-    line-height: 25px;
+    height: 35px;
+    line-height: 35px;
     font-size: 16px;
     font-weight: bolder;
 }
-.article h2 a.noteTitle{
+.article h2 a.articleTitle{
     text-decoration: none;
-    color: rgba(0, 0, 0, .8);
-}
-.article h2 a.noteTitle:hover{
-    color: rgba(0, 133, 235, 1);
-}
-.article h2 a.deleteNote,.article h2 a.recycleNote,.article h2 a.completelyDel{
-    display: block;
-    float: right;
-    margin-right: 10px;
-    line-height: 25px;
-    font-size: 12px;
-    font-weight: normal;
-    text-decoration: none;
-    text-align: center;
     color: rgba(0, 0, 0, .8);
     cursor: pointer;
 }
-.article h2 a.deleteNote:hover,.article h2 a.recycleNote:hover,.article h2 a.completelyDel:hover{
-    color: rgb(235, 0, 0);
+.article h2 a.articleTitle:hover{
+    color: rgba(0, 133, 235, 1);
 }
 .article p{
     width: 100%;
@@ -336,17 +277,6 @@ body{
     letter-spacing: 1px;
     color: rgba(108, 108, 108, 1);
 }
-.author{
-    display: block;
-    float: left;
-    height: 25px;
-    line-height: 25px;
-    margin-right: 10px;
-    color: rgba(54, 58, 57, 1);
-}
-.author:hover{
-    color: rgb(19, 168, 228);
-}
 .content-type{
     display: block;
     float: left;
@@ -362,7 +292,6 @@ body{
     width: 50%;
     height: 100%;
     line-height: 100%;
-
 }
 .readInfo span{
     display: block;
@@ -379,19 +308,48 @@ body{
 .readInfo a:hover{
     color: rgb(19, 168, 228);
 }
-
-.icon-stack,#no-content{
+/*作者信息*/
+.author-info{
+    width: 160px;
+    height: 100px;
+    line-height: 100px;
+    padding: 25px 0;
+}
+.author-info img{
     display: block;
-    line-height: 30px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.author-info-right{
+    float: right;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+}
+.author-nickname,.collect-time{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    text-align: left;
+}
+.collect-time{
+    font-size: 10px;
+}
+/*收藏夹为空时样式*/
+.icon-zhaobudaojieguo,#no-content{
+    display: block;
     margin: 0 auto;
     text-align: center;
     color: rgba(54, 58, 57, .7);
 }
-.icon-stack{
-    padding-top: 20px;
+.icon-zhaobudaojieguo{
+    line-height: 50px;
     font-size: 25px;
 }
 #no-content{
-    padding-bottom: 20px;
+    line-height: 30px;
     font-size: 14px;
 }

@@ -97,6 +97,18 @@
     <select id="findBloggerDetailByUserId" parameterType="java.lang.String" resultMap="BloggerDetail">
         SELECT user_id,nickname,profile_path,gender,experience,position_id FROM `user` WHERE user_id = #{userId}
     </select>
+    <!--收藏夹显示的作者信息-->
+    <resultMap id="AuthorDetail" type="com.funnycode.myblog.pojo.PO.User">
+        <id property="userId" column="user_id"></id>
+        <result property="nickname" column="nickname"></result>
+        <result property="profilePath" column="profile_path"></result>
+        <association property="position" column="position_id" javaType="com.funnycode.myblog.pojo.PO.Position" select="com.funnycode.myblog.mapper.UserMapper.findPositionByPositionId"></association>
+    </resultMap>
+    <select id="findAuthorDetailByUserId" parameterType="java.lang.String" resultMap="AuthorDetail">
+        SELECT user_id,nickname,profile_path,position_id
+        FROM `user`
+        WHERE user_id = #{userId}
+    </select>
     <!--根据userId获得提问者信息-->
     <resultMap id="QuizzerDetail" type="com.funnycode.myblog.pojo.PO.User">
         <id property="userId" column="user_id"></id>
@@ -141,8 +153,8 @@
     </select>
 
     <insert id="collectNote">
-        INSERT INTO `favorite_note`(`user_id`,`note_id`)
-        VALUES (#{arg0},#{arg1})
+        INSERT INTO `favorite_note`(`user_id`,`note_id`,`collect_time`)
+        VALUES (#{arg0},#{arg1},#{arg2})
     </insert>
 
     <delete id="cancelCollectNote">
@@ -153,6 +165,36 @@
     <select id="hasCollect" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM `favorite_note`
         WHERE user_id = #{arg0} AND note_id = #{arg1}
+    </select>
+
+    <resultMap id="Favorite" type="com.funnycode.myblog.pojo.VO.FavoriteVO">
+        <id property="articleId" column="note_id"></id>
+        <association property="articleTitle" column="note_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.NoteMapper.findNoteTitleByNoteId"></association>
+        <association property="authorNickname" column="note_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.NoteMapper.findAuthorNicknameByNoteId"></association>
+    </resultMap>
+    <select id="findFavoritesLimitByUserId" resultMap="Favorite">
+        SELECT note_id
+        FROM `favorite_note`
+        WHERE user_id = #{arg0}
+        ORDER BY collect_time DESC
+        LIMIT #{arg1},#{arg2}
+    </select>
+
+    <resultMap id="FavoriteDetail" type="com.funnycode.myblog.pojo.VO.FavoritesDetailVO">
+        <result property="collectTime" column="collect_time"></result>
+        <association property="collectNote" column="note_id" javaType="com.funnycode.myblog.pojo.PO.Note" select="com.funnycode.myblog.mapper.NoteMapper.findFavoritesDetailByNoteId"></association>
+    </resultMap>
+    <select id="findFavoritesByUserId" resultMap="FavoriteDetail">
+        SELECT note_id,collect_time
+        FROM `favorite_note`
+        WHERE user_id = #{arg0}
+        ORDER BY collect_time DESC
+    </select>
+
+    <select id="findMyFavoritesCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM `favorite_note`
+        WHERE user_id = #{loginUserId}
     </select>
 
     <update id="updateUserExperienceByUserId" parameterType="java.lang.String">

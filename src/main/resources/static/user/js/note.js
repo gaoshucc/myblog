@@ -431,25 +431,29 @@ function submitComment() {
     var submitComment = document.querySelector("#submit-comment");
 
     submitComment.addEventListener("click",function (e) {
-        kindEditor.sync();
-        if(isnull(commentContent.value)){
-            alert("评论内容不能为空");
-            return;
+        if(hasLogin()){
+            kindEditor.sync();
+            if(isnull(commentContent.value)){
+                alert("评论内容不能为空");
+                return;
+            }
+            //向后台发送ajax请求发布评论
+            $.ajax({
+                type: "POST",
+                url: "/user/submitComment",
+                data: {"noteId":noteId.value,"commentContent":commentContent.value},
+                dataType: "json",
+                success: function (data) {
+                    if(!isnull(data)){
+                        commentContent.value = null;
+                        location.reload();
+                    }
+                },
+                async: true
+            });
+        }else {
+            showPopup("<span id='popup-login-title'>小主，要登录才能评论哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
         }
-        //向后台发送ajax请求发布评论
-        $.ajax({
-            type: "POST",
-            url: "/user/submitComment",
-            data: {"noteId":noteId.value,"commentContent":commentContent.value},
-            dataType: "json",
-            success: function (data) {
-                if(!isnull(data)){
-                    commentContent.value = null;
-                    location.reload();
-                }
-            },
-            async: true
-        });
     });
 }
 
@@ -472,57 +476,61 @@ function replyTo() {
         var basePath;
         for(let i=0; i<replyToOthers.length; i++){
             replyToOthers[i].addEventListener("click",function (e) {
-                //隐藏“发表评论”按钮
-                submitComment.style.display = "none";
-                //清除上一个回复的样式
-                if(submitReply != null) writeCommentBox.removeChild(submitReply);
-                if(replyText != null) writeCommentBox.removeChild(replyText);
-                if(byReply != null) writeCommentBox.removeChild(byReply);
-                //初始化回复输入框
-                submitReply = document.createElement("a");
-                submitReply.setAttribute("id", "submit-reply");
-                submitReply.innerHTML = "发表回复";
-                replyText = document.createElement("span");
-                addClass("reply-text", replyText);
-                replyText.innerHTML = "回复";
-                byReply = document.createElement("input");
-                addClass("byReply", byReply);
-                byReply.value = replyToOthers[i].getAttribute("data-byReply-nickname");
-                writeCommentBox.appendChild(submitReply);
-                writeCommentBox.appendChild(replyText);
-                writeCommentBox.appendChild(byReply);
+                if(hasLogin()){
+                    //隐藏“发表评论”按钮
+                    submitComment.style.display = "none";
+                    //清除上一个回复的样式
+                    if(submitReply != null) writeCommentBox.removeChild(submitReply);
+                    if(replyText != null) writeCommentBox.removeChild(replyText);
+                    if(byReply != null) writeCommentBox.removeChild(byReply);
+                    //初始化回复输入框
+                    submitReply = document.createElement("a");
+                    submitReply.setAttribute("id", "submit-reply");
+                    submitReply.innerHTML = "发表回复";
+                    replyText = document.createElement("span");
+                    addClass("reply-text", replyText);
+                    replyText.innerHTML = "回复";
+                    byReply = document.createElement("input");
+                    addClass("byReply", byReply);
+                    byReply.value = replyToOthers[i].getAttribute("data-byReply-nickname");
+                    writeCommentBox.appendChild(submitReply);
+                    writeCommentBox.appendChild(replyText);
+                    writeCommentBox.appendChild(byReply);
 
-                commentContent.focus();
-                basePath = location.href;
-                location.href = location.href + "#write-comment-box";
-                //发表回复
-                submitReply.addEventListener("click",function (e) {
-                    var noteId = document.querySelector("#noteId");
-                    var byReplyId = replyToOthers[i].getAttribute("data-by-reply");
-                    kindEditor.sync();
-                    if(isnull(commentContent.value)){
-                        alert("回复内容不能为空");
-                        return;
-                    }
-                    //向后台发送ajax请求发表回复
-                    $.ajax({
-                        type: "POST",
-                        url: "/user/submitReply",
-                        data: {"noteId":noteId.value,"byReplyId":byReplyId,"commentContent":commentContent.value},
-                        dataType: "json",
-                        success: function (data) {
-                            if(!isnull(data)){
-                                commentContent.value = null;
-                                location.href = basePath;
-                                location.reload();
-                            }
-                        },
-                        error: function () {
-                            alert("回复失败，请检查网络后重试");
-                        },
-                        async: true
-                    });
-                })
+                    commentContent.focus();
+                    basePath = location.href;
+                    location.href = location.href + "#write-comment-box";
+                    //发表回复
+                    submitReply.addEventListener("click",function (e) {
+                        var noteId = document.querySelector("#noteId");
+                        var byReplyId = replyToOthers[i].getAttribute("data-by-reply");
+                        kindEditor.sync();
+                        if(isnull(commentContent.value)){
+                            alert("回复内容不能为空");
+                            return;
+                        }
+                        //向后台发送ajax请求发表回复
+                        $.ajax({
+                            type: "POST",
+                            url: "/user/submitReply",
+                            data: {"noteId":noteId.value,"byReplyId":byReplyId,"commentContent":commentContent.value},
+                            dataType: "json",
+                            success: function (data) {
+                                if(!isnull(data)){
+                                    commentContent.value = null;
+                                    location.href = basePath;
+                                    location.reload();
+                                }
+                            },
+                            error: function () {
+                                alert("回复失败，请检查网络后重试");
+                            },
+                            async: true
+                        });
+                    })
+                }else {
+                    showPopup("<span id='popup-login-title'>小主，要登录才能回复哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+                }
             });
         }
     }

@@ -19,13 +19,13 @@
             <img th:src="@{/user/image/article_head2.png}">
             <nav id='nav'>
                 <ul>
-                    <li><a href='home.html'>首页</a></li>
+                    <li><a th:href="@{/user/homepage}">首页</a></li>
                     <li><a href='#'>问答</a></li>
                     <li><a href='#'>学习路线</a></li>
                 </ul>
             </nav>
-            <div id='user'>
-                <img th:href="@{/user/image/profile.jpg}" id='imgone'>
+            <div id='user' th:if="${session.loginUser != null}">
+                <img th:src="@{/user/image/profile/profile.jpg}" id='imgone'>
                 <div id='user_detail'>
                     <div id='infoBox'>
                         <img th:src="@{/user/image/profile/profile.jpg}">
@@ -38,13 +38,13 @@
                     <div id='funcCard'>
                         <ul id='funcCardList'>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myAccount}">
                                     <span class='iconfont icon-yonghu'></span>
                                     <span>我的账号</span>
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myFavorites}">
                                     <span class='iconfont icon-wodeshoucang'></span>
                                     <span>我的收藏</span>
                                 </a>
@@ -64,7 +64,7 @@
                         </ul>
                     </div>
                     
-                    <div id='quit'><a href='#'>退出</a></div>
+                    <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
                 </div>
             </div>
         </div>

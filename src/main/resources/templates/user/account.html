@@ -43,13 +43,13 @@
                     <div id='funcCard'>
                         <ul id='funcCardList'>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myAccount}">
                                     <span class='iconfont icon-yonghu'></span>
                                     <span>我的账号</span>
                                 </a>
                             </li>
                             <li class='funcCardItems'>
-                                <a href="#">
+                                <a th:href="@{/user/myFavorites}">
                                     <span class='iconfont icon-wodeshoucang'></span>
                                     <span>我的收藏</span>
                                 </a>
@@ -83,13 +83,13 @@
             <div id='accountInfo'>
                 <div id='basicInfo'>
                     <div id='profileItem'>
-                        <label id='profileText'>头像</label><img class="myProfile" th:src="@{/user/image/profile/profile.jpg}">
+                        <label id='profileText'>头像</label><img class="myProfile" th:src="@{/user/image/profile/nologin.png}">
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>账号</label><span id="username" class='itemInfo'>13143377023</span>
+                        <label class='itemname'>账号</label><span id="username" class='itemInfo'></span>
                     </div>
                     <div class='accountItems'>
-                        <label class='itemname'>昵称</label><span id="nickname" class='itemInfo nickname'>高数</span>
+                        <label class='itemname'>昵称</label><span id="nickname" class='itemInfo nickname'></span>
                     </div>
                     <div class='accountItems'>
                         <label class='itemname'>性别</label><span id="gender" class='iconfont icon'></span>
@@ -101,7 +101,7 @@
                         <label class='itemname'>职位</label><span id="position" class='itemInfo'></span>
                     </div>
                     <div id='motoo'>
-                        <label>个性签名</label><span id="signature">宏愿纵未了，奋斗总不太晚！！！</span>
+                        <label>个性签名</label><span id="signature"></span>
                     </div>
                     <div class='accountItems'>
                         <label class='itemname'>关注的人</label><span class='iconfont icon-icon-arrow-right2 icon' id='followee'></span>

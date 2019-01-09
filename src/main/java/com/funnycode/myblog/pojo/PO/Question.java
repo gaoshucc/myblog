@@ -14,6 +14,7 @@ public class Question {
     private String createTime;
     private Integer status;
     private String question;
+    private Integer answerCount;
 
     public Question() {
     }
@@ -28,6 +29,15 @@ public class Question {
         this.quizzer = quizzer;
         this.status = 1;
         this.question = questMarkdownDoc;
+        this.answerCount = 0;
+    }
+
+    public Integer getAnswerCount() {
+        return answerCount;
+    }
+
+    public void setAnswerCount(Integer answerCount) {
+        this.answerCount = answerCount;
     }
 
     public String getQuestId() {

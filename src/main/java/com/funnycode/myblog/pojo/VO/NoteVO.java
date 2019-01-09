@@ -14,6 +14,18 @@ public class NoteVO {
     private UserVO blogger;
     private String noteHtml;
 
+    @Override
+    public String toString() {
+        return "NoteVO{" +
+                "noteId='" + noteId + '\'' +
+                ", noteTitle='" + noteTitle + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", noteType=" + noteType +
+                ", blogger=" + blogger +
+                ", noteHtml='" + noteHtml + '\'' +
+                '}';
+    }
+
     public String getNoteId() {
         return noteId;
     }

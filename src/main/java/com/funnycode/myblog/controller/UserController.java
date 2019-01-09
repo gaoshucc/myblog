@@ -5,9 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.funnycode.myblog.ds.LoginType;
 import com.funnycode.myblog.pojo.PO.*;
-import com.funnycode.myblog.pojo.VO.AuthorVO;
-import com.funnycode.myblog.pojo.VO.EditableUserInfoVO;
-import com.funnycode.myblog.pojo.VO.FolloweeVO;
+import com.funnycode.myblog.pojo.VO.*;
 import com.funnycode.myblog.service.NoteService;
 import com.funnycode.myblog.service.QuestionService;
 import com.funnycode.myblog.service.UserService;
@@ -310,9 +308,8 @@ public class UserController {
         User user = userService.findAuthorByAuthorId(authorId);
         Integer noteCount = noteService.findNoteCountByAuthorId(authorId);
         Integer answerCount = questionService.findAnswerCountByAuthorId(authorId);
-
         AuthorVO authorVO = new AuthorVO(user.getUserId(),user.getNickname(),user.getPosition().getPosition(),user.getProfilePath(),noteCount,answerCount);
-        logger.info("没有异常");
+
         return JSON.toJSONString(authorVO, SerializerFeature.DisableCircularReferenceDetect);
     }
 
@@ -605,7 +602,8 @@ public class UserController {
             }
             return JSON.toJSONString(success);
         }else {
-            Boolean collectSuccess = userService.collectNote(LoginUserUtil.findLoginUserId(session),noteId);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Boolean collectSuccess = userService.collectNote(LoginUserUtil.findLoginUserId(session),noteId,sdf.format(new Date()));
             if(collectSuccess){
                 success.put("favorite","1");
             }else{
@@ -627,7 +625,48 @@ public class UserController {
         }
         return JSON.toJSONString(hasCollect);
     }
+    /**
+     * 获取收藏的文章（按时间排序前6个）
+     */
+    @GetMapping("/findFavoritesLimit")
+    @ResponseBody
+    public String findFavoritesLimit(HttpSession session){
+        List<FavoriteVO> favoriteList = userService.findFavoritesLimitByUserId(LoginUserUtil.findLoginUserId(session), 0, 6);
+        if(favoriteList.size() > 0){
+            logger.info(JSON.toJSONString(favoriteList));
+            return JSON.toJSONString(favoriteList);
+        }else{
+            return "";
+        }
+    }
+    /**
+     * 查找我的收藏
+     */
+    @GetMapping("/findFavorites")
+    @ResponseBody
+    public String findFavorites(HttpSession session){
+        List<FavoritesDetailVO> favoritesDetailVOS = userService.findFavoritesByUserId(LoginUserUtil.findLoginUserId(session));
 
+        return JSON.toJSONString(favoritesDetailVOS,SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @GetMapping("/myFavoritesCount")
+    @ResponseBody
+    public String myFavoritesCount(HttpSession session){
+        JSONObject jsonObject = new JSONObject();
+        Integer count = userService.findMyFavoritesCount(LoginUserUtil.findLoginUserId(session));
+        jsonObject.put("count",count);
+
+        return JSON.toJSONString(jsonObject);
+    }
+
+    /**
+     * “我的收藏”页面
+     */
+    @GetMapping("/myFavorites")
+    public String myFavorites(){
+        return "user/favorites";
+    }
     /**
      * 查找评论
      */
