@@ -1,3 +1,101 @@
+/*加载动画公共样式*/
+@keyframes lds-double-ring {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes lds-double-ring {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes lds-double-ring_reverse {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+@-webkit-keyframes lds-double-ring_reverse {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+.lds-double-ring {
+    position: relative;
+}
+.lds-double-ring div {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 80px;
+    left: 80px;
+    border-radius: 50%;
+    border: 4px solid #000;
+    border-color: #1d3f72 transparent #1d3f72 transparent;
+    -webkit-animation: lds-double-ring 1s linear infinite;
+    animation: lds-double-ring 1s linear infinite;
+}
+.lds-double-ring div:nth-child(2) {
+    width: 35px;
+    height: 35px;
+    top: 82.5px;
+    left: 82.5px;
+    border-color: transparent #5699d2 transparent #5699d2;
+    -webkit-animation: lds-double-ring_reverse 1s linear infinite;
+    animation: lds-double-ring_reverse 1s linear infinite;
+}
+.lds-double-ring {
+    margin: 0 auto;
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+/*自动关闭弹出层样式*/
+#commons-autoPopup-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 200;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+}
+#commons-autoPopup-content span{
+    line-height: 20px;
+    font-size: 14px;
+}
+#commons-autoPopup-bg{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+/*弹出层公共样式*/
 #commons-popup{
     z-index: 100;
     position: fixed;
@@ -45,4 +143,41 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
+}
+/*弹出层样式*/
+#popup-login-title{
+    display: block;
+    line-height: 25px;
+    margin: 10px auto;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+#popup-login{
+    display: block;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
+    margin: 15px auto;
+    margin-top: 25px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(56, 168, 71, .8);
+}
+#popup-login:hover{
+    background-color: rgba(56, 168, 71, 1);
+}
+#popup-cancel{
+    display: block;
+    width: 40px;
+    line-height: 20px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: rgba(0,0,0,.8);
+    cursor: pointer;
+}
+#popup-cancel:hover{
+    color: rgba(0,0,0,1);
+    text-decoration: underline;
 }

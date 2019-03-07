@@ -117,6 +117,7 @@ function showfollweelist(){
     var tags = false;  //下拉列表是否展开的标志
 
     $followee.click(function(){
+        //如果列表未展开，则查询填充数据并展开
         if(!tags){
             $.ajax({
                 type: "GET",
@@ -315,8 +316,9 @@ function showUnfollowBtn(unfollowBtn,beAttentions,beCancelAttention) {
         });
         beAttentions[i].addEventListener("mouseout",function (e) {
             let event = e || event;        //兼容处理
-            let from = event.fromElement || event.relatedTarget;//兼容处理
+            let from = event.toElement || event.relatedTarget;//兼容处理
             if(from && beAttentions[i].contains(from)){      //如果在里面则返回
+                console.log("在里面");
                 return;
             }
             console.log("离开了");

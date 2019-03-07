@@ -445,8 +445,9 @@ function submitComment() {
                 dataType: "json",
                 success: function (data) {
                     if(!isnull(data)){
-                        commentContent.value = null;
                         location.reload();
+                        commentContent.value = null;
+                        showAutoPopup("<span>评论成功</span>",100,60);
                     }
                 },
                 async: true
@@ -499,7 +500,9 @@ function replyTo() {
 
                     commentContent.focus();
                     basePath = location.href;
-                    location.href = location.href + "#write-comment-box";
+                    if(basePath.indexOf("#write-comment-box") == -1){
+                        location.href = location.href + "#write-comment-box";
+                    }
                     //发表回复
                     submitReply.addEventListener("click",function (e) {
                         var noteId = document.querySelector("#noteId");
@@ -520,6 +523,7 @@ function replyTo() {
                                     commentContent.value = null;
                                     location.href = basePath;
                                     location.reload();
+                                    showAutoPopup("<span>回复成功</span>",100,60);
                                 }
                             },
                             error: function () {

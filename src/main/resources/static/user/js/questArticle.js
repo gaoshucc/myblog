@@ -154,7 +154,7 @@ function showWin(){
             askingbg.style.display = "block";
             askingbg.style.opacity = "1";
         }else {
-            showPopup("<span id='popup-login-title'>小主，要登录才能提问题哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+            showPopup("<span id='popup-login-title'>小主，要登录才能提问哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
         }
     },"false");
 

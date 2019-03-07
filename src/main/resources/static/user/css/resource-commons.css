@@ -216,8 +216,8 @@ body{
     bottom: 10px;
     height: 30px;
     line-height: 30px;
-    padding: 0 10px;
-    border-radius: 5px;
+    padding: 0 15px;
+    border-radius: 15px;
     font-size: 15px;
     color: rgba(54, 58, 57, 1);
     background-color: rgba(246, 246, 246, 1);
@@ -247,6 +247,27 @@ body{
     width: 50%;
     height: 100%;
 }
+.first-infobg .resource-name,.third-infobg .resource-name{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    border: solid 2px rgba(246, 246, 246, 1);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+}
+.first-infobg .resource-name a,.third-infobg .resource-name a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: rgba(246, 246, 246, 1);
+}
 .first-infobg .resource-tags,.third-infobg .resource-tags{
     position: absolute;
     top: 15px;
@@ -258,17 +279,6 @@ body{
     text-align: center;
     font-size: 18px;
     background-color: rgb(235, 60, 60);
-}
-.first-infobg .resource-name,.third-infobg .resource-name{
-    position: absolute;
-    top: 50%;
-    display: block;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    margin-top: -30px;
-    text-align: center;
-    font-size: 50px;
 }
 .first-infobg .resource-tags::after,.third-infobg .resource-tags::after{
     position: absolute;
@@ -314,13 +324,23 @@ body{
 .second-infobg .resource-name,.fourth-infobg .resource-name{
     position: absolute;
     top: 50%;
+    right: 50%;
+    display: block;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    margin-top: -100px;
+    margin-right: -100px;
+    border: solid 2px rgba(246, 246, 246, 1);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+}
+.second-infobg .resource-name a,.fourth-infobg .resource-name a{
     display: block;
     width: 100%;
-    height: 60px;
-    line-height: 60px;
-    margin-top: -30px;
-    text-align: center;
-    font-size: 50px;
+    height: 100%;
+    color: rgba(246, 246, 246, 1);
 }
 .second-infobg .resource-tags::after,.fourth-infobg .resource-tags::after{
     position: absolute;

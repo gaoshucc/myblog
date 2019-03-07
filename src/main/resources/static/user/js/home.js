@@ -12,8 +12,12 @@ $(function(){
 
     //反馈弹出层动画
     $('#close,#feedback').click(function(e){
-        e.preventDefault();  //阻止默认单击事件
-        $('#popup').toggleClass('show');
+        if(hasLogin()){
+            e.preventDefault();  //阻止默认单击事件
+            $('#popup').toggleClass('show');
+        }else{
+            showPopup("<span id='popup-login-title'>小主，要登录才能反馈哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        }
     });
 
     //初始化页面时，隐藏Top按钮
@@ -110,17 +114,20 @@ function showFavoritesContent() {
 
         favorites.addEventListener("mouseover",function (e) {
             favoritesContent.style.display = 'block';
-            //判断鼠标是否已经悬浮，放置重复发送请求
+            //判断鼠标是否已经悬浮，防止重复发送请求
             let event = e || event;        //兼容处理
             let from = event.fromElement || event.relatedTarget;
             if(from && this.contains(from)){      //如果在里面则返回
                 return;
             }
+            loaded(favoritesContent);
+            loading(favoritesContent);
             $.ajax({
                 type: "GET",
                 url: "/user/findFavoritesLimit",
                 dataType: "json",
                 success: function (data) {
+                    loaded(favoritesContent);
                     if(!isnull(data)){
                         var favoritesList = JSON.parse(data);
                         favoritesContentTemp = "";
@@ -141,6 +148,7 @@ function showFavoritesContent() {
         });
         //鼠标移开
         favorites.addEventListener('mouseout',function(e){
+            //favoritesContent.innerHTML = "";
             favoritesContent.style.display = 'none';
         },false);
     }
@@ -270,12 +278,11 @@ function showAuthorInfo(){
                         if(!isnull(data)){
                             var author = JSON.parse(data);
                             console.log(author);
-                            // todo 对关注功能进行完善
                             author_infobox[i].innerHTML = author_infobox[i].innerHTML +
                                 "<div class='author-info'>" +
                                 "<div class='author-basic-info'>" +
                                 "<div class='author-basic-infobg'>" +
-                                "<img src='/user/image/profile/"+ author.profilePath +"' class='author-profile'>" +
+                                "<img src='/"+ author.profilePath +"' class='author-profile'>" +
                                 "<span class='author-nickname'>"+ author.nickname +"</span>" +
                                 "<span class='author-job'>"+ author.position +"</span>" +
                                 "</div></div>" +

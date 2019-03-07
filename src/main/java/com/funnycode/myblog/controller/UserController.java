@@ -212,16 +212,25 @@ public class UserController {
             errorMsg = "当前账号不存在";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);
+            model.addAttribute("username", username);
+            model.addAttribute("password", password);
+            model.addAttribute("rememberMe", rememberMe?"checked":null);
             return "user/login";
         }catch (IncorrectCredentialsException e1){
             errorMsg = "当前密码不正确";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);
+            model.addAttribute("username", username);
+            model.addAttribute("password", password);
+            model.addAttribute("rememberMe", rememberMe?"checked":null);
             return "user/login";
         }catch (Exception ex){
             errorMsg = "账号信息不正确";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);
+            model.addAttribute("username", username);
+            model.addAttribute("password", password);
+            model.addAttribute("rememberMe", rememberMe?"checked":null);
             return "user/login";
         }
     }
@@ -639,6 +648,7 @@ public class UserController {
             return "";
         }
     }
+
     /**
      * 查找我的收藏
      */

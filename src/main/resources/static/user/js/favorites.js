@@ -85,11 +85,14 @@ function findFavoritesCount() {
 function findFavorites() {
     var favoritesSection = document.querySelector("#favorites-section");
     var favoritesSectionTemp = "";
+    loaded(favoritesSection);
+    loading(favoritesSection);
     $.ajax({
         type: "GET",
         url: "/user/findFavorites",
         dataType: "json",
         success: function (data) {
+            loaded(favoritesSection);
             var favoritesDetailList = JSON.parse(data);
             if(favoritesDetailList.length > 0){
                 favoritesSectionTemp = "";
