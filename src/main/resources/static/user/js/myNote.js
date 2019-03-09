@@ -45,7 +45,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 if(!isnull(data)){
@@ -72,7 +72,7 @@ function findMyNotes() {
     $noteSection.empty();
     $.ajax({
         type: "GET",
-        url: "/user/findMyNotes",
+        url: PRO_NAME + "/user/findMyNotes",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -102,7 +102,7 @@ function deleteNote() {
                 console.log("noteId:"+noteId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/deleteNote",
+                    url: PRO_NAME + "/user/deleteNote",
                     data:{"noteId":noteId},
                     dataType: "json",
                     success: function (data) {
@@ -131,7 +131,7 @@ function noteRecycleBin() {
         $noteSection.empty();
         $.ajax({
             type: "GET",
-            url: "/user/noteRecycleBin",
+            url: PRO_NAME + "/user/noteRecycleBin",
             dataType: "json",
             success: function (data) {
                 if(!isnull(data)){
@@ -163,7 +163,7 @@ function recycleNote() {
                 console.log("noteId:"+noteId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/recycleNote",
+                    url: PRO_NAME + "/user/recycleNote",
                     data:{"noteId":noteId},
                     dataType: "json",
                     success: function (data) {
@@ -195,7 +195,7 @@ function completelyDelNote() {
                 console.log("noteId:"+noteId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/completelyDelNote",
+                    url: PRO_NAME + "/user/completelyDelNote",
                     data:{"noteId":noteId},
                     dataType: "json",
                     success: function (data) {

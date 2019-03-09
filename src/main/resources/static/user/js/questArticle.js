@@ -43,7 +43,7 @@ function showUserDetail(){
             //向后台发送ajax请求获取登录用户详细信息
             $.ajax({
                 type: "GET",
-                url: "/user/userDetail",
+                url: PRO_NAME + "/user/userDetail",
                 dataType: "json",
                 success: function (data) {
                     user = JSON.parse(data);
@@ -69,7 +69,7 @@ function findQuestCate() {
     var $questCate = $("#questCate");
     $.ajax({
         type: "GET",
-        url: "/user/findQuestCate",
+        url: PRO_NAME + "/user/findQuestCate",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -102,7 +102,7 @@ function findAllQuestions() {
     var $questSection = $("#questSection");
     $.ajax({
         type: "GET",
-        url: "/user/findAllQuestions",
+        url: PRO_NAME + "/user/findAllQuestions",
         dataType: "json",
         success: function (data) {
             $questSection.html("");
@@ -124,7 +124,7 @@ function findQuestionsByTypeId(questTypeId) {
     var $questSection = $("#questSection");
     $.ajax({
         type: "GET",
-        url: "/user/findQuestionsByTypeId",
+        url: PRO_NAME + "/user/findQuestionsByTypeId",
         data:{"questTypeId":questTypeId},
         dataType: "json",
         success: function (data) {

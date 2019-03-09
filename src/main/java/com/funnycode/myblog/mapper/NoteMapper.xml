@@ -45,7 +45,7 @@
         FROM `note`
         WHERE status = 1
         ORDER BY create_time DESC
-        LIMIT #{arg0},#{arg1}
+        LIMIT #{param1},#{param2}
     </select>
 
     <select id="findNoteCountByAuthorId" resultType="java.lang.Integer">

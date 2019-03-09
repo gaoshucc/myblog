@@ -25,7 +25,11 @@
         <association property="answerCount" column="quest_id" javaType="java.lang.String" select="com.funnycode.myblog.mapper.QuestionMapper.findAnswerCountByNoteId"></association>
     </resultMap>
     <select id="findAllQuestions" resultMap="AllQuestion">
-        SELECT quest_id,quest_title,quizzer,quest_type,create_time FROM `question` WHERE status = 1 ORDER BY create_time DESC
+        SELECT quest_id,quest_title,quizzer,quest_type,create_time
+        FROM `question`
+        WHERE status = 1
+        ORDER BY create_time
+        DESC
     </select>
 
     <select id="findQuestionsByTypeId" parameterType="java.lang.Integer" resultMap="AllQuestion">
@@ -48,7 +52,7 @@
         FROM `question`
         WHERE status = 1
         ORDER BY create_time DESC
-        LIMIT #{arg0},#{arg1}
+        LIMIT #{param1},#{param2}
     </select>
 
     <resultMap id="Questions" type="com.funnycode.myblog.pojo.PO.Question">

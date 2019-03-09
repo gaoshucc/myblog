@@ -102,7 +102,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 user = JSON.parse(data);
@@ -131,7 +131,7 @@ function findNote() {
     //向后台发送ajax请求获取手记详细信息
     $.ajax({
         type: "GET",
-        url: "/user/readNote",
+        url: PRO_NAME + "/user/readNote",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -160,7 +160,7 @@ function findBloggerDetailInfo(authorId) {
     var answerCount = document.querySelector("#answerCount");
     $.ajax({
         type: "GET",
-        url: "/user/authorDetail",
+        url: PRO_NAME + "/user/authorDetail",
         data: {"authorId":authorId},
         dataType: "json",
         success: function (data) {
@@ -192,7 +192,7 @@ function findLikeCount() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "GET",
-        url: "/user/findLikeCount",
+        url: PRO_NAME + "/user/findLikeCount",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -212,7 +212,7 @@ function likeNote() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "POST",
-        url: "/user/likeNote",
+        url: PRO_NAME + "/user/likeNote",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -238,7 +238,7 @@ function whetherLike() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "POST",
-        url: "/user/whetherLike",
+        url: PRO_NAME + "/user/whetherLike",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -285,7 +285,7 @@ function collectNote() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "POST",
-        url: "/user/collectNote",
+        url: PRO_NAME + "/user/collectNote",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -311,7 +311,7 @@ function whetherCollect() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "POST",
-        url: "/user/whetherCollect",
+        url: PRO_NAME + "/user/whetherCollect",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -356,7 +356,7 @@ function findComments() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "GET",
-        url: "/user/findComments",
+        url: PRO_NAME + "/user/findComments",
         data: {"noteId":noteId.value},
         dataType: "json",
         success: function (data) {
@@ -440,7 +440,7 @@ function submitComment() {
             //向后台发送ajax请求发布评论
             $.ajax({
                 type: "POST",
-                url: "/user/submitComment",
+                url: PRO_NAME + "/user/submitComment",
                 data: {"noteId":noteId.value,"commentContent":commentContent.value},
                 dataType: "json",
                 success: function (data) {
@@ -515,7 +515,7 @@ function replyTo() {
                         //向后台发送ajax请求发表回复
                         $.ajax({
                             type: "POST",
-                            url: "/user/submitReply",
+                            url: PRO_NAME + "/user/submitReply",
                             data: {"noteId":noteId.value,"byReplyId":byReplyId,"commentContent":commentContent.value},
                             dataType: "json",
                             success: function (data) {

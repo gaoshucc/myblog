@@ -47,7 +47,7 @@ function showUserDetail(){
             //向后台发送ajax请求获取登录用户详细信息
             $.ajax({
                 type: "GET",
-                url: "/user/userDetail",
+                url: PRO_NAME + "/user/userDetail",
                 dataType: "json",
                 success: function (data) {
                     user = JSON.parse(data);
@@ -71,7 +71,7 @@ function findNoteCate() {
     var $noteCate = $("#noteCate");
     $.ajax({
         type: "GET",
-        url: "/user/findNoteCate",
+        url: PRO_NAME + "/user/findNoteCate",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -104,7 +104,7 @@ function findAllNotes() {
     var $noteSection = $("#noteSection");
     $.ajax({
         type: "GET",
-        url: "/user/findAllNotes",
+        url: PRO_NAME + "/user/findAllNotes",
         dataType: "json",
         success: function (data) {
             $noteSection.html("");
@@ -126,7 +126,7 @@ function findNotesByTypeId(noteTypeId) {
     var $noteSection = $("#noteSection");
     $.ajax({
         type: "GET",
-        url: "/user/findNotesByTypeId",
+        url: PRO_NAME + "/user/findNotesByTypeId",
         data:{"noteTypeId":noteTypeId},
         dataType: "json",
         success: function (data) {

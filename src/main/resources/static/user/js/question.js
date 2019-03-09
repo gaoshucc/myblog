@@ -75,7 +75,7 @@ function showUserDetail(){
             //向后台发送ajax请求获取登录用户详细信息
             $.ajax({
                 type: "GET",
-                url: "/user/userDetail",
+                url: PRO_NAME + "/user/userDetail",
                 dataType: "json",
                 success: function (data) {
                     user = JSON.parse(data);
@@ -109,7 +109,7 @@ function findQuestion() {
     //向后台发送ajax请求获取手记详细信息
     $.ajax({
         type: "GET",
-        url: "/user/readQuestion",
+        url: PRO_NAME + "/user/readQuestion",
         data: {"questId":questId.value},
         dataType: "json",
         success: function (data) {
@@ -138,7 +138,7 @@ function findQuzzierDetailInfo(authorId) {
     var answerCount = document.querySelector("#answerCount");
     $.ajax({
         type: "GET",
-        url: "/user/authorDetail",
+        url: PRO_NAME + "/user/authorDetail",
         data: {"authorId":authorId},
         dataType: "json",
         success: function (data) {
@@ -179,7 +179,7 @@ function submitAnswer() {
             //向后台发送ajax请求发布评论
             $.ajax({
                 type: "POST",
-                url: "/user/submitAnswer",
+                url: PRO_NAME + "/user/submitAnswer",
                 data: {"questId":questId.value,"answerContent":answerContent.value},
                 dataType: "json",
                 success: function (data) {
@@ -203,7 +203,7 @@ function findAnswers() {
     //向后台发送ajax请求发布评论
     $.ajax({
         type: "GET",
-        url: "/user/findAnswers",
+        url: PRO_NAME + "/user/findAnswers",
         data: {"questId":questId.value},
         dataType: "json",
         success: function (data) {
@@ -324,7 +324,7 @@ function replyTo() {
                         //向后台发送ajax请求发表回复
                         $.ajax({
                             type: "POST",
-                            url: "/user/submitAnswerReply",
+                            url: PRO_NAME + "/user/submitAnswerReply",
                             data: {"questId":questId.value,"byReplyId":byReplyId,"answerContent":answerContent.value},
                             dataType: "json",
                             success: function (data) {

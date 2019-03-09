@@ -1,3 +1,5 @@
+/*const PRO_NAME = "/funnycode";*/
+const PRO_NAME = "";
 function isnull(val) {
 
     var str = val.replace(/(^\s*)|(\s*$)/g, '');//去除空格;

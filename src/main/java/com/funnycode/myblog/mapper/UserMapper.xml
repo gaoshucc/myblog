@@ -139,32 +139,32 @@
 
     <insert id="likeNote">
         INSERT INTO `like_note`(`user_id`,`note_id`)
-        VALUES (#{arg0},#{arg1})
+        VALUES (#{param1},#{param2})
     </insert>
 
     <delete id="cancelLikeNote">
         DELETE FROM `like_note`
-        WHERE user_id = #{arg0} AND note_id = #{arg1}
+        WHERE user_id = #{param1} AND note_id = #{param2}
     </delete>
 
     <select id="hasLike" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM `like_note`
-        WHERE user_id = #{arg0} AND note_id = #{arg1}
+        WHERE user_id = #{param1} AND note_id = #{param2}
     </select>
 
     <insert id="collectNote">
         INSERT INTO `favorite_note`(`user_id`,`note_id`,`collect_time`)
-        VALUES (#{arg0},#{arg1},#{arg2})
+        VALUES (#{param1},#{param2},#{param3})
     </insert>
 
     <delete id="cancelCollectNote">
         DELETE FROM `favorite_note`
-        WHERE user_id = #{arg0} AND note_id = #{arg1}
+        WHERE user_id = #{param1} AND note_id = #{param2}
     </delete>
 
     <select id="hasCollect" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM `favorite_note`
-        WHERE user_id = #{arg0} AND note_id = #{arg1}
+        WHERE user_id = #{param1} AND note_id = #{param2}
     </select>
 
     <resultMap id="Favorite" type="com.funnycode.myblog.pojo.VO.FavoriteVO">
@@ -175,9 +175,9 @@
     <select id="findFavoritesLimitByUserId" resultMap="Favorite">
         SELECT note_id
         FROM `favorite_note`
-        WHERE user_id = #{arg0}
+        WHERE user_id = #{param1}
         ORDER BY collect_time DESC
-        LIMIT #{arg1},#{arg2}
+        LIMIT #{param2},#{param3}
     </select>
 
     <resultMap id="FavoriteDetail" type="com.funnycode.myblog.pojo.VO.FavoritesDetailVO">
@@ -187,7 +187,7 @@
     <select id="findFavoritesByUserId" resultMap="FavoriteDetail">
         SELECT note_id,collect_time
         FROM `favorite_note`
-        WHERE user_id = #{arg0}
+        WHERE user_id = #{param1}
         ORDER BY collect_time DESC
     </select>
 
@@ -225,18 +225,18 @@
     <select id="findAttentionStatusById" resultType="java.lang.Integer">
         SELECT status
         FROM `followee`
-        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
+        WHERE `user_id`=#{param1} AND `followee_id`=#{param2}
     </select>
 
     <insert id="addFolloweeById">
         INSERT INTO `followee`(`user_id`,`followee_id`,`status`)
-        VALUES (#{arg0},#{arg1},0)
+        VALUES (#{param1},#{param2},0)
     </insert>
 
     <update id="updateAttentionStatusById">
         UPDATE `followee`
-        SET status = #{arg2}
-        WHERE `user_id`=#{arg0} AND `followee_id`=#{arg1}
+        SET status = #{param3}
+        WHERE `user_id`=#{param1} AND `followee_id`=#{param2}
     </update>
 
     <resultMap id="Followee" type="com.funnycode.myblog.pojo.VO.FolloweeVO">
@@ -249,11 +249,11 @@
         WHERE user_id IN (
             SELECT followee_id
             FROM `followee`
-            WHERE `user_id`=#{arg0} AND (`status`=1 OR `status`=3)
+            WHERE `user_id`=#{param1} AND (`status`=1 OR `status`=3)
             UNION
             SELECT user_id
             FROM `followee`
-            WHERE `followee_id`=#{arg0} AND (`status`=2 OR `status`=3)
+            WHERE `followee_id`=#{param1} AND (`status`=2 OR `status`=3)
         )
     </select>
 </mapper>

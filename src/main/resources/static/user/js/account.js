@@ -46,7 +46,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 //获得登录用户
@@ -121,7 +121,7 @@ function showfollweelist(){
         if(!tags){
             $.ajax({
                 type: "GET",
-                url: "/user/findFolloweeList",
+                url: PRO_NAME + "/user/findFolloweeList",
                 dataType: "json",
                 success: function (data) {
                     $followeeList.html("");
@@ -267,7 +267,7 @@ function unfollowAndRefresh(unfollowBtn,beCancelAttention) {
                 console.log("flag1:"+beCancelAttention.flag);
                 $.ajax({
                     type: "GET",
-                    url: "/user/findFolloweeList",
+                    url: PRO_NAME + "/user/findFolloweeList",
                     dataType: "json",
                     success: function (data) {
                         $followeeList.html("");
@@ -353,7 +353,7 @@ function showEditPopup() {
         //向后台发送ajax请求获取用户可编辑信息
         $.ajax({
             type: "GET",
-            url: "/user/editableAccountInfo",
+            url: PRO_NAME + "/user/editableAccountInfo",
             dataType: "json",
             success: function (data) {
                 var editableUserInfo = JSON.parse(data);

@@ -45,7 +45,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 if(!isnull(data)){
@@ -71,7 +71,7 @@ function findFavoritesCount() {
     var favoritesCount = document.querySelector("#favorites-count");
     $.ajax({
         type: "GET",
-        url: "/user/myFavoritesCount",
+        url: PRO_NAME + "/user/myFavoritesCount",
         dataType: "json",
         success: function (data) {
             favoritesCount.innerHTML = JSON.parse(data).count;
@@ -89,7 +89,7 @@ function findFavorites() {
     loading(favoritesSection);
     $.ajax({
         type: "GET",
-        url: "/user/findFavorites",
+        url: PRO_NAME + "/user/findFavorites",
         dataType: "json",
         success: function (data) {
             loaded(favoritesSection);

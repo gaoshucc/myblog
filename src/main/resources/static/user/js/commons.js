@@ -6,7 +6,7 @@ function findUserDetail(userId, user){
     //向后台发送ajax请求获取登录用户详细信息
     $.ajax({
         type: "GET",
-        url: "/user/userDetail",
+        url: PRO_NAME + "/user/userDetail",
         dataType: "json",
         success: function (data) {
             //初始化登录用户

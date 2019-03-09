@@ -49,7 +49,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 if(!isnull(data)){
@@ -125,7 +125,7 @@ function findMyQuestions() {
     $questionSection.empty();
     $.ajax({
         type: "GET",
-        url: "/user/findMyQuestions",
+        url: PRO_NAME + "/user/findMyQuestions",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -155,7 +155,7 @@ function deleteQuestion() {
                 console.log("questionId:"+questionId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/deleteQuestion",
+                    url: PRO_NAME + "/user/deleteQuestion",
                     data:{"questionId":questionId},
                     dataType: "json",
                     success: function (data) {
@@ -184,7 +184,7 @@ function noteRecycleBin() {
         $questionSection.empty();
         $.ajax({
             type: "GET",
-            url: "/user/questionRecycleBin",
+            url: PRO_NAME + "/user/questionRecycleBin",
             dataType: "json",
             success: function (data) {
                 if(!isnull(data)){
@@ -216,7 +216,7 @@ function recycleQuestion() {
                 console.log("questionId:"+questionId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/recycleQuestion",
+                    url: PRO_NAME + "/user/recycleQuestion",
                     data:{"questionId":questionId},
                     dataType: "json",
                     success: function (data) {
@@ -248,7 +248,7 @@ function completelyQuestion() {
                 console.log("questionId:"+questionId);
                 $.ajax({
                     type: "GET",
-                    url: "/user/completelyDelQuestion",
+                    url: PRO_NAME + "/user/completelyDelQuestion",
                     data:{"questionId":questionId},
                     dataType: "json",
                     success: function (data) {

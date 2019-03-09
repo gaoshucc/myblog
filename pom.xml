@@ -6,7 +6,9 @@
 	<groupId>com.funnycode</groupId>
 	<artifactId>myblog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!--部署成jar包时添加的-->
 	<packaging>jar</packaging>
+	<!--部署成war包时添加的-->
 	<!--<packaging>war</packaging>-->
 	<name>myblog</name>
 	<description>Demo project for Spring Boot</description>
@@ -26,21 +28,24 @@
 
 	<dependencies>
 
-		<!--部署成war包时开启↓↓↓↓
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
+		<!--部署成war包时添加的-->
+		<!--<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!--部署成war包时添加的-->
+			<!--<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>-->
 		</dependency>
 
 		<dependency>

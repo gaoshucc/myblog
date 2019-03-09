@@ -81,7 +81,7 @@ function showUserDetail(){
         //向后台发送ajax请求获取登录用户详细信息
         $.ajax({
             type: "GET",
-            url: "/user/userDetail",
+            url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
                 //获得登录用户
@@ -124,7 +124,7 @@ function showFavoritesContent() {
             loading(favoritesContent);
             $.ajax({
                 type: "GET",
-                url: "/user/findFavoritesLimit",
+                url: PRO_NAME + "/user/findFavoritesLimit",
                 dataType: "json",
                 success: function (data) {
                     loaded(favoritesContent);
@@ -161,7 +161,7 @@ function findAllNotes() {
     var $noteSection = $("#noteSection");
     $.ajax({
         type: "GET",
-        url: "/user/findAllNotesLimit",
+        url: PRO_NAME + "/user/findAllNotesLimit",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -195,7 +195,7 @@ function findAllQuestions() {
     var $questionSection = $("#questionSection");
     $.ajax({
         type: "GET",
-        url: "/user/findAllQuestionsLimit",
+        url: PRO_NAME + "/user/findAllQuestionsLimit",
         dataType: "json",
         success: function (data) {
             if(!isnull(data)){
@@ -271,7 +271,7 @@ function showAuthorInfo(){
                 //ajax获取作者信息
                 $.ajax({
                     type: "GET",
-                    url: "/user/authorDetail",
+                    url: PRO_NAME + "/user/authorDetail",
                     data: {"authorId":author_infobox[i].getAttribute("data-author-id")},
                     dataType: "json",
                     success: function (data) {
