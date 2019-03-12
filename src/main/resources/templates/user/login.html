@@ -30,8 +30,14 @@
             <h2 id="login-headline">LOGIN</h2>
             <div id="input-area">
                 <form id="login-form" th:action="@{/user/login}" method="POST">
-                    <span class="input-parent"><input type="text" name="username" class="input" placeholder="手机号/账号" th:value="${username}"></span>
-                    <span class="input-parent"><input type="password" name="password" class="input" placeholder="密码" th:value="${password}"></span>
+                    <span class="input-parent">
+                        <!--<i class="iconfont icon-icon-user"></i>-->
+                        <input type="text" name="username" class="input" placeholder="手机号/账号" th:value="${username}">
+                    </span>
+                    <span class="input-parent">
+                        <!--<i class="iconfont icon-icon-user"></i>-->
+                        <input type="password" name="password" class="input" placeholder="密码" th:value="${password}">
+                    </span>
                     <label class="other">
                         <input th:if="${rememberMe == null}" type="checkbox" name="rememberMe" value="1">
                         <input th:if="${rememberMe != null}" checked type="checkbox" name="rememberMe" value="1">

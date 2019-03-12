@@ -98,49 +98,52 @@
     </header>
 
     <div id='homePage'>
-        <div id="container">
-            <div id="leftside">
-                <div id="top">
-                    <div id='background'>
-                        <div id="messageBar">
-                            <i class="iconfont icon-xiaoxi"></i>
-                            <div id="msgBox">
-                                <span id="message">欢迎您，<em class="loginUserNickname">游客</em></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id='card'>
-                        <ul id='cardList'>
-                            <li class='cardItems'>
-                                <a th:href="@{/resource}">
-                                    <span class='iconfont icon-ziyuan1'></span>
-                                    <span>资源</span>
-                                </a>
-                            </li>
-                            <li class='cardItems'>
-                                <a href='resource.html'>
-                                    <span class='iconfont icon-weibiaoti2'></span>
-                                    <span>工具</span>
-                                </a>
-                            </li>
-                            <li class='cardItems'>
-                                <a href='#'>
-                                    <span class='iconfont icon-icon_category'></span>
-                                    <span>分类</span>
-                                </a>
-                            </li>
-                            <li class='cardItems'>
-                                <a href='#'>
-                                    <span class='iconfont icon-community'></span>
-                                    <span>社区</span>
-                                </a>
-                            </li>
-                        </ul>
+        <!--
+            <div id='background'>
+                <div id="messageBar">
+                    <i class="iconfont icon-xiaoxi"></i>
+                    <div id="msgBox">
+                        <span id="message">欢迎您，<em class="loginUserNickname">游客</em></span>
                     </div>
                 </div>
-              
+            </div>
+            -->
+        <div id="top">
+            <div id='card'>
+                <ul id='cardList'>
+                    <li class='cardItems'>
+                        <a th:href="@{/resource}">
+                            <span class='iconfont icon-ziyuan1'></span>
+                            <span>资源</span>
+                        </a>
+                    </li>
+                    <li class='cardItems'>
+                        <a href='resource.html'>
+                            <span class='iconfont icon-weibiaoti2'></span>
+                            <span>工具</span>
+                        </a>
+                    </li>
+                    <li class='cardItems'>
+                        <a href='#'>
+                            <span class='iconfont icon-icon_category'></span>
+                            <span>分类</span>
+                        </a>
+                    </li>
+                    <li class='cardItems'>
+                        <a href='#'>
+                            <span class='iconfont icon-community'></span>
+                            <span>社区</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="container">
+            <!--
+            留言板
+            <div id="leftside">
                 <div id='messageBoard'>
-                    <!--留言区-->
+                    &lt;!&ndash;留言区&ndash;&gt;
                     <div id='messageHeadline'>
                         <h2><em>留</em><em>言</em><em>板</em></h2>
                     </div>
@@ -172,6 +175,7 @@
                     </div>
                 </div>
             </div>
+            -->
             <div id="center">
                 <!--手记区-->
                 <div id='goodArticle'>
@@ -572,7 +576,7 @@
                 </div>
             </div>
             <div id="reference">
-                <div>©copyright<span id="copyright">高数CC</span></div>
+                <div>©copyright<span id="copyright">RookieCC</span></div>
             </div>
         </div>
     </footer>

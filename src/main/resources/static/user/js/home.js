@@ -475,7 +475,7 @@ function showQRCode1(){
 addLoadEvent(showUserDetail);
 addLoadEvent(showFavoritesContent);
 addLoadEvent(findAllNotes)
-addLoadEvent(showMsgFunc);
+//addLoadEvent(showMsgFunc);
 addLoadEvent(play);
 
 addLoadEvent(showQRCode);

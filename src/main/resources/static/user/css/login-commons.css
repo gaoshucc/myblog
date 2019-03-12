@@ -146,14 +146,16 @@ body{
     border: none;
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
     outline: none;
-    text-indent: 32px;
 }
+/*
 .input[type=text]{
     background: url("../../commons/image/user.png") no-repeat 8px;
 }
 .input[type=password]{
     background: url("../../commons/image/key.png") no-repeat 8px;
 }
+*/
+
 .other{
     display: inline-block;
     padding: 0 5px;

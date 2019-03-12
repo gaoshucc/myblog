@@ -236,8 +236,10 @@ function showAnswers(answers) {
             var observer = document.createElement("div");
             addClass("answer-rightpart",observer);
             observer.innerHTML = "<time class='answer-time'>"+ answers[i].answerTime +"</time>" +
-                "<a href='#' class='answer-nickname'>"+ answers[i].user.nickname +"</a><a class='reply commonReply' data-byReply-nickname='"+ answers[i].user.nickname +"' data-by-reply='"+ answers[i].answerId +"'>回复</a>" +
-                "<span class='answer-content'>"+ answers[i].answerContent +"</span>";
+                "<a href='#' class='answer-nickname'>"+ answers[i].user.nickname +"</a>" +
+                "<span class='answer-content'>"+ answers[i].answerContent +
+                "<a class='reply commonReply' data-byReply-nickname='"+ answers[i].user.nickname +"' data-by-reply='"+ answers[i].answerId +"'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                "</span>";
             //将主回答插入到回答区
             answer.appendChild(observerImg);
             answer.appendChild(observer);
@@ -253,8 +255,9 @@ function showAnswers(answers) {
                         replyBox.innerHTML = "<img src='/"+ childAnswer[j].user.profilePath +"' class='answer-profile'>" +
                             "<time class='reply-time'>"+ childAnswer[j].answerTime +"</time>" +
                             "<a href='#' class='answer-nickname'>"+ childAnswer[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='answer-nickname'>"+ parentAnswer.user.nickname +"</a>" +
-                            "<span class='answer-content'>"+ childAnswer[j].answerContent +"</span>" +
-                            "<a class='reply-to commonReply' data-byReply-nickname='"+ childAnswer[j].user.nickname +"' data-by-reply='"+ childAnswer[j].answerId +"'>回复</a>";
+                            "<span class='answer-content'>"+ childAnswer[j].answerContent +
+                            "<a class='reply-to commonReply' data-byReply-nickname='"+ childAnswer[j].user.nickname +"' data-by-reply='"+ childAnswer[j].answerId +"'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                            "</span>";
                         answer.appendChild(replyBox);
                         //如果该答案还有子回答，就继续递归创建子回答
                         if(childAnswer[j].son != null){

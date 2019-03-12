@@ -49,7 +49,7 @@ function form_validate(){
                 required:true,
                 rangelength:[11,11],
                 remote:{
-                    url: PRO_NAME + "/user/userexists",
+                    url: "/user/userexists",
                     type: "post",
                     dataType: "json",
                     data: {
@@ -63,7 +63,7 @@ function form_validate(){
                 required:true,
                 maxlength:20,
                 remote:{
-                    url: PRO_NAME + "/user/nicknameexists",
+                    url: "/user/nicknameexists",
                     type: "post",
                     dataType: "json",
                     data: {
@@ -80,7 +80,7 @@ function form_validate(){
             valicode:{
                 required:true,
                 remote:{
-                    url: PRO_NAME + "/user/checkValicode",
+                    url: "/user/checkValicode",
                     type: "post",
                     dataType: "json",
                     data: {

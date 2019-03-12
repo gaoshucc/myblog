@@ -388,9 +388,11 @@ function showComments(comments) {
             //创建父评论
             var observer = document.createElement("div");
             addClass("comment-rightpart",observer);
-            observer.innerHTML = "<time class='comment-time'>"+ comments[i].commentTime +"</time>" +
-                    "<a href='#' class='comment-nickname'>"+ comments[i].user.nickname +"</a><a class='reply commonReply' data-byReply-nickname='"+ comments[i].user.nickname +"' data-by-reply='"+ comments[i].commentId +"'>回复</a>" +
-                    "<span class='comment-content'>"+ comments[i].commentContent +"</span>";
+            observer.innerHTML = "<time class='comment-time'>" + comments[i].commentTime + "</time>" +
+                    "<a href='#' class='comment-nickname'>" + comments[i].user.nickname + "</a>" +
+                    "<span class='comment-content'>"+ comments[i].commentContent +
+                    "<a class='reply commonReply ' data-byReply-nickname='"+ comments[i].user.nickname +"' data-by-reply='"+ comments[i].commentId +"' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                    "</span>";
             //将主评论插入到评论
             comment.appendChild(observerImg);
             comment.appendChild(observer);
@@ -406,8 +408,9 @@ function showComments(comments) {
                         replyBox.innerHTML = "<img src='/"+ childComment[j].user.profilePath +"' class='comment-profile'>" +
                                 "<time class='reply-time'>"+ childComment[j].commentTime +"</time>" +
                                 "<a href='#' class='comment-nickname'>"+ childComment[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='comment-nickname'>"+ parentComment.user.nickname +"</a>" +
-                                "<span class='comment-content'>"+ childComment[j].commentContent +"</span>" +
-                                "<a class='reply-to commonReply' data-byReply-nickname='"+ childComment[j].user.nickname +"' data-by-reply='"+ childComment[j].commentId +"'>回复</a>";
+                                "<span class='comment-content'>"+ childComment[j].commentContent +
+                                "<a class='reply-to commonReply' data-byReply-nickname='"+ childComment[j].user.nickname +"' data-by-reply='"+ childComment[j].commentId +"' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                                "</span>";
                         comment.appendChild(replyBox);
                         //如果该评论还有子评论，就继续递归创建子评论
                         if(childComment[j].son != null){

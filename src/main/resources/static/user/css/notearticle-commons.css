@@ -392,9 +392,9 @@ body{
     color: rgba(54, 58, 57, .7);
 }
 .icon-stack{
-    line-height: 50px;
+    line-height: 80px;
     padding-top: 20px;
-    font-size: 25px;
+    font-size: 60px;
 }
 #no-content{
     line-height: 30px;
