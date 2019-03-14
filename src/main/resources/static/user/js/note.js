@@ -452,7 +452,7 @@ function submitComment() {
                 success: function (data) {
                     if(!isnull(data)){
                         KindEditor.instances[0].html("");
-                        showAutoPopup("<span>评论成功</span>",100,60,5000);
+                        showAutoPopup("<span>评论成功</span>",100,60,2000);
                         //更新评论区
                         findComments();
                     }
@@ -549,7 +549,7 @@ function replyTo() {
                                 if(!isnull(data)){
                                     //location.href = basePath;
                                     KindEditor.instances[0].html("");
-                                    showAutoPopup("<span>回复成功</span>",100,60,5000);
+                                    showAutoPopup("<span>回复成功</span>",100,60,2000);
                                     //更新评论区
                                     findComments();
                                 }

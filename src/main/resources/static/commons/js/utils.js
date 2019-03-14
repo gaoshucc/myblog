@@ -197,9 +197,11 @@ function attention(attentionBtn) {
             if(payAttentionTo(attentionId)){
                 if(hasAttention(attentionId)){
                     updateAttentionBtnStyle(attentionBtn,true);
-                    console.log("已关注");
+                    showAutoPopup("<span>关注成功</span>",100,60,2000);
+                    console.log("关注成功");
                 }else{
                     updateAttentionBtnStyle(attentionBtn,false);
+                    showAutoPopup("<span>已取消关注</span>",120,60,2000);
                     console.log("未关注");
                 }
                 console.log("操作成功");

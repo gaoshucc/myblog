@@ -284,6 +284,7 @@ function unfollowAndRefresh(unfollowBtn,beCancelAttention) {
                         }else{
                             $followeeList.append("<span class='iconfont icon-meiyoudingdan-01'></span><span id='no-followee'>还没有关注的人哦</span>");
                         }
+                        showAutoPopup("<span>已取消关注</span>",120,60,2000);
                         console.log("取消关注了" + beCancelAttention.flag);
                     },
                     async: true
