@@ -417,7 +417,10 @@ body{
 .reply-to:hover{
     color: rgba(108,108,108,1);
 }
-
+.reply-to i{
+    margin-right: 2px;
+    font-size: 12px;
+}
 #writerInfoBox{
     position: absolute;
     top: 0;

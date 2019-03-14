@@ -333,6 +333,20 @@ body{
     font-size: 14px;
     outline: none;
 }
+#cancelReply{
+    float: right;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 10px 0 10px;
+    font-size: 12px;
+    color: rgba(108,108,108,1);
+    text-align: center;
+    cursor: pointer;
+}
+#cancelReply:hover{
+    color: red;
+}
 
 #comments{
     width: 100%;
@@ -452,9 +466,9 @@ body{
     color: rgba(108,108,108,1);
 }
 .reply-to i{
-    margin-right: 2px;
-    font-size: 12px;
-}
+     margin-right: 2px;
+     font-size: 12px;
+ }
 #writerInfoBox{
     position: absolute;
     top: 0;

@@ -51,8 +51,8 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private static final String User_LoginType = LoginType.USER.toString();
 
-    @Value("${web.project-name}")
-    public static String PRO_NAMESPACE;
+    /*@Value("${web.project-name}")
+    public static String PRO_NAMESPACE;*/
 
     @Value("${web.profile-path}")
     public String PROFILE_PATH;

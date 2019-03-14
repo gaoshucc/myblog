@@ -376,6 +376,9 @@ function findComments() {
 function showComments(comments) {
     //获得评论区
     var commentBox = document.querySelector("#comments");
+    if(!isnull(commentBox.innerHTML)){
+        commentBox.innerHTML = "";
+    }
     for(let i=0; i<comments.length; i++){
         if(comments[i] != null){
             //创建一条评论
@@ -448,9 +451,10 @@ function submitComment() {
                 dataType: "json",
                 success: function (data) {
                     if(!isnull(data)){
-                        location.reload();
-                        commentContent.value = null;
-                        showAutoPopup("<span>评论成功</span>",100,60);
+                        KindEditor.instances[0].html("");
+                        showAutoPopup("<span>评论成功</span>",100,60,5000);
+                        //更新评论区
+                        findComments();
                     }
                 },
                 async: true
@@ -468,21 +472,25 @@ function replyTo() {
     //回复按钮
     var replyToOthers = document.querySelectorAll(".commonReply");
     //评论区
-    var writeCommentBox = document.querySelector("#write-comment-box");
     var commentContent = document.querySelector("#comment-content");
     var submitComment = document.querySelector("#submit-comment");
+    var replyRegion = document.querySelector("#reply-region");
+    var submitReply =document.querySelector("#submit-reply");
+    var byReply = document.querySelectorAll("#reply-region .byReply")[0];
+    var cancelReply = document.querySelector("#cancelReply");
+
+    cancelReply.addEventListener("click", function (e) {
+        cancelReplyFunc();
+    });
     //若该手记有评论，则进入
     if(replyToOthers != null){
-        var submitReply;
-        var replyText;
-        var byReply;
+
         //记录原来的url路径
         var basePath;
         for(let i=0; i<replyToOthers.length; i++){
             replyToOthers[i].addEventListener("click",function (e) {
                 if(hasLogin()){
-                    //隐藏“发表评论”按钮
-                    submitComment.style.display = "none";
+                    /*
                     //清除上一个回复的样式
                     if(submitReply != null) writeCommentBox.removeChild(submitReply);
                     if(replyText != null) writeCommentBox.removeChild(replyText);
@@ -497,15 +505,31 @@ function replyTo() {
                     byReply = document.createElement("input");
                     addClass("byReply", byReply);
                     byReply.value = replyToOthers[i].getAttribute("data-byReply-nickname");
+                    cancelReply = document.createElement("span");
+                    cancelReply.setAttribute("id","cancelReply");
+                    cancelReply.innerText = "取消";
+                    cancelReply.addEventListener("click", function (e) {
+                        cancelReplyFunc();
+                    });
                     writeCommentBox.appendChild(submitReply);
                     writeCommentBox.appendChild(replyText);
                     writeCommentBox.appendChild(byReply);
+                    writeCommentBox.appendChild(cancelReply);
+                    */
+
+                    //隐藏“发表评论”按钮
+                    submitComment.style.display = "none";
+                    replyRegion.style.display = "block";
+                    byReply.value = replyToOthers[i].getAttribute("data-byReply-nickname");
 
                     commentContent.focus();
                     basePath = location.href;
+
+                    //location.href = location.href.replace("#write-comment-box", "");
                     if(basePath.indexOf("#write-comment-box") == -1){
                         location.href = location.href + "#write-comment-box";
                     }
+                    //todo 修改href
                     //发表回复
                     submitReply.addEventListener("click",function (e) {
                         var noteId = document.querySelector("#noteId");
@@ -523,10 +547,11 @@ function replyTo() {
                             dataType: "json",
                             success: function (data) {
                                 if(!isnull(data)){
-                                    commentContent.value = null;
-                                    location.href = basePath;
-                                    location.reload();
-                                    showAutoPopup("<span>回复成功</span>",100,60);
+                                    //location.href = basePath;
+                                    KindEditor.instances[0].html("");
+                                    showAutoPopup("<span>回复成功</span>",100,60,5000);
+                                    //更新评论区
+                                    findComments();
                                 }
                             },
                             error: function () {
@@ -542,4 +567,21 @@ function replyTo() {
         }
     }
 }
-
+/**
+ * 还原评论区
+ */
+function cancelReplyFunc() {
+    var submitComment = document.querySelector("#submit-comment");
+    var replyRegion = document.querySelector("#reply-region");
+    //评论框
+    var commentContent = document.querySelector("#comment-content");
+    //todo 网站崩溃
+    kindEditor.sync();
+    if(isnull(commentContent.value) || confirm("确定取消回复？（不可恢复）")){
+        KindEditor.instances[0].html("");
+        replyRegion.style.display = "none";
+        submitComment.style.display = "block";
+    }else{
+        return null;
+    }
+}

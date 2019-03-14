@@ -93,7 +93,7 @@ function loaded(element) {
  * @param height 高度
  */
 var autoPopup;
-function showAutoPopup(content,width,height) {
+function showAutoPopup(content,width,height,time) {
     body = document.body;
     autoPopup = document.createElement("div");
     autoPopup.setAttribute("id","commons-popup");
@@ -109,9 +109,9 @@ function showAutoPopup(content,width,height) {
     popupContent.style.marginLeft = -width/2 + "px";
     popupContent.style.marginTop = -height/2 + "px";
     addClass("show",autoPopup);
-    setTimeout(function (e) {
+    setTimeout(function () {
         body.removeChild(autoPopup);
-    },3000);
+    },time);
 }
 
 /**
