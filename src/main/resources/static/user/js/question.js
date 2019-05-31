@@ -1,37 +1,37 @@
 /*
 jq部分
 */
-$(function(){
-    $('#close,#report').click(function(e){
+$(function () {
+    $('#close,#report').click(function (e) {
         e.preventDefault();  //阻止默认单击事件
         $('#popup').toggleClass('show');
     });
 
-    if($(window).scrollTop()<100){
+    if ($(window).scrollTop() < 100) {
         $("#uptoTop").fadeOut(1);   //初始化页面时，隐藏Top按钮
     }
 
-    $(window).scroll(function(){
-        if($(window).scrollTop()>100){
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 100) {
             $("#uptoTop").fadeIn(1000);  //当页面起点距离窗口大于100时，淡入
-        }else{
+        } else {
             $("#uptoTop").fadeOut(1000);    //当页面起点距离窗口小于100时，淡出
         }
     });
     //跳转到顶部（动画）
-    $("#uptoTop").click(function(){
+    $("#uptoTop").click(function () {
         var dis = $(window).scrollTop();
-        $("body,html").animate({scrollTop:0},300);
+        $("body,html").animate({scrollTop: 0}, 300);
         return false;
     });
 });
 
-function addLoadEvent(func){
+function addLoadEvent(func) {
     var oldonload = window.onload;
-    if(typeof window.onload != 'function'){
+    if (typeof window.onload != 'function') {
         window.onload = func;
-    }else{
-        window.onload = function(){
+    } else {
+        window.onload = function () {
             oldonload();
             func();
         }
@@ -46,8 +46,9 @@ addLoadEvent(findAnswers);
  * 悬浮显示用户详细信息
  */
 var user = null;
-function showUserDetail(){
-    if(hasLogin()){
+
+function showUserDetail() {
+    if (hasLogin()) {
         var userinfo = document.querySelector('#user');
         var userDetail = document.querySelector('#user_detail');
 
@@ -56,19 +57,19 @@ function showUserDetail(){
         var experience = document.querySelector("#experience");
 
         findUser();
-        userinfo.addEventListener('mouseover',function(e){
+        userinfo.addEventListener('mouseover', function (e) {
             userDetail.style.display = 'block';
             //判断鼠标是否已经悬浮，放置重复发送请求
             let event = e || event;        //兼容处理
             let from = event.fromElement || event.relatedTarget;//兼容处理
-            if(from && this.contains(from)){      //如果在里面则返回
+            if (from && this.contains(from)) {      //如果在里面则返回
                 return;
             }
             findUser();
-        },false);
-        userinfo.addEventListener('mouseout',function(e){
+        }, false);
+        userinfo.addEventListener('mouseout', function (e) {
             userDetail.style.display = 'none';
-        },false);
+        }, false);
 
         //获取登录用户
         function findUser() {
@@ -80,10 +81,10 @@ function showUserDetail(){
                 success: function (data) {
                     user = JSON.parse(data);
 
-                    for(let j=0; j<myProfile.length; j++){
+                    for (let j = 0; j < myProfile.length; j++) {
                         myProfile[j].src = "/" + user.profilePath;
                     }
-                    for(let i=0; i<loginUserNickname.length; i++){
+                    for (let i = 0; i < loginUserNickname.length; i++) {
                         loginUserNickname[i].innerHTML = user.nickname;
                     }
                     experience.innerHTML = "经验 " + user.experience;
@@ -110,10 +111,10 @@ function findQuestion() {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/readQuestion",
-        data: {"questId":questId.value},
+        data: {"questId": questId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var question = JSON.parse(data);
                 console.log(question);
                 document.title = question.questTitle;
@@ -126,6 +127,7 @@ function findQuestion() {
         async: true
     });
 }
+
 /**
  * 获取作者信息
  */
@@ -139,11 +141,11 @@ function findQuzzierDetailInfo(authorId) {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/authorDetail",
-        data: {"authorId":authorId},
+        data: {"authorId": authorId},
         dataType: "json",
         success: function (data) {
             console.log(data);
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var author = JSON.parse(data);
                 console.log(author);
                 writerName.innerHTML = author.nickname;
@@ -151,9 +153,9 @@ function findQuzzierDetailInfo(authorId) {
                 writerProfile.src = "/" + author.profilePath;
                 noteCount.innerHTML = author.noteCount + "篇手记";
                 answerCount.innerHTML = "解答" + author.answerCount + "次";
-                questionAttentionBtn.setAttribute("data-followee-id",author.authorId);
-                if(hasAttention(questionAttentionBtn.getAttribute("data-followee-id"))){
-                    updateAttentionBtnStyle(questionAttentionBtn,true);
+                questionAttentionBtn.setAttribute("data-followee-id", author.authorId);
+                if (hasAttention(questionAttentionBtn.getAttribute("data-followee-id"))) {
+                    updateAttentionBtnStyle(questionAttentionBtn, true);
                 }
                 attention(questionAttentionBtn);
             }
@@ -161,6 +163,7 @@ function findQuzzierDetailInfo(authorId) {
         async: true
     });
 }
+
 /**
  * 发表评论
  */
@@ -169,10 +172,10 @@ function submitAnswer() {
     var answerContent = document.querySelector("#answer-content");
     var submitAnswer = document.querySelector("#submit-answer");
 
-    submitAnswer.addEventListener("click",function (e) {
-        if(hasLogin()){
+    submitAnswer.addEventListener("click", function (e) {
+        if (hasLogin()) {
             kindEditor.sync();
-            if(isnull(answerContent.value)){
+            if (isnull(answerContent.value)) {
                 alert("评论内容不能为空");
                 return;
             }
@@ -180,21 +183,22 @@ function submitAnswer() {
             $.ajax({
                 type: "POST",
                 url: PRO_NAME + "/user/submitAnswer",
-                data: {"questId":questId.value,"answerContent":answerContent.value},
+                data: {"questId": questId.value, "answerContent": answerContent.value},
                 dataType: "json",
                 success: function (data) {
-                    if(!isnull(data)){
+                    if (!isnull(data)) {
                         answerContent.value = null;
                         location.reload();
                     }
                 },
                 async: true
             });
-        }else {
-            showPopup("<span id='popup-login-title'>小主，要登录才能评论哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        } else {
+            showPopup("<span id='popup-login-title'>小主，要登录才能评论哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
         }
     });
 }
+
 /**
  * 查找该问题的评论
  */
@@ -204,10 +208,10 @@ function findAnswers() {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/findAnswers",
-        data: {"questId":questId.value},
+        data: {"questId": questId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var answers = JSON.parse(data);
                 console.log(answers);
                 showAnswers(answers);
@@ -217,52 +221,54 @@ function findAnswers() {
         async: true
     });
 }
+
 /**
  * Ajax从后台获得该问题的回答
  */
 function showAnswers(answers) {
     //获得回答区
     var answerBox = document.querySelector("#answers");
-    for(let i=0; i<answers.length; i++){
-        if(answers[i] != null){
+    for (let i = 0; i < answers.length; i++) {
+        if (answers[i] != null) {
             //创建一条回答
             var answer = document.createElement("div");
-            addClass("answer",answer);
+            addClass("answer", answer);
             //创建回答者头像
             var observerImg = document.createElement("img");
-            addClass("answer-profile",observerImg);
+            addClass("answer-profile", observerImg);
             observerImg.src = "/" + answers[i].user.profilePath;
             //创建父回答
             var observer = document.createElement("div");
-            addClass("answer-rightpart",observer);
-            observer.innerHTML = "<time class='answer-time'>"+ answers[i].answerTime +"</time>" +
-                "<a href='#' class='answer-nickname'>"+ answers[i].user.nickname +"</a>" +
-                "<span class='answer-content'>"+ answers[i].answerContent +
-                "<a class='reply commonReply' data-byReply-nickname='"+ answers[i].user.nickname +"' data-by-reply='"+ answers[i].answerId +"'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+            addClass("answer-rightpart", observer);
+            observer.innerHTML = "<time class='answer-time'>" + answers[i].answerTime + "</time>" +
+                "<a href='#' class='answer-nickname'>" + answers[i].user.nickname + "</a>" +
+                "<span class='answer-content'>" + answers[i].answerContent +
+                "<a class='reply commonReply' data-byReply-nickname='" + answers[i].user.nickname + "' data-by-reply='" + answers[i].answerId + "'><i class='iconfont icon-pinglun2'></i>回复</a>" +
                 "</span>";
             //将主回答插入到回答区
             answer.appendChild(observerImg);
             answer.appendChild(observer);
 
-            if(answers[i].son != null){
-                showReplies(answers[i],answers[i].son);
+            if (answers[i].son != null) {
+                showReplies(answers[i], answers[i].son);
+
                 //创建子回答（即回答）
-                function showReplies(parentAnswer,childAnswer) {
-                    for(let j=0; j<childAnswer.length; j++){
+                function showReplies(parentAnswer, childAnswer) {
+                    for (let j = 0; j < childAnswer.length; j++) {
                         //创建回复
                         var replyBox = document.createElement("div");
-                        addClass("replies",replyBox);
-                        replyBox.innerHTML = "<img src='/"+ childAnswer[j].user.profilePath +"' class='answer-profile'>" +
-                            "<time class='reply-time'>"+ childAnswer[j].answerTime +"</time>" +
-                            "<a href='#' class='answer-nickname'>"+ childAnswer[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='answer-nickname'>"+ parentAnswer.user.nickname +"</a>" +
-                            "<span class='answer-content'>"+ childAnswer[j].answerContent +
-                            "<a class='reply-to commonReply' data-byReply-nickname='"+ childAnswer[j].user.nickname +"' data-by-reply='"+ childAnswer[j].answerId +"'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                        addClass("replies", replyBox);
+                        replyBox.innerHTML = "<img src='/" + childAnswer[j].user.profilePath + "' class='answer-profile'>" +
+                            "<time class='reply-time'>" + childAnswer[j].answerTime + "</time>" +
+                            "<a href='#' class='answer-nickname'>" + childAnswer[j].user.nickname + "</a><span class='reply-text'>回复</span><a href='#' class='answer-nickname'>" + parentAnswer.user.nickname + "</a>" +
+                            "<span class='answer-content'>" + childAnswer[j].answerContent +
+                            "<a class='reply-to commonReply' data-byReply-nickname='" + childAnswer[j].user.nickname + "' data-by-reply='" + childAnswer[j].answerId + "'><i class='iconfont icon-pinglun2'></i>回复</a>" +
                             "</span>";
                         answer.appendChild(replyBox);
                         //如果该答案还有子回答，就继续递归创建子回答
-                        if(childAnswer[j].son != null){
+                        if (childAnswer[j].son != null) {
                             //传递父回答跟子回答过去，进行递归调用
-                            showReplies(childAnswer[j],childAnswer[j].son);
+                            showReplies(childAnswer[j], childAnswer[j].son);
                         }
                     }
                 }
@@ -272,6 +278,7 @@ function showAnswers(answers) {
         }
     }
 }
+
 /**
  * 回复
  */
@@ -283,21 +290,21 @@ function replyTo() {
     var answerContent = document.querySelector("#answer-content");
     var submitAnswer = document.querySelector("#submit-answer");
     //若该问题有回答，则进入
-    if(replyToOthers != null){
+    if (replyToOthers != null) {
         var submitReply;
         var replyText;
         var byReply;
         //记录原来的url路径
         var basePath;
-        for(let i=0; i<replyToOthers.length; i++){
-            replyToOthers[i].addEventListener("click",function (e) {
-                if(hasLogin()){
+        for (let i = 0; i < replyToOthers.length; i++) {
+            replyToOthers[i].addEventListener("click", function (e) {
+                if (hasLogin()) {
                     //隐藏“回答问题”按钮
                     submitAnswer.style.display = "none";
                     //清除上一个回复的样式
-                    if(submitReply != null) writeAnswerBox.removeChild(submitReply);
-                    if(replyText != null) writeAnswerBox.removeChild(replyText);
-                    if(byReply != null) writeAnswerBox.removeChild(byReply);
+                    if (submitReply != null) writeAnswerBox.removeChild(submitReply);
+                    if (replyText != null) writeAnswerBox.removeChild(replyText);
+                    if (byReply != null) writeAnswerBox.removeChild(byReply);
                     //初始化回复输入框
                     submitReply = document.createElement("a");
                     submitReply.setAttribute("id", "submit-reply");
@@ -316,11 +323,11 @@ function replyTo() {
                     basePath = location.href;
                     location.href = location.href + "#write-answer-box";
                     //发表回复
-                    submitReply.addEventListener("click",function (e) {
+                    submitReply.addEventListener("click", function (e) {
                         var questId = document.querySelector("#questId");
                         var byReplyId = replyToOthers[i].getAttribute("data-by-reply");
                         kindEditor.sync();
-                        if(isnull(answerContent.value)){
+                        if (isnull(answerContent.value)) {
                             alert("回复内容不能为空");
                             return;
                         }
@@ -328,10 +335,14 @@ function replyTo() {
                         $.ajax({
                             type: "POST",
                             url: PRO_NAME + "/user/submitAnswerReply",
-                            data: {"questId":questId.value,"byReplyId":byReplyId,"answerContent":answerContent.value},
+                            data: {
+                                "questId": questId.value,
+                                "byReplyId": byReplyId,
+                                "answerContent": answerContent.value
+                            },
                             dataType: "json",
                             success: function (data) {
-                                if(!isnull(data)){
+                                if (!isnull(data)) {
                                     answerContent.value = null;
                                     location.href = basePath;
                                     location.reload();
@@ -343,8 +354,8 @@ function replyTo() {
                             async: true
                         });
                     })
-                }else {
-                    showPopup("<span id='popup-login-title'>小主，要登录才能回复哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+                } else {
+                    showPopup("<span id='popup-login-title'>小主，要登录才能回复哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
                 }
             });
         }

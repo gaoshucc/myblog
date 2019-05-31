@@ -13,7 +13,7 @@ KindEditor.plugin('fixtoolbar', function (K) {
         var originY = toolbar.pos().y;
         K(window).bind('scroll', function () {
             if (toolbar.css('position') == 'fixed') {
-                if(document.body.scrollTop - originY < 0){
+                if (document.body.scrollTop - originY < 0) {
                     toolbar.css('position', 'static');
                     toolbar.css('top', 'auto');
                 }

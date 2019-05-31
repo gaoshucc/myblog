@@ -19,205 +19,207 @@
     <title>我的账号</title>
 </head>
 <body>
-    <header id='header'>
-        <span id='switch-box' class='iconfont icon-caidan2' title="更多功能"></span>
-        <div id='headerbox'>
-            <img th:src="@{/user/image/article_head2.png}">
-            <nav id='nav'>
-                <ul>
-                    <li><a th:href="@{/user/homepage}">首页</a></li>
-                    <li><a>问答</a></li>
-                    <li><a>学习路线</a></li>
-                </ul>
-            </nav>
-            <div id='user'>
-                <img th:src="@{/nologin.png}" id='profile' class="myProfile">
-                <div id='user_detail'>
-                    <div id='infoBox'>
-                        <img id="profile-detail" class="myProfile" th:src="@{/nologin.png}">
-                        <div id='user-info'>
-                            <span class="nickname">高数</span>
-                            <span id="experience">积分 9999</span>
-                        </div>
+<header id='header'>
+    <span id='switch-box' class='iconfont icon-caidan2' title="更多功能"></span>
+    <div id='headerbox'>
+        <img th:src="@{/user/image/article_head2.png}">
+        <nav id='nav'>
+            <ul>
+                <li><a th:href="@{/user/homepage}">首页</a></li>
+                <li><a>问答</a></li>
+                <li><a>学习路线</a></li>
+            </ul>
+        </nav>
+        <div id='user'>
+            <img th:src="@{/nologin.png}" id='profile' class="myProfile">
+            <div id='user_detail'>
+                <div id='infoBox'>
+                    <img id="profile-detail" class="myProfile" th:src="@{/nologin.png}">
+                    <div id='user-info'>
+                        <span class="nickname">高数</span>
+                        <span id="experience">积分 9999</span>
                     </div>
-                    <div id='funcCard'>
-                        <ul id='funcCardList'>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myAccount}">
-                                    <span class='iconfont icon-yonghu'></span>
-                                    <span>我的账号</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myFavorites}">
-                                    <span class='iconfont icon-wodeshoucang'></span>
-                                    <span>我的收藏</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myNote}">
-                                    <span class='iconfont icon-biji'></span>
-                                    <span>我的手记</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myQuestion}">
-                                    <span class='iconfont icon-wenda'></span>
-                                    <span>我的提问</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
                 </div>
+                <div id='funcCard'>
+                    <ul id='funcCardList'>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myAccount}">
+                                <span class='iconfont icon-yonghu'></span>
+                                <span>我的账号</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myFavorites}">
+                                <span class='iconfont icon-wodeshoucang'></span>
+                                <span>我的收藏</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myNote}">
+                                <span class='iconfont icon-biji'></span>
+                                <span>我的手记</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myQuestion}">
+                                <span class='iconfont icon-wenda'></span>
+                                <span>我的提问</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
             </div>
         </div>
-    </header>
-
-    <div id='container'>
-        <div id='account'>
-            <div class='func-headline'>
-                <a href="javascript:void(0);" id="edit-accountInfo"><i class="iconfont icon-xiugai"></i>修改</a>
-                <h2><span class='iconfont icon-yonghu'></span><em>我</em><em>的</em><em>账</em><em>号</em></h2>
-            </div>
-            <div id='accountInfo'>
-                <div id='basicInfo'>
-                    <div id='profileItem'>
-                        <label id='profileText'>头像</label><img class="myProfile" th:src="@{/user/image/profile/nologin.png}">
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>账号</label><span id="username" class='itemInfo'></span>
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>昵称</label><span id="nickname" class='itemInfo nickname'></span>
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>性别</label><span id="gender" class='iconfont icon'></span>
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>二维码名片</label><span class='iconfont icon-erweima icon' id='qrcode'></span>
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>职位</label><span id="position" class='itemInfo'></span>
-                    </div>
-                    <div id='motoo'>
-                        <label>个性签名</label><span id="signature"></span>
-                    </div>
-                    <div class='accountItems'>
-                        <label class='itemname'>关注的人</label><span class='iconfont icon-icon-arrow-right2 icon' id='followee'></span>
-                    </div>
-                    <div id='list-followee'>
-
-                    </div>
-                </div>
-                <div id='achievement'>
-                    <div id='summary'>
-                        <h3><span class='iconfont icon-jiangzhangxunzhang'></span>我的历程<span id='level'>入门</span></h3>
-                        <div id='summaryDetail'>
-                            <span>我已经进入社区<em>100</em>天了，总共</span>
-                            <span>浏览了<em>200</em>篇文章</span>
-                            <span>解答了<em>20</em>个问题</span>
-                            <span>关注了<em>30</em>个博友</span>
-                            <span>发布了<em>10</em>篇手记</span>    
-                            <span>提出了<em>9</em>个问题</span>
-                            <span>获得了<em>9999</em>积分</span>
-                            <span>已经达到<em>入门</em>级别</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id='password-manage'>
-            <div class='func-headline'>
-                <h2><span class='iconfont icon-icon_password_yes'></span><em>修</em><em>改</em><em>密</em><em>码</em></h2>
-                <span id="close-password-manage" class="iconfont icon-guanbi" title="关闭"></span>
-            </div>
-            <div id='modifi-password'>
-                <div class='input-box'>
-                    <label>手机号</label><input type='text'>
-                </div>
-                <div class='input-box'>
-                    <label>验证码</label><input type='text'>
-                </div>
-                <div class='input-box'>
-                    <label>新密码</label><input type='password'>
-                </div>
-                <div class='input-box'>
-                    <label>确认密码</label><input type='password'>
-                </div>
-                <div id="send-btn">
-                    <a href="#" id="send-code">发送验证码</a>
-                    <a href="#" id="confirm">确认修改</a>
-                </div>
-            </div>
-        </div>
-
-        <aside id='right'>
-            <img th:src="@{/user/image/ad.png}">
-            <img th:src="@{/user/image/ad.png}">
-            <img th:src="@{/user/image/ad.png}">
-        </aside>
     </div>
-    <!--侧边栏-->
-    <div id='account-funcbox'>
-        <div id='account-func'>
-            <h2 id="account-setup">FunnyCode</h2>
-            <div id='func-list'>
-                <a href="javascript:void(0);" class="func"><span class="iconfont icon-icon_logout"></span>账号注销</a>
-                <a href="javascript:void(0);" class="func"><span class="iconfont icon-bangzhuzhongxin"></span>帮助中心</a>
-            </div>
+</header>
+
+<div id='container'>
+    <div id='account'>
+        <div class='func-headline'>
+            <a href="javascript:void(0);" id="edit-accountInfo"><i class="iconfont icon-xiugai"></i>修改</a>
+            <h2><span class='iconfont icon-yonghu'></span><em>我</em><em>的</em><em>账</em><em>号</em></h2>
         </div>
-        <span id='close-aside' class='iconfont icon-unie646' title="关闭"></span>
-    </div>
-    <!--修改信息弹出层-->
-    <!--<div id="edit-accountInfo-popup">
-        <div id="edit-accountInfo-popup-content">
-            <span class="iconfont icon-guanbi" id="edit-accountInfo-close" title="关闭"></span>
-            <form method="post">
-                <h2 id="edit-accountInfo-headline">修改信息</h2>
-                <div id="editable-accountInfo">
-                    <span class="editable-info" id="editable-profile">头像
-                        <img th:src="@{/user/image/profile/profile.jpg}">
-                        <span id="upload-profile">更换<input type="file"></span>
-                    </span>
-                    <span class="editable-info">昵称
-                        <input type="text">
-                    </span>
-                    <span class="editable-info">性别
-                        <span class="radio-box">
-                            <input type="radio" name="gender" value="2">女
-                        </span>
-                        <span class="radio-box">
-                            <input type="radio" name="gender" value="1">男
-                        </span>
-                    </span>
-                    <span class="editable-info">职位
-                        <select>
-                            <option value="">学生</option>
-                            <option selected value="">后台工程师</option>
-                            <option value="">前端工程师</option>
-                        </select>
-                    </span>
-                    <span class="editable-info">个性签名
-                        <input type="text">
-                    </span>
+        <div id='accountInfo'>
+            <div id='basicInfo'>
+                <div id='profileItem'>
+                    <label id='profileText'>头像</label><img class="myProfile"
+                                                           th:src="@{/user/image/profile/nologin.png}">
                 </div>
-                <input id="submit-edited-accountInfo" type="submit" value="提交修改">
-            </form>
-        </div>
-        <div id="edit-accountInfo-popup-bg"></div>
-    </div>-->
-    <!--修改头像弹出层-->
-    <div id="profile-popup">
-        <div id="profile-popup-content">
-            <span class="iconfont icon-guanbi" id="profile-close" title="关闭"></span>
-            <div id="edit-content">
-                <img id="magnify-profile" class="myProfile" th:src="@{/user/image/profile/nologin.png}">
-                <a href="#" id="change-profile">更换</a>
+                <div class='accountItems'>
+                    <label class='itemname'>账号</label><span id="username" class='itemInfo'></span>
+                </div>
+                <div class='accountItems'>
+                    <label class='itemname'>昵称</label><span id="nickname" class='itemInfo nickname'></span>
+                </div>
+                <div class='accountItems'>
+                    <label class='itemname'>性别</label><span id="gender" class='iconfont icon'></span>
+                </div>
+                <div class='accountItems'>
+                    <label class='itemname'>二维码名片</label><span class='iconfont icon-erweima icon' id='qrcode'></span>
+                </div>
+                <div class='accountItems'>
+                    <label class='itemname'>职位</label><span id="position" class='itemInfo'></span>
+                </div>
+                <div id='motoo'>
+                    <label>个性签名</label><span id="signature"></span>
+                </div>
+                <div class='accountItems'>
+                    <label class='itemname'>关注的人</label><span class='iconfont icon-icon-arrow-right2 icon'
+                                                              id='followee'></span>
+                </div>
+                <div id='list-followee'>
+
+                </div>
+            </div>
+            <div id='achievement'>
+                <div id='summary'>
+                    <h3><span class='iconfont icon-jiangzhangxunzhang'></span>我的历程<span id='level'>入门</span></h3>
+                    <div id='summaryDetail'>
+                        <span>我已经进入社区<em>100</em>天了，总共</span>
+                        <span>浏览了<em>200</em>篇文章</span>
+                        <span>解答了<em>20</em>个问题</span>
+                        <span>关注了<em>30</em>个博友</span>
+                        <span>发布了<em>10</em>篇手记</span>
+                        <span>提出了<em>9</em>个问题</span>
+                        <span>获得了<em>9999</em>积分</span>
+                        <span>已经达到<em>入门</em>级别</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="profile-popup-bg"></div>
     </div>
+
+    <div id='password-manage'>
+        <div class='func-headline'>
+            <h2><span class='iconfont icon-icon_password_yes'></span><em>修</em><em>改</em><em>密</em><em>码</em></h2>
+            <span id="close-password-manage" class="iconfont icon-guanbi" title="关闭"></span>
+        </div>
+        <div id='modifi-password'>
+            <div class='input-box'>
+                <label>手机号</label><input type='text'>
+            </div>
+            <div class='input-box'>
+                <label>验证码</label><input type='text'>
+            </div>
+            <div class='input-box'>
+                <label>新密码</label><input type='password'>
+            </div>
+            <div class='input-box'>
+                <label>确认密码</label><input type='password'>
+            </div>
+            <div id="send-btn">
+                <a href="#" id="send-code">发送验证码</a>
+                <a href="#" id="confirm">确认修改</a>
+            </div>
+        </div>
+    </div>
+
+    <aside id='right'>
+        <img th:src="@{/user/image/ad.png}">
+        <img th:src="@{/user/image/ad.png}">
+        <img th:src="@{/user/image/ad.png}">
+    </aside>
+</div>
+<!--侧边栏-->
+<div id='account-funcbox'>
+    <div id='account-func'>
+        <h2 id="account-setup">FunnyCode</h2>
+        <div id='func-list'>
+            <a href="javascript:void(0);" class="func"><span class="iconfont icon-icon_logout"></span>账号注销</a>
+            <a href="javascript:void(0);" class="func"><span class="iconfont icon-bangzhuzhongxin"></span>帮助中心</a>
+        </div>
+    </div>
+    <span id='close-aside' class='iconfont icon-unie646' title="关闭"></span>
+</div>
+<!--修改信息弹出层-->
+<!--<div id="edit-accountInfo-popup">
+    <div id="edit-accountInfo-popup-content">
+        <span class="iconfont icon-guanbi" id="edit-accountInfo-close" title="关闭"></span>
+        <form method="post">
+            <h2 id="edit-accountInfo-headline">修改信息</h2>
+            <div id="editable-accountInfo">
+                <span class="editable-info" id="editable-profile">头像
+                    <img th:src="@{/user/image/profile/profile.jpg}">
+                    <span id="upload-profile">更换<input type="file"></span>
+                </span>
+                <span class="editable-info">昵称
+                    <input type="text">
+                </span>
+                <span class="editable-info">性别
+                    <span class="radio-box">
+                        <input type="radio" name="gender" value="2">女
+                    </span>
+                    <span class="radio-box">
+                        <input type="radio" name="gender" value="1">男
+                    </span>
+                </span>
+                <span class="editable-info">职位
+                    <select>
+                        <option value="">学生</option>
+                        <option selected value="">后台工程师</option>
+                        <option value="">前端工程师</option>
+                    </select>
+                </span>
+                <span class="editable-info">个性签名
+                    <input type="text">
+                </span>
+            </div>
+            <input id="submit-edited-accountInfo" type="submit" value="提交修改">
+        </form>
+    </div>
+    <div id="edit-accountInfo-popup-bg"></div>
+</div>-->
+<!--修改头像弹出层-->
+<div id="profile-popup">
+    <div id="profile-popup-content">
+        <span class="iconfont icon-guanbi" id="profile-close" title="关闭"></span>
+        <div id="edit-content">
+            <img id="magnify-profile" class="myProfile" th:src="@{/user/image/profile/nologin.png}">
+            <a href="#" id="change-profile">更换</a>
+        </div>
+    </div>
+    <div id="profile-popup-bg"></div>
+</div>
 </body>
 </html>

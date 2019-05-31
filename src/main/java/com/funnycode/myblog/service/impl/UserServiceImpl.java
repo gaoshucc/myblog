@@ -23,7 +23,7 @@ import java.util.Set;
  */
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -32,21 +32,21 @@ public class UserServiceImpl implements UserService{
     public String userexists(String username) {
         int exists = userMapper.userexists(username);
 
-        return exists>0?"false":"true";
+        return exists > 0 ? "false" : "true";
     }
 
     @Override
     public String nicknameexists(String nickname) {
         int exists = userMapper.nicknameexists(nickname);
 
-        return exists>0?"false":"true";
+        return exists > 0 ? "false" : "true";
     }
 
     @Override
     public boolean regist(User user) {
         int regSuccess = userMapper.regist(user);
 
-        return regSuccess>0?true:false;
+        return regSuccess > 0 ? true : false;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUserByUsername(String username) {
-        User user =  userMapper.getUserByUsername(username);
+        User user = userMapper.getUserByUsername(username);
         return user;
     }
 
@@ -104,22 +104,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean updateUserInfo(User editUser) {
         int updateUserInfoSuccess = userMapper.updateUserInfo(editUser);
-        return updateUserInfoSuccess>0?true:false;
+        return updateUserInfoSuccess > 0 ? true : false;
     }
 
     @Override
     public Boolean likeNote(String loginUserId, String noteId) {
-        return userMapper.likeNote(loginUserId,noteId)>0?true:false;
+        return userMapper.likeNote(loginUserId, noteId) > 0 ? true : false;
     }
 
     @Override
     public Boolean hasLike(String loginUserId, String noteId) {
-        return userMapper.hasLike(loginUserId,noteId)>0?true:false;
+        return userMapper.hasLike(loginUserId, noteId) > 0 ? true : false;
     }
 
     @Override
     public Boolean cancelLikeNote(String loginUserId, String noteId) {
-        return userMapper.cancelLikeNote(loginUserId,noteId)>0?true:false;
+        return userMapper.cancelLikeNote(loginUserId, noteId) > 0 ? true : false;
     }
 
     @Override
@@ -129,17 +129,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Boolean hasCollect(String loginUserId, String noteId) {
-        return userMapper.hasCollect(loginUserId, noteId)>0?true:false;
+        return userMapper.hasCollect(loginUserId, noteId) > 0 ? true : false;
     }
 
     @Override
     public Boolean cancelCollectNote(String loginUserId, String noteId) {
-        return userMapper.cancelCollectNote(loginUserId, noteId)>0?true:false;
+        return userMapper.cancelCollectNote(loginUserId, noteId) > 0 ? true : false;
     }
 
     @Override
     public List<FavoriteVO> findFavoritesLimitByUserId(String loginUserId, Integer start, Integer num) {
-        return userMapper.findFavoritesLimitByUserId(loginUserId,start,num);
+        return userMapper.findFavoritesLimitByUserId(loginUserId, start, num);
     }
 
     @Override
@@ -163,44 +163,44 @@ public class UserServiceImpl implements UserService{
         Integer status = null;
         //0代表无关系，1代表当前u1已关注u2,2代表u2已关注u1,3代表互相关注
         Integer attentionStatus = userMapper.findAttentionStatusById(loginUserId, attentionId);
-        if(attentionStatus!=null){
-            if(attentionStatus == 0){
+        if (attentionStatus != null) {
+            if (attentionStatus == 0) {
                 status = 1;
             }
-            if(attentionStatus == 1) {
+            if (attentionStatus == 1) {
                 status = 0;
             }
-            if(attentionStatus == 2){
+            if (attentionStatus == 2) {
                 status = 3;
             }
-            if(attentionStatus == 3){
+            if (attentionStatus == 3) {
                 status = 2;
             }
-            success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
-        }else{
+            success = userMapper.updateAttentionStatusById(loginUserId, attentionId, status);
+        } else {
             Integer reverseAttentionStatus = userMapper.findAttentionStatusById(attentionId, loginUserId);
-            if(reverseAttentionStatus==null){
+            if (reverseAttentionStatus == null) {
                 status = 1;
-                userMapper.addFolloweeById(loginUserId,attentionId);
-                success = userMapper.updateAttentionStatusById(loginUserId,attentionId,status);
-            }else{
-                if(reverseAttentionStatus == 0){
+                userMapper.addFolloweeById(loginUserId, attentionId);
+                success = userMapper.updateAttentionStatusById(loginUserId, attentionId, status);
+            } else {
+                if (reverseAttentionStatus == 0) {
                     status = 2;
                 }
-                if(reverseAttentionStatus == 1) {
+                if (reverseAttentionStatus == 1) {
                     status = 3;
                 }
-                if(reverseAttentionStatus == 2){
+                if (reverseAttentionStatus == 2) {
                     status = 0;
                 }
-                if(reverseAttentionStatus == 3){
+                if (reverseAttentionStatus == 3) {
                     status = 1;
                 }
-                success = userMapper.updateAttentionStatusById(attentionId,loginUserId,status);
+                success = userMapper.updateAttentionStatusById(attentionId, loginUserId, status);
             }
         }
 
-        return success>0?true:false;
+        return success > 0 ? true : false;
     }
 
     @Override
@@ -218,6 +218,6 @@ public class UserServiceImpl implements UserService{
         Integer num = userMapper.saveNote(note);
         Integer updateExperience = userMapper.updateUserExperienceByUserId(userId);
 
-        return (num>0&&updateExperience>0)?true:false;
+        return (num > 0 && updateExperience > 0) ? true : false;
     }
 }

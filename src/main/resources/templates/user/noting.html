@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" th:href="@{/user/image/note.png}" type="image/x-icon"/>
-    <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}" />
-    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd.css}" />
-    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd-different.css}" />
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/editormd.css}"/>
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd.css}"/>
+    <link rel="stylesheet" th:href="@{/user/user-editormd/css/myeditormd-different.css}"/>
     <script type="text/javascript" th:src="@{/commons/js/jquery-1.11.3.min.js}"></script>
     <script type="text/javascript" th:src="@{/commons/js/utils.js}"></script>
     <script type="text/javascript" th:src="@{/user/user-editormd/editormd.js}"></script>
@@ -16,52 +16,52 @@
     <title>MarkDown</title>
 </head>
 <body>
-    <div id='container'>
-        <form id="note-form" th:action="@{/user/publish}" method="post">
-            <div id='funcBar'>
-                <label id='titleLabel'>标题：</label><input type="text" id='title' name="title">
-                <select name='typeId' id='noteType'>
-                    <option value=1>前端开发</option>
-                    <option value=2>后台开发</option>
-                    <option value=3>移动端</option>
-                    <option value=4>IOS</option>
-                    <option value=5>大数据</option>
-                    <option value=6>算法</option>
-                    <option value=7>小程序</option>
-                </select>
-                <button type="submit" class="func" id="publish" title="发布手记">发布手记</button>
-                <a class="func" id="save" href='#' title="保存手记，下次继续编写">保存手记</a>
-                <a class="func" id='delete' href='#' title="取消本次编辑，手记将被永久删除">删除</a>
-            </div>
-            <div class="editormd" id="note-editormd">
-                <textarea class="editormd-markdown-textarea" name="markdownDoc"></textarea>
-                <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-                <textarea class="editormd-html-textarea" name="noteContent" id="note-editormd-html-doc"></textarea>
-            </div>
-        </form>
-    </div>
+<div id='container'>
+    <form id="note-form" th:action="@{/user/publish}" method="post">
+        <div id='funcBar'>
+            <label id='titleLabel'>标题：</label><input type="text" id='title' name="title">
+            <select name='typeId' id='noteType'>
+                <option value=1>前端开发</option>
+                <option value=2>后台开发</option>
+                <option value=3>移动端</option>
+                <option value=4>IOS</option>
+                <option value=5>大数据</option>
+                <option value=6>算法</option>
+                <option value=7>小程序</option>
+            </select>
+            <button type="submit" class="func" id="publish" title="发布手记">发布手记</button>
+            <a class="func" id="save" href='#' title="保存手记，下次继续编写">保存手记</a>
+            <a class="func" id='delete' href='#' title="取消本次编辑，手记将被永久删除">删除</a>
+        </div>
+        <div class="editormd" id="note-editormd">
+            <textarea class="editormd-markdown-textarea" name="markdownDoc"></textarea>
+            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+            <textarea class="editormd-html-textarea" name="noteContent" id="note-editormd-html-doc"></textarea>
+        </div>
+    </form>
+</div>
 
-    <script type="text/javascript">
-        $(function() {
-            editormd("note-editormd", {
-                width   : "100%",
-                height  : 640,
-                syncScrolling : "single",
-                path    : "user-editormd/lib/",
-                imageUpload : true,
-                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL : "/file/uploadNotePic",
-                //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-                saveHTMLToTextarea : true,
-                emoji : true,
-                toc : true,                    
-                taskList : true,
-                toolbarIcons : function() {         
-                    return ["undo","redo","|","bold","del","italic","quote","ucwords","uppercase","lowercase","|","h1","h2","h3","h4","h5","h6","|","list-ul","list-ol","hr","|","link","reference-link","image","code","preformatted-text","code-block","table","datetime","emoji","html-entities","pagebreak","|","goto-line","watch","preview","fullscreen","clear","search","|","help","info"]
-                },
-                placeholder : "从这里开始书写..."
-            });
+<script type="text/javascript">
+    $(function () {
+        editormd("note-editormd", {
+            width: "100%",
+            height: 640,
+            syncScrolling: "single",
+            path: "user-editormd/lib/",
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/file/uploadNotePic",
+            //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+            saveHTMLToTextarea: true,
+            emoji: true,
+            toc: true,
+            taskList: true,
+            toolbarIcons: function () {
+                return ["undo", "redo", "|", "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|", "help", "info"]
+            },
+            placeholder: "从这里开始书写..."
         });
-    </script>
+    });
+</script>
 </body>
 </html>

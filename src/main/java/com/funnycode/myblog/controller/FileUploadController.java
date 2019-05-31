@@ -26,16 +26,16 @@ public class FileUploadController {
 
     @RequestMapping("/uploadNotePic")
     @ResponseBody
-    public JSON uploadNotePic(@RequestParam(value = "editormd-image-file")MultipartFile notePic){
+    public JSON uploadNotePic(@RequestParam(value = "editormd-image-file") MultipartFile notePic) {
         Logger logger = LoggerFactory.getLogger(FileUploadController.class);
         JSONObject result = new JSONObject();
-        if(notePic.isEmpty()){
+        if (notePic.isEmpty()) {
             result.put("success", 0);
             result.put("message", "上传异常");
         }
         String filename = notePic.getOriginalFilename();
         File file = new File(FILE_PATH + filename);
-        if(!file.getParentFile().exists()){
+        if (!file.getParentFile().exists()) {
             file.getParentFile().mkdir();
         }
         try {

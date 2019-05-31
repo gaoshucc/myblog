@@ -1,60 +1,69 @@
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-body{
+
+body {
     background-color: rgba(246, 246, 246, 1);
 }
-#header{
+
+#header {
     width: 100%;
     height: 40px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
-#headerbox{
+
+#headerbox {
     position: relative;
     width: 1080px;
     height: 100%;
     line-height: 100%;
     margin: 0 auto;
 }
-#nav{
+
+#nav {
     display: inline-block;
     height: 40px;
     margin-left: 30px;
 }
-#nav ul li{
+
+#nav ul li {
     display: block;
     float: left;
     list-style-type: none;
 }
-#nav ul li a{
+
+#nav ul li a {
     display: block;
     height: 40px;
     line-height: 40px;
     padding: 0 15px;
     text-align: center;
     font-size: 14px;
-    color:rgba(54, 58, 57, 1);
+    color: rgba(54, 58, 57, 1);
 }
-#nav ul li:hover{
+
+#nav ul li:hover {
     background-color: rgba(246, 246, 246, 1);
 }
 
-#user{
+#user {
     position: relative;
     float: right;
     width: 40px;
@@ -62,14 +71,16 @@ body{
     padding: 5px 0;
     z-index: 100;
 }
-#user #imgone{
+
+#user #imgone {
     width: 30px;
     height: 30px;
     border: solid 2px rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
 }
-#user_detail{
+
+#user_detail {
     display: none;
     position: absolute;
     top: 40px;
@@ -79,94 +90,112 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#infoBox{
+
+#infoBox {
     width: 150px;
     height: 50px;
     line-height: 50px;
     margin: 20px auto;
 }
-#infoBox img{
+
+#infoBox img {
     float: left;
     width: 50px;
     height: 50px;
     margin: 0 5px;
     border-radius: 50%;
 }
-#user-info{
+
+#user-info {
     display: block;
     float: left;
     margin-left: 10px;
 }
-#user-info span{
+
+#user-info span {
     display: block;
     width: 80px;
     height: 25px;
     line-height: 25px;
     text-align: left;
 }
-#user-info span:nth-child(1){
+
+#user-info span:nth-child(1) {
     font-size: 16px;
     color: rgba(54, 58, 57, 1);
 }
-#user-info span:nth-child(2){
+
+#user-info span:nth-child(2) {
     font-size: 12px;
     color: rgba(108, 108, 108, 1);
 }
 
-#funcCard{
+#funcCard {
     width: 88%;
     height: 140px;
     margin: 0 6%;
     margin-bottom: 10px;
 }
-#funcCardList{
+
+#funcCardList {
     list-style-type: none;
 }
-.funcCardItems{
+
+.funcCardItems {
     display: block;
     float: left;
     width: 50%;
     height: 60px;
     margin-bottom: 10px;
 }
-.funcCardItems span{
+
+.funcCardItems span {
     display: block;
     width: 100%;
     height: 30px;
     line-height: 30px;
     text-align: center;
 }
-.funcCardItems a{
+
+.funcCardItems a {
     font-size: 14px;
     letter-spacing: 1px;
     color: rgba(108, 108, 108, 1);
 }
-.funcCardItems:nth-child(1) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(1):hover span{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(2) .iconfont{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(2):hover span{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(3) .iconfont{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(3):hover span{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(4) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(4):hover span{
+
+.funcCardItems:nth-child(1) .iconfont {
     color: rgba(0, 133, 235, 1);
 }
 
-#quit{
+.funcCardItems:nth-child(1):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(2) .iconfont {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(2):hover span {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(3) .iconfont {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(3):hover span {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(4) .iconfont {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(4):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+#quit {
     display: block;
     width: 70%;
     height: 30px;
@@ -175,30 +204,35 @@ body{
     text-align: left;
     border-top: solid 1px rgba(216, 216, 216, .5);
 }
-#quit a{
+
+#quit a {
     padding-left: 5px;
     font-size: 14px;
     color: rgba(108, 108, 108, 1);
 }
-#quit a:hover{
+
+#quit a:hover {
     color: rgba(19, 168, 228, 1);
 }
 
-#container{
+#container {
     width: 1080px;
     padding: 0 5px;
-    margin: 16px auto; 
+    margin: 16px auto;
 }
-#resource-box{
+
+#resource-box {
     width: 100%;
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-.resource{
+
+.resource {
     width: 100%;
-    height: 300px;   
+    height: 300px;
 }
-.resource-descript{
+
+.resource-descript {
     position: absolute;
     top: 50%;
     display: block;
@@ -211,7 +245,8 @@ body{
     text-align: center;
     overflow: hidden;
 }
-.rightpart-info .go{
+
+.rightpart-info .go {
     position: absolute;
     bottom: 10px;
     height: 30px;
@@ -222,32 +257,35 @@ body{
     color: rgba(54, 58, 57, 1);
     background-color: rgba(246, 246, 246, 1);
 }
-.rightpart-info .go:hover{
+
+.rightpart-info .go:hover {
     color: rgba(0, 133, 235, 1);
 }
 
-.first-infobg,.second-infobg,.third-infobg,.fourth-infobg{
+.first-infobg, .second-infobg, .third-infobg, .fourth-infobg {
     position: relative;
     width: 100%;
     height: 100%;
     color: rgba(246, 246, 246, 1);
 }
 
-.first-infobg .leftpart-info,.third-infobg .leftpart-info{
+.first-infobg .leftpart-info, .third-infobg .leftpart-info {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
 }
-.first-infobg .rightpart-info,.third-infobg .rightpart-info{
+
+.first-infobg .rightpart-info, .third-infobg .rightpart-info {
     position: absolute;
     top: 0;
     right: 0;
     width: 50%;
     height: 100%;
 }
-.first-infobg .resource-name,.third-infobg .resource-name{
+
+.first-infobg .resource-name, .third-infobg .resource-name {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -262,13 +300,15 @@ body{
     text-align: center;
     font-size: 30px;
 }
-.first-infobg .resource-name a,.third-infobg .resource-name a{
+
+.first-infobg .resource-name a, .third-infobg .resource-name a {
     display: block;
     width: 100%;
     height: 100%;
     color: rgba(246, 246, 246, 1);
 }
-.first-infobg .resource-tags,.third-infobg .resource-tags{
+
+.first-infobg .resource-tags, .third-infobg .resource-tags {
     position: absolute;
     top: 15px;
     left: -10px;
@@ -280,7 +320,8 @@ body{
     font-size: 18px;
     background-color: rgb(235, 60, 60);
 }
-.first-infobg .resource-tags::after,.third-infobg .resource-tags::after{
+
+.first-infobg .resource-tags::after, .third-infobg .resource-tags::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -290,27 +331,30 @@ body{
     border-color: transparent;
     border-width: 17.5px 10px;
     border-style: solid;
-    border-right-color:  rgba(55, 59, 62, 1);
+    border-right-color: rgba(55, 59, 62, 1);
 }
-.first-infobg .rightpart-info .go{
+
+.first-infobg .rightpart-info .go {
     right: 10px;
 }
 
-.second-infobg .leftpart-info,.fourth-infobg .leftpart-info{
+.second-infobg .leftpart-info, .fourth-infobg .leftpart-info {
     position: absolute;
     top: 0;
     right: 0;
     width: 50%;
     height: 100%;
 }
-.second-infobg .rightpart-info,.fourth-infobg .rightpart-info{
+
+.second-infobg .rightpart-info, .fourth-infobg .rightpart-info {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
 }
-.second-infobg .resource-tags,.fourth-infobg .resource-tags{
+
+.second-infobg .resource-tags, .fourth-infobg .resource-tags {
     position: absolute;
     top: 15px;
     right: -10px;
@@ -321,7 +365,8 @@ body{
     text-align: center;
     font-size: 18px;
 }
-.second-infobg .resource-name,.fourth-infobg .resource-name{
+
+.second-infobg .resource-name, .fourth-infobg .resource-name {
     position: absolute;
     top: 50%;
     right: 50%;
@@ -336,13 +381,15 @@ body{
     text-align: center;
     font-size: 30px;
 }
-.second-infobg .resource-name a,.fourth-infobg .resource-name a{
+
+.second-infobg .resource-name a, .fourth-infobg .resource-name a {
     display: block;
     width: 100%;
     height: 100%;
     color: rgba(246, 246, 246, 1);
 }
-.second-infobg .resource-tags::after,.fourth-infobg .resource-tags::after{
+
+.second-infobg .resource-tags::after, .fourth-infobg .resource-tags::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -353,79 +400,96 @@ body{
     border-width: 17.5px 10px;
     border-style: solid;
 }
-.second-infobg .rightpart-info .go,.fourth-infobg .rightpart-info .go{
+
+.second-infobg .rightpart-info .go, .fourth-infobg .rightpart-info .go {
     left: 10px;
 }
 
-.first-infobg,.second-infobg{
+.first-infobg, .second-infobg {
     color: rgba(246, 246, 246, 1);
     background-color: rgba(55, 59, 62, 1);
 }
-.first-infobg .resource-tags{
+
+.first-infobg .resource-tags {
     background-color: rgb(218, 37, 114);
 }
-.first-infobg .resource-name{
+
+.first-infobg .resource-name {
 
 }
-.first-infobg .resource-tags::after{
-    border-right-color:  rgba(55, 59, 62, 1);
+
+.first-infobg .resource-tags::after {
+    border-right-color: rgba(55, 59, 62, 1);
 }
-.first-infobg .rightpart-info .go{
+
+.first-infobg .rightpart-info .go {
     right: 10px;
 }
 
-.second-infobg{
+.second-infobg {
     color: rgba(246, 246, 246, 1);
     background-color: rgba(0, 117, 143, 1);
 }
-.second-infobg .resource-tags{
+
+.second-infobg .resource-tags {
     background-color: rgb(243, 145, 18);
 }
-.second-infobg .resource-name{
-    
+
+.second-infobg .resource-name {
+
 }
-.second-infobg .resource-tags::after{
-    border-left-color:  rgba(0, 117, 143, 1);
+
+.second-infobg .resource-tags::after {
+    border-left-color: rgba(0, 117, 143, 1);
 }
-.second-infobg .rightpart-info .go{
+
+.second-infobg .rightpart-info .go {
     left: 10px;
 }
 
-.third-infobg{
+.third-infobg {
     color: rgba(246, 246, 246, 1);
     background-color: rgba(2, 136, 209, 1);
 }
-.third-infobg .resource-tags{
+
+.third-infobg .resource-tags {
     background-color: rgb(223, 55, 44);
 }
-.third-infobg .resource-name{
-    
-}
-.third-infobg .resource-tags::after{
-    border-right-color:  rgba(2, 136, 209, 1);
-}
-.third-infobg .rightpart-info .go{
-    right: 10px;
-}    
 
-.fourth-infobg{
+.third-infobg .resource-name {
+
+}
+
+.third-infobg .resource-tags::after {
+    border-right-color: rgba(2, 136, 209, 1);
+}
+
+.third-infobg .rightpart-info .go {
+    right: 10px;
+}
+
+.fourth-infobg {
     color: rgba(246, 246, 246, 1);
     background-color: rgba(55, 59, 62, 1);
 }
-.fourth-infobg .resource-tags{
+
+.fourth-infobg .resource-tags {
     background-color: rgb(250, 196, 25);
 }
-.fourth-infobg .resource-name{
+
+.fourth-infobg .resource-name {
 
 }
-.fourth-infobg .resource-tags::after{
-    border-left-color:  rgba(55, 59, 62, 1);
+
+.fourth-infobg .resource-tags::after {
+    border-left-color: rgba(55, 59, 62, 1);
 }
-.fourth-infobg .rightpart-info .go{
+
+.fourth-infobg .rightpart-info .go {
     left: 10px;
 }
 
-#resource-catalog{
+#resource-catalog {
     position: relative;
     width: 100%;
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
@@ -435,12 +499,13 @@ body{
     overflow: hidden;
 }
 
-#srcHeadline{
+#srcHeadline {
     position: relative;
     width: 100%;
     overflow: hidden;
 }
-#srcHeadline h2{
+
+#srcHeadline h2 {
     width: 100%;
     height: 80px;
     line-height: 80px;
@@ -450,10 +515,12 @@ body{
     font-weight: bold;
     letter-spacing: 5px;
 }
-#srcHeadline h2 em{
+
+#srcHeadline h2 em {
     font-style: normal;
 }
-#tips{
+
+#tips {
     position: absolute;
     top: 30px;
     right: -45px;
@@ -467,22 +534,23 @@ body{
     background-color: rgba(66, 211, 132, 1);
 
     transform: rotate(45deg);
-    transform-origin:50% 50%;   /*定义动画的旋转中心点*/ 
-    -ms-transform: rotate(45deg);         /* IE 9 */
-    -ms-transform-origin:50% 50%;         /* IE 9 */
-    -webkit-transform: rotate(45deg);  /* Safari 和 Chrome */
-    -webkit-transform-origin:50% 50%;  /* Safari 和 Chrome */     
-    -moz-transform: rotate(45deg);     /* Firefox */
-    -moz-transform-origin:50% 50%;     /* Firefox */     
-    -o-transform: rotate(45deg);       /* Opera */
-    -o-transform-origin:50% 50%;       /* Opera */
+    transform-origin: 50% 50%; /*定义动画的旋转中心点*/
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -ms-transform-origin: 50% 50%; /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+    -webkit-transform-origin: 50% 50%; /* Safari 和 Chrome */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -moz-transform-origin: 50% 50%; /* Firefox */
+    -o-transform: rotate(45deg); /* Opera */
+    -o-transform-origin: 50% 50%; /* Opera */
 }
 
-#category{
+#category {
     width: 100%;
     padding: 10px 50px;
 }
-#select{
+
+#select {
     display: inline-block;
     height: 32px;
     line-height: 32px;
@@ -490,7 +558,8 @@ body{
     font-size: 16px;
     color: rgba(54, 58, 57, 1);
 }
-.category-items{
+
+.category-items {
     display: inline-block;
     height: 32px;
     line-height: 32px;
@@ -501,12 +570,13 @@ body{
     color: rgba(54, 58, 57, 1);
     background-color: rgba(236, 236, 236, 1);
 }
-#resource-list{
+
+#resource-list {
     width: 100%;
     padding: 0 50px;
 }
 
-#list-head{
+#list-head {
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -515,14 +585,16 @@ body{
     color: rgba(246, 246, 246, 1);
     background-color: rgba(66, 211, 132, 1);
 }
-#col-one{
+
+#col-one {
     float: left;
     display: block;
     height: 40px;
     line-height: 40px;
     padding: 0 10px;
 }
-#col-two{
+
+#col-two {
     display: block;
     width: 200px;
     height: 40px;
@@ -530,7 +602,8 @@ body{
     margin: 0 auto;
     text-align: center;
 }
-#col-three{
+
+#col-three {
     float: right;
     display: block;
     height: 40px;
@@ -539,7 +612,8 @@ body{
     margin-right: 30px;
     text-align: center;
 }
-#col-four{
+
+#col-four {
     float: right;
     display: block;
     height: 40px;
@@ -548,21 +622,23 @@ body{
     text-align: center;
 }
 
-.resource-items{
+.resource-items {
     width: 100%;
     height: 40px;
     line-height: 40px;
     padding: 0 10px;
     border-top: solid 1px rgba(216, 216, 216, .5);
 }
-.items-name{
+
+.items-name {
     float: left;
     display: block;
     height: 40px;
     line-height: 40px;
     padding: 0 10px;
 }
-.resource-intro{
+
+.resource-intro {
     display: block;
     width: 400px;
     height: 40px;
@@ -572,7 +648,8 @@ body{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.download-num{
+
+.download-num {
     float: right;
     display: block;
     height: 40px;
@@ -581,11 +658,13 @@ body{
     margin-right: 50px;
     text-align: center;
 }
-.download-num em{
+
+.download-num em {
     font-style: normal;
-    
+
 }
-.icon-xiazai{
+
+.icon-xiazai {
     float: right;
     display: block;
     height: 40px;
@@ -594,11 +673,12 @@ body{
     text-align: center;
     cursor: pointer;
 }
-.icon-xiazai:hover{
+
+.icon-xiazai:hover {
     color: rgba(66, 211, 132, 1);
 }
 
-#uptoTop{
+#uptoTop {
     position: fixed;
     right: 30px;
     bottom: 80px;
@@ -609,8 +689,9 @@ body{
     text-align: center;
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     color: rgba(136, 149, 166, 1);
-    background-color: rgba(254,254,254,1);
+    background-color: rgba(254, 254, 254, 1);
 }
-#uptoTop:hover{
-    background-color: rgba(196,196,196,1);
+
+#uptoTop:hover {
+    background-color: rgba(196, 196, 196, 1);
 }

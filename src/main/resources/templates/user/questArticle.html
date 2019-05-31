@@ -18,108 +18,108 @@
     <title>欢迎来到FunnyCode</title>
 </head>
 <body>
-    <header id='header'>
-        <div id="headerbox">
-            <img th:src="@{/user/image/article_head2.png}">
-            <nav id='nav'>
-                <ul>
-                    <li><a th:href="@{/user/homepage}">首页</a></li>
-                    <li><a href='#'>问答</a></li>
-                    <li><a href='#'>学习路线</a></li>
-                </ul>
-            </nav>
-            <div id='user' th:if="${session.loginUser != null}">
-                <img class="myProfile" th:src="@{/nologin.png}" id='imgone'>
-                <div id='user_detail'>
-                    <div id='infoBox'>
-                        <img class="myProfile">
-                        <div id='user-info'>
-                            <span class="loginUserNickname">游客</span>
-                            <span id="experience">经验</span>
-                        </div>
-                    </div>
-
-                    <div id='funcCard'>
-                        <ul id='funcCardList'>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myAccount}">
-                                    <span class='iconfont icon-yonghu'></span>
-                                    <span>我的账号</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myFavorites}">
-                                    <span class='iconfont icon-wodeshoucang'></span>
-                                    <span>我的收藏</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myNote}">
-                                    <span class='iconfont icon-biji'></span>
-                                    <span>我的手记</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myQuestion}">
-                                    <span class='iconfont icon-wenda'></span>
-                                    <span>我的提问</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div id='top'>
-        <a href='javascript:;' id='write'>提问题</a>    
-        <div id='serchBar'>
-            <input type='text' placeholder='java学习路线' id='serchText'>
-            <a href='#' class='iconfont icon-3' id='serch'></a>
-        </div>
-    </div>
-
-    <div id='askingbg'>
-        <div id='askbox'>
-            <div id='write-quest'>
-                <form th:action="@{/user/askQuestion}" method="POST">
-                    <div id='quest-title'>
-                        <label>问题：</label><input type='text' placeholder='写下你遇到的问题' name='questionTitle'>
-                        <select name='typeId' id='questType'>
-                            <option value=1>前端开发</option>
-                            <option value=2>后台开发</option>
-                            <option value=3>移动端</option>
-                            <option value=4>IOS</option>
-                            <option value=5>大数据</option>
-                            <option value=6>算法</option>
-                            <option value=7>小程序</option>
-                        </select>
-                    </div>
-                    <div class="editormd" id="quest-editormd">
-                        <textarea class="editormd-markdown-textarea" name="questMarkdownDoc"></textarea>
-                        <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-                        <textarea class="editormd-html-textarea" name="questContent"></textarea>
-                    </div>
-                    <div id='funcBar'>
-                        <button type="submit" id="submitQuestion" class="func" href='#' title="提出问题">提交</button>
-                        <a class="func" id='cancel' href='javascript:void(0);' title="取消本次编辑，已编辑内容将清除">取消</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id='container'>
-        <aside id='articleCate'>
-            <ul id="questCate">
-
+<header id='header'>
+    <div id="headerbox">
+        <img th:src="@{/user/image/article_head2.png}">
+        <nav id='nav'>
+            <ul>
+                <li><a th:href="@{/user/homepage}">首页</a></li>
+                <li><a href='#'>问答</a></li>
+                <li><a href='#'>学习路线</a></li>
             </ul>
-        </aside>
+        </nav>
+        <div id='user' th:if="${session.loginUser != null}">
+            <img class="myProfile" th:src="@{/nologin.png}" id='imgone'>
+            <div id='user_detail'>
+                <div id='infoBox'>
+                    <img class="myProfile">
+                    <div id='user-info'>
+                        <span class="loginUserNickname">游客</span>
+                        <span id="experience">经验</span>
+                    </div>
+                </div>
 
-        <section id='questSection'>
+                <div id='funcCard'>
+                    <ul id='funcCardList'>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myAccount}">
+                                <span class='iconfont icon-yonghu'></span>
+                                <span>我的账号</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myFavorites}">
+                                <span class='iconfont icon-wodeshoucang'></span>
+                                <span>我的收藏</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myNote}">
+                                <span class='iconfont icon-biji'></span>
+                                <span>我的手记</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myQuestion}">
+                                <span class='iconfont icon-wenda'></span>
+                                <span>我的提问</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id='top'>
+    <a href='javascript:;' id='write'>提问题</a>
+    <div id='serchBar'>
+        <input type='text' placeholder='java学习路线' id='serchText'>
+        <a href='#' class='iconfont icon-3' id='serch'></a>
+    </div>
+</div>
+
+<div id='askingbg'>
+    <div id='askbox'>
+        <div id='write-quest'>
+            <form th:action="@{/user/askQuestion}" method="POST">
+                <div id='quest-title'>
+                    <label>问题：</label><input type='text' placeholder='写下你遇到的问题' name='questionTitle'>
+                    <select name='typeId' id='questType'>
+                        <option value=1>前端开发</option>
+                        <option value=2>后台开发</option>
+                        <option value=3>移动端</option>
+                        <option value=4>IOS</option>
+                        <option value=5>大数据</option>
+                        <option value=6>算法</option>
+                        <option value=7>小程序</option>
+                    </select>
+                </div>
+                <div class="editormd" id="quest-editormd">
+                    <textarea class="editormd-markdown-textarea" name="questMarkdownDoc"></textarea>
+                    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                    <textarea class="editormd-html-textarea" name="questContent"></textarea>
+                </div>
+                <div id='funcBar'>
+                    <button type="submit" id="submitQuestion" class="func" href='#' title="提出问题">提交</button>
+                    <a class="func" id='cancel' href='javascript:void(0);' title="取消本次编辑，已编辑内容将清除">取消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id='container'>
+    <aside id='articleCate'>
+        <ul id="questCate">
+
+        </ul>
+    </aside>
+
+    <section id='questSection'>
         <!--
         <article class="article" id='lastarticle'>
                 <h2><a href='#'>Struts2的架构详解</a></h2>
@@ -134,84 +134,84 @@
                 </div>
         </article>
         -->
-        </section>
+    </section>
 
-        <aside id='hotArticlle'>
-            <div id='hotHeadline'>
-                <h2>
-                    <span class='iconfont icon-hand-point-right'></span>
-                    <em>热</em><em>门</em><em>问</em><em>答</em>
-                    <span class='iconfont icon-hand-point-left'></span>
-                </h2>
+    <aside id='hotArticlle'>
+        <div id='hotHeadline'>
+            <h2>
+                <span class='iconfont icon-hand-point-right'></span>
+                <em>热</em><em>门</em><em>问</em><em>答</em>
+                <span class='iconfont icon-hand-point-left'></span>
+            </h2>
+        </div>
+        <section id='hotSection'>
+            <div class='hotLink'>
+                <span>1</span>
+                <a href='#' title='顺丰高级工程师误删数据库！'>顺丰高级工程师误删数据库！</a>
             </div>
-            <section id='hotSection'>
-                <div class='hotLink'>
-                    <span>1</span>
-                    <a href='#' title='顺丰高级工程师误删数据库！'>顺丰高级工程师误删数据库！</a>
-                </div>
-                <div class='hotLink'>
-                    <span>2</span>
-                    <a href='#' title='ofo总部人去楼空？'>ofo总部人去楼空？</a>
-                </div>
-                <div class='hotLink'>
-                    <span>3</span>
-                    <a href='#' title='腾讯、网易、百度等获自动驾驶车辆路测资格'>腾讯、网易、百度等获自动驾驶车辆路测资格</a>
-                </div>
-                <div class='hotLink'>
-                    <span>4</span>
-                    <a href='#' title='荣耀将从华为独立？'>荣耀将从华为独立？</a>
-                </div>
-                <div class='hotLink'>
-                    <span>5</span>
-                    <a href='#' title='半数用户对新iphone满意'>半数用户对新iphone满意</a>
-                </div>
-                <div class='hotLink'>
-                    <span>6</span>
-                    <a href='#' title='facebook下周推智能家居'>facebook下周推智能家居</a>
-                </div>
-                <div class='hotLink'>
-                    <span>7</span>
-                    <a href='#' title='阿里安全宣布已完美越狱iOS 12'>阿里安全宣布已完美越狱iOS 12</a>
-                </div>
-                <div class='hotLink'>
-                    <span>8</span>
-                    <a href='#' title='11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏'>11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏</a>
-                </div>
-                <div class='hotLink'>
-                    <span>9</span>
-                    <a href='#' title='Linux之父宣布无限期休假'>Linux之父宣布无限期休假</a>
-                </div>
-                <div class='hotLink'>
-                    <span>10</span>
-                    <a href='#' title='微软废除了在其内部网络上仅使用IPv6的计划'>微软废除了在其内部网络上仅使用IPv6的计划</a>
-                </div>
-            </section>
-        </aside>
-    </div>
+            <div class='hotLink'>
+                <span>2</span>
+                <a href='#' title='ofo总部人去楼空？'>ofo总部人去楼空？</a>
+            </div>
+            <div class='hotLink'>
+                <span>3</span>
+                <a href='#' title='腾讯、网易、百度等获自动驾驶车辆路测资格'>腾讯、网易、百度等获自动驾驶车辆路测资格</a>
+            </div>
+            <div class='hotLink'>
+                <span>4</span>
+                <a href='#' title='荣耀将从华为独立？'>荣耀将从华为独立？</a>
+            </div>
+            <div class='hotLink'>
+                <span>5</span>
+                <a href='#' title='半数用户对新iphone满意'>半数用户对新iphone满意</a>
+            </div>
+            <div class='hotLink'>
+                <span>6</span>
+                <a href='#' title='facebook下周推智能家居'>facebook下周推智能家居</a>
+            </div>
+            <div class='hotLink'>
+                <span>7</span>
+                <a href='#' title='阿里安全宣布已完美越狱iOS 12'>阿里安全宣布已完美越狱iOS 12</a>
+            </div>
+            <div class='hotLink'>
+                <span>8</span>
+                <a href='#' title='11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏'>11岁姑娘挑战8分钟编程获蚂蚁金服CEO井贤栋赞赏</a>
+            </div>
+            <div class='hotLink'>
+                <span>9</span>
+                <a href='#' title='Linux之父宣布无限期休假'>Linux之父宣布无限期休假</a>
+            </div>
+            <div class='hotLink'>
+                <span>10</span>
+                <a href='#' title='微软废除了在其内部网络上仅使用IPv6的计划'>微软废除了在其内部网络上仅使用IPv6的计划</a>
+            </div>
+        </section>
+    </aside>
+</div>
 
-    <script type="text/javascript">
-        $(function() {
-            editormd("quest-editormd", {
-                width   : 500,
-                height  : 400,
-                syncScrolling : "single",
-                path    : "user-editormd/lib/",
-                watch : false,
-                imageUpload : true,
-                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL : "/uploadpic",
-                //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-                saveHTMLToTextarea : true,
-                emoji : true,
-                toc : true,                    
-                taskList : true,
-                toolbarIcons : function() {         
-                    return ["undo","redo","|","quote","link","image","code","code-block","emoji","html-entities","|","fullscreen","clear"]
-                },
-                placeholder : "写下问题的详细描述"
-            });
+<script type="text/javascript">
+    $(function () {
+        editormd("quest-editormd", {
+            width: 500,
+            height: 400,
+            syncScrolling: "single",
+            path: "user-editormd/lib/",
+            watch: false,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/uploadpic",
+            //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+            saveHTMLToTextarea: true,
+            emoji: true,
+            toc: true,
+            taskList: true,
+            toolbarIcons: function () {
+                return ["undo", "redo", "|", "quote", "link", "image", "code", "code-block", "emoji", "html-entities", "|", "fullscreen", "clear"]
+            },
+            placeholder: "写下问题的详细描述"
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>

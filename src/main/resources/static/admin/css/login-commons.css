@@ -1,52 +1,62 @@
-html,body{
+html, body {
     width: 100%;
     height: 100%;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
-    color:#555;
-    font-size:14px;
-}
-input:-moz-placeholder,textarea:-moz-placeholder{
-    color:#555;
-    font-size:14px;
-}
-input::-moz-placeholder,textarea::-moz-placeholder{
-    color:#555;
-    font-size:14px;
-}
-input:-ms-input-placeholder,textarea:-ms-input-placeholder{
-    color:#555;
-    font-size:14px;
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #555;
+    font-size: 14px;
 }
 
-body{
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+body {
     min-height: 630px;
     background-color: #7ed2ec;
 }
-#container{
+
+#container {
     position: relative;
     width: 100%;
     height: 100%;
     color: rgba(255, 255, 255, 1);
     overflow: hidden;
 }
-#website-icon{
+
+#website-icon {
     position: relative;
     display: block;
     width: fit-content;
@@ -56,22 +66,25 @@ body{
     text-align: left;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .3);
 }
-.icon-tubiaozhizuomobanyihuifu-{
+
+.icon-tubiaozhizuomobanyihuifu- {
     font-size: 40px;
     color: rgba(254, 216, 5, 1);
 }
-#website-icon em{
+
+#website-icon em {
     font-size: 35px;
     font-style: normal;
     color: rgba(255, 255, 255, 1);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-#website-icon em em{
+
+#website-icon em em {
     /*color: rgba(254, 216, 5, 1);*/
     /*color: rgba(255, 132, 41, 1);*/
 }
 
-#login-content{
+#login-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -83,7 +96,8 @@ body{
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-#login-headline{
+
+#login-headline {
     width: 100%;
     height: 50px;
     line-height: 50px;
@@ -93,15 +107,18 @@ body{
     color: #555;
     text-align: center;
 }
-#input-area{
+
+#input-area {
     width: 100%;
     padding: 10px 40px;
 }
-.input-parent{
+
+.input-parent {
     display: block;
     position: relative;
 }
-.input{
+
+.input {
 
     display: block;
     width: 100%;
@@ -113,13 +130,16 @@ body{
     outline: none;
     text-indent: 32px;
 }
-.input[type=text]{
+
+.input[type=text] {
     background: url("../../commons/image/user.png") no-repeat 8px;
 }
-.input[type=password]{
+
+.input[type=password] {
     background: url("../../commons/image/key.png") no-repeat 8px;
 }
-.other{
+
+.other {
     display: inline-block;
     padding: 0 5px;
     height: 25px;
@@ -127,17 +147,20 @@ body{
     font-size: 12px;
     color: rgba(54, 58, 57, 1);
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
     text-decoration: none;
 }
-.other input[type="checkbox"]{
+
+.other input[type="checkbox"] {
     margin-right: 5px;
-    vertical-align:middle;
+    vertical-align: middle;
 }
-#forgot-pwd{
+
+#forgot-pwd {
     float: right;
 }
-#login-btn{
+
+#login-btn {
     display: block;
     width: 100%;
     height: 35px;
@@ -156,7 +179,7 @@ body{
     outline: none;
 }
 
-#register{
+#register {
     display: block;
     margin: 10px auto;
     width: 200px;
@@ -165,14 +188,15 @@ body{
     font-size: 14px;
     color: rgba(54, 58, 57, 1);
 }
-#clickto-register{
+
+#clickto-register {
     text-decoration: none;
 }
 
 /*
 弹出层通用样式
 */
-#popup{
+#popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -184,11 +208,13 @@ body{
     visibility: hidden;
     opacity: 0;
 }
-#popup.show{
+
+#popup.show {
     visibility: visible;
     opacity: 1;
 }
-#popup-content{
+
+#popup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -203,7 +229,8 @@ body{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-#close{
+
+#close {
     display: block;
     position: absolute;
     top: 20px;
@@ -213,18 +240,22 @@ body{
     text-align: center;
     cursor: pointer;
 }
-#close:hover{
+
+#close:hover {
     color: red;
 }
-#popup-content h2{
+
+#popup-content h2 {
     line-height: 40px;
     font-size: 18px;
     color: #555;
 }
-#reg-input-area{
+
+#reg-input-area {
     width: 100%;
 }
-.reg-input{
+
+.reg-input {
     display: block;
     width: 100%;
     height: 35px;
@@ -236,39 +267,48 @@ body{
     text-indent: 32px;
     color: rgba(54, 58, 57, 1);
 }
-#adminname{
+
+#adminname {
     background: url("../../commons/image/phone.png") no-repeat 8px;
 }
-#nickname{
+
+#nickname {
     background: url("../../commons/image/user.png") no-repeat 8px;
 }
-#password{
+
+#password {
     background: url("../../commons/image/key.png") no-repeat 8px;
 }
+
 /* 设置修改注册模块input内容文字的样式*/
-.reg-input::-webkit-input-placeholder{
-    color:#363a39;
-    font-size:14px;
+.reg-input::-webkit-input-placeholder {
+    color: #363a39;
+    font-size: 14px;
 }
-.reg-input:-moz-placeholder{
-    color:rgba(54, 58, 57, 1);
-    font-size:14px;
+
+.reg-input:-moz-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
 }
-.reg-input::-moz-placeholder{
-    color:rgba(54, 58, 57, 1);
-    font-size:14px;
+
+.reg-input::-moz-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
 }
-input:-ms-input-placeholder{
-    color:rgba(54, 58, 57, 1);
-    font-size:14px;
+
+input:-ms-input-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
 }
-#vali-code{
+
+#vali-code {
     display: inline-block;
     width: 50%;
     margin: 0;
     background: url("../../commons/image/confirm.png") no-repeat 8px;
 }
-#send-vali-code{
+
+#send-vali-code {
     float: right;
     display: block;
     width: 50%;
@@ -278,10 +318,12 @@ input:-ms-input-placeholder{
     color: rgba(19, 168, 228, .7);
     text-align: center;
 }
-#send-vali-code:hover{
+
+#send-vali-code:hover {
     color: rgba(19, 168, 228, 1);
 }
-#register-btn{
+
+#register-btn {
     display: block;
     width: 100%;
     height: 35px;
@@ -299,10 +341,12 @@ input:-ms-input-placeholder{
     cursor: pointer;
     outline: none;
 }
-#register-btn:hover{
+
+#register-btn:hover {
     background-color: rgba(235, 26, 48, 1);
 }
-#popup-bg{
+
+#popup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;

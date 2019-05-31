@@ -1,8 +1,9 @@
-@media screen and (min-width:1081px) and (max-width:1200px){
-    #headerbox{
+@media screen and (min-width: 1081px) and (max-width: 1200px) {
+    #headerbox {
         width: 960px;
     }
-    #container{
+
+    #container {
         position: relative;
         width: 960px;
         height: 500px;
@@ -10,20 +11,24 @@
         margin: 24px auto;
     }
 }
-@media screen and (max-width:1080px){
-    body{
+
+@media screen and (max-width: 1080px) {
+    body {
         min-width: 992px;
     }
-    #headerbox{
+
+    #headerbox {
         width: 930px;
     }
-    #container{
+
+    #container {
         width: 930px;
         padding-right: 296px;
         margin: 16px auto;
     }
 }
-/* 
+
+/*
 @media screen and (min-width:887px) and (max-width:991px){
     #header{
         padding: 0 24px;

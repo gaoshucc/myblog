@@ -1,39 +1,44 @@
-.siyuan{
-    font-family:"webfont" !important;
-    font-size:16px;
-    font-style:normal;
+.siyuan {
+    font-family: "webfont" !important;
+    font-size: 16px;
+    font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-body{
+
+body {
     background-color: rgba(246, 246, 246, 1);
 }
-#header{
+
+#header {
     position: relative;
     width: 100%;
     height: 40px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
-#switch-box{
+
+#switch-box {
     position: absolute;
     top: 0;
     left: 0;
@@ -46,36 +51,43 @@ body{
     text-align: center;
     cursor: pointer;
 }
-#switch-box:hover{
+
+#switch-box:hover {
     color: rgba(18, 33, 37, 1);
 }
-#headerbox{
+
+#headerbox {
     width: 1080px;
     margin: 0 auto;
 }
-#nav{
+
+#nav {
     display: inline-block;
     height: 40px;
     margin-left: 30px;
 }
-#nav ul li{
+
+#nav ul li {
     display: block;
     float: left;
     list-style-type: none;
 }
-#nav ul li a{
+
+#nav ul li a {
     display: block;
     height: 40px;
     line-height: 40px;
     padding: 0 15px;
     text-align: center;
     font-size: 14px;
-    color:rgba(54, 58, 57, 1);
+    color: rgba(54, 58, 57, 1);
 }
-#nav ul li:hover{
+
+#nav ul li:hover {
     background-color: rgba(246, 246, 246, 1);
 }
-#user{
+
+#user {
     position: relative;
     float: right;
     width: 40px;
@@ -83,14 +95,16 @@ body{
     padding: 5px 0;
     z-index: 100;
 }
-#user #profile{
+
+#user #profile {
     width: 30px;
     height: 30px;
     border: solid 2px rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
 }
-#user_detail{
+
+#user_detail {
     display: none;
     position: absolute;
     top: 40px;
@@ -100,96 +114,114 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#infoBox{
+
+#infoBox {
     width: 150px;
     height: 50px;
     line-height: 50px;
     margin: 20px auto;
     margin-bottom: 10px;
 }
-#infoBox img{
+
+#infoBox img {
     float: left;
     width: 50px;
     height: 50px;
     margin: 0 5px;
     border-radius: 50%;
 }
-#user-info{
+
+#user-info {
     display: block;
     float: left;
     margin-left: 10px;
 }
-#user-info span{
+
+#user-info span {
     display: block;
     width: 80px;
     height: 25px;
     line-height: 25px;
     text-align: left;
 }
-#user-info span:nth-child(1){
+
+#user-info span:nth-child(1) {
     font-size: 16px;
     color: rgba(54, 58, 57, 1);
 }
-#user-info span:nth-child(2){
+
+#user-info span:nth-child(2) {
     font-size: 12px;
     color: rgba(108, 108, 108, 1);
 }
 
-#funcCard{
+#funcCard {
     width: 88%;
     height: 140px;
     margin: 0 6%;
     margin-top: 20px;
     margin-bottom: 10px;
 }
-#funcCardList{
+
+#funcCardList {
     list-style-type: none;
 }
-.funcCardItems{
+
+.funcCardItems {
     display: block;
     float: left;
     width: 50%;
     height: 60px;
     margin-bottom: 10px;
 }
-.funcCardItems span{
+
+.funcCardItems span {
     display: block;
     width: 100%;
     height: 30px;
     line-height: 30px;
     text-align: center;
 }
-.funcCardItems a{
+
+.funcCardItems a {
     font-size: 14px;
     letter-spacing: 1px;
     color: rgba(108, 108, 108, 1);
 }
-.funcCardItems:nth-child(1) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(1):hover span{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(2) .iconfont{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(2):hover span{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(3) .iconfont{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(3):hover span{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(4) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(4):hover span{
+
+.funcCardItems:nth-child(1) .iconfont {
     color: rgba(0, 133, 235, 1);
 }
 
-#quit{
+.funcCardItems:nth-child(1):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(2) .iconfont {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(2):hover span {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(3) .iconfont {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(3):hover span {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(4) .iconfont {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(4):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+#quit {
     display: block;
     width: 70%;
     height: 30px;
@@ -198,23 +230,26 @@ body{
     text-align: left;
     border-top: solid 1px rgba(216, 216, 216, .5);
 }
-#quit a{
+
+#quit a {
     padding-left: 5px;
     font-size: 14px;
     color: rgba(108, 108, 108, 1);
 }
-#quit a:hover{
+
+#quit a:hover {
     color: rgba(19, 168, 228, 1);
 }
 
-#container{
+#container {
     position: relative;
     width: 1080px;
     padding-right: 304px;
     margin: 24px auto;
     background-color: rgba(246, 246, 246, 1);
 }
-#account{
+
+#account {
     width: 100%;
     min-height: 550px;
     padding: 20px;
@@ -222,30 +257,35 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-.func-headline{
+
+.func-headline {
     position: relative;
     width: 100%;
 }
-.func-headline h2{
+
+.func-headline h2 {
     width: 100%;
     height: 35px;
     line-height: 35px;
     padding-left: 10px;
-    border-bottom: solid 2px rgba(196,196,196,1);
+    border-bottom: solid 2px rgba(196, 196, 196, 1);
     color: rgba(54, 58, 57, 1);
     font-size: 18px;
     font-weight: bold;
     letter-spacing: 3px;
 }
-.func-headline h2 span{
+
+.func-headline h2 span {
     margin-right: 3px;
     font-size: 20px;
     color: rgba(0, 133, 235, 1);
 }
-.func-headline h2 em{
+
+.func-headline h2 em {
     font-style: normal;
 }
-#edit-accountInfo{
+
+#edit-accountInfo {
     float: right;
     display: block;
     line-height: 35px;
@@ -254,52 +294,60 @@ body{
     color: rgba(0, 133, 235, .7);
     text-align: center;
 }
-#edit-accountInfo i{
+
+#edit-accountInfo i {
     font-size: 14px;
 }
-#edit-accountInfo:hover{
+
+#edit-accountInfo:hover {
     color: rgba(0, 133, 235, 1);
 }
 
-#accountInfo{
+#accountInfo {
     position: relative;
     width: 100%;
     margin-top: 15px;
     font-size: 15px;
 }
-#basicInfo{
+
+#basicInfo {
     width: 50%;
     padding: 0 20px 0 10px;
-    border-right: solid 0.5px rgba(196,196,196,.7);
+    border-right: solid 0.5px rgba(196, 196, 196, .7);
     color: rgba(54, 58, 57, 1);
 }
-#profileItem{
+
+#profileItem {
     width: 100%;
     height: 50px;
     line-height: 50px;
     text-align: left;
 }
-#profileText{
+
+#profileText {
     float: left;
     display: block;
     height: 30px;
     line-height: 30px;
     margin: 10px;
 }
-#profileItem img{
+
+#profileItem img {
     float: right;
     display: block;
     width: 40px;
     height: 40px;
     margin: 5px 10px;
 }
-.accountItems{
+
+.accountItems {
     width: 100%;
     height: 40px;
     line-height: 40px;
-    border-top: solid 0.5px rgba(196,196,196,.7);
+    border-top: solid 0.5px rgba(196, 196, 196, .7);
 }
-.itemname{
+
+.itemname {
     float: left;
     display: block;
     height: 30px;
@@ -307,7 +355,8 @@ body{
     margin: 5px 10px;
     letter-spacing: 1px;
 }
-.itemInfo{
+
+.itemInfo {
     width: 160px;
     float: right;
     display: block;
@@ -316,7 +365,8 @@ body{
     margin: 5px 10px 5px 10px;
     text-align: right;
 }
-.icon{
+
+.icon {
     float: right;
     display: block;
     width: 30px;
@@ -325,16 +375,19 @@ body{
     margin: 5px 10px 5px 10px;
     text-align: center;
 }
-#qrcode,#followee{
+
+#qrcode, #followee {
     cursor: pointer;
 }
-#motoo{
+
+#motoo {
     position: relative;
     width: 100%;
     padding: 10px 5px 10px 100px;
-    border-top: solid 0.5px rgba(196,196,196,.7);
+    border-top: solid 0.5px rgba(196, 196, 196, .7);
 }
-#motoo label{
+
+#motoo label {
     display: block;
     position: absolute;
     top: 50%;
@@ -344,21 +397,25 @@ body{
     margin-top: -15px;
     letter-spacing: 1px;
 }
-#motoo span{
+
+#motoo span {
     display: block;
     width: 100%;
     text-align: right;
     white-space: normal;
 }
-.pulldown{
+
+.pulldown {
     animation: pulldown 200ms ease-in-out forwards;
 }
-#list-followee{
+
+#list-followee {
     display: none;
     width: 100%;
     padding: 10px;
 }
-#list-followee a{
+
+#list-followee a {
     display: block;
     width: 100%;
     height: 35px;
@@ -370,10 +427,12 @@ body{
     background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
 }
-#list-followee a:hover{
+
+#list-followee a:hover {
     background-color: rgba(246, 246, 246, 1);
 }
-#unfollowBtn{
+
+#unfollowBtn {
     float: right;
     display: block;
     width: 80px;
@@ -388,28 +447,31 @@ body{
     background-color: rgba(246, 246, 246, 1);
     cursor: pointer;
 }
-#unfollowBtn:hover{
+
+#unfollowBtn:hover {
     color: rgba(235, 0, 0, 1);
     border: solid 0.5px rgba(235, 0, 0, 1);
 }
 
-.icon-meiyoudingdan-01,#no-followee{
+.icon-meiyoudingdan-01, #no-followee {
     display: block;
     line-height: 30px;
     margin: 0 auto;
     text-align: center;
     color: rgba(54, 58, 57, .7);
 }
-.icon-meiyoudingdan-01{
+
+.icon-meiyoudingdan-01 {
     padding-top: 20px;
     font-size: 25px;
 }
-#no-followee{
+
+#no-followee {
     padding-bottom: 20px;
     font-size: 14px;
 }
 
-#achievement{
+#achievement {
     position: absolute;
     top: 0;
     right: 0;
@@ -417,10 +479,12 @@ body{
     font-size: 15px;
     color: rgba(54, 58, 57, 1);
 }
-#summary{
+
+#summary {
     width: 100%;
 }
-#summary h3{
+
+#summary h3 {
     position: relative;
     height: 30px;
     line-height: 30px;
@@ -430,10 +494,12 @@ body{
     font-weight: 600;
     letter-spacing: 1px;
 }
-#summary h3 span{
+
+#summary h3 span {
     color: rgba(255, 210, 0, 1);
 }
-#summary h3 #level{
+
+#summary h3 #level {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -444,34 +510,37 @@ body{
     color: rgb(247, 53, 53);
 
     transform: rotate(45deg);
-    transform-origin:50% 50%;   /*定义动画的旋转中心点*/ 
-    -ms-transform: rotate(45deg);         /* IE 9 */
-    -ms-transform-origin:50% 50%;         /* IE 9 */
-    -webkit-transform: rotate(45deg);  /* Safari 和 Chrome */
-    -webkit-transform-origin:50% 50%;  /* Safari 和 Chrome */     
-    -moz-transform: rotate(45deg);     /* Firefox */
-    -moz-transform-origin:50% 50%;     /* Firefox */     
-    -o-transform: rotate(45deg);       /* Opera */
-    -o-transform-origin:50% 50%;       /* Opera */
+    transform-origin: 50% 50%; /*定义动画的旋转中心点*/
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -ms-transform-origin: 50% 50%; /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+    -webkit-transform-origin: 50% 50%; /* Safari 和 Chrome */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -moz-transform-origin: 50% 50%; /* Firefox */
+    -o-transform: rotate(45deg); /* Opera */
+    -o-transform-origin: 50% 50%; /* Opera */
 }
-#summaryDetail{
+
+#summaryDetail {
     width: 100%;
     height: 250px;
     margin-top: 20px;
     text-align: center;
 }
-#summaryDetail span{
+
+#summaryDetail span {
     display: block;
     height: 30px;
     line-height: 30px;
 }
-#summaryDetail span em{
+
+#summaryDetail span em {
     margin: 0 2px;
     font-style: normal;
     color: rgba(255, 210, 0, 1);
 }
 
-#password-manage{
+#password-manage {
     display: none;
     width: 100%;
     padding: 20px;
@@ -480,35 +549,41 @@ body{
     background-color: rgba(255, 255, 255, 1);
     color: rgba(54, 58, 57, 1);
 }
-#close-password-manage{
+
+#close-password-manage {
     position: absolute;
     top: 0;
     right: 0;
     color: #888;
     cursor: pointer;
 }
-#close-password-manage:hover{
+
+#close-password-manage:hover {
     color: red;
 }
-#modifi-password{
+
+#modifi-password {
     position: relative;
     width: 100%;
     margin-top: 15px;
     font-size: 15px;
 }
-.input-box{
+
+.input-box {
     width: 300px;
     height: 40px;
     line-height: 40px;
     margin: 0 auto;
     text-align: right;
 }
-.input-box label{
+
+.input-box label {
     height: 30px;
     line-height: 30px;
     margin-right: 10px;
 }
-.input-box input{
+
+.input-box input {
     width: 200px;
     height: 30px;
     line-height: 30px;
@@ -518,11 +593,12 @@ body{
     outline: none;
     background-color: rgba(216, 216, 216, 1);
 }
-.input-box input:focus{
+
+.input-box input:focus {
     border: solid 0.5px rgba(108, 108, 108, .5);
 }
 
-#send-btn{
+#send-btn {
     width: 300px;
     height: 40px;
     line-height: 40px;
@@ -530,7 +606,8 @@ body{
     margin-top: 20px;
     text-align: right;
 }
-#send-code,#confirm{
+
+#send-code, #confirm {
     display: inline-block;
     height: 35px;
     line-height: 35px;
@@ -541,11 +618,12 @@ body{
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 133, 215, 1);
 }
-#send-code:hover,#confirm:hover{
+
+#send-code:hover, #confirm:hover {
     background-color: rgba(0, 133, 255, 1);
 }
 
-#right{
+#right {
     position: absolute;
     top: 0;
     right: 0;
@@ -554,14 +632,15 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#right img{
+
+#right img {
     display: block;
     width: 240px;
     margin: 10px auto;
     cursor: pointer;
 }
 
-#account-funcbox{
+#account-funcbox {
     position: fixed;
     top: 0;
     left: -160px;
@@ -572,18 +651,22 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     background-color: rgba(255, 255, 255, 1);
 }
-.hideaside{
+
+.hideaside {
     animation: hideaside 300ms ease-in-out forwards;
 }
-.showaside{
+
+.showaside {
     animation: showaside 300ms ease-in-out forwards;
 }
-#account-func{
+
+#account-func {
     position: relative;
     margin: 0 auto;
     /* background-color: rgba(38, 52, 61, 100%); */
 }
-#account-setup{
+
+#account-setup {
     width: 100%;
     height: 60px;
     line-height: 60px;
@@ -594,10 +677,12 @@ body{
     /* color: rgba(10, 228, 220, 100%); */
     color: rgba(0, 133, 255, 1);
 }
-#func-list{
-    
+
+#func-list {
+
 }
-.func{
+
+.func {
     display: block;
     width: 100%;
     height: 50px;
@@ -606,13 +691,16 @@ body{
     color: rgba(54, 58, 57, 1);
     text-align: center;
 }
-.func:hover{
+
+.func:hover {
     background-color: rgba(236, 236, 236, 1);
 }
-.icon-profile,.icon-icon_password_yes,.icon-icon_logout,.icon-bangzhuzhongxin,.icon-xiugai{
+
+.icon-profile, .icon-icon_password_yes, .icon-icon_logout, .icon-bangzhuzhongxin, .icon-xiugai {
     margin-right: 8px;
 }
-#close-aside{
+
+#close-aside {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -624,90 +712,133 @@ body{
     color: rgba(54, 58, 57, .7);
     cursor: pointer;
 }
-#close-aside:hover{
+
+#close-aside:hover {
     color: rgba(54, 58, 57, 1);
 }
 
 /* 箭头下拉关键帧 */
-@keyframes pulldown{
-    0%{
-        -webkit-transform: rotate(0deg); 
-        -webkit-transform-origin:50% 50%; 
+@keyframes pulldown {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -webkit-transform-origin: 50% 50%;
     }
-    100%{
-        -webkit-transform: rotate(90deg); 
-        -webkit-transform-origin:50% 50%; 
-    }
-}
-@-webkit-keyframes pulldown{
-    0%{
-        -webkit-transform: rotate(0deg); 
-        -webkit-transform-origin:50% 50%; 
-    }
-    100%{
-        -webkit-transform: rotate(90deg); 
-        -webkit-transform-origin:50% 50%; 
+    100% {
+        -webkit-transform: rotate(90deg);
+        -webkit-transform-origin: 50% 50%;
     }
 }
-@-moz-keyframes pulldown{
-    0%{
-        -moz-transform: rotate(0deg); 
-        -moz-transform-origin:50% 50%; 
+
+@-webkit-keyframes pulldown {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -webkit-transform-origin: 50% 50%;
     }
-    100%{
-        -moz-transform: rotate(90deg); 
-        -moz-transform-origin:50% 50%; 
+    100% {
+        -webkit-transform: rotate(90deg);
+        -webkit-transform-origin: 50% 50%;
     }
 }
-@-o-keyframes pulldown{
-    0%{
-        -o-transform: rotate(0deg); 
-        -o-transform-origin:50% 50%; 
+
+@-moz-keyframes pulldown {
+    0% {
+        -moz-transform: rotate(0deg);
+        -moz-transform-origin: 50% 50%;
     }
-    100%{
-        -o-transform: rotate(90deg); 
-        -o-transform-origin:50% 50%; 
+    100% {
+        -moz-transform: rotate(90deg);
+        -moz-transform-origin: 50% 50%;
+    }
+}
+
+@-o-keyframes pulldown {
+    0% {
+        -o-transform: rotate(0deg);
+        -o-transform-origin: 50% 50%;
+    }
+    100% {
+        -o-transform: rotate(90deg);
+        -o-transform-origin: 50% 50%;
     }
 }
 
 
 /* 为侧边栏关闭动画设置关键帧 */
-@keyframes hideaside{
-    0%{left: 0;}
-    100%{left: -160px;}
+@keyframes hideaside {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -160px;
+    }
 }
-@-webkit-keyframes hideaside{
-    0%{left: 0;}
-    100%{left: -160px;}
+
+@-webkit-keyframes hideaside {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -160px;
+    }
 }
-@-moz-keyframes hideaside{
-    0%{left: 0;}
-    100%{left: -160px;}
+
+@-moz-keyframes hideaside {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -160px;
+    }
 }
-@-o-keyframes hideaside{
-    0%{left: 0;}
-    100%{left: -160px;}
+
+@-o-keyframes hideaside {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -160px;
+    }
 }
+
 /* 为侧边栏打开动画设置关键帧 */
-@keyframes showaside{
-    0%{left: -160px;}
-    100%{left: 0;}
+@keyframes showaside {
+    0% {
+        left: -160px;
+    }
+    100% {
+        left: 0;
+    }
 }
-@-webkit-keyframes showaside{
-    0%{left: -160px;}
-    100%{left: 0;}
+
+@-webkit-keyframes showaside {
+    0% {
+        left: -160px;
+    }
+    100% {
+        left: 0;
+    }
 }
-@-moz-keyframes showaside{
-    0%{left: -160px;}
-    100%{left: 0;}
+
+@-moz-keyframes showaside {
+    0% {
+        left: -160px;
+    }
+    100% {
+        left: 0;
+    }
 }
-@-o-keyframes showaside{
-    0%{left: -160px;}
-    100%{left: 0;}
+
+@-o-keyframes showaside {
+    0% {
+        left: -160px;
+    }
+    100% {
+        left: 0;
+    }
 }
 
 /*头像修改界面样式（修改按钮，id=""）*/
-#profile-popup{
+#profile-popup {
     z-index: 201;
     position: fixed;
     top: 0;
@@ -721,11 +852,13 @@ body{
     visibility: hidden;
     opacity: 0;
 }
-#profile-popup.show{
+
+#profile-popup.show {
     visibility: visible;
     opacity: 1;
 }
-#profile-popup-content{
+
+#profile-popup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -738,7 +871,8 @@ body{
     /*box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);*/
     text-align: center;
 }
-#profile-close{
+
+#profile-close {
     display: block;
     position: absolute;
     top: 10px;
@@ -748,19 +882,23 @@ body{
     text-align: center;
     cursor: pointer;
 }
-#profile-close:hover{
+
+#profile-close:hover {
     color: red;
 }
-#edit-content{
+
+#edit-content {
     width: 100%;
 }
-#magnify-profile{
+
+#magnify-profile {
     display: block;
     width: 360px;
     height: 360px;
     margin: 0 auto;
 }
-#change-profile{
+
+#change-profile {
     float: right;
     display: block;
     width: 80px;
@@ -775,10 +913,12 @@ body{
     color: rgba(54, 58, 57, 1);
     background-color: rgba(246, 246, 246, 1);
 }
-#change-profile:hover{
+
+#change-profile:hover {
     background-color: rgba(255, 255, 255, 1);
 }
-#profile-popup-bg{
+
+#profile-popup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;
@@ -787,7 +927,7 @@ body{
 }
 
 /*修改信息弹出层*/
-#edit-accountInfo-popup{
+#edit-accountInfo-popup {
     z-index: 100;
     position: fixed;
     top: 0;
@@ -797,7 +937,8 @@ body{
     visibility: visible;
     opacity: 1;
 }
-#edit-accountInfo-popup-content{
+
+#edit-accountInfo-popup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -812,7 +953,8 @@ body{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-#edit-accountInfo-close{
+
+#edit-accountInfo-close {
     display: block;
     position: absolute;
     top: 0;
@@ -824,45 +966,51 @@ body{
     color: rgba(246, 246, 246, 1);
     cursor: pointer;
 }
-#edit-accountInfo-close:hover{
+
+#edit-accountInfo-close:hover {
     color: red;
 }
 
-#edit-accountInfo-headline{
+#edit-accountInfo-headline {
     display: block;
     width: 100%;
     height: 40px;
     line-height: 40px;
-    border-bottom: solid 0.5px rgba(196,196,196,.7);
+    border-bottom: solid 0.5px rgba(196, 196, 196, .7);
     font-size: 16px;
     font-weight: normal;
     color: rgba(54, 58, 57, 1);
     text-align: left;
 }
-#editable-accountInfo{
+
+#editable-accountInfo {
     width: 100%;
     padding: 0 5px;
     font-size: 14px;
     color: rgba(54, 58, 57, 1);
 }
-.editable-info{
+
+.editable-info {
     position: relative;
     display: block;
     width: 100%;
     line-height: 40px;
     text-align: left;
 }
-#editable-profile{
+
+#editable-profile {
     position: relative;
     line-height: 50px;
 }
-#editable-profile img{
+
+#editable-profile img {
     float: right;
     width: 40px;
     height: 40px;
     margin: 5px 0;
 }
-#upload-profile{
+
+#upload-profile {
     float: right;
     position: relative;
     display: inline-block;
@@ -872,12 +1020,13 @@ body{
     margin: 25px 5px 5px 5px;
     font-size: 12px;
     color: #fff;
-    background-color: rgba(14,203,23,1);
+    background-color: rgba(14, 203, 23, 1);
     text-align: center;
     cursor: pointer;
     overflow: hidden;
 }
-#upload-profile input[type=file]{
+
+#upload-profile input[type=file] {
     position: absolute;
     right: 0;
     top: 0;
@@ -888,10 +1037,12 @@ body{
     -ms-filter: 'alpha(opacity=0)';
     cursor: pointer;
 }
-.editable-info{
+
+.editable-info {
     position: relative;
 }
-.editable-info input[type=text]{
+
+.editable-info input[type=text] {
     float: right;
     display: block;
     line-height: 40px;
@@ -899,7 +1050,8 @@ body{
     text-align: right;
     outline: none;
 }
-.editable-info .radio-box{
+
+.editable-info .radio-box {
     float: right;
     display: inline-block;
     line-height: 40px;
@@ -907,10 +1059,12 @@ body{
     vertical-align: middle;
     outline: none;
 }
-.radio-box input[type=radio]{
+
+.radio-box input[type=radio] {
     margin-right: 5px;
 }
-.editable-info select{
+
+.editable-info select {
     float: right;
     display: block;
     height: 30px;
@@ -918,21 +1072,23 @@ body{
     margin: 5px 0;
     padding: 0 23px 0 5px;
     border: none;
-    border: solid 0.5px rgba(196,196,196,.7);
+    border: solid 0.5px rgba(196, 196, 196, .7);
     color: rgba(54, 58, 57, 1);
     background: url("../image/arrow-down.png") no-repeat 92% center rgba(255, 255, 255, 1);
     outline: none;
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+    appearance: none;
 }
-.editable-info select option{
+
+.editable-info select option {
     color: rgba(54, 58, 57, 1);
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+    appearance: none;
 }
-#submit-edited-accountInfo{
+
+#submit-edited-accountInfo {
     position: absolute;
     bottom: 20px;
     right: 25px;
@@ -941,15 +1097,16 @@ body{
     padding: 0 10px;
     border: none;
     color: #fff;
-    background-color: rgba(14,203,23,.7);
+    background-color: rgba(14, 203, 23, .7);
     cursor: pointer;
     outline: none;
 }
-#submit-edited-accountInfo:hover{
-    background-color: rgba(14,203,23,1);
+
+#submit-edited-accountInfo:hover {
+    background-color: rgba(14, 203, 23, 1);
 }
 
-#edit-accountInfo-popup-bg{
+#edit-accountInfo-popup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;

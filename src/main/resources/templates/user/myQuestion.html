@@ -89,7 +89,9 @@
         <div id='write-quest'>
             <form id="question-form" th:action="@{/user/askQuestion}" method="POST">
                 <div id='quest-title'>
-                    <label id="question-label">问题：</label><span class="input-parent"><input type='text' placeholder='写下你遇到的问题' name='questionTitle'></span>
+                    <label id="question-label">问题：</label><span class="input-parent"><input type='text'
+                                                                                            placeholder='写下你遇到的问题'
+                                                                                            name='questionTitle'></span>
                     <select name='typeId' id='questType'>
                         <option value=1>前端开发</option>
                         <option value=2>后台开发</option>
@@ -121,25 +123,25 @@
 </div>
 <script type="text/javascript" th:src="@{/user/js/myQuestion.js}"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         editormd("quest-editormd", {
-            width   : 500,
-            height  : 400,
-            syncScrolling : "single",
-            path    : "user-editormd/lib/",
-            watch : false,
-            imageUpload : true,
-            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL : "/uploadpic",
+            width: 500,
+            height: 400,
+            syncScrolling: "single",
+            path: "user-editormd/lib/",
+            watch: false,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/uploadpic",
             //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-            saveHTMLToTextarea : true,
-            emoji : true,
-            toc : true,
-            taskList : true,
-            toolbarIcons : function() {
-                return ["undo","redo","|","quote","link","image","code","code-block","emoji","html-entities","|","fullscreen","clear"]
+            saveHTMLToTextarea: true,
+            emoji: true,
+            toc: true,
+            taskList: true,
+            toolbarIcons: function () {
+                return ["undo", "redo", "|", "quote", "link", "image", "code", "code-block", "emoji", "html-entities", "|", "fullscreen", "clear"]
             },
-            placeholder : "写下问题的详细描述"
+            placeholder: "写下问题的详细描述"
         });
     });
 </script>

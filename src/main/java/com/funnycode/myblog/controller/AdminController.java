@@ -28,7 +28,7 @@ import java.io.IOException;
  * @create 2018-11-20 21:14
  */
 @Controller
-@RequestMapping(value = "/admin",produces = "text/html;charset=UTF-8")
+@RequestMapping(value = "/admin", produces = "text/html;charset=UTF-8")
 public class AdminController {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -41,7 +41,7 @@ public class AdminController {
      * 判断用户是否已存在
      */
     @PostMapping("/adminexists")
-    public void userExists(HttpServletResponse response, String adminname){
+    public void userExists(HttpServletResponse response, String adminname) {
         String exists = adminService.adminexists(adminname);
         try {
             response.getWriter().write(exists);
@@ -54,7 +54,7 @@ public class AdminController {
      * 判断昵称是否已存在
      */
     @PostMapping("/nicknameexists")
-    public void nicknameExists(HttpServletResponse response, String nickname){
+    public void nicknameExists(HttpServletResponse response, String nickname) {
         String exists = adminService.nicknameexists(nickname);
         try {
             response.getWriter().write(exists);
@@ -67,7 +67,7 @@ public class AdminController {
      * 登录页面
      */
     @RequestMapping("/loginpage")
-    public String loginpage(){
+    public String loginpage() {
         return "admin/login";
     }
 
@@ -75,7 +75,7 @@ public class AdminController {
      * 主页面
      */
     @RequestMapping("/homepage")
-    public String homepage(){
+    public String homepage() {
         return "admin/home";
     }
 
@@ -83,7 +83,7 @@ public class AdminController {
      * 注册
      */
     @PostMapping("/regist")
-    public String regist(Admin admin){
+    public String regist(Admin admin) {
         logger.info("进入regist方法了");
         ByteSource salt = ByteSource.Util.bytes(admin.getAdminname());
         String newPassword = new SimpleHash("MD5", admin.getPassword(), salt, 512).toHex();
@@ -97,7 +97,7 @@ public class AdminController {
      * 登陆
      *
      * @param adminname 管理员账号
-     * @param password 管理员密码
+     * @param password  管理员密码
      */
     @PostMapping(value = "/login")
     public String login(Model model, String adminname, String password, boolean rememberMe) {
@@ -105,24 +105,24 @@ public class AdminController {
         String errorMsg = "";
         Subject subject = SecurityUtils.getSubject();
         UserToken userToken = new UserToken(adminname, password, rememberMe, Admin_LoginType);
-        try{
+        try {
             subject.login(userToken);
             PrincipalCollection principals = subject.getPrincipals();
             Admin admin = (Admin) principals.getPrimaryPrincipal();
             logger.info(admin.getAdminname() + ":" + admin.getNickname());
 
             return "redirect:homepage";
-        }catch (UnknownAccountException e){
+        } catch (UnknownAccountException e) {
             errorMsg = "当前账号不存在";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);
             return "admin/login";
-        }catch (IncorrectCredentialsException e1){
+        } catch (IncorrectCredentialsException e1) {
             errorMsg = "当前密码不正确";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);
             return "admin/login";
-        }catch (Exception ex){
+        } catch (Exception ex) {
             errorMsg = "账号信息不正确";
             logger.info(errorMsg);
             model.addAttribute("errorMsg", errorMsg);

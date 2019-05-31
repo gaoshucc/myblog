@@ -22,7 +22,7 @@ public class Answer {
         Question question = new Question();
         question.setQuestId(questId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.answerId = UUID.randomUUID().toString().replace("-","");
+        this.answerId = UUID.randomUUID().toString().replace("-", "");
         this.user = user;
         this.question = question;
         this.parentId = "0";
@@ -36,7 +36,7 @@ public class Answer {
         Question question = new Question();
         question.setQuestId(questId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.answerId = UUID.randomUUID().toString().replace("-","");
+        this.answerId = UUID.randomUUID().toString().replace("-", "");
         this.user = user;
         this.question = question;
         this.parentId = byReplyId;

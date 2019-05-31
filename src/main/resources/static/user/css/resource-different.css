@@ -1,31 +1,38 @@
-@media screen and (min-width:1081px) and (max-width:1200px){
-    #headerbox{
+@media screen and (min-width: 1081px) and (max-width: 1200px) {
+    #headerbox {
         width: 960px;
     }
-    #container{
+
+    #container {
         width: 960px;
     }
-    #nav{
+
+    #nav {
         margin-left: 20px;
     }
-  
+
 }
-@media screen and (max-width:1080px){
-    body{
+
+@media screen and (max-width: 1080px) {
+    body {
         min-width: 992px;
     }
-    #headerbox{
+
+    #headerbox {
         width: 910px;
     }
-    #container{
+
+    #container {
         width: 910px;
     }
-    #nav{
+
+    #nav {
         margin-left: 20px;
     }
-  /* 
-  字体、图片也应该相应缩小
-  */
+
+    /*
+    字体、图片也应该相应缩小
+    */
 }
 
 /* 

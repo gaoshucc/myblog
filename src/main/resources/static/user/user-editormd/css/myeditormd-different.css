@@ -1,20 +1,23 @@
-@media screen and (min-width:819px) and (max-width:993px){
-    #container{
+@media screen and (min-width: 819px) and (max-width: 993px) {
+    #container {
         width: 100%;
         padding-top: 0;
         margin: 0;
     }
 }
-@media screen and (max-width: 818px){
-    body{
+
+@media screen and (max-width: 818px) {
+    body {
         min-width: 768px;
     }
-    #container{
+
+    #container {
         width: 100%;
         padding-top: 0;
         margin: 0;
     }
-    #title{
+
+    #title {
         width: 250px;
     }
 }

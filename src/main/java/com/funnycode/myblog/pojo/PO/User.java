@@ -148,7 +148,7 @@ public class User implements Serializable {
 
     public User(String username, String password, String nickname, String regtime) {
         Position position = new Position(0);
-        this.userId = UUID.randomUUID().toString().replace("-","");
+        this.userId = UUID.randomUUID().toString().replace("-", "");
         this.username = username;
         this.password = password;
         this.nickname = nickname;

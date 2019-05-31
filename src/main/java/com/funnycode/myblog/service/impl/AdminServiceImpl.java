@@ -22,21 +22,21 @@ public class AdminServiceImpl implements AdminService {
     public String adminexists(String adminname) {
         int exists = adminMapper.adminexists(adminname);
 
-        return exists>0?"false":"true";
+        return exists > 0 ? "false" : "true";
     }
 
     @Override
     public String nicknameexists(String nickname) {
         int exists = adminMapper.nicknameexists(nickname);
 
-        return exists>0?"false":"true";
+        return exists > 0 ? "false" : "true";
     }
 
     @Override
     public boolean regist(Admin register) {
         int regSuccess = adminMapper.regist(register);
 
-        return regSuccess>0?true:false;
+        return regSuccess > 0 ? true : false;
     }
 
     @Override

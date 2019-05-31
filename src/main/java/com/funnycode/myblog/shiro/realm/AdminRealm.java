@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author gaoshucc
  * @create 2018-11-22 17:42
  */
-public class AdminRealm extends AuthorizingRealm{
+public class AdminRealm extends AuthorizingRealm {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminRealm.class);
 
@@ -32,12 +32,12 @@ public class AdminRealm extends AuthorizingRealm{
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         logger.info("管理员权限认证");
-        if(principalCollection == null){
+        if (principalCollection == null) {
             logger.info("参数PrincipalCollection不能为空");
             throw new AuthorizationException("参数PrincipalCollection不能为空");
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        if(principalCollection.getPrimaryPrincipal() instanceof Admin){
+        if (principalCollection.getPrimaryPrincipal() instanceof Admin) {
             Admin admin = (Admin) principalCollection.getPrimaryPrincipal();
             logger.info("当前管理员：" + admin.getAdminname());
             authorizationInfo.addRole("admin");
@@ -60,11 +60,11 @@ public class AdminRealm extends AuthorizingRealm{
         SimpleAuthenticationInfo simpleAuthenticationInfo = null;
         //从数据库中查找用户
         Admin admin = adminService.getAdminByAdminname(token.getUsername());
-        if(admin != null){
+        if (admin != null) {
             logger.info("admin存在");
             ByteSource salt = ByteSource.Util.bytes(admin.getAdminname());
             simpleAuthenticationInfo = new SimpleAuthenticationInfo(admin, admin.getPassword(), salt, getName());
-        }else{
+        } else {
             throw new AuthenticationException();
         }
 

@@ -11,7 +11,8 @@
     </select>
 
     <insert id="regist" parameterType="com.funnycode.myblog.pojo.PO.Admin">
-        INSERT INTO `admin`(`admin_id`,`adminname`,`password`,`nickname`,`role`) VALUES (#{adminId},#{adminname},#{password},#{nickname},#{role})
+        INSERT INTO `admin`(`admin_id`,`adminname`,`password`,`nickname`,`role`) VALUES
+        (#{adminId},#{adminname},#{password},#{nickname},#{role})
     </insert>
 
     <select id="getRoleByAdminname" parameterType="java.lang.String" resultType="java.lang.String">

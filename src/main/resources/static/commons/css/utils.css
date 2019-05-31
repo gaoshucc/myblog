@@ -9,6 +9,7 @@
         transform: rotate(360deg);
     }
 }
+
 @-webkit-keyframes lds-double-ring {
     0% {
         -webkit-transform: rotate(0);
@@ -19,6 +20,7 @@
         transform: rotate(360deg);
     }
 }
+
 @keyframes lds-double-ring_reverse {
     0% {
         -webkit-transform: rotate(0);
@@ -29,6 +31,7 @@
         transform: rotate(-360deg);
     }
 }
+
 @-webkit-keyframes lds-double-ring_reverse {
     0% {
         -webkit-transform: rotate(0);
@@ -39,9 +42,11 @@
         transform: rotate(-360deg);
     }
 }
+
 .lds-double-ring {
     position: relative;
 }
+
 .lds-double-ring div {
     position: absolute;
     width: 40px;
@@ -54,6 +59,7 @@
     -webkit-animation: lds-double-ring 1s linear infinite;
     animation: lds-double-ring 1s linear infinite;
 }
+
 .lds-double-ring div:nth-child(2) {
     width: 35px;
     height: 35px;
@@ -63,6 +69,7 @@
     -webkit-animation: lds-double-ring_reverse 1s linear infinite;
     animation: lds-double-ring_reverse 1s linear infinite;
 }
+
 .lds-double-ring {
     margin: 0 auto;
     width: 200px !important;
@@ -72,7 +79,7 @@
 }
 
 /*自动关闭弹出层样式*/
-#commons-autoPopup-content{
+#commons-autoPopup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -83,20 +90,61 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     color: rgba(255, 255, 255, 1);
+    opacity: 100%;
+    animation: op-feedback-fadeout 3s forwards;
 }
-#commons-autoPopup-content span{
+
+#commons-autoPopup-content span {
     line-height: 20px;
     font-size: 14px;
 }
-#commons-autoPopup-bg{
+
+#commons-autoPopup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
 }
+
+@keyframes op-feedback-fadeout {
+    0% {
+        opacity: 100%;
+    }
+    10% {
+        opacity: 100%;
+    }
+    20% {
+        opacity: 100%;
+    }
+    30% {
+        opacity: 100%;
+    }
+    40% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 100%;
+    }
+    60% {
+        opacity: 100%;
+    }
+    70% {
+        opacity: 100%;
+    }
+    80% {
+        opacity: 100%;
+    }
+    90% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /*弹出层公共样式*/
-#commons-popup{
+#commons-popup {
     z-index: 100;
     position: fixed;
     top: 0;
@@ -109,11 +157,13 @@
     visibility: hidden;
     opacity: 0;
 }
-#commons-popup.show{
+
+#commons-popup.show {
     visibility: visible;
     opacity: 1;
 }
-#commons-popup-content{
+
+#commons-popup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,7 +174,8 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-#commons-close{
+
+#commons-close {
     display: block;
     position: absolute;
     top: 10px;
@@ -134,25 +185,29 @@
     text-align: center;
     cursor: pointer;
 }
-#commons-close:hover{
+
+#commons-close:hover {
     color: red;
 }
-#commons-popup-bg{
+
+#commons-popup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
 }
+
 /*弹出层样式*/
-#popup-login-title{
+#popup-login-title {
     display: block;
     line-height: 25px;
     margin: 10px auto;
     margin-bottom: 15px;
     font-size: 14px;
 }
-#popup-login{
+
+#popup-login {
     display: block;
     width: 80px;
     height: 35px;
@@ -165,19 +220,22 @@
     color: #fff;
     background-color: rgba(56, 168, 71, .8);
 }
-#popup-login:hover{
+
+#popup-login:hover {
     background-color: rgba(56, 168, 71, 1);
 }
-#popup-cancel{
+
+#popup-cancel {
     display: block;
     width: 40px;
     line-height: 20px;
     margin: 0 auto;
     font-size: 12px;
-    color: rgba(0,0,0,.8);
+    color: rgba(0, 0, 0, .8);
     cursor: pointer;
 }
-#popup-cancel:hover{
-    color: rgba(0,0,0,1);
+
+#popup-cancel:hover {
+    color: rgba(0, 0, 0, 1);
     text-decoration: underline;
 }

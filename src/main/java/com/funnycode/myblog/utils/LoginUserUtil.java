@@ -21,28 +21,28 @@ public class LoginUserUtil {
     private static UserService userService;
 
     @PostConstruct
-    private void init(){
+    private void init() {
         userService = service;
     }
 
-    public static String findLoginUserId(HttpSession session){
+    public static String findLoginUserId(HttpSession session) {
         String userId = (String) session.getAttribute("loginUser");
 
         return userId;
     }
 
-    public static User findLoginUser(HttpSession session){
+    public static User findLoginUser(HttpSession session) {
         User loginUser = null;
         String userId;
         try {
             userId = (String) session.getAttribute("loginUser");
-            System.out.println("userId:"+userId);
-            if(userId != null){
+            System.out.println("userId:" + userId);
+            if (userId != null) {
                 System.out.println("userId不为空");
                 loginUser = userService.getUserByUserId(userId);
-                System.out.println("user："+loginUser);
+                System.out.println("user：" + loginUser);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -32,13 +32,13 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         logger.info("用户权限认证");
-        if(principalCollection == null){
+        if (principalCollection == null) {
             logger.info("参数PrincipalCollection不能为空");
             throw new AuthorizationException("参数PrincipalCollection不能为空");
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        if(principalCollection.getPrimaryPrincipal() instanceof User){
+        if (principalCollection.getPrimaryPrincipal() instanceof User) {
             User user = (User) principalCollection.getPrimaryPrincipal();
             logger.info("当前用户：" + user.getNickname());
             authorizationInfo.addRole("user");
@@ -61,10 +61,10 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo simpleAuthenticationInfo = null;
         //从数据库中查找用户
         User user = userService.getUserByUsername(token.getUsername());
-        if(user != null){
+        if (user != null) {
             ByteSource salt = ByteSource.Util.bytes(user.getUsername());
             simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), salt, getName());
-        }else{
+        } else {
             throw new AuthenticationException();
         }
 

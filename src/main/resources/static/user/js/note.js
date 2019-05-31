@@ -1,38 +1,38 @@
 /* 
 jq部分
 */
-$(function(){
-    $('#close,#report').click(function(e){
+$(function () {
+    $('#close,#report').click(function (e) {
         e.preventDefault();  //阻止默认单击事件
         $('#popup').toggleClass('show');
     });
-    
-    if($(window).scrollTop()<100){
+
+    if ($(window).scrollTop() < 100) {
         $("#uptoTop").fadeOut(1);   //初始化页面时，隐藏Top按钮
     }
 
-    $(window).scroll(function(){
-        if($(window).scrollTop()>100){
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 100) {
             $("#uptoTop").fadeIn(1000);  //当页面起点距离窗口大于100时，淡入
-        }else{
+        } else {
             $("#uptoTop").fadeOut(1000);    //当页面起点距离窗口小于100时，淡出
         }
     });
     //跳转到顶部（动画）
-    $("#uptoTop").click(function(){
+    $("#uptoTop").click(function () {
         var dis = $(window).scrollTop();
-        $("body,html").animate({scrollTop:0},300);  
+        $("body,html").animate({scrollTop: 0}, 300);
         return false;
-     });
+    });
 
 });
 
-function addLoadEvent(func){
+function addLoadEvent(func) {
     var oldonload = window.onload;
-    if(typeof window.onload != 'function'){
+    if (typeof window.onload != 'function') {
         window.onload = func;
-    }else{
-        window.onload = function(){
+    } else {
+        window.onload = function () {
             oldonload();
             func();
         }
@@ -51,28 +51,30 @@ addLoadEvent(main);
 function main() {
     //点赞
     var like = document.querySelector("#like");
-    like.addEventListener("click",function (e) {
-        if(hasLogin()){
+    like.addEventListener("click", function (e) {
+        if (hasLogin()) {
             likeNote();
-        }else{
-            showPopup("<span id='popup-login-title'>小主，要登录才能点赞哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        } else {
+            showPopup("<span id='popup-login-title'>小主，要登录才能点赞哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
         }
     });
     //收藏
     var favorite = document.querySelector("#favorite");
-    favorite.addEventListener("click",function (e) {
-        if(hasLogin()){
+    favorite.addEventListener("click", function (e) {
+        if (hasLogin()) {
             collectNote();
-        }else{
-            showPopup("<span id='popup-login-title'>小主，要登录才能收藏哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        } else {
+            showPopup("<span id='popup-login-title'>小主，要登录才能收藏哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
         }
     })
 }
+
 /**
  * 悬浮显示用户详细信息
  */
 var user = null;
-function showUserDetail(){
+
+function showUserDetail() {
     var userinfo = document.querySelector('#user');
     var userDetail = document.querySelector('#user_detail');
 
@@ -81,20 +83,20 @@ function showUserDetail(){
     var experience = document.querySelector("#experience");
 
     findUser();
-    if(userinfo != null){
-        userinfo.addEventListener('mouseover',function(e){
+    if (userinfo != null) {
+        userinfo.addEventListener('mouseover', function (e) {
             userDetail.style.display = 'block';
             //判断鼠标是否已经悬浮，放置重复发送请求
             let event = e || event;        //兼容处理
             let from = event.fromElement || event.relatedTarget;//兼容处理
-            if(from && this.contains(from)){      //如果在里面则返回
+            if (from && this.contains(from)) {      //如果在里面则返回
                 return;
             }
             findUser();
-        },false);
-        userinfo.addEventListener('mouseout',function(e){
+        }, false);
+        userinfo.addEventListener('mouseout', function (e) {
             userDetail.style.display = 'none';
-        },false);
+        }, false);
     }
 
     //获取登录用户
@@ -107,10 +109,10 @@ function showUserDetail(){
             success: function (data) {
                 user = JSON.parse(data);
 
-                for(let j=0; j<myProfile.length; j++){
+                for (let j = 0; j < myProfile.length; j++) {
                     myProfile[j].src = "/" + user.profilePath;
                 }
-                for(let i=0; i<loginUserNickname.length; i++){
+                for (let i = 0; i < loginUserNickname.length; i++) {
                     loginUserNickname[i].innerHTML = user.nickname;
                 }
                 experience.innerHTML = "经验 " + user.experience;
@@ -132,10 +134,10 @@ function findNote() {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/readNote",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var note = JSON.parse(data);
                 console.log(note);
                 document.title = note.noteTitle;
@@ -148,6 +150,7 @@ function findNote() {
         async: true
     });
 }
+
 /**
  * 获取作者信息
  */
@@ -161,11 +164,11 @@ function findBloggerDetailInfo(authorId) {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/authorDetail",
-        data: {"authorId":authorId},
+        data: {"authorId": authorId},
         dataType: "json",
         success: function (data) {
             console.log(data);
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var author = JSON.parse(data);
                 console.log(author);
                 writerName.innerHTML = author.nickname;
@@ -173,9 +176,9 @@ function findBloggerDetailInfo(authorId) {
                 writerProfile.src = "/" + author.profilePath;
                 noteCount.innerHTML = author.noteCount + "篇手记";
                 answerCount.innerHTML = "解答" + author.answerCount + "次";
-                noteAttentionBtn.setAttribute("data-followee-id",author.authorId);
-                if(hasAttention(noteAttentionBtn.getAttribute("data-followee-id"))){
-                    updateAttentionBtnStyle(noteAttentionBtn,true);
+                noteAttentionBtn.setAttribute("data-followee-id", author.authorId);
+                if (hasAttention(noteAttentionBtn.getAttribute("data-followee-id"))) {
+                    updateAttentionBtnStyle(noteAttentionBtn, true);
                 }
                 attention(noteAttentionBtn);
             }
@@ -183,6 +186,7 @@ function findBloggerDetailInfo(authorId) {
         async: true
     });
 }
+
 /**
  * 获得点赞人数
  */
@@ -193,10 +197,10 @@ function findLikeCount() {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/findLikeCount",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var count = JSON.parse(data);
                 likeCount.innerHTML = count.likeCount + "点赞";
             }
@@ -204,6 +208,7 @@ function findLikeCount() {
         async: true
     });
 }
+
 /**
  * 点赞
  */
@@ -213,15 +218,15 @@ function likeNote() {
     $.ajax({
         type: "POST",
         url: PRO_NAME + "/user/likeNote",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var success = JSON.parse(data).like;
-                if(success == "1"){
+                if (success == "1") {
                     console.log("已点赞");
                     hasLike();
-                }else {
+                } else {
                     console.log("未点赞");
                     cancelLike();
                 }
@@ -230,6 +235,7 @@ function likeNote() {
         async: true
     });
 }
+
 /**
  * 是否已点赞
  */
@@ -239,15 +245,15 @@ function whetherLike() {
     $.ajax({
         type: "POST",
         url: PRO_NAME + "/user/whetherLike",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var whetherLike = JSON.parse(data).like;
-                if(whetherLike == "1"){
+                if (whetherLike == "1") {
                     console.log("已点赞");
                     hasLike();
-                }else {
+                } else {
                     console.log("未点赞");
                     cancelLike();
                 }
@@ -256,6 +262,7 @@ function whetherLike() {
         async: true
     });
 }
+
 //改变点赞图标为已点赞
 function hasLike() {
     var like = document.querySelector("#like");
@@ -266,6 +273,7 @@ function hasLike() {
     likeLabel.innerHTML = "感谢小主的点赞";
     likeLabel.style.color = "rgba(255, 210, 0, 1)";
 }
+
 //改变点赞图标为未点赞
 function cancelLike() {
     var like = document.querySelector("#like");
@@ -286,15 +294,15 @@ function collectNote() {
     $.ajax({
         type: "POST",
         url: PRO_NAME + "/user/collectNote",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var success = JSON.parse(data).favorite;
-                if(success == "1"){
+                if (success == "1") {
                     console.log("已收藏");
                     hasCollect();
-                }else {
+                } else {
                     console.log("未收藏");
                     cancelCollect();
                 }
@@ -303,6 +311,7 @@ function collectNote() {
         async: true
     });
 }
+
 /**
  * 是否已收藏
  */
@@ -312,15 +321,15 @@ function whetherCollect() {
     $.ajax({
         type: "POST",
         url: PRO_NAME + "/user/whetherCollect",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var whetherCollect = JSON.parse(data).favorite;
-                if(whetherCollect == "1"){
+                if (whetherCollect == "1") {
                     console.log("已收藏");
                     hasCollect();
-                }else {
+                } else {
                     console.log("未收藏");
                     cancelCollect();
                 }
@@ -329,6 +338,7 @@ function whetherCollect() {
         async: true
     });
 }
+
 //改变收藏图标为已收藏
 function hasCollect() {
     var favorite = document.querySelector("#favorite");
@@ -338,6 +348,7 @@ function hasCollect() {
     favorite.title = "已收藏";
     favoriteIcon.style.color = "rgba(255, 63, 75, 1)";
 }
+
 //改变收藏图标为未收藏
 function cancelCollect() {
     var favorite = document.querySelector("#favorite");
@@ -357,10 +368,10 @@ function findComments() {
     $.ajax({
         type: "GET",
         url: PRO_NAME + "/user/findComments",
-        data: {"noteId":noteId.value},
+        data: {"noteId": noteId.value},
         dataType: "json",
         success: function (data) {
-            if(!isnull(data)){
+            if (!isnull(data)) {
                 var comments = JSON.parse(data);
                 console.log(comments);
                 showComments(comments);
@@ -370,55 +381,57 @@ function findComments() {
         async: true
     });
 }
+
 /**
  * Ajax从后台获得该手记的手记
  */
 function showComments(comments) {
     //获得评论区
     var commentBox = document.querySelector("#comments");
-    if(!isnull(commentBox.innerHTML)){
+    if (!isnull(commentBox.innerHTML)) {
         commentBox.innerHTML = "";
     }
-    for(let i=0; i<comments.length; i++){
-        if(comments[i] != null){
+    for (let i = 0; i < comments.length; i++) {
+        if (comments[i] != null) {
             //创建一条评论
             var comment = document.createElement("div");
-            addClass("comment",comment);
+            addClass("comment", comment);
             //创建评论者头像
             var observerImg = document.createElement("img");
-            addClass("comment-profile",observerImg);
+            addClass("comment-profile", observerImg);
             observerImg.src = "/" + comments[i].user.profilePath;
             //创建父评论
             var observer = document.createElement("div");
-            addClass("comment-rightpart",observer);
+            addClass("comment-rightpart", observer);
             observer.innerHTML = "<time class='comment-time'>" + comments[i].commentTime + "</time>" +
-                    "<a href='#' class='comment-nickname'>" + comments[i].user.nickname + "</a>" +
-                    "<span class='comment-content'>"+ comments[i].commentContent +
-                    "<a class='reply commonReply ' data-byReply-nickname='"+ comments[i].user.nickname +"' data-by-reply='"+ comments[i].commentId +"' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
-                    "</span>";
+                "<a href='#' class='comment-nickname'>" + comments[i].user.nickname + "</a>" +
+                "<span class='comment-content'>" + comments[i].commentContent +
+                "<a class='reply commonReply ' data-byReply-nickname='" + comments[i].user.nickname + "' data-by-reply='" + comments[i].commentId + "' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                "</span>";
             //将主评论插入到评论
             comment.appendChild(observerImg);
             comment.appendChild(observer);
 
-            if(comments[i].son != null){
-                showReplies(comments[i],comments[i].son);
+            if (comments[i].son != null) {
+                showReplies(comments[i], comments[i].son);
+
                 //创建子评论（即回复）
-                function showReplies(parentComment,childComment) {
-                    for(let j=0; j<childComment.length; j++){
+                function showReplies(parentComment, childComment) {
+                    for (let j = 0; j < childComment.length; j++) {
                         //创建回复
                         var replyBox = document.createElement("div");
-                        addClass("replies",replyBox);
-                        replyBox.innerHTML = "<img src='/"+ childComment[j].user.profilePath +"' class='comment-profile'>" +
-                                "<time class='reply-time'>"+ childComment[j].commentTime +"</time>" +
-                                "<a href='#' class='comment-nickname'>"+ childComment[j].user.nickname +"</a><span class='reply-text'>回复</span><a href='#' class='comment-nickname'>"+ parentComment.user.nickname +"</a>" +
-                                "<span class='comment-content'>"+ childComment[j].commentContent +
-                                "<a class='reply-to commonReply' data-byReply-nickname='"+ childComment[j].user.nickname +"' data-by-reply='"+ childComment[j].commentId +"' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
-                                "</span>";
+                        addClass("replies", replyBox);
+                        replyBox.innerHTML = "<img src='/" + childComment[j].user.profilePath + "' class='comment-profile'>" +
+                            "<time class='reply-time'>" + childComment[j].commentTime + "</time>" +
+                            "<a href='#' class='comment-nickname'>" + childComment[j].user.nickname + "</a><span class='reply-text'>回复</span><a href='#' class='comment-nickname'>" + parentComment.user.nickname + "</a>" +
+                            "<span class='comment-content'>" + childComment[j].commentContent +
+                            "<a class='reply-to commonReply' data-byReply-nickname='" + childComment[j].user.nickname + "' data-by-reply='" + childComment[j].commentId + "' title='回复ta'><i class='iconfont icon-pinglun2'></i>回复</a>" +
+                            "</span>";
                         comment.appendChild(replyBox);
                         //如果该评论还有子评论，就继续递归创建子评论
-                        if(childComment[j].son != null){
+                        if (childComment[j].son != null) {
                             //传递父评论跟子评论过去，进行递归调用
-                            showReplies(childComment[j],childComment[j].son);
+                            showReplies(childComment[j], childComment[j].son);
                         }
                     }
                 }
@@ -428,6 +441,7 @@ function showComments(comments) {
         }
     }
 }
+
 /**
  * 发表评论
  */
@@ -436,10 +450,10 @@ function submitComment() {
     var commentContent = document.querySelector("#comment-content");
     var submitComment = document.querySelector("#submit-comment");
 
-    submitComment.addEventListener("click",function (e) {
-        if(hasLogin()){
+    submitComment.addEventListener("click", function (e) {
+        if (hasLogin()) {
             kindEditor.sync();
-            if(isnull(commentContent.value)){
+            if (isnull(commentContent.value)) {
                 alert("评论内容不能为空");
                 return;
             }
@@ -447,20 +461,20 @@ function submitComment() {
             $.ajax({
                 type: "POST",
                 url: PRO_NAME + "/user/submitComment",
-                data: {"noteId":noteId.value,"commentContent":commentContent.value},
+                data: {"noteId": noteId.value, "commentContent": commentContent.value},
                 dataType: "json",
                 success: function (data) {
-                    if(!isnull(data)){
+                    if (!isnull(data)) {
                         KindEditor.instances[0].html("");
-                        showAutoPopup("<span>评论成功</span>",100,60,2000);
+                        showAutoPopup("<span>评论成功</span>", 100, 60, 3000);
                         //更新评论区
                         findComments();
                     }
                 },
                 async: true
             });
-        }else {
-            showPopup("<span id='popup-login-title'>小主，要登录才能评论哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+        } else {
+            showPopup("<span id='popup-login-title'>小主，要登录才能评论哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
         }
     });
 }
@@ -470,26 +484,26 @@ function submitComment() {
  */
 function replyTo() {
     //回复按钮
-    var replyToOthers = document.querySelectorAll(".commonReply");
+    let replyToOthers = document.querySelectorAll(".commonReply");
     //评论区
-    var commentContent = document.querySelector("#comment-content");
-    var submitComment = document.querySelector("#submit-comment");
-    var replyRegion = document.querySelector("#reply-region");
-    var submitReply =document.querySelector("#submit-reply");
-    var byReply = document.querySelectorAll("#reply-region .byReply")[0];
-    var cancelReply = document.querySelector("#cancelReply");
+    let commentContent = document.querySelector("#comment-content");
+    let submitComment = document.querySelector("#submit-comment");
+    let replyRegion = document.querySelector("#reply-region");
+    let submitReply = document.querySelector("#submit-reply");
+    let byReply = document.querySelectorAll("#reply-region .byReply")[0];
+    let cancelReply = document.querySelector("#cancelReply");
 
     cancelReply.addEventListener("click", function (e) {
         cancelReplyFunc();
     });
     //若该手记有评论，则进入
-    if(replyToOthers != null){
+    if (replyToOthers != null) {
 
         //记录原来的url路径
-        var basePath;
-        for(let i=0; i<replyToOthers.length; i++){
-            replyToOthers[i].addEventListener("click",function (e) {
-                if(hasLogin()){
+        let basePath;
+        for (let i = 0; i < replyToOthers.length; i++) {
+            replyToOthers[i].addEventListener("click", function () {
+                if (hasLogin()) {
                     /*
                     //清除上一个回复的样式
                     if(submitReply != null) writeCommentBox.removeChild(submitReply);
@@ -516,26 +530,26 @@ function replyTo() {
                     writeCommentBox.appendChild(byReply);
                     writeCommentBox.appendChild(cancelReply);
                     */
-
                     //隐藏“发表评论”按钮
                     submitComment.style.display = "none";
                     replyRegion.style.display = "block";
+                    //获得要回复的对象的昵称
                     byReply.value = replyToOthers[i].getAttribute("data-byReply-nickname");
-
+                    //todo 实现页内定位
                     commentContent.focus();
                     basePath = location.href;
-
-                    //location.href = location.href.replace("#write-comment-box", "");
-                    if(basePath.indexOf("#write-comment-box") == -1){
+                    if (basePath.indexOf("#write-comment-box") == -1) {
                         location.href = location.href + "#write-comment-box";
                     }
-                    //todo 修改href
-                    //发表回复
-                    submitReply.addEventListener("click",function (e) {
-                        var noteId = document.querySelector("#noteId");
-                        var byReplyId = replyToOthers[i].getAttribute("data-by-reply");
+                    //为“发表回复”添加点击事件
+                    submitReply.addEventListener("click", dealWithReply);
+
+                    //处理回复信息
+                    function dealWithReply() {
+                        let noteId = document.querySelector("#noteId");
+                        let byReplyId = replyToOthers[i].getAttribute("data-by-reply");
                         kindEditor.sync();
-                        if(isnull(commentContent.value)){
+                        if (isnull(commentContent.value)) {
                             alert("回复内容不能为空");
                             return;
                         }
@@ -543,13 +557,22 @@ function replyTo() {
                         $.ajax({
                             type: "POST",
                             url: PRO_NAME + "/user/submitReply",
-                            data: {"noteId":noteId.value,"byReplyId":byReplyId,"commentContent":commentContent.value},
+                            data: {
+                                "noteId": noteId.value,
+                                "byReplyId": byReplyId,
+                                "commentContent": commentContent.value
+                            },
                             dataType: "json",
                             success: function (data) {
-                                if(!isnull(data)){
+                                if (!isnull(data)) {
                                     //location.href = basePath;
                                     KindEditor.instances[0].html("");
-                                    showAutoPopup("<span>回复成功</span>",100,60,2000);
+                                    //恢复“发表评论”区
+                                    submitComment.style.display = "block";
+                                    replyRegion.style.display = "none";
+                                    //先移除click事件,再重新添加click事件（防止多次添加事件导致回复异常）
+                                    submitReply.removeEventListener("click", dealWithReply);
+                                    showAutoPopup("<span>回复成功</span>", 100, 60, 3000);
                                     //更新评论区
                                     findComments();
                                 }
@@ -559,29 +582,28 @@ function replyTo() {
                             },
                             async: true
                         });
-                    })
-                }else {
-                    showPopup("<span id='popup-login-title'>小主，要登录才能回复哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>",200,200);
+                    }
+                } else {
+                    showPopup("<span id='popup-login-title'>小主，要登录才能回复哦<br>(,,・ω・,,)</span><a href='/user/loginpage' id='popup-login'>登录</a><a id='popup-cancel'>取消</a>", 200, 200);
                 }
             });
         }
     }
 }
+
 /**
  * 还原评论区
  */
 function cancelReplyFunc() {
-    var submitComment = document.querySelector("#submit-comment");
-    var replyRegion = document.querySelector("#reply-region");
-    //评论框
-    var commentContent = document.querySelector("#comment-content");
+    let submitComment = document.querySelector("#submit-comment");
+    let replyRegion = document.querySelector("#reply-region");
     //todo 网站崩溃
     kindEditor.sync();
-    if(isnull(commentContent.value) || confirm("确定取消回复？（不可恢复）")){
+    if (isnull(document.querySelector("#comment-content").value) || confirm("确定取消回复？（不可恢复）")) {
         KindEditor.instances[0].html("");
         replyRegion.style.display = "none";
         submitComment.style.display = "block";
-    }else{
+    } else {
         return null;
     }
 }

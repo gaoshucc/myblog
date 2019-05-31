@@ -22,7 +22,7 @@ public class Comment {
         Note note = new Note();
         note.setNoteId(noteId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.commentId = UUID.randomUUID().toString().replace("-","");
+        this.commentId = UUID.randomUUID().toString().replace("-", "");
         this.user = user;
         this.note = note;
         this.parentId = "0";
@@ -36,7 +36,7 @@ public class Comment {
         Note note = new Note();
         note.setNoteId(noteId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.commentId = UUID.randomUUID().toString().replace("-","");
+        this.commentId = UUID.randomUUID().toString().replace("-", "");
         this.user = user;
         this.note = note;
         this.parentId = byReplyId;

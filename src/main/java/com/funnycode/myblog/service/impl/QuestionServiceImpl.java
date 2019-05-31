@@ -41,7 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
         Integer num = questionMapper.saveQuestion(question);
         Integer updateSuccess = userMapper.updateUserExperienceByUserId(userId);
 
-        return (num>0&&updateSuccess>0)?true:false;
+        return (num > 0 && updateSuccess > 0) ? true : false;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class QuestionServiceImpl implements QuestionService {
     public boolean saveAnswer(Answer answer) {
         Integer saveAnswerSuccess = questionMapper.saveAnswer(answer);
 
-        return saveAnswerSuccess>0?true:false;
+        return saveAnswerSuccess > 0 ? true : false;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public boolean deleteQuestionByQuestionId(String questionId) {
-        return questionMapper.deleteQuestionByQuestionId(questionId)>0?true:false;
+        return questionMapper.deleteQuestionByQuestionId(questionId) > 0 ? true : false;
     }
 
     @Override
@@ -93,12 +93,12 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public boolean recycleQuestionByQuestionId(String questionId) {
-        return questionMapper.recycleQuestionByQuestionId(questionId)>0?true:false;
+        return questionMapper.recycleQuestionByQuestionId(questionId) > 0 ? true : false;
     }
 
     @Override
     public boolean completelyDelQuestionByQuestionId(String questionId) {
-        return questionMapper.completelyDelQuestionByQuestionId(questionId)>0?true:false;
+        return questionMapper.completelyDelQuestionByQuestionId(questionId) > 0 ? true : false;
     }
 
     @Override

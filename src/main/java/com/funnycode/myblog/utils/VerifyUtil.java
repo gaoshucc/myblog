@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -60,7 +61,7 @@ public class VerifyUtil {
         graphic.fillRect(0, 0, WIDTH, HEIGHT);
         // 5.画随机字符
         Random ran = new Random();
-        for (int i = 0; i <SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
             // 取随机字符索引
             int n = ran.nextInt(chars.length);
             // 设置随机颜色
@@ -70,7 +71,7 @@ public class VerifyUtil {
                     null, Font.BOLD + Font.ITALIC, FONT_SIZE));
             // 画字符
             graphic.drawString(
-                    chars[n] + "", i * WIDTH / SIZE, HEIGHT*2/3);
+                    chars[n] + "", i * WIDTH / SIZE, HEIGHT * 2 / 3);
             // 记录字符
             sb.append(chars[n]);
         }

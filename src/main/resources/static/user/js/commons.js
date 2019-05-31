@@ -1,7 +1,7 @@
 /**
  * 根据userId从后台获得当前登录用户user
  */
-function findUserDetail(userId, user){
+function findUserDetail(userId, user) {
     console.log("findUserDetail------userId:" + userId);
     //向后台发送ajax请求获取登录用户详细信息
     $.ajax({

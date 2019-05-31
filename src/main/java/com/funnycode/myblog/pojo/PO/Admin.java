@@ -7,7 +7,7 @@ import java.util.UUID;
  * @author gaoshucc
  * @create 2018-11-22 19:10
  */
-public class Admin implements Serializable{
+public class Admin implements Serializable {
 
     private String adminId;
     private String adminname;
@@ -57,7 +57,7 @@ public class Admin implements Serializable{
     }
 
     public Admin(String adminname, String newPassword, String nickname) {
-        this.adminId = UUID.randomUUID().toString().replace("-","");
+        this.adminId = UUID.randomUUID().toString().replace("-", "");
         this.adminname = adminname;
         this.password = newPassword;
         this.nickname = nickname;

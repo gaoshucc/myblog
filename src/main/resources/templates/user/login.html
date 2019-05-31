@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" th:href="@{/user/image/blog.png}" type="image/x-icon" />
+    <link rel="icon" th:href="@{/user/image/blog.png}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{/commons/font/aliicon/iconfont.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/login-commons.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/user/css/login-different.css}">
@@ -17,57 +17,60 @@
     <title>欢迎来到FunnyCode</title>
 </head>
 <body>
-    <div id="container">
-        <div id="errorMsgBox">
-            <span id="errorMsg" th:text="${errorMsg}"></span>
-        </div>
-        <span id="website-icon" class="iconfont icon-7">
+<div id="container">
+    <div id="errorMsgBox">
+        <span id="errorMsg" th:text="${errorMsg}"></span>
+    </div>
+    <span id="website-icon" class="iconfont icon-7">
             <em>FunnyCode</em>
         </span>
-        <a th:href="@{/user/homepage}" id="visitor">游客访问</a>
+    <a th:href="@{/user/homepage}" id="visitor">游客访问</a>
 
-        <div id="login-content">
-            <h2 id="login-headline">LOGIN</h2>
-            <div id="input-area">
-                <form id="login-form" th:action="@{/user/login}" method="POST">
+    <div id="login-content">
+        <h2 id="login-headline">LOGIN</h2>
+        <div id="input-area">
+            <form id="login-form" th:action="@{/user/login}" method="POST">
                     <span class="input-parent">
                         <!--<i class="iconfont icon-icon-user"></i>-->
                         <input type="text" name="username" class="input" placeholder="手机号/账号" th:value="${username}">
                     </span>
-                    <span class="input-parent">
+                <span class="input-parent">
                         <!--<i class="iconfont icon-icon-user"></i>-->
                         <input type="password" name="password" class="input" placeholder="密码" th:value="${password}">
                     </span>
-                    <label class="other">
-                        <input th:if="${rememberMe == null}" type="checkbox" name="rememberMe" value="1">
-                        <input th:if="${rememberMe != null}" checked type="checkbox" name="rememberMe" value="1">
-                        记住我
-                    </label>
-                    <a href="#" id="forgot-pwd" class="other">忘记密码</a>
-                    <button type="submit" id="login-btn">登录</button> 
-                </form>
-            </div>
-            <span id="register">还没注册？<a href="#" id="clickto-register">点我注册</a></span>
+                <label class="other">
+                    <input th:if="${rememberMe == null}" type="checkbox" name="rememberMe" value="1">
+                    <input th:if="${rememberMe != null}" checked type="checkbox" name="rememberMe" value="1">
+                    记住我
+                </label>
+                <a href="#" id="forgot-pwd" class="other">忘记密码</a>
+                <button type="submit" id="login-btn">登录</button>
+            </form>
         </div>
+        <span id="register">还没注册？<a href="#" id="clickto-register">点我注册</a></span>
     </div>
-    <div id="popup">
-        <div id="popup-content">
-            <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
-            <h2>REGIST</h2>
-            <div id="reg-input-area">
-                <form id="regist-form" th:action="@{/user/regist}" method="POST">
-                    <span class="input-parent"><input id="username" name="username" type="text" class="reg-input" placeholder="手机号"></span>
-                    <span class="input-parent"><input id="nickname" name="nickname" type="text" class="reg-input" placeholder="昵称"></span>
-                    <span class="input-parent"><input id="password" name="password" type="password" class="reg-input" placeholder="密码"></span>
-                    <span class="input-parent" id="valicode-input-parent">
+</div>
+<div id="popup">
+    <div id="popup-content">
+        <span class="iconfont icon-guanbi" id="close" title="关闭"></span>
+        <h2>REGIST</h2>
+        <div id="reg-input-area">
+            <form id="regist-form" th:action="@{/user/regist}" method="POST">
+                <span class="input-parent"><input id="username" name="username" type="text" class="reg-input"
+                                                  placeholder="手机号"></span>
+                <span class="input-parent"><input id="nickname" name="nickname" type="text" class="reg-input"
+                                                  placeholder="昵称"></span>
+                <span class="input-parent"><input id="password" name="password" type="password" class="reg-input"
+                                                  placeholder="密码"></span>
+                <span class="input-parent" id="valicode-input-parent">
                         <input type="text" name="valicode" class="reg-input" id="vali-code" placeholder="验证码">
                         <img id="vali-code-img" src="#">
                     </span>
-                    <button type="submit" id="register-btn">注册</button>
-                </form>
-            </div>
+                <button type="submit" id="register-btn">注册</button>
+            </form>
         </div>
-        <div id="popup-bg"></div>
     </div>
+    <div id="popup-bg"></div>
+</div>
 </body>
 </html>

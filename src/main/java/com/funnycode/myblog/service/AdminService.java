@@ -14,6 +14,7 @@ public interface AdminService {
      * @return Admin 管理员对象
      */
     Admin getAdminByAdminname(String username);
+
     /**
      * 注册管理员
      *
@@ -21,6 +22,7 @@ public interface AdminService {
      * @return Admin 注册成功返回true,失败返回false
      */
     boolean regist(Admin register);
+
     /**
      * 判断adminname是否存在
      *
@@ -28,6 +30,7 @@ public interface AdminService {
      * @return String 昵称存在返回“true”,不存在返回“false”
      */
     String adminexists(String adminname);
+
     /**
      * 判断nickname是否存在
      *
@@ -35,6 +38,7 @@ public interface AdminService {
      * @return String 昵称存在返回“true”,不存在返回“false”
      */
     String nicknameexists(String nickname);
+
     /**
      * 通过adminname获取角色
      *

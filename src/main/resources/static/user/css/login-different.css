@@ -5,12 +5,13 @@
 由于网站主页主要展示内容为各种文章、资源，
 故将“留言功能”置于最后，以最小影响读者阅读。
 */
-@media screen and (min-width:1081px) and (max-width:1200px){
-    
+@media screen and (min-width: 1081px) and (max-width: 1200px) {
+
 }
-@media screen and (max-width:1080px){
-    body{
+
+@media screen and (max-width: 1080px) {
+    body {
         min-width: 996px;
     }
-  
+
 }

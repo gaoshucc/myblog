@@ -29,14 +29,14 @@ public class MyModularRealmAuthenticator extends ModularRealmAuthenticator {
         //登录类型对应的realm
         ArrayList<Realm> loginTypeRealms = new ArrayList<>();
         //将与LoginType对应的realm加入loginTypeRealms
-        for (Realm realm:realms) {
-            if(realm.getName().contains(loginType)){
+        for (Realm realm : realms) {
+            if (realm.getName().contains(loginType)) {
                 loginTypeRealms.add(realm);
             }
         }
-        if(loginTypeRealms.size() == 1){
+        if (loginTypeRealms.size() == 1) {
             return doSingleRealmAuthentication(loginTypeRealms.get(0), userToken);
-        }else {
+        } else {
             return doMultiRealmAuthentication(loginTypeRealms, userToken);
         }
     }

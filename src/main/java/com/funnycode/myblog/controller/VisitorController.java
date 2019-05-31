@@ -17,7 +17,7 @@ public class VisitorController {
      * 默认跳转到登录页面
      */
     @RequestMapping("/")
-    public String getIndex(){
+    public String getIndex() {
         return "user/login";
     }
 

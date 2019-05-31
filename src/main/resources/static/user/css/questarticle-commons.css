@@ -1,60 +1,70 @@
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-body{
+
+body {
     position: relative;
     background-color: rgba(246, 246, 246, 1);
 }
-#header{
+
+#header {
     width: 100%;
     height: 40px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
 }
-#headerbox{
+
+#headerbox {
     position: relative;
     width: 1080px;
     height: 100%;
     line-height: 100%;
     margin: 0 auto;
 }
-#nav{
+
+#nav {
     display: inline-block;
     height: 40px;
     margin-left: 30px;
 }
-#nav ul li{
+
+#nav ul li {
     display: block;
     float: left;
     list-style-type: none;
 }
-#nav ul li a{
+
+#nav ul li a {
     display: block;
     height: 40px;
     line-height: 40px;
     padding: 0 15px;
     text-align: center;
     font-size: 14px;
-    color:rgba(54, 58, 57, 1);
+    color: rgba(54, 58, 57, 1);
 }
-#nav ul li:hover{
+
+#nav ul li:hover {
     background-color: rgba(246, 246, 246, 1);
 }
 
-#user{
+#user {
     position: relative;
     float: right;
     width: 40px;
@@ -62,14 +72,16 @@ body{
     padding: 5px 0;
     z-index: 100;
 }
-#user #imgone{
+
+#user #imgone {
     width: 30px;
     height: 30px;
     border: solid 2px rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
 }
-#user_detail{
+
+#user_detail {
     display: none;
     position: absolute;
     top: 40px;
@@ -79,94 +91,112 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#infoBox{
+
+#infoBox {
     width: 150px;
     height: 50px;
     line-height: 50px;
     margin: 20px auto;
 }
-#infoBox img{
+
+#infoBox img {
     float: left;
     width: 50px;
     height: 50px;
     margin: 0 5px;
     border-radius: 50%;
 }
-#user-info{
+
+#user-info {
     display: block;
     float: left;
     margin-left: 10px;
 }
-#user-info span{
+
+#user-info span {
     display: block;
     width: 80px;
     height: 25px;
     line-height: 25px;
     text-align: left;
 }
-#user-info span:nth-child(1){
+
+#user-info span:nth-child(1) {
     font-size: 16px;
     color: rgba(54, 58, 57, 1);
 }
-#user-info span:nth-child(2){
+
+#user-info span:nth-child(2) {
     font-size: 12px;
     color: rgba(108, 108, 108, 1);
 }
 
-#funcCard{
+#funcCard {
     width: 88%;
     height: 140px;
     margin: 0 6%;
     margin-bottom: 10px;
 }
-#funcCardList{
+
+#funcCardList {
     list-style-type: none;
 }
-.funcCardItems{
+
+.funcCardItems {
     display: block;
     float: left;
     width: 50%;
     height: 60px;
     margin-bottom: 10px;
 }
-.funcCardItems span{
+
+.funcCardItems span {
     display: block;
     width: 100%;
     height: 30px;
     line-height: 30px;
     text-align: center;
 }
-.funcCardItems a{
+
+.funcCardItems a {
     font-size: 14px;
     letter-spacing: 1px;
     color: rgba(108, 108, 108, 1);
 }
-.funcCardItems:nth-child(1) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(1):hover span{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(2) .iconfont{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(2):hover span{
-    color: rgba(66, 211, 132, 1);
-}
-.funcCardItems:nth-child(3) .iconfont{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(3):hover span{
-    color: rgba(255, 210, 0, 1);
-}
-.funcCardItems:nth-child(4) .iconfont{
-    color: rgba(0, 133, 235, 1);
-}
-.funcCardItems:nth-child(4):hover span{
+
+.funcCardItems:nth-child(1) .iconfont {
     color: rgba(0, 133, 235, 1);
 }
 
-#quit{
+.funcCardItems:nth-child(1):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(2) .iconfont {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(2):hover span {
+    color: rgba(66, 211, 132, 1);
+}
+
+.funcCardItems:nth-child(3) .iconfont {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(3):hover span {
+    color: rgba(255, 210, 0, 1);
+}
+
+.funcCardItems:nth-child(4) .iconfont {
+    color: rgba(0, 133, 235, 1);
+}
+
+.funcCardItems:nth-child(4):hover span {
+    color: rgba(0, 133, 235, 1);
+}
+
+#quit {
     display: block;
     width: 70%;
     height: 30px;
@@ -175,16 +205,18 @@ body{
     text-align: left;
     border-top: solid 1px rgba(216, 216, 216, .5);
 }
-#quit a{
+
+#quit a {
     padding-left: 5px;
     font-size: 14px;
     color: rgba(108, 108, 108, 1);
 }
-#quit a:hover{
+
+#quit a:hover {
     color: rgba(19, 168, 228, 1);
 }
 
-#top{
+#top {
     width: 96%;
     height: 50px;
     line-height: 50px;
@@ -194,7 +226,7 @@ body{
     background-color: rgba(255, 255, 255, 1);
 }
 
-#write{
+#write {
     display: block;
     float: right;
     width: 80px;
@@ -208,7 +240,7 @@ body{
     background-color: rgba(0, 133, 235, 1);
 }
 
-#serchBar{
+#serchBar {
     position: relative;
     float: right;
     width: 230px;
@@ -218,7 +250,8 @@ body{
     border-radius: 5px;
     z-index: 1;
 }
-#serchText{
+
+#serchText {
     position: absolute;
     left: 0px;
     top: 0px;
@@ -232,7 +265,8 @@ body{
     outline: none;
     background-color: rgba(246, 246, 246, 1);
 }
-#serch{
+
+#serch {
     display: block;
     position: absolute;
     top: 0;
@@ -249,11 +283,12 @@ body{
     color: rgba(54, 58, 57, 1);
     background-color: rgba(246, 246, 246, 1);
 }
-#serch:hover{
+
+#serch:hover {
     color: rgba(0, 133, 235, 1);
 }
 
-#askingbg{
+#askingbg {
     display: block;
     z-index: 999;
     position: fixed;
@@ -263,13 +298,15 @@ body{
     height: 100%;
     opacity: 0;
 }
-#askbox{
+
+#askbox {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(108, 108, 108, .5);
 }
-#write-quest{
+
+#write-quest {
     z-index: 1100;
     position: absolute;
     top: 50%;
@@ -279,7 +316,8 @@ body{
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 1);
 }
-#quest-title{
+
+#quest-title {
     width: 100%;
     height: 50px;
     line-height: 50px;
@@ -288,7 +326,8 @@ body{
     color: rgba(54, 58, 57, 1);
     background-color: #f6f6f6;
 }
-#quest-title label{
+
+#quest-title label {
     float: left;
     display: block;
     height: 30px;
@@ -298,7 +337,8 @@ body{
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
 }
-#quest-title input{
+
+#quest-title input {
     float: left;
     display: block;
     width: 200px;
@@ -310,7 +350,8 @@ body{
     outline: none;
     text-indent: 5px;
 }
-#questType{
+
+#questType {
     float: left;
     display: block;
     height: 30px;
@@ -320,29 +361,33 @@ body{
     border: none;
     border-radius: 5px;
     outline: none;
-    color:rgb(54, 58, 57);
+    color: rgb(54, 58, 57);
     background: url("../image/arrow-down.png") no-repeat 90% center rgba(255, 255, 255, 1);
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+    appearance: none;
 }
-#questType option{
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
+
+#questType option {
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+    appearance: none;
 }
-#quest-editormd{
+
+#quest-editormd {
     margin-bottom: 0;
     border-left: none;
     border-right: none;
 }
-#funcBar{
+
+#funcBar {
     width: 500px;
     height: 50px;
     line-height: 50px;
     margin: 0 auto;
 }
-.func{
+
+.func {
     float: right;
     display: block;
     height: 30px;
@@ -355,26 +400,30 @@ body{
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 133, 255, 1);
 }
-#submitQuestion{
+
+#submitQuestion {
     border: none;
     outline: none;
     cursor: pointer;
 }
-#cancel{
+
+#cancel {
     background-color: rgba(235, 60, 60, .7);
 }
-#cancel:hover{
+
+#cancel:hover {
     background-color: rgba(235, 60, 60, 1);
 }
 
-#container{
+#container {
     position: relative;
     width: 1080px;
     padding-right: 320px;
     padding-left: 160px;
     margin: 10px auto;
 }
-#articleCate{
+
+#articleCate {
     position: absolute;
     top: 0;
     left: 0;
@@ -384,10 +433,12 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-#articleCate ul{
+
+#articleCate ul {
     width: 100%;
 }
-#articleCate ul li{
+
+#articleCate ul li {
     display: block;
     width: 100px;
     height: 40px;
@@ -397,18 +448,21 @@ body{
     list-style-type: none;
     cursor: pointer;
 }
-#articleCate ul li a{
+
+#articleCate ul li a {
     font-size: 16px;
     color: rgba(54, 58, 57, .7);
 }
-#articleCate ul li a:hover{
+
+#articleCate ul li a:hover {
     color: rgba(0, 133, 255, 1) !important;
 }
-.clicked{
+
+.clicked {
     color: rgba(54, 58, 57, 1) !important;
 }
 
-#questSection{
+#questSection {
     width: 100%;
     min-height: 450px;
     padding: 10px 20px;
@@ -416,38 +470,45 @@ body{
     box-shadow: 0 1px 1px 1px rgb(230, 230, 230);
     background-color: rgba(255, 255, 255, 1);
 }
-.article{
+
+.article {
     width: 100%;
     height: 80px;
     padding: 5px 0;
-    border-bottom: solid 0.5px rgba(138,138,138, .5);
+    border-bottom: solid 0.5px rgba(138, 138, 138, .5);
     letter-spacing: 1px;
 }
-.article:last-child{
+
+.article:last-child {
     border-bottom: none;
 }
-.article h2{
+
+.article h2 {
     width: 100%;
     height: 25px;
     line-height: 25px;
     font-size: 16px;
     font-weight: bolder;
 }
-.article h2 a{
+
+.article h2 a {
     text-decoration: none;
     color: rgba(0, 0, 0, .8);
 }
-.article h2 a:hover{
+
+.article h2 a:hover {
     color: rgba(0, 133, 235, 1);
 }
-.article p{
+
+.article p {
     width: 100%;
     height: 20px;
     line-height: 20px;
     font-size: 14px;
     color: rgba(108, 108, 108, 1);
 }
-.articleInfo{
+
+.articleInfo {
     position: relative;
     width: 100%;
     height: 25px;
@@ -456,7 +517,8 @@ body{
     letter-spacing: 1px;
     color: rgba(108, 108, 108, 1);
 }
-.author{
+
+.author {
     display: block;
     float: left;
     height: 25px;
@@ -464,10 +526,12 @@ body{
     margin-right: 10px;
     color: rgba(54, 58, 57, 1);
 }
-.author:hover{
+
+.author:hover {
     color: rgb(19, 168, 228);
 }
-.content-type{
+
+.content-type {
     display: block;
     float: left;
     height: 25px;
@@ -475,16 +539,18 @@ body{
     margin-right: 10px;
     color: rgba(54, 58, 57, 1);
 }
-.readInfo{
+
+.readInfo {
     position: absolute;
     top: 0;
     right: 5px;
     width: 50%;
     height: 100%;
     line-height: 100%;
-    
+
 }
-.readInfo span{
+
+.readInfo span {
     display: block;
     float: right;
     height: 25px;
@@ -492,41 +558,47 @@ body{
     margin-right: 10px;
     text-align: center;
 }
-.readInfo a{
+
+.readInfo a {
     padding-right: 2px;
     color: rgba(54, 58, 57, 1);
 }
-.readInfo a:hover{
+
+.readInfo a:hover {
     color: rgb(19, 168, 228);
 }
 
-.icon-stack,#no-content{
+.icon-stack, #no-content {
     display: block;
     line-height: 30px;
     margin: 0 auto;
     text-align: center;
     color: rgba(54, 58, 57, .7);
 }
-.icon-stack{
+
+.icon-stack {
     padding-top: 20px;
     font-size: 25px;
 }
-#no-content{
+
+#no-content {
     padding-bottom: 20px;
     font-size: 14px;
 }
 
-#hotArticlle{
+#hotArticlle {
     position: absolute;
     top: 0;
     right: 0;
     width: 280px;
     margin: 0 20px;
 }
-#hotHeadline{
+
+#hotHeadline {
     width: 100%;
 }
-#hotHeadline h2{
+
+#hotHeadline h2 {
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -536,21 +608,24 @@ body{
     font-weight: bold;
     letter-spacing: 5px;
 }
-#hotHeadline h2 em{
+
+#hotHeadline h2 em {
     font-style: normal;
 }
 
-#hotSection{
+#hotSection {
     width: 100%;
 }
-.hotLink{
+
+.hotLink {
     width: 100%;
     height: 40px;
     line-height: 40px;
     padding: 0 10px;
     overflow: hidden;
 }
-.hotLink span{
+
+.hotLink span {
     display: block;
     float: left;
     width: 18px;
@@ -562,7 +637,8 @@ body{
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 133, 255, 1);
 }
-.hotLink a{
+
+.hotLink a {
     display: block;
     width: 100%;
     height: 40px;
@@ -571,6 +647,7 @@ body{
     font-size: 14px;
     color: rgba(54, 58, 57, 1);
 }
-.hotLink a:hover{
+
+.hotLink a:hover {
     color: rgb(19, 168, 228);
 }

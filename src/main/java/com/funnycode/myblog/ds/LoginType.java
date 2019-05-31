@@ -5,7 +5,7 @@ package com.funnycode.myblog.ds;
  * @create 2018-11-22 16:18
  */
 public enum LoginType {
-    USER("User"),ADMIN("Admin");
+    USER("User"), ADMIN("Admin");
 
     private String loginType;
 

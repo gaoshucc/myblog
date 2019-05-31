@@ -22,11 +22,11 @@ public class Note {
     public Note() {
     }
 
-    public Note(String userId, String title, NoteType noteType, String noteHtml){
+    public Note(String userId, String title, NoteType noteType, String noteHtml) {
         User user = new User();
         user.setUserId(userId);
 
-        this.noteId = UUID.randomUUID().toString().replace("-","");
+        this.noteId = UUID.randomUUID().toString().replace("-", "");
         this.noteTitle = title;
         this.noteType = noteType;
         this.blogger = user;

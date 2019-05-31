@@ -32,7 +32,7 @@ public class ShiroConfig {
     private static final Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //配置登录页面路径
@@ -118,7 +118,7 @@ public class ShiroConfig {
      * 安全管理器
      */
     @Bean
-    public SecurityManager securityManager(){
+    public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setAuthenticator(modularRealmAuthenticator());
         ArrayList<Realm> realms = new ArrayList<>();
@@ -132,28 +132,30 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ModularRealmAuthenticator modularRealmAuthenticator(){
+    public ModularRealmAuthenticator modularRealmAuthenticator() {
         MyModularRealmAuthenticator myModularRealmAuthenticator = new MyModularRealmAuthenticator();
         //至少要有一个Realm
         myModularRealmAuthenticator.setAuthenticationStrategy(new AtLeastOneSuccessfulStrategy());
 
         return myModularRealmAuthenticator;
     }
+
     /**
      * 管理员Realm
      */
     @Bean
-    public AdminRealm adminRealm(HashedCredentialsMatcher matcher){
+    public AdminRealm adminRealm(HashedCredentialsMatcher matcher) {
         AdminRealm adminRealm = new AdminRealm();
         adminRealm.setCredentialsMatcher(matcher);
 
         return adminRealm;
     }
+
     /**
      * 用户Realm
      */
     @Bean
-    public UserRealm userRealm(HashedCredentialsMatcher matcher){
+    public UserRealm userRealm(HashedCredentialsMatcher matcher) {
         UserRealm userRealm = new UserRealm();
         userRealm.setCredentialsMatcher(matcher);
 
@@ -182,20 +184,20 @@ public class ShiroConfig {
      * 实现“记住我”功能
      */
     @Bean
-    public SimpleCookie rememberMeCookie(){
+    public SimpleCookie rememberMeCookie() {
         //cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //只能通过http请求访问，防御XSS攻击
         simpleCookie.setHttpOnly(true);
         simpleCookie.setPath("/");
         //设最大生存时间为7天
-        simpleCookie.setMaxAge(7*24*60*60);
+        simpleCookie.setMaxAge(7 * 24 * 60 * 60);
 
         return simpleCookie;
     }
 
     @Bean
-    public CookieRememberMeManager cookieRememberMeManager(){
+    public CookieRememberMeManager cookieRememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
         /*可在此对cookie的加密算法进行修改*/
@@ -203,7 +205,7 @@ public class ShiroConfig {
     }
 
     @Bean
-    public FormAuthenticationFilter formAuthenticationFilter(){
+    public FormAuthenticationFilter formAuthenticationFilter() {
         FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
         //对应前端的checkbox的name = rememberMe
         formAuthenticationFilter.setRememberMeParam("rememberMe");

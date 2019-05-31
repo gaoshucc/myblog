@@ -51,7 +51,7 @@ public class NoteServiceImpl implements NoteService {
     public boolean deleteNoteByNoteId(String noteId) {
         Integer delSuccess = noteMapper.deleteNoteByNoteId(noteId);
 
-        return delSuccess>0?true:false;
+        return delSuccess > 0 ? true : false;
     }
 
     @Override
@@ -63,21 +63,21 @@ public class NoteServiceImpl implements NoteService {
     public boolean recycleNoteByNoteId(String noteId) {
         Integer recycleSuccess = noteMapper.recycleNoteByNoteId(noteId);
 
-        return recycleSuccess>0?true:false;
+        return recycleSuccess > 0 ? true : false;
     }
 
     @Override
     public boolean completelyDelNoteByNoteId(String noteId) {
         Integer completelyDelSuccess = noteMapper.completelyDelNoteByNoteId(noteId);
 
-        return completelyDelSuccess>0?true:false;
+        return completelyDelSuccess > 0 ? true : false;
     }
 
     @Override
     public boolean saveComment(Comment comment) {
         Integer saveCommentSuccess = noteMapper.saveComment(comment);
 
-        return saveCommentSuccess>0?true:false;
+        return saveCommentSuccess > 0 ? true : false;
     }
 
     @Override

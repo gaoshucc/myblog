@@ -1,57 +1,64 @@
-::scrollbar{
+::scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::scrollbar-thumb{
+
+::scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196, 196, 196, 100%);
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196, 196, 196, 100%);
 }
 
-::-moz-scrollbar{
+::-moz-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-moz-scrollbar-thumb{
+
+::-moz-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196, 196, 196, 100%);
 }
 
-::-ms-scrollbar{
+::-ms-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-ms-scrollbar-thumb{
+
+::-ms-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196, 196, 196, 100%);
 }
 
-::-o-scrollbar{
+::-o-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-o-scrollbar-thumb{
+
+::-o-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,100%);
+    background: rgba(196, 196, 196, 100%);
 }
 
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-body{
+
+body {
     background-color: rgba(246, 246, 246, 100%);
 }

@@ -12,7 +12,7 @@ public class UserToken extends UsernamePasswordToken {
      */
     private String loginType;
 
-    public UserToken(String username, String password, boolean rememberMe, String loginType){
+    public UserToken(String username, String password, boolean rememberMe, String loginType) {
         super(username, password, rememberMe);
         this.loginType = loginType;
     }

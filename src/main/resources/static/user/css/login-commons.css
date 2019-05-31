@@ -1,65 +1,76 @@
-html,body{
+html, body {
     width: 100%;
     height: 100%;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{ 
-    color:#555; 
-    font-size:14px; 
-}
-input:-moz-placeholder,textarea:-moz-placeholder{ 
-    color:#555; 
-    font-size:14px; 
-}
-input::-moz-placeholder,textarea::-moz-placeholder{ 
-    color:#555; 
-    font-size:14px; 
-} 
-input:-ms-input-placeholder,textarea:-ms-input-placeholder{ 
-    color:#555; 
-    font-size:14px; 
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #555;
+    font-size: 14px;
 }
 
-body{
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #555;
+    font-size: 14px;
+}
+
+body {
     min-height: 630px;
     background-image: url(../../commons/image/dynamic.jpg);
     background-position: 50% 50%;
     background-size: cover;
 }
-#container{
+
+#container {
     position: relative;
     width: 100%;
     height: 100%;
     color: rgba(255, 255, 255, 1);
     overflow: hidden;
-   /* 锯齿
-    background-image: linear-gradient(45deg,rgba(246,246,246,100%) 25%,transparent 25%),linear-gradient(-45deg,rgba(246,246,246,100%) 25%,transparent 25%);
-    background-size: 20px 20px;
-    background-repeat: repeat-x;
-    background-position: 0 100%; */
+    /* 锯齿
+     background-image: linear-gradient(45deg,rgba(246,246,246,100%) 25%,transparent 25%),linear-gradient(-45deg,rgba(246,246,246,100%) 25%,transparent 25%);
+     background-size: 20px 20px;
+     background-repeat: repeat-x;
+     background-position: 0 100%; */
 
 }
-#errorMsgBox{
+
+#errorMsgBox {
     position: absolute;
     width: 100%;
     text-align: center;
 }
-#errorMsg{
+
+#errorMsg {
     display: inline-block;
     width: fit-content;
     line-height: 30px;
@@ -74,7 +85,8 @@ body{
     text-indent: 1px;
     background-color: rgba(255, 255, 255, 1);
 }
-#website-icon{
+
+#website-icon {
     position: relative;
     display: block;
     width: fit-content;
@@ -84,15 +96,18 @@ body{
     text-align: left;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .3);
 }
-.icon-7{
+
+.icon-7 {
     font-size: 40px;
 }
-#website-icon em{
+
+#website-icon em {
     margin-left: 5px;
     font-size: 40px;
     font-style: normal;
 }
-#visitor{
+
+#visitor {
     position: absolute;
     top: 20px;
     right: -50px;
@@ -108,7 +123,7 @@ body{
     transform: rotate(45deg);
 }
 
-#login-content{
+#login-content {
     position: absolute;
     top: 50%;
     right: 180px;
@@ -119,7 +134,8 @@ body{
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-#login-headline{
+
+#login-headline {
     width: 100%;
     height: 50px;
     line-height: 50px;
@@ -129,15 +145,18 @@ body{
     color: #555;
     text-align: center;
 }
-#input-area{
+
+#input-area {
     width: 100%;
     padding: 10px 40px;
 }
-.input-parent{
+
+.input-parent {
     display: block;
     position: relative;
 }
-.input{
+
+.input {
     display: block;
     width: 100%;
     height: 35px;
@@ -147,6 +166,7 @@ body{
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
     outline: none;
 }
+
 /*
 .input[type=text]{
     background: url("../../commons/image/user.png") no-repeat 8px;
@@ -156,7 +176,7 @@ body{
 }
 */
 
-.other{
+.other {
     display: inline-block;
     padding: 0 5px;
     height: 25px;
@@ -164,17 +184,20 @@ body{
     font-size: 12px;
     color: rgba(54, 58, 57, 1);
     text-align: center;
-    vertical-align:middle;  
+    vertical-align: middle;
     text-decoration: none;
 }
-.other input[type="checkbox"]{
+
+.other input[type="checkbox"] {
     margin-right: 5px;
-    vertical-align:middle;  
+    vertical-align: middle;
 }
-#forgot-pwd{
+
+#forgot-pwd {
     float: right;
 }
-#login-btn{
+
+#login-btn {
     display: block;
     width: 100%;
     height: 35px;
@@ -192,7 +215,8 @@ body{
     cursor: pointer;
     outline: none;
 }
-#register{
+
+#register {
     display: block;
     margin: 10px auto;
     width: 200px;
@@ -201,14 +225,15 @@ body{
     font-size: 14px;
     color: rgba(54, 58, 57, 1);
 }
-#clickto-register{
+
+#clickto-register {
     text-decoration: none;
 }
 
 /* 
 弹出层通用样式
 */
-#popup{
+#popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -220,11 +245,13 @@ body{
     visibility: hidden;
     opacity: 0;
 }
-#popup.show{
+
+#popup.show {
     visibility: visible;
     opacity: 1;
 }
-#popup-content{
+
+#popup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -239,7 +266,8 @@ body{
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-#close{
+
+#close {
     display: block;
     position: absolute;
     top: 20px;
@@ -249,18 +277,22 @@ body{
     text-align: center;
     cursor: pointer;
 }
-#close:hover{
+
+#close:hover {
     color: red;
 }
-#popup-content h2{
+
+#popup-content h2 {
     line-height: 40px;
     font-size: 18px;
     color: #555;
 }
-#reg-input-area{
+
+#reg-input-area {
     width: 100%;
 }
-.reg-input{
+
+.reg-input {
     display: block;
     width: 100%;
     height: 35px;
@@ -272,39 +304,48 @@ body{
     text-indent: 32px;
     color: rgba(54, 58, 57, 1);
 }
-#username{
+
+#username {
     background: url("../../commons/image/phone.png") no-repeat 8px;
 }
-#nickname{
+
+#nickname {
     background: url("../../commons/image/user.png") no-repeat 8px;
 }
-#password{
+
+#password {
     background: url("../../commons/image/key.png") no-repeat 8px;
 }
+
 /* 设置修改注册模块input内容文字的样式*/
-.reg-input::-webkit-input-placeholder{ 
-    color:#363a39; 
-    font-size:14px; 
+.reg-input::-webkit-input-placeholder {
+    color: #363a39;
+    font-size: 14px;
 }
-.reg-input:-moz-placeholder{ 
-    color:rgba(54, 58, 57, 1);
-    font-size:14px; 
+
+.reg-input:-moz-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
 }
-.reg-input::-moz-placeholder{ 
-    color:rgba(54, 58, 57, 1);
-    font-size:14px; 
-} 
-input:-ms-input-placeholder{ 
-    color:rgba(54, 58, 57, 1);
-    font-size:14px; 
+
+.reg-input::-moz-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
 }
-#vali-code{
+
+input:-ms-input-placeholder {
+    color: rgba(54, 58, 57, 1);
+    font-size: 14px;
+}
+
+#vali-code {
     display: inline-block;
     width: 50%;
     margin: 0;
     background: url("../../commons/image/confirm.png") no-repeat 8px;
 }
-#vali-code-img{
+
+#vali-code-img {
     float: right;
     display: block;
     width: 45%;
@@ -313,7 +354,8 @@ input:-ms-input-placeholder{
 
     cursor: pointer;
 }
-#register-btn{
+
+#register-btn {
     display: block;
     width: 100%;
     height: 35px;
@@ -331,10 +373,12 @@ input:-ms-input-placeholder{
     cursor: pointer;
     outline: none;
 }
-#register-btn:hover{
+
+#register-btn:hover {
     background-color: rgba(235, 26, 48, 1);
 }
-#popup-bg{
+
+#popup-bg {
     position: absolute;
     z-index: 100;
     width: 100%;

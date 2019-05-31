@@ -1,9 +1,9 @@
-function addLoadEvent(func){
+function addLoadEvent(func) {
     var oldonload = window.onload;
-    if(typeof window.onload != 'function'){
+    if (typeof window.onload != 'function') {
         window.onload = func;
-    }else{
-        window.onload = function(){
+    } else {
+        window.onload = function () {
             oldonload();
             func();
         }
@@ -17,7 +17,8 @@ addLoadEvent(findFavorites);
  * 悬浮显示用户详细信息
  */
 var user = null;
-function showUserDetail(){
+
+function showUserDetail() {
     var userinfo = document.querySelector('#user');
     var userDetail = document.querySelector('#user_detail');
 
@@ -26,19 +27,19 @@ function showUserDetail(){
     var experience = document.querySelector("#experience");
 
     findUser();
-    userinfo.addEventListener('mouseover',function(e){
+    userinfo.addEventListener('mouseover', function (e) {
         userDetail.style.display = 'block';
         //判断鼠标是否已经悬浮，放置重复发送请求
         let event = e || event;        //兼容处理
         let from = event.fromElement || event.relatedTarget;//兼容处理
-        if(from && this.contains(from)){      //如果在里面则返回
+        if (from && this.contains(from)) {      //如果在里面则返回
             return;
         }
         findUser();
-    },false);
-    userinfo.addEventListener('mouseout',function(e){
+    }, false);
+    userinfo.addEventListener('mouseout', function (e) {
         userDetail.style.display = 'none';
-    },false);
+    }, false);
 
     //获取登录用户
     function findUser() {
@@ -48,13 +49,13 @@ function showUserDetail(){
             url: PRO_NAME + "/user/userDetail",
             dataType: "json",
             success: function (data) {
-                if(!isnull(data)){
+                if (!isnull(data)) {
                     user = JSON.parse(data);
 
-                    for(let j=0; j<myProfile.length; j++){
+                    for (let j = 0; j < myProfile.length; j++) {
                         myProfile[j].src = "/" + user.profilePath;
                     }
-                    for(let i=0; i<loginUserNickname.length; i++){
+                    for (let i = 0; i < loginUserNickname.length; i++) {
                         loginUserNickname[i].innerHTML = user.nickname;
                     }
                     experience.innerHTML = "经验 " + user.experience;
@@ -64,6 +65,7 @@ function showUserDetail(){
         });
     }
 }
+
 /**
  * 查找收藏夹文章数
  */
@@ -79,6 +81,7 @@ function findFavoritesCount() {
         async: true
     });
 }
+
 /**
  * 查找我的收藏夹
  */
@@ -94,34 +97,34 @@ function findFavorites() {
         success: function (data) {
             loaded(favoritesSection);
             var favoritesDetailList = JSON.parse(data);
-            if(favoritesDetailList.length > 0){
+            if (favoritesDetailList.length > 0) {
                 favoritesSectionTemp = "";
                 console.log(favoritesDetailList);
-                for(let i=0; i<favoritesDetailList.length; i++){
+                for (let i = 0; i < favoritesDetailList.length; i++) {
                     favoritesSectionTemp = favoritesSectionTemp +
                         "<div class='favorites-section-items'>" +
                         "            <article class='article'>" +
-                        "                <h2><a class='articleTitle' href='/user/note?noteId="+ favoritesDetailList[i].collectNote.noteId +"'>"+ favoritesDetailList[i].collectNote.noteTitle +"</a></h2>" +
+                        "                <h2><a class='articleTitle' href='/user/note?noteId=" + favoritesDetailList[i].collectNote.noteId + "'>" + favoritesDetailList[i].collectNote.noteTitle + "</a></h2>" +
                         "                <p>点击进入详细阅读</p>" +
                         "                <div class='articleInfo'>" +
-                        "                    <span class='content-type'>"+ favoritesDetailList[i].collectNote.noteType.typeName +"</span>" +
-                        "                    <time>"+ favoritesDetailList[i].collectNote.createTime +"</time>" +
+                        "                    <span class='content-type'>" + favoritesDetailList[i].collectNote.noteType.typeName + "</span>" +
+                        "                    <time>" + favoritesDetailList[i].collectNote.createTime + "</time>" +
                         "                    <div class='readInfo'>" +
-                        "                        <span><a>评论</a>"+ favoritesDetailList[i].collectNote.commentCount +"</span>" +
+                        "                        <span><a>评论</a>" + favoritesDetailList[i].collectNote.commentCount + "</span>" +
                         "                    </div>" +
                         "                </div>" +
                         "            </article>" +
                         "            <div class='author-info'>" +
                         "                <div class='author-info-right'>" +
-                        "                    <span class='author-nickname'>"+ favoritesDetailList[i].collectNote.blogger.nickname +"</span>" +
-                        "                    <time class='collect-time'>"+ favoritesDetailList[i].collectTime +"</time>" +
+                        "                    <span class='author-nickname'>" + favoritesDetailList[i].collectNote.blogger.nickname + "</span>" +
+                        "                    <time class='collect-time'>" + favoritesDetailList[i].collectTime + "</time>" +
                         "                </div>" +
-                        "                <img src='/"+ favoritesDetailList[i].collectNote.blogger.profilePath +"'>" +
+                        "                <img src='/" + favoritesDetailList[i].collectNote.blogger.profilePath + "'>" +
                         "            </div>" +
                         "        </div>";
                 }
                 favoritesSection.innerHTML = favoritesSectionTemp;
-            }else{
+            } else {
                 favoritesSection.innerHTML = "<span class='iconfont icon-zhaobudaojieguo'></span><span id='no-content'>收藏夹没有内容哦</span>";
             }
         },

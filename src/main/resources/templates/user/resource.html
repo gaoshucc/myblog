@@ -14,185 +14,193 @@
     <title>资源</title>
 </head>
 <body>
-    <header id='header'>
-        <div id="headerbox">
-            <img th:src="@{/user/image/article_head2.png}">
-            <nav id='nav'>
-                <ul>
-                    <li><a th:href="@{/user/homepage}">首页</a></li>
-                    <li><a href='#'>问答</a></li>
-                    <li><a href='#'>学习路线</a></li>
-                </ul>
-            </nav>
-            <div id='user' th:if="${session.loginUser != null}">
-                <img th:src="@{/user/image/profile/profile.jpg}" id='imgone'>
-                <div id='user_detail'>
-                    <div id='infoBox'>
-                        <img th:src="@{/user/image/profile/profile.jpg}">
-                        <div id='user-info'>
-                            <span>高数</span>
-                            <span>积分 9999</span>
-                        </div>
+<header id='header'>
+    <div id="headerbox">
+        <img th:src="@{/user/image/article_head2.png}">
+        <nav id='nav'>
+            <ul>
+                <li><a th:href="@{/user/homepage}">首页</a></li>
+                <li><a href='#'>问答</a></li>
+                <li><a href='#'>学习路线</a></li>
+            </ul>
+        </nav>
+        <div id='user' th:if="${session.loginUser != null}">
+            <img th:src="@{/user/image/profile/profile.jpg}" id='imgone'>
+            <div id='user_detail'>
+                <div id='infoBox'>
+                    <img th:src="@{/user/image/profile/profile.jpg}">
+                    <div id='user-info'>
+                        <span>高数</span>
+                        <span>积分 9999</span>
                     </div>
+                </div>
 
-                    <div id='funcCard'>
-                        <ul id='funcCardList'>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myAccount}">
-                                    <span class='iconfont icon-yonghu'></span>
-                                    <span>我的账号</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myFavorites}">
-                                    <span class='iconfont icon-wodeshoucang'></span>
-                                    <span>我的收藏</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myNote}">
-                                    <span class='iconfont icon-biji'></span>
-                                    <span>我的手记</span>
-                                </a>
-                            </li>
-                            <li class='funcCardItems'>
-                                <a th:href="@{/user/myQuestion}">
-                                    <span class='iconfont icon-wenda'></span>
-                                    <span>我的提问</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
+                <div id='funcCard'>
+                    <ul id='funcCardList'>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myAccount}">
+                                <span class='iconfont icon-yonghu'></span>
+                                <span>我的账号</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myFavorites}">
+                                <span class='iconfont icon-wodeshoucang'></span>
+                                <span>我的收藏</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myNote}">
+                                <span class='iconfont icon-biji'></span>
+                                <span>我的手记</span>
+                            </a>
+                        </li>
+                        <li class='funcCardItems'>
+                            <a th:href="@{/user/myQuestion}">
+                                <span class='iconfont icon-wenda'></span>
+                                <span>我的提问</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id='quit'><a th:href="@{/user/logout}">退出</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- IDE 数据库 远程连接工具 插件  -->
+<div id='container'>
+    <div id='resource-box'>
+        <div class="resource">
+            <div class='first-infobg'>
+                <div class='leftpart-info'>
+                    <span class='resource-tags'>IDE</span>
+                    <span class='resource-name'><a href="https://www.jetbrains.com/" target="_blank">IDEA</a></span>
+                </div>
+                <div class='rightpart-info'>
+                    <span class='resource-descript'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+                    <a href="https://www.jetbrains.com/" target="_blank" class='go'>前往</a>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- IDE 数据库 远程连接工具 插件  -->
-    <div id='container'>
-        <div id='resource-box'>
-            <div class="resource">
-                <div class='first-infobg'>
-                    <div class='leftpart-info'>
-                        <span class='resource-tags'>IDE</span>
-                        <span class='resource-name'><a href="https://www.jetbrains.com/" target="_blank">IDEA</a></span>
-                    </div>
-                    <div class='rightpart-info'>
-                        <span class='resource-descript'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                        <a href="https://www.jetbrains.com/" target="_blank" class='go'>前往</a>
-                    </div>
+        <div class="resource">
+            <div class='second-infobg'>
+                <div class='leftpart-info'>
+                    <span class='resource-tags'>DB</span>
+                    <span class='resource-name'><a href="https://www.mysql.com/" target="_blank">MySQL</a></span>
                 </div>
-            </div>
-            <div class="resource">
-                <div class='second-infobg'>
-                    <div class='leftpart-info'>
-                        <span class='resource-tags'>DB</span>
-                        <span class='resource-name'><a href="https://www.mysql.com/" target="_blank">MySQL</a></span>
-                    </div>
-                    <div class='rightpart-info'>
-                        <span class='resource-descript'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                        <a href="https://www.mysql.com/" target="_blank" class='go'>前往</a>
-                    </div>
-                </div>
-            </div>
-            <div class="resource">
-                <div class='third-infobg'>
-                    <div class='leftpart-info'>
-                        <span class='resource-tags'>Connector</span>
-                        <span class='resource-name'><a href="https://xshell.en.softonic.com/" target="_blank">XShell</a></span>
-                    </div>
-                    <div class='rightpart-info'>
-                        <span class='resource-descript'>XShell是一个强大的安全终端模拟软件，它支持SSH1, SSH2, 以及Microsoft Windows 平台的TELNET 协议。Xshell 通过互联网到远程主机的安全连接以及它创新性的设计和特色帮助用户在复杂的网络环境中享受他们的工作。</span>
-                        <a href="https://xshell.en.softonic.com/" target="_blank" class='go'>前往</a>
-                    </div>
-                </div>
-            </div>
-            <div class="resource">
-                <div class='fourth-infobg'>
-                    <div class='leftpart-info'>
-                        <span class='resource-tags'>Plugin</span>
-                        <span class='resource-name'><a href="http://findbugs.sourceforge.net/" target="_blank">FindBugs</a></span>
-                    </div>
-                    <div class='rightpart-info'>
-                        <span class='resource-descript'>FindBugs是个静态分析工具，能检查程序潜在bug，在bug报告中快速定位到问题的代码上，大大的节省了我们的时间。</span>
-                        <a href="http://findbugs.sourceforge.net/" target="_blank" class='go'>前往</a>
-                    </div>
+                <div class='rightpart-info'>
+                    <span class='resource-descript'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+                    <a href="https://www.mysql.com/" target="_blank" class='go'>前往</a>
                 </div>
             </div>
         </div>
-
-        <div id='resource-catalog'>
-            <span id='tips'>请勿出售！</span>
-            <div id='srcHeadline'>
-                <h2>
-                    <span class='iconfont icon-hand-point-right'></span>
-                    <em>学</em><em>习</em><em>资</em><em>源</em>
-                    <span class='iconfont icon-hand-point-left'></span>
-                </h2>
+        <div class="resource">
+            <div class='third-infobg'>
+                <div class='leftpart-info'>
+                    <span class='resource-tags'>Connector</span>
+                    <span class='resource-name'><a href="https://xshell.en.softonic.com/"
+                                                   target="_blank">XShell</a></span>
+                </div>
+                <div class='rightpart-info'>
+                    <span class='resource-descript'>XShell是一个强大的安全终端模拟软件，它支持SSH1, SSH2, 以及Microsoft Windows 平台的TELNET 协议。Xshell 通过互联网到远程主机的安全连接以及它创新性的设计和特色帮助用户在复杂的网络环境中享受他们的工作。</span>
+                    <a href="https://xshell.en.softonic.com/" target="_blank" class='go'>前往</a>
+                </div>
             </div>
-            <div id='category'>
-                <span id='select'>请选择：</span>
-                <a href='#' class='category-items'>前端</a>
-                <a href='#' class='category-items'>后台</a>
-                <a href='#' class='category-items'>移动端</a>
-                <a href='#' class='category-items'>IOS</a>
-                <a href='#' class='category-items'>数据库</a>
-                <a href='#' class='category-items'>大数据</a>
-                <a href='#' class='category-items'>云计算</a>
-            </div>
-            <div id='resource-list'>
-                <div id='list-head'>
-                    <span id='col-one'>名称</span>
-                    <span id='col-four'>下载</span>
-                    <span id='col-three'>下载次数</span>
-                    <span id='col-two'>资源简介</span>
+        </div>
+        <div class="resource">
+            <div class='fourth-infobg'>
+                <div class='leftpart-info'>
+                    <span class='resource-tags'>Plugin</span>
+                    <span class='resource-name'><a href="http://findbugs.sourceforge.net/" target="_blank">FindBugs</a></span>
                 </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
-                </div>
-                <div class='resource-items'>
-                    <span class='items-name'>IDEA</span>
-                    <span class='iconfont icon-xiazai' title='下载'></span>
-                    <span class='download-num'><em>999</em>次</span>
-                    <span class='resource-intro' title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+                <div class='rightpart-info'>
+                    <span class='resource-descript'>FindBugs是个静态分析工具，能检查程序潜在bug，在bug报告中快速定位到问题的代码上，大大的节省了我们的时间。</span>
+                    <a href="http://findbugs.sourceforge.net/" target="_blank" class='go'>前往</a>
                 </div>
             </div>
         </div>
     </div>
-    <div id="uptoTop" class="iconfont icon-12" title="顶部"></div>
+
+    <div id='resource-catalog'>
+        <span id='tips'>请勿出售！</span>
+        <div id='srcHeadline'>
+            <h2>
+                <span class='iconfont icon-hand-point-right'></span>
+                <em>学</em><em>习</em><em>资</em><em>源</em>
+                <span class='iconfont icon-hand-point-left'></span>
+            </h2>
+        </div>
+        <div id='category'>
+            <span id='select'>请选择：</span>
+            <a href='#' class='category-items'>前端</a>
+            <a href='#' class='category-items'>后台</a>
+            <a href='#' class='category-items'>移动端</a>
+            <a href='#' class='category-items'>IOS</a>
+            <a href='#' class='category-items'>数据库</a>
+            <a href='#' class='category-items'>大数据</a>
+            <a href='#' class='category-items'>云计算</a>
+        </div>
+        <div id='resource-list'>
+            <div id='list-head'>
+                <span id='col-one'>名称</span>
+                <span id='col-four'>下载</span>
+                <span id='col-three'>下载次数</span>
+                <span id='col-two'>资源简介</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+            <div class='resource-items'>
+                <span class='items-name'>IDEA</span>
+                <span class='iconfont icon-xiazai' title='下载'></span>
+                <span class='download-num'><em>999</em>次</span>
+                <span class='resource-intro'
+                      title='IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一'>IDEA 全称IntelliJ IDEA，是用于java语言开发的集成环境（也可用于其他语言），IntelliJ在业界被公认为最好的java开发工具之一</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="uptoTop" class="iconfont icon-12" title="顶部"></div>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class Question {
         User quizzer = new User();
         quizzer.setUserId(userId);
 
-        this.questId = UUID.randomUUID().toString().replace("-","");
+        this.questId = UUID.randomUUID().toString().replace("-", "");
         this.questTitle = questionTitle;
         this.questType = questType;
         this.quizzer = quizzer;

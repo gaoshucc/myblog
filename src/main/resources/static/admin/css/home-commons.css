@@ -1,23 +1,28 @@
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     background: rgb(255, 255, 255);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: rgba(196,196,196,1);
+    background: rgba(196, 196, 196, 1);
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-a{
+
+a {
     text-decoration: none;
 }
-html,body{
+
+html, body {
     width: 100%;
     height: 100%;
 }
-body{
+
+body {
     background-color: rgba(246, 246, 246, 1);
 }

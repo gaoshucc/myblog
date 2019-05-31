@@ -18,7 +18,7 @@ public class GlobalExceptionController {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionController.class);
 
     @ExceptionHandler(Exception.class)
-    public String authorizationExceptionHandler(Exception e){
+    public String authorizationExceptionHandler(Exception e) {
         logger.info("进入异常控制器了");
         e.printStackTrace();
         return "403";
